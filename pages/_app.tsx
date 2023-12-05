@@ -25,7 +25,7 @@ function App({ Component, pageProps }: AppProps) {
         height={2}
         // showOnShallow={true}
       />
-      {/* <RouteLoader /> */}
+      <RouteLoader />
       <ErrorBoundary>
         <SessionProvider
           session={pageProps.session}
