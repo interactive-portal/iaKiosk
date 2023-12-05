@@ -43,7 +43,7 @@ const RiverClubV1HomePurchase = ({
 
   return (
     <BlockDiv className="flex items-center justify-center w-max bg-black">
-      <BlockDiv className="mx-[112px] my-[26px] bg-red-500 py-[25px] px-[40px] flex items-center justify-between gap-x-[120px]">
+      <BlockDiv className="mx-[112px] my-[26px] bg-blue-500 py-[25px] px-[40px] flex items-center justify-between gap-x-[120px]">
         <BlockDiv className="flex flex-col gap-y-[18px]">
           <RenderAtom
             item={staticItem?.title || item?.title}
