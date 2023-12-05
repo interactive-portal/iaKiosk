@@ -1,5 +1,8 @@
+import axios from "axios";
 import Payment from "../payment/payment";
 import { FC, useState } from "react";
+import { notification } from "antd";
+import Cookies from "js-cookie";
 
 type PropsType = {
   item?: any;
@@ -13,7 +16,19 @@ const PaymentModal: FC<PropsType> = ({
   setModal,
 }) => {
   const [loading, setLoading] = useState(false);
-  const [paymentResult, setPaymentResult] = useState<any>();
+  const [paymentResult, setPaymentResult] = useState<any>({
+    authcode: "86R5R6",
+    pan: "949628XXXXXX9157",
+    rrn: "005545138849",
+    status: "success",
+    terminalid: "70105432",
+    traceno: "001099",
+  });
+
+  const session: any = Cookies.getJSON("customer");
+
+  console.log("csession", session);
+
   const checkPayment = () => {
     setLoading(true);
     Payment(
@@ -23,12 +38,54 @@ const PaymentModal: FC<PropsType> = ({
       function (item: any) {
         console.log("payment result backasdasdasd", item);
         if (item?.status == "success") {
-          alert("Төлбөр төлөлт амжилттай");
+          paymentProcess();
+        } else {
+          notification.error({
+            message: item?.text,
+          });
         }
-        // setSelectDateModal(false);
-        // setModal("date");
+        setSelectDateModal(false);
+        setModal("date");
       }
     );
+  };
+  // console.log("itemememmememememmememe", item);
+
+  const paymentProcess = async () => {
+    const res = await axios.post(`/api/post-process`, {
+      processcode: "fitKioskSalesNew_DV_001",
+      parameters: {
+        subTotal: Number(item?.saleprice),
+        total: Number(item?.saleprice),
+        customerId: session?.customerId,
+        fitKioskSalesDtlNew_DV: {
+          productId: item?.id,
+          unitPrice: Number(item?.saleprice),
+          lineTotalPrice: Number(item?.saleprice),
+          percentVat: "10",
+          uniVat: "",
+          lineTotalVat: "",
+          unitAmount: Number(item?.saleprice),
+          lineTotalAmount: Number(item?.saleprice),
+        },
+        fitKioskSalesPaymentNew_DV: {
+          paymentMethodCode: paymentResult?.authcode,
+          bankId: "khanbank",
+          amount: Number(item?.saleprice),
+          paymentTypeId: "2",
+          confirmCode: paymentResult?.rrn,
+          refenceNumber: "",
+          terminalNumber: paymentResult?.terminalid,
+          extTransactionId: paymentResult?.traceno,
+        },
+      },
+    });
+    if (res?.data?.status == "success") {
+      console.log("processoos irsen resposne", res);
+      alert("Төлбөр төлөлт амжилттай");
+    } else {
+      console.log("ososoososos aldaaa", res);
+    }
   };
 
   if (loading) {
