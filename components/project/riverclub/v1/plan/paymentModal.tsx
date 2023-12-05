@@ -21,7 +21,7 @@ const PaymentModal: FC<PropsType> = ({
       process.env.NEXT_PUBLIC_TERMINAL_ID,
       process.env.NEXT_PUBLIC_DEVICE_TYPE,
       function (item: any) {
-        console.log("payment result back", item);
+        console.log("payment result backasdasdasd", item);
         if (item?.status == "success") {
           alert("Төлбөр төлөлт амжилттай");
         }
