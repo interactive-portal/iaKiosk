@@ -26,7 +26,6 @@ function App({ Component, pageProps }: AppProps) {
         // showOnShallow={true}
       />
       {/* <RouteLoader /> */}
-      <>ddddddddddddddd susu update</>
 
       <ErrorBoundary>
         <SessionProvider
