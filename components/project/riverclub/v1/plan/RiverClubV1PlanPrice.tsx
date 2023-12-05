@@ -21,7 +21,7 @@ const RiverClubV1PlanPrice = () => {
 
   // console.log("readydata", readyDatasrc);
 
-  // Cookies.set("customer", { CustomerId: "170130843295810" });
+  Cookies.set("customer", { customerId: "170130843295810" });
 
   const { callProcess, isProcessWorking } = useCallProcess();
   const [selectDateModal, setSelectDateModal] = useState(false);
@@ -56,9 +56,9 @@ const RiverClubV1PlanPrice = () => {
 
   const [language, setLanguage] = React.useState(currentLanguage);
 
-  React.useEffect(() => {
-    setLanguage(currentLanguage);
-  }, [currentLanguage]);
+  // React.useEffect(() => {
+  //   setLanguage(currentLanguage);
+  // }, [currentLanguage]);
 
   const [activeIndex, setactiveIndex] = useState<any>(0);
   const [openLogin, setOpenLogin] = useState(false);
@@ -130,7 +130,7 @@ const RiverClubV1PlanPrice = () => {
       parameters: param,
     });
 
-    console.log("create contract result", res?.data);
+    // console.log("create contract result", res?.data);
 
     if (res?.data?.status == "success") {
       setTemplateId(res?.data?.result?.templateId);
@@ -301,6 +301,27 @@ const RiverClubV1PlanPrice = () => {
           </div>
         </div>
       </div>
+      <style>
+        {`
+          .ant-picker-panel-layout {
+            background:var(--202020, #202020);
+            border:1px solid #3B414A;
+            color:white !important;
+          }
+          .ant-picker-date-panel div {
+            color:white !important;
+          }
+          .ant-picker-date-panel button {
+            color:white !important;
+          }
+          .ant-picker-date-panel th {
+            color:white !important;
+          }
+          .ant-picker-date-panel input {
+            color:white !important;
+          }
+          `}
+      </style>
     </div>
   );
 
@@ -339,7 +360,9 @@ const RiverClubV1PlanPrice = () => {
       <Modal
         open={selectDateModal}
         footer={false}
-        onCancel={() => setSelectDateModal(false)}
+        onCancel={() => {
+          setSelectDateModal(false), setModal("date");
+        }}
         destroyOnClose
       >
         {modalContent()}
@@ -488,15 +511,21 @@ const Card = ({
 
 const CardItem = ({ readyData, dark, kFormatter, setactiveIndex }: any) => {
   const [active, setActive] = useState(0);
-
+  function displayInThousands(number: any) {
+    // Divide the number by 1000 and format it with commas
+    return (
+      (number / 1000).toLocaleString(undefined, { maximumFractionDigits: 2 }) +
+      "K"
+    );
+  }
   return (
     <>
       {readyData?.map((obj: any, index: number) => {
         return (
           <RenderAtom
             key={index}
-            item={`<sup className="text-[16px] font-normal">₮</sup>${Number(
-              obj?.saleprice
+            item={`<sup className="text-[16px] font-normal">₮</sup>${displayInThousands(
+              Number(obj?.saleprice)
             )} <span className="text-[16px]"> / ${obj?.monthname}</span>`}
             renderType="title"
             className={`text-[36px] cursor-pointer font-medium flex items-center leading-[24px] ${

@@ -13,6 +13,7 @@ const PaymentModal: FC<PropsType> = ({
   setModal,
 }) => {
   const [loading, setLoading] = useState(false);
+  const [paymentResult, setPaymentResult] = useState<any>();
   const checkPayment = () => {
     setLoading(true);
     Payment(
@@ -21,8 +22,11 @@ const PaymentModal: FC<PropsType> = ({
       process.env.NEXT_PUBLIC_DEVICE_TYPE,
       function (item: any) {
         console.log("payment result back", item);
-        setSelectDateModal(false);
-        setModal("date");
+        if (item?.status == "success") {
+          alert("Төлбөр төлөлт амжилттай");
+        }
+        // setSelectDateModal(false);
+        // setModal("date");
       }
     );
   };
@@ -71,7 +75,7 @@ const PaymentModal: FC<PropsType> = ({
             </div>
             <div className="flex items-center justify-between text-white text-[16px] mx-[25px] py-[20px]">
               <p className="">Үнийн дүн </p>
-              <p className="font-bold">{item?.saleprice}</p>
+              <p className="font-bold">{item?.saleprice}₮</p>
             </div>
           </div>
         </div>
