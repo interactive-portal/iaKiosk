@@ -71,7 +71,7 @@ const PaymentModal: FC<PropsType> = ({
         },
         fitKioskSalesPaymentNew_DV: {
           paymentMethodCode: paymentResult?.authcode,
-          bankId: "khanbank",
+          bankId: 500000,
           amount: Number(item?.saleprice),
           paymentTypeId: "2",
           confirmCode: paymentResult?.rrn,
