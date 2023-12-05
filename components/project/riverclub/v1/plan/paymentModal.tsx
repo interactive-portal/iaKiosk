@@ -38,13 +38,14 @@ const PaymentModal: FC<PropsType> = ({
       function (item: any) {
         console.log("payment result backasdasdasd", item);
         if (item?.status == "success") {
+          setPaymentResult(item);
           paymentProcess();
         } else {
           notification.error({
             message: item?.text,
           });
         }
-        setSelectDateModal(false);
+        // setSelectDateModal(false);
         setModal("date");
       }
     );
