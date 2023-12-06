@@ -67,7 +67,7 @@ const RiverClubV1PlanPrice = () => {
   const [selectedItem, setSelectItem] = useState<any>();
   const [templateId, setTemplateId] = useState<any>();
   const [contractId, setContractId] = useState<any>();
-  const [modal, setModal] = useState("payment");
+  const [modal, setModal] = useState("date");
 
   const { nemgooDatasrc } = useContext(WidgetWrapperContext);
   const data = language === "mn" ? nemgooDatasrc[1] : nemgooDatasrc[0];
