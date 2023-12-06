@@ -67,11 +67,12 @@ const RiverClubV1BioInputForm = () => {
 
       console.log("response", res);
 
-      if (res?.result.Image != null) {
+      if (res?.result.image != null) {
         setImageToken(res?.result.image);
         setValue(res?.result?.value);
         setOpenModal(false);
         ws.send('{"action":"Close"}');
+
         // [image] = res.image;
         // [value] = res.value;
       } else {
@@ -130,7 +131,7 @@ const RiverClubV1BioInputForm = () => {
                 className="flex items-center gap-4 cursor-pointer"
                 onClick={(e) => clickCamera(e)}
               >
-                <input type="checkbox" />
+                <input type="checkbox" checked={imageToken ? true : false} />
                 <div className="bg-[#050505] text-white text-[13px] leading-[19px] uppercase px-[22px] py-[5px]">
                   Царайгаа таниулах
                 </div>
@@ -155,7 +156,7 @@ const RiverClubV1BioInputForm = () => {
         footer={false}
       >
         <div className="w-full h-full pt-[150px] relative">
-          <div className="absolute top-8 left-[20%] text-[50px] font-medium text-[#BAD405]">
+          <div className="absolute top-[40%] left-[20%] text-[50px] font-medium text-[#BAD405]">
             <p className="">Та камер луу харна уу !</p>
           </div>
           <div className="max-w-[640px] mx-auto h-[480px] bg-black/70 rounded-lg flex items-center justify-center">

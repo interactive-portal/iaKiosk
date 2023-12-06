@@ -103,7 +103,7 @@ const RiverLoginModal: FC<PropsType> = ({
         footer={false}
       >
         <div className="w-full h-full bg-black/50 pt-[150px] flex justify-center relative">
-          <div className="absolute top-8 left-[20%] text-[50px] font-medium text-[#BAD405]">
+          <div className="absolute top-[40%] left-[20%] text-[50px] font-medium text-[#BAD405]">
             <p className="">Та камер луу харна уу !</p>
           </div>
           <div className="w-[640px] h-[480px] bg-black/70 rounded-lg flex items-center justify-center">
