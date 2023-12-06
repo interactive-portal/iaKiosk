@@ -8,6 +8,7 @@ type PropsType = {
   setOpenModal: any;
   setNeedSignUp?: any;
   needSignUp?: any;
+  selectDateModal?: any;
 };
 
 const RiverLoginModal: FC<PropsType> = ({
@@ -15,15 +16,11 @@ const RiverLoginModal: FC<PropsType> = ({
   setOpenModal,
   setNeedSignUp,
   needSignUp,
+  selectDateModal,
 }) => {
   useEffect(() => {
     if (openModal) clickCamera();
   }, [openModal]);
-
-  // console.log(
-  //   "process.env.NEXT_PUBLIC_FACECAMERA_URL",
-  //   process.env.NEXT_PUBLIC_FACECAMERA_URL
-  // );
 
   const clickCamera = () => {
     var ws = new WebSocket(`${process.env.NEXT_PUBLIC_FACECAMERA_URL}`);
@@ -41,6 +38,9 @@ const RiverLoginModal: FC<PropsType> = ({
         notification.success({
           message: "Амжилттай нэвтэрлээ",
         });
+        if (selectDateModal) {
+          selectDateModal(true);
+        }
         setOpenModal(false);
       } else {
         ws.send('{"action":"Close"}');

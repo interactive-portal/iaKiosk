@@ -16,8 +16,8 @@ const PaymentModal: FC<PropsType> = ({
   setSelectDateModal,
   setModal,
 }) => {
-  const [modalContent, setModalContent] = useState("ebarimt");
-  const [paymentResult, setPaymentResult] = useState<any>(true);
+  const [modalContent, setModalContent] = useState("pay");
+  const [paymentResult, setPaymentResult] = useState<any>();
   const [printOptions, setPrintOptions] = useState({
     lang: {
       mn: "",
@@ -56,6 +56,7 @@ const PaymentModal: FC<PropsType> = ({
           setPaymentResult(item);
           paymentProcess();
         } else {
+          setSelectDateModal(false);
           notification.error({
             message: item?.text,
           });
@@ -136,7 +137,7 @@ const PaymentModal: FC<PropsType> = ({
     pri.focus();
     pri.print();
     setSelectDateModal(false);
-    setModalContent("pay");
+    // setModalContent("pay");
     Cookies.remove("customer");
 
     // setModal("date");
@@ -198,7 +199,6 @@ const PaymentModal: FC<PropsType> = ({
                   font-family: Arial, sans-serif;
                   font-size: 12pt;
                   color: black;
-                  margin: 1.6cm;
                 }
 
                   #portraid {

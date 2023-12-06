@@ -21,7 +21,7 @@ const RiverClubV1PlanPrice = () => {
 
   // console.log("readydata", readyDatasrc);
 
-  // Cookies.set("customer", { customerId: "170130843295810" });
+  Cookies.set("customer", { customerId: "170130843295810" });
 
   const { callProcess, isProcessWorking } = useCallProcess();
   const [selectDateModal, setSelectDateModal] = useState(false);
@@ -184,8 +184,9 @@ const RiverClubV1PlanPrice = () => {
         },
       });
       if (res?.data?.status == "success") {
-        if (res?.data?.result?.isComfirm == "0") {
+        if (res?.data?.result?.isConfirm == "0") {
         } else {
+          setActiveCheck(false);
           setModal("payment");
         }
       }
@@ -296,7 +297,9 @@ const RiverClubV1PlanPrice = () => {
               color: "var(--202020, #202020)",
               background: "var(--green-main, #BAD405)",
             }}
-            onClick={() => createContract()}
+            onClick={() => {
+              createContract(), setActiveCheck(false);
+            }}
           >
             Цааш
           </div>
@@ -357,7 +360,11 @@ const RiverClubV1PlanPrice = () => {
         setactiveIndex={setactiveIndex}
         selectItem={selectItem}
       />
-      <RiverLoginModal openModal={openLogin} setOpenModal={setOpenLogin} />
+      <RiverLoginModal
+        openModal={openLogin}
+        setOpenModal={setOpenLogin}
+        selectDateModal={setSelectDateModal}
+      />
       <Modal
         open={selectDateModal}
         footer={false}
