@@ -198,9 +198,10 @@ const PaymentModal: FC<PropsType> = ({
                   font-family: Arial, sans-serif;
                   font-size: 12pt;
                   color: black;
+                  margin: 1.6cm;
                 }
 
-                  .printContent {
+                  #portraid {
                     page-break-before: always;
                     page-break-inside: avoid;
                   }
@@ -216,6 +217,8 @@ const PaymentModal: FC<PropsType> = ({
                     display: none;
                   }
                 }
+
+
 
               `}
             </style>
