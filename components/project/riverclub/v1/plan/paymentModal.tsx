@@ -16,7 +16,7 @@ const PaymentModal: FC<PropsType> = ({
   setSelectDateModal,
   setModal,
 }) => {
-  const [modalContent, setModalContent] = useState("pay");
+  const [modalContent, setModalContent] = useState("ebarimt");
   const [paymentResult, setPaymentResult] = useState<any>(true);
   const [printOptions, setPrintOptions] = useState({
     lang: {
@@ -55,7 +55,6 @@ const PaymentModal: FC<PropsType> = ({
         if (item?.status == "success") {
           setPaymentResult(item);
           paymentProcess();
-          setModalContent("ebarimt");
         } else {
           notification.error({
             message: item?.text,
@@ -98,7 +97,7 @@ const PaymentModal: FC<PropsType> = ({
     });
     if (res?.data?.status == "success") {
       console.log("processoos irsen resposne", res);
-      alert("Төлбөр төлөлт амжилттай");
+      setModalContent("ebarimt");
       setPrintOptions({
         lang: {
           mn: "",
@@ -136,11 +135,11 @@ const PaymentModal: FC<PropsType> = ({
     pri.document.close();
     pri.focus();
     pri.print();
+    setSelectDateModal(false);
+    setModalContent("pay");
+    Cookies.remove("customer");
 
-    // setSelectDateModal(false);
     // setModal("date");
-    // setModalContent("pay");
-    // Cookies.remove("customer");
   };
 
   const content = () => {
@@ -168,15 +167,14 @@ const PaymentModal: FC<PropsType> = ({
       case "ebarimt":
         return (
           <div className="flex items-center justify-center h-full">
-            <div
-              className="w-[500px] bg-white overflow-scroll rounded-lg printContent"
-              id={"portraid"}
-            >
+            <div className="w-[500px] bg-white overflow-scroll rounded-lg printContent">
               <iframe id="content" className="h-0 w-0 absolute"></iframe>
-              <ReportTemplate
-                options={printOptions}
-                data={{ contractId: contractId || "170174683396510" }}
-              />
+              <div id={"portraid"}>
+                <ReportTemplate
+                  options={printOptions}
+                  data={{ contractId: contractId || "170174683396510" }}
+                />
+              </div>
               <p className="text-[20px] px-4 txt">Та баримтаа хэвлэж авна уу</p>
               <div className="py-[20px] w-full flex gap-[16px] px-[64px] cursor-pointer button">
                 <div
