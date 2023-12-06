@@ -136,10 +136,11 @@ const PaymentModal: FC<PropsType> = ({
     pri.document.close();
     pri.focus();
     pri.print();
-    setSelectDateModal(false);
-    setModal("date");
-    setModalContent("pay");
-    Cookies.remove("customer");
+
+    // setSelectDateModal(false);
+    // setModal("date");
+    // setModalContent("pay");
+    // Cookies.remove("customer");
   };
 
   const content = () => {
@@ -176,10 +177,10 @@ const PaymentModal: FC<PropsType> = ({
                 options={printOptions}
                 data={{ contractId: contractId || "170174683396510" }}
               />
-              <p className="text-[20px] px-4">Та баримтаа хэвлэж авна уу</p>
+              <p className="text-[20px] px-4 txt">Та баримтаа хэвлэж авна уу</p>
               <div className="py-[20px] w-full flex gap-[16px] px-[64px] cursor-pointer button">
                 <div
-                  className="w-full  text-[20px] text-center uppercase rounded font-medium py-2"
+                  className="w-full  text-[20px] text-center uppercase rounded font-medium py-2 btn"
                   style={{
                     color: "var(--202020, #202020)",
                     background: "var(--green-main, #BAD405)",
@@ -192,25 +193,30 @@ const PaymentModal: FC<PropsType> = ({
                 </div>
               </div>
             </div>
-            <style media="print">
+            <style>
               {`
+              @media print {
                 body {
                   font-family: Arial, sans-serif;
                   font-size: 12pt;
                   color: black;
                 }
 
-                .printContent {
-                  page-break-before: always;
-                  page-break-inside: avoid;
-                }
+                  .printContent {
+                    page-break-before: always;
+                    page-break-inside: avoid;
+                  }
 
-                .button {
-                  display: none; /* Hide the print button in print view */
-                }
+                  .button {
+                    display: none;
+                  }
 
-                p {
-                  display: none
+                  .txt {
+                    display: none;
+                  }
+                  img :{
+                    display: none;
+                  }
                 }
 
               `}
@@ -265,7 +271,7 @@ const PaymentModal: FC<PropsType> = ({
     }
   };
 
-  return content();
+  return <>{content()}</>;
 };
 
 export default PaymentModal;
