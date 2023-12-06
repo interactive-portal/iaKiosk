@@ -59,11 +59,11 @@ const RiverClubV1MasterHeader: FC<PropsType> = ({ data, options, mutate }) => {
             className={`w-[142px] cursor-pointer h-[36px] my-[10px] mr-[45px]`}
           />
           <Menu item={menu} />
-          {customer ? (
+          {/* {customer ? (
             <i className="fa-solid fa-user fa-xl mr-6 text-[#BAD405]"></i>
-          ) : (
-            <MemberButton item={button} />
-          )}
+          ) : ( */}
+          <MemberButton item={button} />
+          {/* )} */}
         </BlockDiv>
       </BlockDiv>
     </BlockDiv>

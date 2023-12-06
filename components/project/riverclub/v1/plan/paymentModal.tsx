@@ -45,12 +45,10 @@ const PaymentModal: FC<PropsType> = ({
             message: item?.text,
           });
         }
-        // setSelectDateModal(false);
-        setModal("date");
       }
     );
   };
-  // console.log("itemememmememememmememe", item);
+  console.log("itemememmememememmememe", item);
 
   const paymentProcess = async () => {
     const res = await axios.post(`/api/post-process`, {
@@ -59,23 +57,25 @@ const PaymentModal: FC<PropsType> = ({
         subTotal: Number(item?.saleprice),
         total: Number(item?.saleprice),
         customerId: session?.customerId,
+        vat: Number(item?.vat),
         fitKioskSalesDtlNew_DV: {
           productId: item?.id,
+          sectionId: item?.sectionid,
           unitPrice: Number(item?.saleprice),
           lineTotalPrice: Number(item?.saleprice),
           percentVat: "10",
-          uniVat: "",
-          lineTotalVat: "",
+          uniVat: item?.vat,
+          lineTotalVat: item?.vat,
           unitAmount: Number(item?.saleprice),
           lineTotalAmount: Number(item?.saleprice),
         },
         fitKioskSalesPaymentNew_DV: {
-          paymentMethodCode: paymentResult?.authcode,
+          paymentMethodCode: paymentResult?.pan,
           bankId: 500000,
           amount: Number(item?.saleprice),
           paymentTypeId: "2",
-          confirmCode: paymentResult?.rrn,
-          refenceNumber: "",
+          confirmCode: paymentResult?.authcode,
+          refenceNumber: paymentResult?.rrn,
           terminalNumber: paymentResult?.terminalid,
           extTransactionId: paymentResult?.traceno,
         },
@@ -84,8 +84,11 @@ const PaymentModal: FC<PropsType> = ({
     if (res?.data?.status == "success") {
       console.log("processoos irsen resposne", res);
       alert("Төлбөр төлөлт амжилттай");
+      setSelectDateModal(false);
+      setModal("date");
     } else {
       console.log("ososoososos aldaaa", res);
+      setLoading(false);
     }
   };
 
