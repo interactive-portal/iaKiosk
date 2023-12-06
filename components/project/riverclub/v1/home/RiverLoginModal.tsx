@@ -32,8 +32,9 @@ const RiverLoginModal: FC<PropsType> = ({
     ws.onmessage = function (event) {
       var res = JSON.parse(event.data);
 
-      if (res?.result) {
+      if (res?.status == "success") {
         ws.send('{"action":"Close"}');
+
         Cookies.set("customer", res?.result);
         notification.success({
           message: "Амжилттай нэвтэрлээ",
@@ -47,8 +48,6 @@ const RiverLoginModal: FC<PropsType> = ({
         // ws.send('{"action":"Close"}');
         setNeedSignUp(true);
       }
-
-      setOpenModal(false);
     };
 
     ws.onerror = function (event) {
