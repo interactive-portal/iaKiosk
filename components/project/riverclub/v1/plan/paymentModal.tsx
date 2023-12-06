@@ -3,6 +3,7 @@ import Payment from "../payment/payment";
 import { FC, useState } from "react";
 import { notification } from "antd";
 import Cookies from "js-cookie";
+import ReportTemplate from "@/middleware/ReportTemplate/ReportTemplate";
 
 type PropsType = {
   item?: any;
@@ -16,20 +17,17 @@ const PaymentModal: FC<PropsType> = ({
   setModal,
 }) => {
   const [loading, setLoading] = useState(false);
-  const [paymentResult, setPaymentResult] = useState<any>({
-    authcode: "86R5R6",
-    pan: "949628XXXXXX9157",
-    rrn: "005545138849",
-    status: "success",
-    terminalid: "70105432",
-    traceno: "001099",
-  });
+  const [paymentResult, setPaymentResult] = useState<any>();
+  const [ebarimtTempalte, setEbarimtTemplate] = useState<any>();
 
   const session: any = Cookies.getJSON("customer");
 
-  console.log("csession", session);
+  // console.log("csession", session);
 
   const checkPayment = () => {
+    // printEbarimt({
+    //   id: "170174683396510",
+    // });
     setLoading(true);
     Payment(
       Number(item?.saleprice),
@@ -48,7 +46,7 @@ const PaymentModal: FC<PropsType> = ({
       }
     );
   };
-  console.log("itemememmememememmememe", item);
+  // console.log("itemememmememememmememe", item);
 
   const paymentProcess = async () => {
     const res = await axios.post(`/api/post-process`, {
@@ -86,29 +84,79 @@ const PaymentModal: FC<PropsType> = ({
       alert("Төлбөр төлөлт амжилттай");
       setSelectDateModal(false);
       setModal("date");
+      const printEbarimt = async () => {
+        // console.log("objbjjbjjbjb", obj);
+        const printOptions = {
+          lang: {
+            mn: "",
+            en: "",
+          },
+          ishtml: 1,
+          print_options: {
+            numberOfCopies: "1",
+            isPrintNewPage: "1",
+            isSettingsDialog: "0",
+            isShowPreview: "1",
+            isPrintPageBottom: "0",
+            isPrintPageRight: "0",
+            pageOrientation: "portrait",
+            isPrintSaveTemplate: "1",
+            paperInput: "portrait",
+            pageSize: "a4",
+            printType: "1col",
+            templatemetaid: res?.data?.result?.templateId,
+            templateIds: res?.data?.result?.templateId,
+          },
+        };
+
+        return (
+          <div>
+            <ReportTemplate
+              options={printOptions}
+              data={{ contractId: res?.data?.result?.id }}
+            />
+          </div>
+        );
+        // const res = await axios.post(`/api/post-process`, {
+        //   processcode: "kiosk_Ebarimt_Send",
+        //   parameters: {
+        //     id: obj?.id,
+        //   },
+        // });
+        // console.log("ebarimtrererererer", res);
+      };
+      setEbarimtTemplate(printEbarimt);
     } else {
-      console.log("ososoososos aldaaa", res);
+      console.log("aldaaa", res);
       setLoading(false);
     }
   };
 
+  // if (ebarimtTempalte) {
+  //   ebarimtTempalte();
+  // }
+
   if (loading) {
-    return (
-      <div className="flex items-center justify-center h-full mx-auto">
-        <div
-          className="w-[424px] h- box-border relative rounded"
-          style={{
-            background: "var(--202020, #202020)",
-          }}
-        >
-          <div className="p-[30px]">
-            <p className="text-[#BAD405] text-[22px] uppercase font-bold">
-              Картаа уншуулна уу
-            </p>
+    if (ebarimtTempalte) {
+      ebarimtTempalte();
+    } else {
+      return (
+        <div className="flex items-center justify-center h-full mx-auto">
+          <div
+            className="w-[424px] h- box-border relative rounded"
+            style={{
+              background: "var(--202020, #202020)",
+            }}
+          >
+            <div className="p-[30px]">
+              <p className="text-[#BAD405] text-[22px] uppercase font-bold">
+                Картаа уншуулна уу
+              </p>
+            </div>
           </div>
         </div>
-      </div>
-    );
+      );
+    }
   }
 
   return (
