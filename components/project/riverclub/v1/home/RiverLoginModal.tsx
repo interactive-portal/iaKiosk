@@ -56,6 +56,8 @@ const RiverLoginModal: FC<PropsType> = ({
     };
 
     ws.onclose = function () {
+      setNeedSignUp(true);
+
       console.log("Connection is closed");
       // setNeedSignUp(true);
 
@@ -112,7 +114,7 @@ const RiverLoginModal: FC<PropsType> = ({
           </div>
           <div
             className={`fixed ${
-              needSignUp ? "top-[350px]" : "-top-[400px]"
+              needSignUp ? "top-[665px]" : "-top-[400px]"
             }  max-w-[640px] mx-auto duration-75`}
           >
             {needSignUpModal()}
