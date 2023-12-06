@@ -165,6 +165,46 @@ const PaymentModal: FC<PropsType> = ({
             </div>
           </div>
         );
+      case "success":
+        return (
+          <div className="flex items-center justify-center h-full mx-auto">
+            <div
+              className="w-[600px] h- box-border relative rounded"
+              style={{
+                background: "var(--202020, #202020)",
+              }}
+            >
+              <div className="p-[30px]">
+                <p className="text-[#BAD405] text-[22px] uppercase font-bold">
+                  Манайхыг сонгосон танд баярлалаа
+                </p>
+                <div className="rounded-lg border border-[#DEDEDE]  mt-[50px]">
+                  <p className="text-[18px] text-white p-[32px]">
+                    {" "}
+                    Тантай хийсэн үйлчилгээний гэрээ нь таны бүртгүүлсэн цахим
+                    шуудан руу илгээгдсэн.
+                  </p>
+                </div>
+              </div>
+              <div className="pb-[20px] w-full flex gap-[16px] px-[64px] cursor-pointer">
+                <div
+                  className="w-full  text-[20px] text-center uppercase rounded font-medium py-2"
+                  style={{
+                    color: "var(--202020, #202020)",
+                    background: "var(--green-main, #BAD405)",
+                  }}
+                  onClick={() => {
+                    setSelectDateModal(false);
+                    // setModalContent("pay");
+                    Cookies.remove("customer");
+                  }}
+                >
+                  Дуусгах
+                </div>
+              </div>
+            </div>
+          </div>
+        );
       case "ebarimt":
         return (
           <div className="flex items-center justify-center h-full">
