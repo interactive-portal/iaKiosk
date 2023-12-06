@@ -21,7 +21,7 @@ const RiverClubV1PlanPrice = () => {
 
   // console.log("readydata", readyDatasrc);
 
-  Cookies.set("customer", { customerId: "170130843295810" });
+  // Cookies.set("customer", { customerId: "170130843295810" });
 
   const { callProcess, isProcessWorking } = useCallProcess();
   const [selectDateModal, setSelectDateModal] = useState(false);
@@ -67,7 +67,7 @@ const RiverClubV1PlanPrice = () => {
   const [selectedItem, setSelectItem] = useState<any>();
   const [templateId, setTemplateId] = useState<any>();
   const [contractId, setContractId] = useState<any>();
-  const [modal, setModal] = useState("date");
+  const [modal, setModal] = useState("payment");
 
   const { nemgooDatasrc } = useContext(WidgetWrapperContext);
   const data = language === "mn" ? nemgooDatasrc[1] : nemgooDatasrc[0];
@@ -262,6 +262,7 @@ const RiverClubV1PlanPrice = () => {
         }}
       >
         <div className="p-[64px]">
+          <p className="text-white">Үйлчилгээ эхлэх өдрөө сонгоно уу</p>
           <DatePicker
             className="w-full"
             // placement="bottomLeft"
@@ -363,7 +364,7 @@ const RiverClubV1PlanPrice = () => {
         onCancel={() => {
           setSelectDateModal(false), setModal("date");
         }}
-        destroyOnClose
+        destroyOnClose={true}
       >
         {modalContent()}
       </Modal>
