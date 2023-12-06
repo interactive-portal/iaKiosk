@@ -15,7 +15,7 @@ const RiverClubV1HomeWelcome = () => {
     ? query.id.join("")
     : query.id || "mn";
   const [openModal, setOpenModal] = useState(false);
-  const [needSignUp, setNeedSignUp] = useState(true);
+  const [needSignUp, setNeedSignUp] = useState(false);
 
   const [language, setLanguage] = useState(currentLanguage);
 

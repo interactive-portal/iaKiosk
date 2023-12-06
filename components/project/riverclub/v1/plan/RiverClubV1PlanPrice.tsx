@@ -67,6 +67,8 @@ const RiverClubV1PlanPrice = () => {
   const [selectedItem, setSelectItem] = useState<any>();
   const [templateId, setTemplateId] = useState<any>();
   const [contractId, setContractId] = useState<any>();
+  const [needSignUp, setNeedSignUp] = useState(false);
+
   const [modal, setModal] = useState("date");
 
   const { nemgooDatasrc } = useContext(WidgetWrapperContext);
@@ -364,6 +366,8 @@ const RiverClubV1PlanPrice = () => {
         openModal={openLogin}
         setOpenModal={setOpenLogin}
         selectDateModal={setSelectDateModal}
+        needSignUp={needSignUp}
+        setNeedSignUp={setNeedSignUp}
       />
       <Modal
         open={selectDateModal}
