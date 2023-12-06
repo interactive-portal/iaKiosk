@@ -45,6 +45,8 @@ const RiverLoginModal: FC<PropsType> = ({
         }
         setOpenModal(false);
       } else {
+        ws.send('{"action":"Close"}');
+
         // ws.send('{"action":"Close"}');
         setNeedSignUp(true);
       }
