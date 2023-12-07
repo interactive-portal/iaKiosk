@@ -216,7 +216,7 @@ const PaymentModal: FC<PropsType> = ({
               <div id={"portraid"}>
                 <ReportTemplate
                   options={printOptions}
-                  data={{ contractId: contractId || "170174683396510" }}
+                  data={{ contractId: contractId || "170193836653610" }}
                 />
               </div>
               <p className="text-[20px] px-4 txt">Та баримтаа хэвлэж авна уу</p>

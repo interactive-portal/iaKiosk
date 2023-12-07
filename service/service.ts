@@ -18,11 +18,15 @@ export const runService = async (
     request: {
       command: pCommand,
       languageCode: lang || "mn",
-      userToken: process.env.USER_TOKEN,
+      // userToken: process.env.USER_TOKEN,
+      username: "admin",
+      password: "rc1234",
       returnByStandartJson: "1",
       parameters: bodys,
     },
   };
+
+  // console.log("pCOmmmen", requestBody);
 
   var myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
@@ -41,10 +45,15 @@ export const runService = async (
   //   })
   //   .then((res) => res.data)
   //   .catch((err) => console.log(`err: `, err));
+  // console.log("resaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", requestOptions);
 
   let res: any = await fetch(pUrl, requestOptions);
 
   const response = await res.json();
+  // console.log(
+  //   "resaaasdddddddyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  //   response
+  // );
 
   if (!res.ok) {
     const errorCode = res.ok ? false : res.status;

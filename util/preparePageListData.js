@@ -154,6 +154,8 @@ const prepareThemeConfig = () => {
 export default async function preparePageListData({ pageid, hostObject }) {
   //ERP-аас тухайн Page Layout-ийн бүх тохиргоо ирнэ. Том JSON байгаа.
 
+  // console.log("layoutHdr_004_cozy", hostObject, "pageid", pageid);
+
   const thisPageConfig = (
     await getLayout("layoutHdr_004_cozy", {
       filtermetadataid: pageid || "",

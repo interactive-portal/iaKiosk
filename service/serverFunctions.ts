@@ -11,9 +11,12 @@ export async function getLayout(command: string, param: any) {
     ...param,
   };
 
-  let result = await runService(command, parameters, "");
+  // console.log(
+  //   "response?.resultassssssssssssssssssssssssssssssssssssssssss",
+  //   parameters
+  // );
 
-  //   console.log("response?.result", result);
+  let result = await runService(command, parameters, "");
 
   const myApiStatus = result?.status;
   const myApiResult = result?.result;
@@ -61,6 +64,8 @@ export async function getDataView(param: any, lang: any) {
   let parameters = {
     ...param,
   };
+
+  // console.log("paramammamamamammama", parameters);
 
   const { response } = await runService("PL_MDVIEW_004", parameters, lang);
 

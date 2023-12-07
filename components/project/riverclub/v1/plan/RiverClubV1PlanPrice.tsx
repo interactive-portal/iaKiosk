@@ -154,14 +154,12 @@ const RiverClubV1PlanPrice = () => {
       </div>
       <div></div>
       <div className="absolute bottom-10 right-0 w-full ">
-        <div
-          className="px-[64px] flex items-center mb-8 cursor-pointer"
-          onClick={() => setActiveCheck(!activeCheck)}
-        >
+        <div className="px-[64px] flex items-center mb-8 cursor-pointer">
           <div
             className={`w-[30px] h-[30px] rounded-lg flex items-center justify-center ${
               activeCheck ? "bg-blue-300" : "bg-white"
             } `}
+            onClick={() => setActiveCheck(!activeCheck)}
           >
             {activeCheck ? (
               <i className="fa-solid fa-check fa-xl text-white"></i>

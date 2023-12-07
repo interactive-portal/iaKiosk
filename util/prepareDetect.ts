@@ -6,7 +6,12 @@ export async function preparePageObject(hostObject: any) {
   const mySlugList = hostObject?.pageSlug.split("/");
   const pageid = mySlugList.at(-2) === "pageid" ? mySlugList.at(-1) : "";
 
-  //   console.log("preparePageObject pageid :>> ", pageid);
+  // console.log(
+  //   "pageidaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  //   hostObject
+  // );
+
+  // console.log("preparePageObject pageid :>> ", pageid);
 
   /* ------------------------------------------------------ */
   /*                   PREPARE PAGEOBJECT                   */
@@ -19,10 +24,10 @@ export async function preparePageObject(hostObject: any) {
       hostObject: hostObject,
     });
   } catch (error: any) {
-    console.log(
-      "Page-ийн Дата, Мэдээллийг дуудах үед алдаа гарлаа.",
-      error.message
-    );
+    // console.log(
+    //   "Page-ийн Дата, Мэдээллийг дуудах үед алдаа гарлаа.",
+    //   error.message
+    // );
     pageObject = {
       notFound: true,
       ouchError: {

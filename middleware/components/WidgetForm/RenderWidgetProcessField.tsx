@@ -14,6 +14,12 @@ const RenderWidgetProcessField: FC<PropsType> = ({
   listConfig,
   processSection,
 }) => {
+  console.log(
+    "RenderWidgetProcessField",
+    listConfig,
+    "processSection",
+    processSection
+  );
   const parameters = `&parameters=${JSON.stringify({
     filtermetadataid: processSection.metadataid,
     filterdomain: "help",

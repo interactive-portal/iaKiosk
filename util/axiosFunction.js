@@ -149,8 +149,8 @@ export async function loadDataview(props) {
     },
   };
 
-  // console.log("loadDataview - myParams", myParams);
-  // console.log("loadDataview - criteria", myParams.request.parameters.criteria);
+  console.log("loadDataview - myParams", myParams);
+  console.log("loadDataview - criteria", myParams.request.parameters.criteria);
 
   return new Promise((resolve, reject) => {
     myAxiosZ(myParams)
@@ -192,8 +192,8 @@ export async function loadDataview(props) {
 export function loadDVObject(props) {
   const myParams = {
     request: {
-      username: "d14BuUMTjSRnLbrFXDOXM80fNfa2", //Moto Guest
-      password: "89",
+      username: "admin", //Moto Guest
+      password: "River*89",
       command: "PL_MDVIEW_004",
       parameters: {
         systemmetagroupid: props ? props.systemmetagroupid : "",

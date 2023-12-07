@@ -254,7 +254,7 @@ const formInput = [
     pathname: "gender",
     type: "combo",
     name: "name",
-    lookupId: "1586482848531",
+    lookupId: "1448432578544",
   },
   {
     labelname: "Утас",
@@ -270,7 +270,7 @@ const formInput = [
     labelname: "Хот",
     pathname: "cityId",
     type: "combo",
-    lookupId: "1586494411842",
+    lookupId: "1448415981113",
     name: "cityname",
   },
   {
@@ -282,10 +282,10 @@ const formInput = [
     name: "name",
   },
   {
-    labelname: "Гудамж",
+    labelname: "Хороо",
     pathname: "streetId",
     type: "combo",
-    lookupId: "1586494411983",
+    lookupId: "1448415981268",
     criteriaPath: "districtId",
     name: "streetname",
   },
