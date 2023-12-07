@@ -121,6 +121,8 @@ const PaymentModal: FC<PropsType> = ({
           templateIds: res?.data?.result?.templateId,
         },
       });
+
+      console.log("resosssssss", res);
       setContractId(res?.data?.result?.id);
     } else {
       console.log("aldaaa", res);
@@ -141,6 +143,8 @@ const PaymentModal: FC<PropsType> = ({
     Cookies.remove("customer");
     setModal("date");
   };
+
+  console.log("contract ", contractId);
 
   const content = () => {
     switch (modalContent) {
@@ -238,6 +242,7 @@ const PaymentModal: FC<PropsType> = ({
                   font-family: Arial, sans-serif;
                   font-size: 12pt;
                   color: black;
+                  padding:40px;
                 }
 
                   #portraid {
