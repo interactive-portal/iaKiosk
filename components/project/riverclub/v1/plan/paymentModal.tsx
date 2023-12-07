@@ -137,10 +137,9 @@ const PaymentModal: FC<PropsType> = ({
     pri.focus();
     pri.print();
     setSelectDateModal(false);
-    // setModalContent("pay");
+    setModalContent("pay");
     Cookies.remove("customer");
-
-    // setModal("date");
+    setModal("date");
   };
 
   const content = () => {
