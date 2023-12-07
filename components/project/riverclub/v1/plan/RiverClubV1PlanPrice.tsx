@@ -145,7 +145,7 @@ const RiverClubV1PlanPrice = () => {
   const templateContent = (
     <div className="flex items-center justify-center h-full mx-auto relative max-w-[960px] overflow-hidden">
       <div
-        className=" h-[900px]  overflow-y-scroll "
+        className=" h-[75%]  overflow-y-scroll "
         style={{
           background: "white",
         }}
