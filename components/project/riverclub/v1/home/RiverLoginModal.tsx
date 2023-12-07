@@ -108,14 +108,14 @@ const RiverLoginModal: FC<PropsType> = ({
       >
         <div className="w-full h-full bg-black/50 pt-[150px] flex justify-center relative">
           <div className="absolute top-[40%] left-[20%] text-[50px] font-medium text-[#BAD405]">
-            <p className="">Та камер луу харна уу !</p>
+            {!needSignUp && <p className="">Та камер луу харна уу !</p>}
           </div>
           <div className="w-[640px] h-[480px] bg-black/70 rounded-lg flex items-center justify-center">
             <img src="/images/Face_id_white.png" />
           </div>
           <div
             className={`fixed ${
-              needSignUp ? "top-[665px]" : "-top-[400px]"
+              needSignUp ? "top-[40%]" : "-top-[400px]"
             }  max-w-[640px] mx-auto duration-75`}
           >
             {needSignUpModal()}
