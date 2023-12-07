@@ -57,7 +57,7 @@ const RiverLoginModal: FC<PropsType> = ({
     };
 
     ws.onclose = function () {
-      setNeedSignUp(true);
+      // setNeedSignUp(true);
 
       console.log("Connection is closed");
       // setNeedSignUp(true);
