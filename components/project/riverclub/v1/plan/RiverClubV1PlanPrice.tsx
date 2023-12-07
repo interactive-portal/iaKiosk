@@ -384,11 +384,14 @@ const RiverClubV1PlanPrice = () => {
           .ant-picker-input >input{
             color:white !important;
           }
-            .checkbox-round {
+          .checkbox-round {
               border-radius:10px
           }
           .ant-modal-body {
             overflow:hidden;
+          }
+          .ant-modal {
+            width: auto !important;
           }
           `}
       </style>
