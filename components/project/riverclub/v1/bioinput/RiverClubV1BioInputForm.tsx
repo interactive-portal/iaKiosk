@@ -16,6 +16,7 @@ import axios from "axios";
 import { Modal, notification } from "antd";
 import Cookies from "js-cookie";
 import RiverLoginModal from "../home/RiverLoginModal";
+import { useRouter } from "next/router";
 
 const RiverClubV1BioInputForm = () => {
   const { config, headerData, positionConfig, metaConfig } =
@@ -32,6 +33,7 @@ const RiverClubV1BioInputForm = () => {
   const [openLogin, setOpenLogin] = useState(false);
 
   const methods = useForm();
+  const router = useRouter();
 
   const onSubmit = async (data: any) => {
     const param = {
@@ -46,7 +48,11 @@ const RiverClubV1BioInputForm = () => {
     });
 
     if (res.data?.status == "success") {
-      setDialog(true);
+      // setDialog(true);
+      notification.success({
+        message: "Бүртгэл амжилттай хийгдлээ",
+      });
+      router.push(`/selectplan`);
     }
 
     // console.log("tabnamemseseses");
