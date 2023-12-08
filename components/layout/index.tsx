@@ -54,11 +54,8 @@ export default function Layout({ children }: LayoutProps) {
   return (
     <>
       <Head>
-        <title>Help.veritech.mn - Цахим сургалт </title>
-        <meta
-          name="description"
-          content="Veritech Help дэмжлэг үйлчилгээний портал ашигласанаар та систем ашиглахдаа өөрийн үнэтэй цаг хугацааг хэмнэхээс гадна, тухайн контентийг сайжруулах, зөв оновчтотй хувилбарыг санал болгох боломжтой."
-        />
+        <title>River Club </title>
+        <meta name="description" content="Veritech  Erp" />
         <meta property="og:image" content="../../cover.png" />
         <meta property="og:image:alt" content="help.veritech.mn" />
         <meta property="og:image:type" content="image/png" />
@@ -68,11 +65,9 @@ export default function Layout({ children }: LayoutProps) {
           name="keywords"
           content="интерактив, интерактив компани, програм хангамж, систем интеграцчилал, software, system, system integration, interactive, interactive company, interactive mongolia, interactive mongol, интерактив монголия, интерактив компания монголия, интерактив компания"
         />
-        <link rel="icon" href="https://www.interactive.mn/images/favicon.ico" />
+        <link rel="icon" href="river_logo.svg" />
       </Head>
       <Navbar options={props} />
-      {/* <Header /> */}
-      {/* {headerWidget && <HelpHeader data={dataSrc} options={optionsWidget} />} */}
       {children}
       <Footer options={props} />
     </>
