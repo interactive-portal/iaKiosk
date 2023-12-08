@@ -144,7 +144,7 @@ export const getServerSideProps: GetServerSideProps<{}> = async (
     pageSlug: pageSlug, //дараагийн үгүүдийг /-ээр нийлүүлнэ. тэгээд -neo гэснээс хойшхийг устгана.
   };
 
-  //   console.log("hostObjectv2", hostObjectV2);
+  console.log("hostObjectv2", hostObjectV2);
 
   const pageObject: any = await preparePageObject(hostObjectV2);
 

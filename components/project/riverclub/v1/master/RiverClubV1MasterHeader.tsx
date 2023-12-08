@@ -17,9 +17,9 @@ const RiverClubV1MasterHeader: FC<PropsType> = ({ data, options, mutate }) => {
   const { readyDatasrc } = useContext(WidgetWrapperContext);
 
   const { query } = useRouter();
-  const currentLanguage = Array.isArray(query.id)
-    ? query.id.join("")
-    : query.id || "mn";
+  const currentLanguage = Array.isArray(query.lang)
+    ? query.lang.join("")
+    : query.lang || "mn";
 
   const [thisLanguage, setThisLanguage] = useState(currentLanguage);
   const staticItem = thisLanguage === "mn" ? data?.mn : data?.en;
@@ -73,9 +73,9 @@ const RiverClubV1MasterHeader: FC<PropsType> = ({ data, options, mutate }) => {
 const LanguageSetting = ({ item }: any) => {
   const router = useRouter();
   const { query } = router;
-  const currentLanguage = Array.isArray(query.id)
-    ? query.id.join("")
-    : query.id || "mn";
+  const currentLanguage = Array.isArray(query.lang)
+    ? query.lang.join("")
+    : query.lang || "mn";
 
   return (
     <BlockDiv className="flex w-max mr-10">
@@ -84,9 +84,9 @@ const LanguageSetting = ({ item }: any) => {
           value: item?.[0]?.title,
           positionnemgoo: {
             url: {
-              path: "",
+              path: window.location.pathname,
               query: {
-                id: "en",
+                lang: "en",
               },
               keepQuery: true,
             },
@@ -104,9 +104,9 @@ const LanguageSetting = ({ item }: any) => {
           value: `${item?.[1]?.title}`,
           positionnemgoo: {
             url: {
-              path: "",
+              path: window.location.pathname,
               query: {
-                id: "mn",
+                lang: "mn",
               },
               keepQuery: true,
             },

@@ -11,9 +11,9 @@ import Cookies from "js-cookie";
 
 const RiverClubV1HomeWelcome = () => {
   const { query } = useRouter();
-  const currentLanguage = Array.isArray(query.id)
-    ? query.id.join("")
-    : query.id || "mn";
+  const currentLanguage = Array.isArray(query.lang)
+    ? query.lang.join("")
+    : query.lang || "mn";
   const [openModal, setOpenModal] = useState(false);
   const [needSignUp, setNeedSignUp] = useState(false);
 

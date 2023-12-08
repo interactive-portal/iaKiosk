@@ -51,17 +51,19 @@ export async function getServerSideProps(context: any) {
   //   const pageObject: any = {};
   const pageObject: any = await preparePageObject(hostObjectV2);
 
-  const isUser = await getSession(context);
-  if (!process.env.NEXT_PUBLIC_IS_LOGIN) {
-    if (!isUser) {
-      return {
-        redirect: {
-          destination: "/login",
-          permanent: false,
-        },
-      };
-    }
-  }
+  // console.log("first , ", pageObject);
+
+  // const isUser = await getSession(context);
+  // if (!process.env.NEXT_PUBLIC_IS_LOGIN) {
+  //   if (!isUser) {
+  //     return {
+  //       redirect: {
+  //         destination: "/login",
+  //         permanent: false,
+  //       },
+  //     };
+  //   }
+  // }
 
   // console.log("pageObject :>> ", isUser);
 
@@ -77,11 +79,13 @@ export async function getServerSideProps(context: any) {
       ...pageObject,
       //   master:{pageObject},
       notFound: pageObject?.notFound || "false",
-      //   ...(await serverSideTranslations(
-      //     locale,
-      //     ["translate", "common"],
-      //     config
-      //   )),
+        // ...(await serverSideTranslations(
+        //   locale,
+        //   ["translate", "common"],
+        //   config
+        // )),
     }, // will be passed to the page component as props
   };
 }
+
+

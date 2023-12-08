@@ -51,9 +51,9 @@ const RiverClubV1PlanPrice = () => {
   );
 
   const { query } = useRouter();
-  const currentLanguage = Array.isArray(query.id)
-    ? query.id.join("")
-    : query.id || "mn";
+  const currentLanguage = Array.isArray(query.lang)
+    ? query.lang.join("")
+    : query.lang || "mn";
 
   const [language, setLanguage] = React.useState(currentLanguage);
 
