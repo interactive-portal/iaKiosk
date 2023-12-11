@@ -1,7 +1,7 @@
 import React from "react";
 import RenderAtom from "@/components/common/Atom/RenderAtom";
 import BlockDiv from "@/components/common/Block/BlockDiv";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import WidgetWrapperContext from "@/components/common/engineBox/Wrapper/WidgetUniversalWrapper";
 import _, { set } from "lodash";
 import { useState } from "react";
@@ -16,6 +16,7 @@ import ReportTemplate from "@/middleware/ReportTemplate/ReportTemplate";
 import Payment from "../payment/payment";
 import PaymentModal from "./paymentModal";
 import DatePickerModal from "./datePickerModal";
+import { useEvent } from "react-use";
 
 const RiverClubV1PlanPrice = () => {
   const { readyDatasrc } = useContext(WidgetWrapperContext);
@@ -51,15 +52,17 @@ const RiverClubV1PlanPrice = () => {
   );
 
   const { query } = useRouter();
+  const router = useRouter();
+
   const currentLanguage = Array.isArray(query.lang)
     ? query.lang.join("")
     : query.lang || "mn";
 
   const [language, setLanguage] = React.useState(currentLanguage);
 
-  // React.useEffect(() => {
-  //   setLanguage(currentLanguage);
-  // }, [currentLanguage]);
+  useEffect(() => {
+    Cookies.remove("customer");
+  }, [router]);
 
   const [activeIndex, setactiveIndex] = useState<any>(0);
   const [openLogin, setOpenLogin] = useState(false);

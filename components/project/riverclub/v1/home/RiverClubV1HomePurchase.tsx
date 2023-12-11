@@ -59,6 +59,11 @@ const RiverClubV1HomePurchase = ({
         <BlockDiv className="flex relative flex-col gap-y-[12px]">
           <BlockDiv className="py-[30px] px-[12px] bg-[#BAD405] rounded-[11px] flex flex-col items-center justify-center">
             <RenderAtom
+              item={staticItem?.count || item?.count}
+              renderType="text"
+              className={`text-[13px] font-[400] text-center tracking-widest`}
+            />
+            {/* <RenderAtom
               item={staticItem?.button || item?.button}
               renderType="button"
               className={`h-max font-[400] text-[16px] w-max text-black/40 leading-[0px] -mb-[2px]`}
@@ -75,7 +80,7 @@ const RiverClubV1HomePurchase = ({
               renderType="button"
               className={`h-max font-[400] text-[16px] w-max text-black/40 leading-[0px] -mt-[2px]`}
               onClick={() => setShowModal(true)}
-            />
+            /> */}
           </BlockDiv>
           {/* <BlockModal2 isShowModal={showModal} setIsShowModal={setShowModal}>
             <PurchaseOneTimeTicket
@@ -85,11 +90,11 @@ const RiverClubV1HomePurchase = ({
             />
           </BlockModal2> */}
           <BlockDiv>
-            <RenderAtom
+            {/* <RenderAtom
               item={staticItem?.count || item?.count}
               renderType="text"
               className={`text-[13px] font-[400] text-center tracking-widest`}
-            />
+            /> */}
           </BlockDiv>
         </BlockDiv>
       </BlockDiv>
