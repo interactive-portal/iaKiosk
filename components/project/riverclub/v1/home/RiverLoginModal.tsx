@@ -20,7 +20,7 @@ const RiverLoginModal: FC<PropsType> = ({
 }) => {
   useEffect(() => {
     if (openModal) clickCamera();
-    Cookies.remove("customer");
+    // Cookies.remove("customer");
   }, [openModal]);
 
   const clickCamera = () => {

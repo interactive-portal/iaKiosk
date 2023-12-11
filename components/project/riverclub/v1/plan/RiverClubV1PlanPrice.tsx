@@ -60,9 +60,9 @@ const RiverClubV1PlanPrice = () => {
 
   const [language, setLanguage] = React.useState(currentLanguage);
 
-  useEffect(() => {
-    Cookies.remove("customer");
-  }, [router]);
+  // useEffect(() => {
+  //   Cookies.remove("customer");
+  // }, [router]);
 
   const [activeIndex, setactiveIndex] = useState<any>(0);
   const [openLogin, setOpenLogin] = useState(false);
