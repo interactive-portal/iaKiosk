@@ -54,7 +54,7 @@ const PaymentModal: FC<PropsType> = ({
         console.log("payment result backasdasdasd", item);
         if (item?.status == "success") {
           setPaymentResult(item);
-          paymentProcess();
+          paymentProcess(item);
         } else {
           setSelectDateModal(false);
           notification.error({
@@ -65,7 +65,8 @@ const PaymentModal: FC<PropsType> = ({
     );
   };
 
-  const paymentProcess = async () => {
+  const paymentProcess = async (payment: any) => {
+    console.log("payment result", paymentResult);
     const res = await axios.post(`/api/post-process`, {
       processcode: "fitKioskSalesNew_DV_001",
       parameters: {
@@ -85,14 +86,14 @@ const PaymentModal: FC<PropsType> = ({
           lineTotalAmount: Number(item?.saleprice),
         },
         fitKioskSalesPaymentNew_DV: {
-          paymentMethodCode: paymentResult?.pan,
+          paymentMethodCode: payment?.pan,
           bankId: 500000,
           amount: Number(item?.saleprice),
           paymentTypeId: "2",
-          confirmCode: paymentResult?.authcode,
-          refenceNumber: paymentResult?.rrn,
-          terminalNumber: paymentResult?.terminalid,
-          extTransactionId: paymentResult?.traceno,
+          confirmCode: payment?.authcode,
+          refenceNumber: payment?.rrn,
+          terminalNumber: payment?.terminalid,
+          extTransactionId: payment?.traceno,
         },
       },
     });
