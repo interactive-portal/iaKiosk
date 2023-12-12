@@ -23,7 +23,7 @@ const RiverClubV1PlanPrice = () => {
 
   // console.log("readydata", readyDatasrc);
 
-  // Cookies.set("customer", { customerId: "170130843295810" });
+  // Cookies.set("customer", { customerId: "16989172064822" });
 
   const { callProcess, isProcessWorking } = useCallProcess();
   const [selectDateModal, setSelectDateModal] = useState(false);
@@ -70,20 +70,26 @@ const RiverClubV1PlanPrice = () => {
   const [templateId, setTemplateId] = useState<any>();
   const [contractId, setContractId] = useState<any>();
   const [needSignUp, setNeedSignUp] = useState(false);
+  const [signIn, setSignIn] = useState(false);
 
   const [modal, setModal] = useState("date");
 
   const { nemgooDatasrc } = useContext(WidgetWrapperContext);
 
+  console.log("sign", signIn);
+
   // багцыг select хийх эсвэл login хийх
   const selectItem = async (e: any, item: any) => {
+    setOpenLogin(true);
+    // if (signIn) {
+    //   setSignIn(false);
+    // setSelectDateModal(true);
+    // }
     setTemplateId(null);
     setSelectItem(_.values(item)?.[0]?.[activeIndex]);
-    if (customer) {
-      setSelectDateModal(true);
-    } else {
-      setOpenLogin(true);
-    }
+    // if (customer) {
+    // } else {
+    // }
   };
 
   // reportTemplate дуудах
@@ -247,6 +253,7 @@ const RiverClubV1PlanPrice = () => {
         selectDateModal={setSelectDateModal}
         needSignUp={needSignUp}
         setNeedSignUp={setNeedSignUp}
+        setSignIn={setSignIn}
       />
       <Modal
         open={selectDateModal}

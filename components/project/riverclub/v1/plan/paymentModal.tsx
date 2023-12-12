@@ -299,7 +299,19 @@ const PaymentModal: FC<PropsType> = ({
                   </div>
                 </div>
               </div>
-              <div className="pb-[20px] w-full flex gap-[16px] px-[64px] cursor-pointer">
+              <div className="pb-[20px] w-full flex gap-[16px] px-[30px] cursor-pointer">
+                <div
+                  className="w-full  text-[20px] text-center uppercase rounded font-medium py-2 flex items-center justify-center"
+                  style={{
+                    color: "var(--202020, #202020)",
+                    background: "var(--green-main, #BAD405)",
+                  }}
+                  onClick={() => {
+                    setSelectDateModal(false);
+                  }}
+                >
+                  ЦУЦЛАХ
+                </div>
                 <div
                   className="w-full  text-[20px] text-center uppercase rounded font-medium py-2"
                   style={{

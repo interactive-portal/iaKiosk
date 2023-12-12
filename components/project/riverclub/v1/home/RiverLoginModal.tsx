@@ -9,6 +9,7 @@ type PropsType = {
   setNeedSignUp?: any;
   needSignUp?: any;
   selectDateModal?: any;
+  setSignIn?: any;
 };
 
 const RiverLoginModal: FC<PropsType> = ({
@@ -16,6 +17,7 @@ const RiverLoginModal: FC<PropsType> = ({
   setOpenModal,
   setNeedSignUp,
   needSignUp,
+  setSignIn,
   selectDateModal,
 }) => {
   useEffect(() => {
@@ -45,6 +47,7 @@ const RiverLoginModal: FC<PropsType> = ({
           selectDateModal(true);
         }
         setOpenModal(false);
+        setSignIn(true);
       } else {
         ws.send('{"action":"Close"}');
 
@@ -59,6 +62,8 @@ const RiverLoginModal: FC<PropsType> = ({
 
     ws.onclose = function () {
       // setNeedSignUp(true);
+      // setSignIn(true);
+      // setOpenModal(false);
 
       console.log("Connection is closed");
       // setNeedSignUp(true);

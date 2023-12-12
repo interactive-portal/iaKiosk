@@ -50,8 +50,10 @@ const DatePickerModal: FC<PropsType> = ({
 
     var result = year + "-" + month + "-" + day;
 
+    console.log("item", item);
+
     const param = {
-      contentTypeId: item?.contracttypeid,
+      contracttypeid: item?.contracttypeid,
       contractTotalAmount: item?.saleprice,
       customerId: customer?.customerId,
       durationTypeId: item?.monthid,
@@ -66,8 +68,6 @@ const DatePickerModal: FC<PropsType> = ({
       processcode: "fitKioskCreateContract_DV_001",
       parameters: param,
     });
-
-    // console.log("create contract result", res?.data);
 
     if (res?.data?.status == "success") {
       setTemplateId(res?.data?.result?.templateId);
