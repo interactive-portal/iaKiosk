@@ -10,7 +10,7 @@ const Text: FC<PropsType> = ({ obj }) => {
     register,
     formState: { errors },
   } = useFormContext();
-  const errorMessage = errors[obj?.pathname]?.message;
+  const errorMessage: any = errors[obj?.pathname]?.message;
 
   return (
     <div className="flex flex-col ">
@@ -33,6 +33,9 @@ const Text: FC<PropsType> = ({ obj }) => {
         //     "0px 1px 1px 0px rgba(0, 0, 0, 0.12), 0px 0px 0px 1px rgba(0, 0, 0, 0.64), 0px 2px 5px 0px rgba(103, 110, 118, 0.08)",
         // }}
       />
+      {errorMessage && (
+        <p className="text-red-500 text-[14px]">{errorMessage || ""}</p>
+      )}
     </div>
   );
 };

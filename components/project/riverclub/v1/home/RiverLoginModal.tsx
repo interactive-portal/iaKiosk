@@ -145,7 +145,7 @@ const RiverLoginModal: FC<PropsType> = ({
         onCancel={() => setOpenModal(false)}
         footer={false}
         destroyOnClose
-        afterOpenChange={() => setNeedSignUp(false)}
+        afterClose={() => setNeedSignUp(false)}
       >
         <div className="w-full h-full bg-black/50 pt-[150px] flex justify-center relative">
           <div className="absolute top-[40%] left-[20%] text-[50px] font-medium text-[#BAD405]">

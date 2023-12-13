@@ -11,7 +11,6 @@ const Email: FC<PropsType> = ({ obj }) => {
     formState: { errors },
   } = useFormContext();
   const errorMessage = errors[obj?.pathname]?.message;
-  console.log("errorMessage", errorMessage);
   return (
     <div className="flex flex-col ">
       <label className="text-[16px] font-medium  text-[#2A2A2A]">
