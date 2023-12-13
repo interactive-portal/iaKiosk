@@ -16,7 +16,7 @@ const PaymentModal: FC<PropsType> = ({
   setSelectDateModal,
   setModal,
 }) => {
-  const [modalContent, setModalContent] = useState("pay");
+  const [modalContent, setModalContent] = useState("ebarimt");
   const [paymentResult, setPaymentResult] = useState<any>();
   const [printOptions, setPrintOptions] = useState({
     lang: {
@@ -100,7 +100,6 @@ const PaymentModal: FC<PropsType> = ({
 
     if (res?.data?.status == "success") {
       console.log("processoos irsen resposne", res);
-      setModalContent("ebarimt");
       setPrintOptions({
         lang: {
           mn: "",
@@ -126,13 +125,14 @@ const PaymentModal: FC<PropsType> = ({
       const ebarimtResult = await axios.post(`/api/post-process`, {
         processcode: "kiosk_Ebarimt_Send",
         parameters: {
-          id: "17022810340782",
+          id: res?.data?.result?.id,
         },
       });
 
       console.log("ebarimtResult", ebarimtResult);
       console.log("resosssssss", res);
       setContractId(res?.data?.result?.id);
+      setModalContent("ebarimt");
     } else {
       console.log("aldaaa", res);
     }
