@@ -128,11 +128,11 @@ const PaymentModal: FC<PropsType> = ({
           id: res?.data?.result?.id,
         },
       });
-
-      console.log("ebarimtResult", ebarimtResult);
-      console.log("resosssssss", res);
-      setContractId(res?.data?.result?.id);
-      setModalContent("ebarimt");
+      console.log("ebarimtaas irsen dun ");
+      if (ebarimtResult?.data?.status == "success") {
+        setContractId(res?.data?.result?.id);
+        setModalContent("ebarimt");
+      }
     } else {
       console.log("aldaaa", res);
     }
