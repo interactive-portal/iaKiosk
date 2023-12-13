@@ -23,7 +23,7 @@ const RiverClubV1PlanPrice = () => {
 
   // console.log("readydata", readyDatasrc);
 
-  Cookies.set("customer", { customerId: "16989172064822" });
+  // Cookies.set("customer", { customerId: "16989172064822" });
 
   const { callProcess, isProcessWorking } = useCallProcess();
   const [selectDateModal, setSelectDateModal] = useState(false);
