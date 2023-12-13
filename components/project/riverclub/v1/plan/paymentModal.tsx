@@ -16,7 +16,7 @@ const PaymentModal: FC<PropsType> = ({
   setSelectDateModal,
   setModal,
 }) => {
-  const [modalContent, setModalContent] = useState("ebarimt");
+  const [modalContent, setModalContent] = useState("pay");
   const [paymentResult, setPaymentResult] = useState<any>();
   const [printOptions, setPrintOptions] = useState({
     lang: {
