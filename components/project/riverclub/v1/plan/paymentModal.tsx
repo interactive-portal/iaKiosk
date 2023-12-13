@@ -97,6 +97,7 @@ const PaymentModal: FC<PropsType> = ({
         },
       },
     });
+
     if (res?.data?.status == "success") {
       console.log("processoos irsen resposne", res);
       setModalContent("ebarimt");
@@ -116,13 +117,20 @@ const PaymentModal: FC<PropsType> = ({
           pageOrientation: "portrait",
           isPrintSaveTemplate: "1",
           paperInput: "portrait",
-          pageSize: "a6",
+          pageSize: "a5",
           printType: "1col",
           templatemetaid: res?.data?.result?.templateId,
           templateIds: res?.data?.result?.templateId,
         },
       });
+      const ebarimtResult = await axios.post(`/api/post-process`, {
+        processcode: "kiosk_Ebarimt_Send",
+        parameters: {
+          id: "17022810340782",
+        },
+      });
 
+      console.log("ebarimtResult", ebarimtResult);
       console.log("resosssssss", res);
       setContractId(res?.data?.result?.id);
     } else {
@@ -217,7 +225,13 @@ const PaymentModal: FC<PropsType> = ({
               <div id={"portraid"}>
                 <ReportTemplate
                   options={printOptions}
-                  data={{ contractId: contractId || "170193836653610" }}
+                  data={{
+                    contractId: contractId || "17022810340782",
+                    // contractId:
+                    //   "170174683396510" ||
+                    //   "17022810222312" ||
+                    //   "170174688727410",
+                  }}
                 />
               </div>
               <p className="text-[20px] px-4 txt">Та баримтаа хэвлэж авна уу</p>
@@ -308,6 +322,7 @@ const PaymentModal: FC<PropsType> = ({
                   }}
                   onClick={() => {
                     setSelectDateModal(false);
+                    setModal("date");
                   }}
                 >
                   ЦУЦЛАХ
