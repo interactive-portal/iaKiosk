@@ -137,7 +137,11 @@ const RiverClubV1BioInputForm = () => {
                 className="flex items-center gap-4 cursor-pointer"
                 onClick={(e) => clickCamera(e)}
               >
-                <input type="checkbox" checked={imageToken ? true : false} />
+                <input
+                  type="checkbox"
+                  className="w-[25px] h-[25px] rounded-lg"
+                  checked={imageToken ? true : false}
+                />
                 <div className="bg-[#050505] text-white text-[13px] leading-[19px] uppercase px-[22px] py-[5px]">
                   Царайгаа таниулах
                 </div>
@@ -239,21 +243,25 @@ const formInput = [
     labelname: "Овог",
     pathname: "lastName",
     type: "text",
+    isRequired: 1,
   },
   {
     labelname: "Нэр",
     pathname: "customerName",
     type: "text",
+    isRequired: 1,
   },
   {
     labelname: "Регистр",
     pathname: "positionName",
     type: "text",
+    isRequired: 0,
   },
   {
     labelname: "Төрсөн огноо",
     pathname: "dateOfBirth",
     type: "date",
+    isRequired: 1,
   },
   {
     labelname: "Хүйс",
@@ -261,16 +269,19 @@ const formInput = [
     type: "combo",
     name: "name",
     lookupId: "1448432578544",
+    isRequired: 1,
   },
   {
     labelname: "Утас",
     pathname: "phoneNumber",
     type: "number",
+    isRequired: 1,
   },
   {
-    labelname: "N-мэйл",
+    labelname: "И-мэйл",
     pathname: "EMAIL",
     type: "email",
+    isRequired: 0,
   },
   {
     labelname: "Хот",
@@ -278,6 +289,7 @@ const formInput = [
     type: "combo",
     lookupId: "1448415981113",
     name: "cityname",
+    isRequired: 1,
   },
   {
     labelname: "Дүүрэг",
@@ -286,6 +298,7 @@ const formInput = [
     lookupId: "144436175673444",
     criteriaPath: "cityId",
     name: "name",
+    isRequired: 1,
   },
   {
     labelname: "Хороо",
@@ -294,6 +307,7 @@ const formInput = [
     lookupId: "1448415981268",
     criteriaPath: "districtId",
     name: "streetname",
+    isRequired: 1,
   },
   // {
   //   labelname: "Овог",

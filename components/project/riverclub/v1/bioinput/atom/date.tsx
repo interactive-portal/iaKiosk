@@ -2,6 +2,7 @@ import { FC } from "react";
 import { DatePicker, DatePickerProps } from "antd";
 import { data } from "autoprefixer";
 import { useFormContext, Controller, useForm } from "react-hook-form";
+import moment from "moment";
 
 type PropsType = {
   obj?: any;
@@ -35,7 +36,7 @@ const Date: FC<PropsType> = ({ obj }) => {
             onSelect={field.value}
             style={{
               border: "1px solid #e5e7eb",
-              padding: "8px 16px 8px 16px",
+              padding: "17px 16px 17px 16px",
             }}
           />
         )}

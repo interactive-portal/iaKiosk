@@ -62,7 +62,7 @@ const Combo: FC<PropsType> = ({ obj, criteria }) => {
         render={({ field }) => (
           <Select
             onChange={onchange}
-            className="text-[16px]"
+            className="text-[16px] h-[60px]"
             options={options?.map((item: any, index: number) => {
               return {
                 value: item?.id,
@@ -96,13 +96,13 @@ const Combo: FC<PropsType> = ({ obj, criteria }) => {
           };
         })}
       /> */}
-      {/* <style>
+      <style>
         {`
-          ant-select-selection-placeholder {
+          ant-select-selector {
             padding:8px 16px;
           }
         `}
-      </style> */}
+      </style>
     </div>
   );
 };

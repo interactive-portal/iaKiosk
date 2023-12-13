@@ -413,8 +413,13 @@ const Card = ({
 
 const CardItem = ({ readyData, dark, kFormatter, setactiveIndex }: any) => {
   const [active, setActive] = useState(0);
+
   function displayInThousands(number: any) {
     // Divide the number by 1000 and format it with commas
+    if (number % 1000) {
+      return number + "₮";
+    }
+
     return (
       (number / 1000).toLocaleString(undefined, { maximumFractionDigits: 2 }) +
       "K"

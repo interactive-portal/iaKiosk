@@ -34,7 +34,7 @@ const RiverClubV1BioInputCondition = () => {
             renderType="text"
             className={`text-[16px] font-normal mb-[10px] text-black`}
           />
-          <BlockDiv className="flex gap-x-[26px] mt-[10px]">
+          {/* <BlockDiv className="flex gap-x-[26px] mt-[10px]">
             <BlockDiv className="w-[210px] h-[60px] bg-[#BAD405] cursor-pointer flex items-center justify-center rounded-[8px]">
               <RenderAtom
                 item={staticItem?.buttonSelect}
@@ -49,7 +49,7 @@ const RiverClubV1BioInputCondition = () => {
                 className={`text-white font-[700] text-[16px]`}
               />
             </BlockDiv>
-          </BlockDiv>
+          </BlockDiv> */}
         </BlockDiv>
       </BlockDiv>
     </BlockDiv>

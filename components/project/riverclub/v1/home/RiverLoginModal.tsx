@@ -76,7 +76,40 @@ const RiverLoginModal: FC<PropsType> = ({
   const needSignUpModal = () => {
     return (
       <div className="">
-        <p className="uppercase text-[34px] underline text-start text-white">
+        <div className="text-center mt-[20px]">
+          <p className="uppercase text-[34px] underline text-center text-white font-semibold">
+            Царай танигдахгүй байна
+          </p>
+          <p className="text-[30px] text-white">дахин оролдоно уу!</p>
+          <div className=" w-full flex gap-[16px] px-[64px] mt-[30px]">
+            <div
+              className="w-full  text-[20px] text-center uppercase rounded font-medium py-2 cursor-pointer "
+              style={{
+                color: "var(--202020, #202020)",
+                background: "var(--green-main, #BAD405)",
+              }}
+              onClick={() => {
+                setNeedSignUp(false);
+                clickCamera();
+              }}
+            >
+              дахин оролдох
+            </div>
+            <div
+              className="w-full bg-[#272A32] text-[#C4C4C4]  text-[20px] text-center uppercase rounded font-medium py-2 cursor-pointer"
+              // style={{
+              //   color: "var(--202020, #202020)",
+              //   background: "var(--green-main, #BAD405)",
+              // }}
+              onClick={() => {
+                setOpenModal(false);
+              }}
+            >
+              болих
+            </div>
+          </div>
+        </div>
+        <p className="uppercase text-[34px] underline text-start text-white mt-[70px]">
           Та бүртгэлгүй байгаа тул бүртгэлээ хийнэ үү.
         </p>
         <div className="bg-white px-[40px] py-[27px] flex mt-[20px] ">
@@ -111,6 +144,8 @@ const RiverLoginModal: FC<PropsType> = ({
         width={1080}
         onCancel={() => setOpenModal(false)}
         footer={false}
+        destroyOnClose
+        afterOpenChange={() => setNeedSignUp(false)}
       >
         <div className="w-full h-full bg-black/50 pt-[150px] flex justify-center relative">
           <div className="absolute top-[40%] left-[20%] text-[50px] font-medium text-[#BAD405]">
@@ -120,8 +155,8 @@ const RiverLoginModal: FC<PropsType> = ({
             <img src="/images/Face_id_white.png" />
           </div>
           <div
-            className={`fixed ${
-              needSignUp ? "top-[40%]" : "-top-[400px]"
+            className={`fixed top-[50%] ${
+              needSignUp ? "opacity-1" : "opacity-0"
             }  max-w-[640px] mx-auto duration-75`}
           >
             {needSignUpModal()}
