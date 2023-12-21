@@ -8,12 +8,16 @@ import { useToggle } from "react-use";
 import RiverClubV1GetLocker from "./RiverClubV1GetLocker";
 // import BlockModal2 from "@components/common/Block/BlockModal2";
 import RiverClubV1Withdraw from "./RiverClubV1Withdraw";
+import Cookies from "js-cookie";
 
 const RiverClubV1ProfileSchedule = () => {
   const { readyDatasrc } = useContext(WidgetWrapperContext);
   const staticItem = readyDatasrc[0];
   const staticItem2 = readyDatasrc[1];
   const staticItem3 = readyDatasrc[2];
+
+  const user = Cookies.get("name");
+  console.log("dddddd customer", user);
 
   return (
     <BlockDiv className="mx-[20px] my-[25px] bg-black w-[1040px] px-[36px] py-[33px]">
