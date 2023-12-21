@@ -43,6 +43,7 @@ const RiverLoginConfirm: FC<PropsType> = ({
           message: "Амжилттай нэвтэрлээ",
         });
         // router.push(`/selectplan`);
+        console.log("user", res?.result);
         router.push(`/userprofile/profile`);
         if (selectDateModal) {
           selectDateModal(true);

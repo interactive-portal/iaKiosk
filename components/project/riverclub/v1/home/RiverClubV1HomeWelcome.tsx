@@ -8,6 +8,7 @@ import BlockSlider from "@/components/common/Block/BlockSlider";
 import RiverLoginModal from "./RiverLoginModal";
 import { notification } from "antd";
 import Cookies from "js-cookie";
+import RiverLoginConfirm from "./RiverLoginConfirm";
 
 const RiverClubV1HomeWelcome = () => {
   const { query } = useRouter();
@@ -95,7 +96,7 @@ const RiverClubV1HomeWelcome = () => {
           );
         })}
       </BlockSlider>
-      <RiverLoginModal
+      <RiverLoginConfirm
         openModal={openModal}
         setOpenModal={setOpenModal}
         setNeedSignUp={setNeedSignUp}

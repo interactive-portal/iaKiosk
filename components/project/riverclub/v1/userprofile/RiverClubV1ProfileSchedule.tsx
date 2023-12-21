@@ -16,7 +16,7 @@ const RiverClubV1ProfileSchedule = () => {
   const staticItem2 = readyDatasrc[1];
   const staticItem3 = readyDatasrc[2];
 
-  const user = Cookies.get("name");
+  const user = Cookies.get("customer");
   console.log("dddddd customer", user);
 
   return (
