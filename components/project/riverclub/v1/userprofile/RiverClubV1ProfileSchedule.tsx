@@ -8,15 +8,12 @@ import { useToggle } from "react-use";
 import RiverClubV1GetLocker from "./RiverClubV1GetLocker";
 // import BlockModal2 from "@components/common/Block/BlockModal2";
 import RiverClubV1Withdraw from "./RiverClubV1Withdraw";
-import Cookies from "js-cookie";
 
 const RiverClubV1ProfileSchedule = () => {
   const { readyDatasrc } = useContext(WidgetWrapperContext);
   const staticItem = readyDatasrc[0];
   const staticItem2 = readyDatasrc[1];
   const staticItem3 = readyDatasrc[2];
-
-  const user = Cookies.get("customer");
 
   return (
     <BlockDiv className="mx-[20px] my-[25px] bg-black w-[1040px] px-[36px] py-[33px]">
@@ -27,7 +24,27 @@ const RiverClubV1ProfileSchedule = () => {
           className={`w-[431px] h-[431px]`}
         /> */}
 
-        <div>{JSON.stringify(user)}</div>
+        <BlockDiv className="flex gap-x-[12px] mt-2">
+          {_.map(staticItem?.cards, (item: any, index: number) => {
+            return (
+              <BlockDiv
+                className="bg-[#BAD405] w-[130px] h-[62px] rounded-[12px] cursor-pointer"
+                key={index}
+              >
+                <RenderAtom
+                  item={item?.title}
+                  renderType="button"
+                  className={`font-[700] text-black text-[16px] leading-4 text-start uppercase`}
+                />
+                <RenderAtom
+                  item={item?.description}
+                  renderType="text"
+                  className={`text-end text-black w-max font-normal text-[10px]`}
+                />
+              </BlockDiv>
+            );
+          })}
+        </BlockDiv>
         <BlockDiv>
           <EachCard
             item={staticItem2}
