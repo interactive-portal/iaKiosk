@@ -255,7 +255,7 @@ const formInput = [
     labelname: "Регистр",
     pathname: "positionName",
     type: "text",
-    isRequired: 0,
+    isRequired: 1,
   },
   {
     labelname: "Төрсөн огноо",
@@ -281,7 +281,7 @@ const formInput = [
     labelname: "И-мэйл",
     pathname: "EMAIL",
     type: "email",
-    isRequired: 0,
+    isRequired: 1,
   },
   {
     labelname: "Хот",

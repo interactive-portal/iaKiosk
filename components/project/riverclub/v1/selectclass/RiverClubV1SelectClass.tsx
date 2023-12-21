@@ -3,12 +3,16 @@ import RenderAtom from "@/components/common/Atom/RenderAtom";
 import BlockDiv from "@/components/common/Block/BlockDiv";
 import WidgetWrapperContext from "@/components/common/engineBox/Wrapper/WidgetUniversalWrapper";
 import { useContext } from "react";
+import Cookies from "js-cookie";
 
 const RiverClubV1SelectClass = () => {
   const { readyDatasrc } = useContext(WidgetWrapperContext);
   const staticItem = readyDatasrc[0];
   const staticItem2 = readyDatasrc[1];
   const staticItem3 = readyDatasrc[2];
+
+  const user = Cookies.get("customer");
+  // console.log("dddddd customer", user);
 
   return (
     <BlockDiv className="mx-[20px] my-[26px] p-[35px] bg-white flex flex-row gap-[24px] items-center justify-between">
@@ -46,8 +50,8 @@ const RiverClubV1SelectClass = () => {
       </BlockDiv>
       {/* paragraph */}
       <BlockDiv className="flex flex-col items-start h-full justify-between w-[3000px]">
-        <RenderAtom
-          item={staticItem2?.title}
+        {/* <RenderAtom
+          item={staticItem2?.title}ddd
           renderType="title"
           className={`font-[400] text-[20px] text-black`}
         />
@@ -55,7 +59,8 @@ const RiverClubV1SelectClass = () => {
           item={staticItem2?.description}
           renderType="text"
           className={`font-normal text-[16px]`}
-        />
+        /> */}
+        <pre>{JSON.stringify(user, null, 2)}</pre>
       </BlockDiv>
       <BlockDiv
         className={`${

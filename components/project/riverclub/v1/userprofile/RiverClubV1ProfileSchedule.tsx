@@ -28,8 +28,9 @@ const RiverClubV1ProfileSchedule = () => {
           className={`w-[431px] h-[431px]`}
         /> */}
 
-        <BlockDiv className="flex gap-x-[12px] mt-2">
-          {_.map(staticItem?.cards, (item: any, index: number) => {
+        <BlockDiv className="flex gap-x-[12px] mt-2 bg-white text-black">
+          энд сонгосон үйлчилгээ
+          {/* {_.map(staticItem?.cards, (item: any, index: number) => {
             return (
               <BlockDiv
                 className="bg-[#BAD405] w-[130px] h-[62px] rounded-[12px] cursor-pointer"
@@ -47,7 +48,7 @@ const RiverClubV1ProfileSchedule = () => {
                 />
               </BlockDiv>
             );
-          })}
+          })} */}
         </BlockDiv>
         <BlockDiv>
           <EachCard
