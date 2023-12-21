@@ -8,6 +8,7 @@ import { useToggle } from "react-use";
 import RiverClubV1GetLocker from "./RiverClubV1GetLocker";
 // import BlockModal2 from "@components/common/Block/BlockModal2";
 import RiverClubV1Withdraw from "./RiverClubV1Withdraw";
+import Cookies from "js-cookie";
 
 const RiverClubV1ProfileSchedule = () => {
   const { readyDatasrc } = useContext(WidgetWrapperContext);
@@ -15,14 +16,18 @@ const RiverClubV1ProfileSchedule = () => {
   const staticItem2 = readyDatasrc[1];
   const staticItem3 = readyDatasrc[2];
 
+  const user = Cookies.get("customer");
+
   return (
     <BlockDiv className="mx-[20px] my-[25px] bg-black w-[1040px] px-[36px] py-[33px]">
       <BlockDiv className="flex gap-x-[44px] items-center justify-between">
-        <RenderAtom
+        {/* <RenderAtom
           item={staticItem?.mainimage}
           renderType="image"
           className={`w-[431px] h-[431px]`}
-        />
+        /> */}
+
+        <div>{JSON.stringify(user)}</div>
         <BlockDiv>
           <EachCard
             item={staticItem2}
