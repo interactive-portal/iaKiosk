@@ -11,7 +11,7 @@ const RiverClubV1SelectClass = () => {
   const staticItem2 = readyDatasrc[1];
   const staticItem3 = readyDatasrc[2];
 
-  const user = Cookies.get("customer");
+  const user: any = Cookies.get("customer");
   // console.log("dddddd customer", user);
 
   return (
@@ -50,6 +50,11 @@ const RiverClubV1SelectClass = () => {
       </BlockDiv>
       {/* paragraph */}
       <BlockDiv className="flex flex-col items-start h-full justify-between w-[3000px]">
+        <RenderAtom
+          item={{ value: user?.firstName }}
+          renderType="title"
+          className={`font-[400] text-[20px] text-black`}
+        />
         {/* <RenderAtom
           item={staticItem2?.title}ddd
           renderType="title"
@@ -60,7 +65,7 @@ const RiverClubV1SelectClass = () => {
           renderType="text"
           className={`font-normal text-[16px]`}
         /> */}
-        <pre>{JSON.stringify(user, null, 2)}</pre>
+        {/* <pre>{JSON.stringify(user, null, 2)}</pre> */}
       </BlockDiv>
       <BlockDiv
         className={`${
