@@ -9,9 +9,11 @@ import RiverLoginModal from "./RiverLoginModal";
 import { notification } from "antd";
 import Cookies from "js-cookie";
 import RiverLoginConfirm from "./RiverLoginConfirm";
+// import { useTranslation } from "react-i18next";
 
 const RiverClubV1HomeWelcome = () => {
   const { query } = useRouter();
+  // const { t } = useTranslation("translate");
   const currentLanguage = Array.isArray(query.lang)
     ? query.lang.join("")
     : query.lang || "mn";
@@ -28,46 +30,10 @@ const RiverClubV1HomeWelcome = () => {
 
   const staticItem = language === "mn" ? readyDatasrc[1] : readyDatasrc[0];
 
-  // const clickCamera = (e: any) => {
-  //   setOpenModal(true);
-  //   e.preventDefault();
-  //   var ws = new WebSocket("ws://localhost:5021/FaceCamera");
-
-  //   ws.onopen = function () {
-  //     ws.send('{"action":"GetPerson"}');
-  //   };
-
-  //   ws.onmessage = function (event) {
-  //     var res = JSON.parse(event.data);
-
-  //     if (res?.result) {
-  //       ws.send('{"action":"Close"}');
-  //       Cookies.set("customer", res?.result);
-  //       notification.success({
-  //         message: "Амжилттай нэвтэрлээ",
-  //       });
-  //       setOpenModal(false);
-
-  //       console.log("res", res);
-  //     } else {
-  //       ws.send('{"action":"Close"}');
-  //       setNeedSignUp(true);
-  //     }
-
-  //     setOpenModal(false);
-  //   };
-
-  //   ws.onerror = function (event) {
-  //     // alert(event.data);
-  //   };
-
-  //   ws.onclose = function () {
-  //     console.log("Connection is closed");
-  //     // setNeedSignUp(true);
-
-  //     // }
-  //   };
-  // };
+  const readyData =
+    readyDatasrc?.filter((item: any) => {
+      return item?.booktypeid == "1000900805";
+    }) || staticItem;
 
   return (
     <BlockDiv className="arrowCustomStyle">
@@ -84,11 +50,11 @@ const RiverClubV1HomeWelcome = () => {
           arrowClassName: "bg-transparent",
         }}
       >
-        {_.map(staticItem?.mainimage, (item: any, index: number) => {
+        {readyData?.map((item: any, index: number) => {
           return (
             <RiverHomeBanner
               key={index}
-              item={staticItem}
+              item={item}
               openModal={openModal}
               setOpenModal={setOpenModal}
               // clickCamera={clickCamera}
@@ -114,10 +80,11 @@ const RiverHomeBanner = ({
   setOpenModal,
   clickCamera,
 }: any) => {
+  // const { t } = useTranslation("translate");
   return (
     <BlockDiv className="h-[570px] flex items-center justify-center relative bg-gray-200">
       <RenderAtom
-        item={item?.mainimage[0]}
+        item={item?.imgurl}
         renderType="image"
         customClassName="w-[1080px] h-full absolute top-0 left-0"
       />
@@ -127,14 +94,14 @@ const RiverHomeBanner = ({
           renderType="title"
           className={`text-[52px] font-[700] mb-[50px] text-white text-center font-roboto uppercase leading-[50px]`}
         />
-        <RenderAtom
-          item={item?.description}
+        {/* <RenderAtom
+          item={t(item?.description)}
           renderType="text"
           className={`text-white font-[400] text-[26px] text-center mb-[74px]`}
-        />
+        /> */}
         <RenderAtom
           item={{
-            value: item?.button,
+            value: "Гишүүн болох",
             // positionnemgoo: {
             //   url: {
             //     path: `/bioinput`,
@@ -142,7 +109,7 @@ const RiverHomeBanner = ({
             // },
           }}
           renderType="button"
-          className={`bg-[#BAD405] rounded-[8px] px-[42px] py-[35px] text-black uppercase text-[16px] font-[700] mb-[30px]`}
+          className={`bg-[#BAD405] rounded-[8px] px-[42px] py-[35px] text-black uppercase text-[16px] font-[700] cursor-pointer`}
           onClick={(e: any) => setOpenModal(true)}
         />
         {/* <BlockDiv className="flex gap-[9px]">
