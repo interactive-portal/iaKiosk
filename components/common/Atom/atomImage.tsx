@@ -52,7 +52,7 @@ export default function AtomImageV2({
   //       ? process.env.NEXT_PUBLIC_METAHOST_UAT_IMAGEROOTURL
   //       : process.env.NEXT_PUBLIC_METAHOST_PROD_IMAGEROOTURL;
   const imageRootUrl =
-    process.env.IMAGEROOTURL || "https://cloudnew.veritech.mn/app/";
+    process.env.NEXT_PUBLIC_IMAGE_URL || "http://riverclub.veritech.mn:85/";
 
   // const imageRootUrl =
   //   process.env?.[`NEXT_PUBLIC_METAHOST_${metaNameV2}_IMAGEROOTURL`] || "";
