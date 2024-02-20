@@ -85,7 +85,6 @@ const LanguageSetting = ({ item }: any) => {
 
     e.preventDefault();
     router.push(router.asPath, undefined, { locale: lang });
-    console.log(router?.locale);
   };
 
   return (
@@ -134,7 +133,11 @@ const Menu = ({ item, t }: any) => {
               },
             }}
             renderType="title"
-            className={`font-[400] cursor-pointer text-[18px] uppercase w-max text-white`}
+            className={`font-[400] cursor-pointer text-[18px] uppercase w-max ${
+              window.location?.pathname == `${item?.slug}/`
+                ? "text-[#BAD405]"
+                : "text-white"
+            } `}
           />
         );
       })}
