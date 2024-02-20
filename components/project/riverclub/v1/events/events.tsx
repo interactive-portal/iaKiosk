@@ -56,7 +56,7 @@ const Events = () => {
               {/* <p className="text-[16px] uppercase">Tax : free</p> */}
             </div>
             <img
-              src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${item?.photo}`}
+              src={`http://riverclub.veritech.mn:85/${item?.photo}`}
               className="w-[237px] h-[237px] object-cover"
             />
             <div
