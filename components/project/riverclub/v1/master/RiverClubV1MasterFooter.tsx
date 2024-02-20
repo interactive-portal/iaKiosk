@@ -21,7 +21,7 @@ const RiverClubV1MasterFooter: FC<PropsType> = ({ data, options, mutate }) => {
   const staticItem2 = data?.[1];
   const staticItem3 = data?.[2];
   return (
-    <BlockDiv customClassName={`${widgetnemgooReady?.design?.className}`}>
+    <BlockDiv customClassName={`${widgetnemgooReady?.design?.className} z-50`}>
       <BlockDiv className="w-[1080px] bg-[#202020] min-h-[90px]">
         <BlockDiv className="flex items-center justify-between gap-x-[18px] mx-[20px]">
           <BlockDiv className="flex bg-[#BBD540] px-[30px] py-[14px] rounded-[11px] items-center justify-between my-[23px]">
