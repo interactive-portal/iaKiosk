@@ -34,6 +34,7 @@ const Events = () => {
             style={{
               background: colors[index],
             }}
+            key={index}
           >
             <div
               className={`${

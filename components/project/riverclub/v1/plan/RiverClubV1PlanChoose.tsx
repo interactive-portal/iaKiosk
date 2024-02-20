@@ -25,8 +25,6 @@ const RiverClubV1PlanChoose = ({ planItems }: { planItems: any }) => {
   const staticItem2 = data[1];
   const staticItem3 = data[2];
 
-  console.log("readyData", readyDatasrc);
-
   return (
     <BlockDiv className="mx-[20px] my-[26px] p-[35px] bg-white flex flex-row gap-[24px] items-center justify-between">
       {/* select plan button */}

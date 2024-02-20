@@ -76,8 +76,6 @@ const RiverClubV1PlanPrice = () => {
 
   const { nemgooDatasrc } = useContext(WidgetWrapperContext);
 
-  console.log("sign", signIn);
-
   // багцыг select хийх эсвэл login хийх
   const selectItem = async (e: any, item: any) => {
     setOpenLogin(true);

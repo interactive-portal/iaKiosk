@@ -42,7 +42,7 @@ const AboutUs = () => {
         </p>
       </div>
       <div>
-        <Swiper slidesPerView={4.5} spaceBetween={10}>
+        <Swiper slidesPerView={4.5} spaceBetween={20}>
           {[0, 1, 2, 3, 4, 5].map((item: any, index: number) => {
             return (
               <SwiperSlide key={index} className="">
@@ -57,8 +57,8 @@ const AboutUs = () => {
                     className="h-[200px] w-full rounded-t-lg object-cover"
                   />
                   <div className="px-4 py-6">
-                    <p className="text-[20px] ">{data?.title}</p>
-                    <p className="text-[10px] ">{data?.description}</p>
+                    <p className="text-[20px]">{data?.title}</p>
+                    <p className="text-[10px]">{data?.description}</p>
                     <div className="mt-4 flex flex-col gap-y-4">
                       {[0, 1].map((obj: any, index: number) => {
                         return (
