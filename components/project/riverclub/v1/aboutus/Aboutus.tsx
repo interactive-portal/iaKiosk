@@ -74,7 +74,7 @@ const AboutUs = () => {
                           }}
                         >
                           <img
-                            src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${item?.pciture}`}
+                            src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${item?.picture}`}
                             className="h-[200px] w-full rounded-t-lg object-cover"
                           />
                           <div className="px-4 py-6">
