@@ -8,8 +8,26 @@ import "swiper/css/scrollbar";
 import "swiper/css/free-mode";
 
 const AboutUs = () => {
+  const colors = [
+    "#F3E686",
+    "#B6CCBC",
+    "#D7D0C5",
+    "#AEC1D1",
+    "#F3E686",
+    "#B6CCBC",
+    "#D7D0C5",
+    "#AEC1D1",
+    "#F3E686",
+    "#B6CCBC",
+    "#D7D0C5",
+    "#AEC1D1",
+    "#F3E686",
+    "#B6CCBC",
+    "#D7D0C5",
+    "#AEC1D1",
+  ];
   const data = {
-    image: "/images/noimage.png",
+    image: "/images/aboutus.png",
     title: "ӨҮЛЭН",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do ",
@@ -24,14 +42,19 @@ const AboutUs = () => {
         </p>
       </div>
       <div>
-        <Swiper slidesPerView={4.5} spaceBetween={30}>
+        <Swiper slidesPerView={4.5} spaceBetween={10}>
           {[0, 1, 2, 3, 4, 5].map((item: any, index: number) => {
             return (
               <SwiperSlide key={index} className="">
-                <div className="flex flex-col rounded-lg bg-[#AEC1D1]">
+                <div
+                  className={`flex flex-col rounded-lg bg-[${colors[index]}]`}
+                  style={{
+                    background: colors[index],
+                  }}
+                >
                   <img
                     src={data?.image}
-                    className="h-[200px] w-full rounded-t-lg"
+                    className="h-[200px] w-full rounded-t-lg object-cover"
                   />
                   <div className="px-4 py-6">
                     <p className="text-[20px] ">{data?.title}</p>

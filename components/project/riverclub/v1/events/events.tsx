@@ -1,4 +1,22 @@
 const Events = () => {
+  const colors = [
+    "#F3E686",
+    "#B6CCBC",
+    "#D7D0C5",
+    "#AEC1D1",
+    "#F3E686",
+    "#B6CCBC",
+    "#D7D0C5",
+    "#AEC1D1",
+    "#F3E686",
+    "#B6CCBC",
+    "#D7D0C5",
+    "#AEC1D1",
+    "#F3E686",
+    "#B6CCBC",
+    "#D7D0C5",
+    "#AEC1D1",
+  ];
   return (
     <div className="flex flex-col gap-y-4 mx-10">
       {[0, 1, 2, 3].map((item: any, index: number) => {
@@ -10,9 +28,12 @@ const Events = () => {
         }
         return (
           <div
-            className={`flex ${
+            className={` bg-[${colors[index]}] flex ${
               left && "flex-row-reverse"
-            } gap-x-5 bg-[#F3E686]`}
+            } gap-x-5 `}
+            style={{
+              background: colors[index],
+            }}
           >
             <div
               className={`${
@@ -31,7 +52,7 @@ const Events = () => {
               <p className="text-[16px] uppercase">Tax : free</p>
             </div>
             <img
-              src="/images/noimage.png"
+              src="/images/aboutus.png"
               className="w-[237px] h-[237px] object-cover"
             />
             <div
