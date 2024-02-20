@@ -9,11 +9,12 @@ import RiverLoginModal from "./RiverLoginModal";
 import { notification } from "antd";
 import Cookies from "js-cookie";
 import RiverLoginConfirm from "./RiverLoginConfirm";
+import { useTranslation } from "react-i18next";
 // import { useTranslation } from "react-i18next";
 
 const RiverClubV1HomeWelcome = () => {
   const { query } = useRouter();
-  // const { t } = useTranslation("translate");
+  const { t } = useTranslation("translate");
   const currentLanguage = Array.isArray(query.lang)
     ? query.lang.join("")
     : query.lang || "mn";
@@ -80,7 +81,7 @@ const RiverHomeBanner = ({
   setOpenModal,
   clickCamera,
 }: any) => {
-  // const { t } = useTranslation("translate");
+  const { t } = useTranslation("translate");
   return (
     <BlockDiv className="h-[570px] flex items-center justify-center relative bg-gray-200">
       <RenderAtom
@@ -101,7 +102,7 @@ const RiverHomeBanner = ({
         /> */}
         <RenderAtom
           item={{
-            value: "Гишүүн болох",
+            value: `${t("WPD_0009")}`,
             // positionnemgoo: {
             //   url: {
             //     path: `/bioinput`,

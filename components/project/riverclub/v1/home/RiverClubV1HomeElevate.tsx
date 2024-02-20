@@ -59,7 +59,7 @@ const UpperSection = ({ item }: any) => {
           renderType="text"
           className={`font-[400] text-[16px] mb-[36px]`}
         />
-        <RenderAtom
+        {/* <RenderAtom
           item={{
             value: t(item?.button?.title),
             positionnemgoo: {
@@ -70,7 +70,7 @@ const UpperSection = ({ item }: any) => {
           }}
           renderType="button"
           className={`text-[16px] font-[400] bg-black w-[220px] py-[14px] px-[18px] uppercase`}
-        />
+        /> */}
       </BlockDiv>
     </BlockDiv>
   );
@@ -96,7 +96,7 @@ const BottomSection = ({ item }: any) => {
           renderType="text"
           className={`font-[400] text-[16px] mb-[36px]`}
         />
-        <RenderAtom
+        {/* <RenderAtom
           item={{
             value: t(item?.button?.title),
             positionnemgoo: {
@@ -107,7 +107,7 @@ const BottomSection = ({ item }: any) => {
           }}
           renderType="button"
           className={`text-[16px] font-[400] bg-black w-[220px] py-[14px] px-[18px] uppercase`}
-        />
+        /> */}
       </BlockDiv>
       <RenderAtom
         item={item?.mainimage}
