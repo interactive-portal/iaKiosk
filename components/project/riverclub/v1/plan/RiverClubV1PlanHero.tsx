@@ -7,6 +7,7 @@ import { useRouter } from "next/router";
 // import BlockSlider from "@components/common/Block/BlockSlider";
 import BlockSlider from "@/components/common/Block/BlockSlider";
 import _ from "lodash";
+import { useTranslation } from "react-i18next";
 
 const RiverClubV1PlanHero = () => {
   const { query } = useRouter();
@@ -49,6 +50,7 @@ const RiverClubV1PlanHero = () => {
 export default RiverClubV1PlanHero;
 
 const RiverPlanBanner = ({ item }: any) => {
+  const { t } = useTranslation("translate");
   return (
     <BlockDiv className="h-[300px] flex items-center justify-center relative bg-gray-200">
       <BlockDiv className="h-full bg-black/30">
@@ -64,18 +66,18 @@ const RiverPlanBanner = ({ item }: any) => {
       </BlockDiv>
       <BlockDiv className="z-20 w-full  flex items-center justify-center flex-col h-max">
         <RenderAtom
-          item={item?.title}
+          item={t(item?.title)}
           renderType="title"
           className={`text-[52px] font-[700] mb-[50px] text-white text-center font-roboto uppercase leading-[50px]`}
         />
         <RenderAtom
-          item={item?.description}
+          item={t(item?.description)}
           renderType="text"
           className={`text-white font-[400] text-[26px] text-center mb-[74px]`}
         />
         <RenderAtom
           item={{
-            value: item?.button,
+            value: t(item?.button),
             positionnemgoo: {
               url: {
                 path: `/bioinput`,

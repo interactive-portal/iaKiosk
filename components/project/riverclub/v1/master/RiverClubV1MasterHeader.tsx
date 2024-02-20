@@ -6,6 +6,8 @@ import { useContext, FC } from "react";
 import _ from "lodash";
 import { useRouter } from "next/router";
 import Cookies from "js-cookie";
+import { useTranslation } from "react-i18next";
+import Link from "next/link";
 
 type PropsType = {
   data?: any;
@@ -15,6 +17,7 @@ type PropsType = {
 
 const RiverClubV1MasterHeader: FC<PropsType> = ({ data, options, mutate }) => {
   const { readyDatasrc } = useContext(WidgetWrapperContext);
+  const { t } = useTranslation("translate");
 
   const { query } = useRouter();
   const currentLanguage = Array.isArray(query.lang)
@@ -58,11 +61,11 @@ const RiverClubV1MasterHeader: FC<PropsType> = ({ data, options, mutate }) => {
             renderType="image"
             className={`w-[142px] cursor-pointer h-[36px] my-[10px] mr-[45px]`}
           />
-          <Menu item={menu} />
+          <Menu item={menu} t={t} />
           {/* {customer ? (
             <i className="fa-solid fa-user fa-xl mr-6 text-[#BAD405]"></i>
           ) : ( */}
-          <MemberButton item={button} />
+          <MemberButton item={button} t={t} />
           {/* )} */}
         </BlockDiv>
       </BlockDiv>
@@ -77,53 +80,40 @@ const LanguageSetting = ({ item }: any) => {
     ? query.lang.join("")
     : query.lang || "mn";
 
+  const onChangeLanguage = (lang: string) => (e: any) => {
+    // console.log("langlanglanglanglanglanglanglanglanglang", lang);
+
+    e.preventDefault();
+    router.push(router.asPath, undefined, { locale: lang });
+    console.log(router?.locale);
+  };
+
   return (
-    <BlockDiv className="flex w-max mr-10">
-      <RenderAtom
-        item={{
-          value: item?.[0]?.title,
-          positionnemgoo: {
-            url: {
-              path: window.location.pathname,
-              query: {
-                lang: "en",
-              },
-              keepQuery: true,
-            },
-          },
-        }}
-        renderType="button"
-        className={`${
-          currentLanguage === "en"
-            ? `text-[${item?.[2]?.buttons?.active}]`
-            : `text-${item?.[2]?.buttons?.inActive}`
-        } font-[700] text-[17px] w-max -mr-6`}
-      />
-      <RenderAtom
-        item={{
-          value: `${item?.[1]?.title}`,
-          positionnemgoo: {
-            url: {
-              path: window.location.pathname,
-              query: {
-                lang: "mn",
-              },
-              keepQuery: true,
-            },
-          },
-        }}
-        renderType="button"
-        className={`${
-          currentLanguage === "mn"
-            ? `text-[${item?.[2]?.buttons?.active}]`
-            : `text-${item?.[2]?.buttons?.inActive}`
-        } font-[700] text-[17px] w-max -mr-6 `}
-      />
+    <BlockDiv className="flex w-max mr-10 gap-x-4">
+      <span onClick={onChangeLanguage("en")}>
+        <p
+          className={`font-[700] text-[17px] w-max cursor-pointer ${
+            router?.locale === "en" ? "text-[#BAD405]" : "text-white"
+          }`}
+        >
+          ENG
+        </p>
+      </span>
+      <span onClick={onChangeLanguage("mn")}>
+        <p
+          // href={router?.asPath}
+          className={`font-[700] text-[17px] w-max cursor-pointer
+        ${router?.locale === "mn" ? "text-[#BAD405]" : "text-white"}
+        `}
+        >
+          MNG
+        </p>
+      </span>
     </BlockDiv>
   );
 };
 
-const Menu = ({ item }: any) => {
+const Menu = ({ item, t }: any) => {
   return (
     <BlockDiv className="flex justify-between w-full mr-[30px] px-8">
       {_.map(item, (item: any, index: number) => {
@@ -131,7 +121,7 @@ const Menu = ({ item }: any) => {
           <RenderAtom
             key={item?.id || index}
             item={{
-              value: item?.title,
+              value: t(item?.title),
               positionnemgoo: {
                 atom: {
                   type: "title",
@@ -152,12 +142,12 @@ const Menu = ({ item }: any) => {
   );
 };
 
-const MemberButton = ({ item }: any) => {
+const MemberButton = ({ item, t }: any) => {
   return (
     <BlockDiv className="">
       <RenderAtom
         item={{
-          value: item?.title,
+          value: t(item?.title),
           positionnemgoo: {
             url: {
               path: `${item?.slug}`,

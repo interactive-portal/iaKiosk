@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useTransition } from "react";
 import React from "react";
 import { useRouter } from "next/router";
 // import BlockSlider from "@components/common/Block/BlockSlider";
@@ -7,9 +7,11 @@ import BlockDiv from "@/components/common/Block/BlockDiv";
 import RenderAtom from "@/components/common/Atom/RenderAtom";
 import _ from "lodash";
 import WidgetWrapperContext from "@/components/common/engineBox/Wrapper/WidgetUniversalWrapper";
+import { useTranslation } from "react-i18next";
 
 const RiverClubV1HomeAbout = () => {
   const { query } = useRouter();
+  const { t } = useTranslation("translate");
   const currentLanguage = Array.isArray(query.lang)
     ? query.lang.join("")
     : query.lang || "mn";
@@ -44,7 +46,7 @@ const RiverClubV1HomeAbout = () => {
           },
         }}
       >
-        {/* {_.map(staticItem?.item, (item: any, index: number) => {
+        {_.map(staticItem?.item, (item: any, index: number) => {
           return (
             <BlockDiv className="flex flex-col items-center justify-center   mb-24 bg-[#CACACA]">
               <RenderAtom
@@ -54,24 +56,24 @@ const RiverClubV1HomeAbout = () => {
               />
               <BlockDiv className="mt-[26px] flex flex-col items-center justify-center px-[170px]">
                 <RenderAtom
-                  item={item?.title}
+                  item={t(item?.title)}
                   renderType="title"
                   className={`font-normal text-[20px] text-black mb-[18px] uppercase`}
                 />
                 <RenderAtom
-                  item={item?.description}
+                  item={t(item?.description)}
                   renderType="title"
                   className={`font-normal text-[16px] mb-[22px] text-center`}
                 />
                 <RenderAtom
-                  item={item?.button}
+                  item={t(item?.button)}
                   renderType="button"
                   className={`underline font-normal text-black  text-[16px] mb-[27px]`}
                 />
               </BlockDiv>
             </BlockDiv>
           );
-        })} */}
+        })}
       </BlockSlider>
     </BlockDiv>
   );

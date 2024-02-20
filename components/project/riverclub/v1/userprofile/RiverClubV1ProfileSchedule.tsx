@@ -17,7 +17,7 @@ const RiverClubV1ProfileSchedule = () => {
   const staticItem3 = readyDatasrc[2];
 
   const user = Cookies.get("customer");
-  console.log("dddddd customer", user);
+  console.log("dddddd customer staticItem", staticItem);
 
   return (
     <BlockDiv className="mx-[20px] my-[25px] bg-black w-[1040px] px-[36px] py-[33px]">
@@ -28,9 +28,9 @@ const RiverClubV1ProfileSchedule = () => {
           className={`w-[431px] h-[431px]`}
         /> */}
 
-        <BlockDiv className="flex gap-x-[12px] mt-2 bg-white text-black">
-          энд сонгосон үйлчилгээ
-          {/* {_.map(staticItem?.cards, (item: any, index: number) => {
+        <BlockDiv className="flex gap-x-[12px] mt-2 bg-black ">
+          {/* энд сонгосон үйлчилгээs */}
+          {_.map(staticItem?.cards, (item: any, index: number) => {
             return (
               <BlockDiv
                 className="bg-[#BAD405] w-[130px] h-[62px] rounded-[12px] cursor-pointer"
@@ -48,7 +48,7 @@ const RiverClubV1ProfileSchedule = () => {
                 />
               </BlockDiv>
             );
-          })} */}
+          })}
         </BlockDiv>
         <BlockDiv>
           <EachCard
@@ -65,22 +65,23 @@ const RiverClubV1ProfileSchedule = () => {
 const EachCard = ({ item, lockerItem, withdrawItem }: any) => {
   const [showLockerModal, setShowLockerModal] = useToggle(false);
   const [showWithdrawModal, setShowWidthdrawModal] = useToggle(false);
+  console.log("itememememme", item);
   return (
     <BlockDiv className="grid grid-cols-2 gap-[24px]">
       {/* card 1 */}
       <BlockDiv className=" w-[216.96px] bg-[#BAD405] rounded-[12px] pt-[16px] px-[14px]">
         <RenderAtom
-          item={item?.card1.title}
+          item={item?.card1?.title}
           renderType="title"
           className={`text-black font-bold text-[30px] leading-6 uppercase`}
         />
         <RenderAtom
-          item={item?.card1.subtitle}
+          item={item?.card1?.subtitle}
           renderType="title"
           className={`text-end -mt-5 text-[15px] font-normal`}
         />
         <RenderAtom
-          item={item?.card1.description}
+          item={item?.card1?.description}
           renderType="text"
           className={`text-end text-[15px] font-normal`}
         />
@@ -91,33 +92,23 @@ const EachCard = ({ item, lockerItem, withdrawItem }: any) => {
         onClick={() => setShowLockerModal(true)}
       >
         <RenderAtom
-          item={item?.card2.title}
+          item={item?.card2?.title}
           renderType="title"
           className={`text-black font-bold text-[30px] leading-6 uppercase`}
         />
         <RenderAtom
-          item={item?.card2.count}
+          item={item?.card2?.count}
           renderType="text"
           className={`text-end -mt-5 text-[15px] font-normal`}
         />
       </BlockDiv>
-      {/* <BlockModal2
-        isShowModal={showLockerModal}
-        setIsShowModal={setShowLockerModal}
-      >
-        <RiverClubV1GetLocker
-          item={lockerItem}
-          showLockerModal={showLockerModal}
-          setShowLockerModal={setShowLockerModal}
-        />
-      </BlockModal2> */}
       {/* card 3 */}
       <BlockDiv
         className="flex flex-col w-[216.96px] bg-[#BAD405] rounded-[12px] pt-[16px] px-[14px]"
         onClick={() => setShowWidthdrawModal(true)}
       >
         <RenderAtom
-          item={item?.card3.title}
+          item={item?.card3?.title}
           renderType="title"
           className={`text-black font-bold text-[30px] leading-6 uppercase`}
         />
@@ -151,18 +142,18 @@ const EachCard = ({ item, lockerItem, withdrawItem }: any) => {
       {/* card 4 */}
       <BlockDiv className="bg-[#BAD405] rounded-[12px] pt-[16px] px-[14px]">
         <RenderAtom
-          item={item?.card4.title}
+          item={item?.card4?.title}
           renderType="title"
           className={`text-black font-bold text-[30px] leading-6 uppercase`}
         />
         <BlockDiv className="flex flex-col items-end justify-end -mt-4">
           <RenderAtom
-            item={item?.card4.icon}
+            item={item?.card4?.icon}
             renderType="image"
             className={`w-[63px]`}
           />
           <RenderAtom
-            item={item?.card4.description}
+            item={item?.card4?.description}
             renderType="text"
             className={`font-normal text-[15px] text-end`}
           />

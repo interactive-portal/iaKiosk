@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useTransition } from "react";
 import RenderAtom from "@/components/common/Atom/RenderAtom";
 import BlockDiv from "@/components/common/Block/BlockDiv";
 import WidgetWrapperContext from "@/components/common/engineBox/Wrapper/WidgetUniversalWrapper";
 import { useContext, useState, useEffect } from "react";
 import { useToggle } from "react-use";
 import { useRouter } from "next/router";
+import { useTranslation } from "react-i18next";
 // import BlockModal2 from "@components/common/Block/BlockModal2";
 
 type RiverClubV1HomePurchaseProps = {
@@ -21,6 +22,7 @@ const RiverClubV1HomePurchase = ({
   purchaseAgeBtn,
 }: RiverClubV1HomePurchaseProps) => {
   const { query } = useRouter();
+  const { t } = useTranslation("translate");
   const currentLanguage = Array.isArray(query.lang)
     ? query.lang.join("")
     : query.lang || "mn";
@@ -46,12 +48,12 @@ const RiverClubV1HomePurchase = ({
       <BlockDiv className="mx-[112px] my-[26px] py-[25px] px-[40px] bg-white flex items-center justify-between gap-x-[120px]">
         <BlockDiv className="flex flex-col gap-y-[18px]">
           <RenderAtom
-            item={staticItem?.title || item?.title}
+            item={t(staticItem?.title || item?.title)}
             renderType="title"
             className={`uppercase text-[20px] font-[400]`}
           />
           <RenderAtom
-            item={staticItem?.description || item?.description}
+            item={t(staticItem?.description || item?.description)}
             renderType="text"
             className={`uppercase text-[16px] font-[400] w-[434px]`}
           />
@@ -59,7 +61,7 @@ const RiverClubV1HomePurchase = ({
         <BlockDiv className="flex relative flex-col gap-y-[12px]">
           <BlockDiv className="py-[30px] px-[12px] bg-[#BAD405] rounded-[11px] flex flex-col items-center justify-center">
             <RenderAtom
-              item={staticItem?.count || item?.count}
+              item={t(staticItem?.count || item?.count)}
               renderType="text"
               className={`text-[13px] font-[400] text-center tracking-widest`}
             />

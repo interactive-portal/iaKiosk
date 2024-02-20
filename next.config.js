@@ -44,6 +44,11 @@ const nextConfig = {
     // typedRoutes: true,
     // serverComponents: true,
   },
+  i18n: {
+    localeDetection: false,
+    defaultLocale: "mn",
+    locales: ["mn", "en"],
+  },
   // fontLoaders: [
   //   { loader: "@next/font/google", options: { subsets: ["latin"] } },
   // ],

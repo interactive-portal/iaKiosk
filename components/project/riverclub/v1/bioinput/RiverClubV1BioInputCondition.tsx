@@ -4,9 +4,11 @@ import WidgetWrapperContext from "@/components/common/engineBox/Wrapper/WidgetUn
 import RenderAtom from "@/components/common/Atom/RenderAtom";
 import BlockDiv from "@/components/common/Block/BlockDiv";
 import { useRouter } from "next/router";
+import { useTranslation } from "react-i18next";
 
 const RiverClubV1BioInputCondition = () => {
   const { query } = useRouter();
+  const { t } = useTranslation("translate");
   const currentLanguage = Array.isArray(query.lang)
     ? query.lang.join("")
     : query.lang || "mn";
@@ -25,12 +27,12 @@ const RiverClubV1BioInputCondition = () => {
       <BlockDiv>
         <BlockDiv>
           <RenderAtom
-            item={staticItem?.title}
+            item={t(staticItem?.title)}
             renderType="title"
             className={`text-black text-[20px] font-normal mb-[4px]`}
           />
           <RenderAtom
-            item={staticItem?.description}
+            item={t(staticItem?.description)}
             renderType="text"
             className={`text-[16px] font-normal mb-[10px] text-black`}
           />

@@ -25,6 +25,7 @@ export default function Layout({ children }: LayoutProps) {
     exit: { opacity: 0, x: 0, y: -100 },
   };
   const { props } = children;
+
   const isHeader = _.isEmpty(children.props) ? true : false;
   // console.log("children.props :>> ", children.props);
   // return <>dddd</>;

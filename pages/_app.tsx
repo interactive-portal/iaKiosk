@@ -14,6 +14,7 @@ import RouteLoader from "@/components/routeLoader";
 import "public/icon/css/all.css";
 import "styles/globals.css";
 import ErrorBoundary from "@/components/layout/ErrorBoundary";
+import { appWithTranslation } from "next-i18next";
 
 function App({ Component, pageProps }: AppProps) {
   return (
@@ -53,6 +54,6 @@ function App({ Component, pageProps }: AppProps) {
   );
 }
 
-// export default appWithTranslation(App);
+export default appWithTranslation(App);
 
-export default withTranslation()(App);
+// export default appWithTranslation()(App);

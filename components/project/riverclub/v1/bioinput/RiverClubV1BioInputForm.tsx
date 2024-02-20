@@ -17,10 +17,12 @@ import { Modal, notification } from "antd";
 import Cookies from "js-cookie";
 import RiverLoginModal from "../home/RiverLoginModal";
 import { useRouter } from "next/router";
+import { useTranslation } from "react-i18next";
 
 const RiverClubV1BioInputForm = () => {
   const { config, headerData, positionConfig, metaConfig } =
     useContext(WidgetWrapperContext);
+  const { t } = useTranslation("translate");
 
   // const { getValues } = useFormContext();
 
@@ -102,6 +104,7 @@ const RiverClubV1BioInputForm = () => {
         <form onSubmit={methods.handleSubmit(onSubmit)}>
           <div className="grid grid-cols-2 gap-10">
             {formInput?.map((obj: any, index: number) => {
+              let newObj = { ...obj, labelname: t(obj?.labelname) };
               let criteria;
               if (obj.criteriaPath) {
                 criteria = {
@@ -115,24 +118,20 @@ const RiverClubV1BioInputForm = () => {
               }
               switch (obj?.type) {
                 case "text":
-                  return <Text key={index} obj={obj} />;
+                  return <Text key={index} obj={newObj} />;
                 case "combo":
-                  return <Combo criteria={criteria} key={index} obj={obj} />;
+                  return <Combo criteria={criteria} key={index} obj={newObj} />;
                 case "number":
-                  return <Number key={index} obj={obj} />;
+                  return <Number key={index} obj={newObj} />;
                 case "date":
-                  return <Date key={index} obj={obj} />;
+                  return <Date key={index} obj={newObj} />;
                 case "email":
-                  return <Email key={index} obj={obj} />;
+                  return <Email key={index} obj={newObj} />;
               }
             })}
             <div></div>
             <div className="">
-              <span>
-                Царайгаа таниулснаар таны бүртгэл дуусна. Цаашдаа клуб
-                нэвтрэхдээ царай таниулж нэвтрэх тул зааврыг анхааралтай
-                дагаарай.
-              </span>
+              <span>{t("WPD_0057")}</span>
               <div
                 className="flex items-center gap-4 cursor-pointer"
                 onClick={(e) => clickCamera(e)}
@@ -143,7 +142,7 @@ const RiverClubV1BioInputForm = () => {
                   checked={imageToken ? true : false}
                 />
                 <div className="bg-[#050505] text-white text-[13px] leading-[19px] uppercase px-[22px] py-[5px]">
-                  Царайгаа таниулах
+                  {t("WPD_0056")}
                 </div>
                 <img src="/images/Face_ID.png" />
               </div>
@@ -154,7 +153,7 @@ const RiverClubV1BioInputForm = () => {
               type="submit"
               className="p-3 bg-black text-white flex items-center justify-center text-[18px] w-[200px] rounded"
             >
-              Хадгалах
+              {t("WPD_0058")}
             </button>
           </div>
         </form>
@@ -240,31 +239,31 @@ const RiverClubV1BioInputForm = () => {
 
 const formInput = [
   {
-    labelname: "Овог",
+    labelname: "WPD_0046",
     pathname: "lastName",
     type: "text",
     isRequired: 1,
   },
   {
-    labelname: "Нэр",
+    labelname: "WPD_0047",
     pathname: "customerName",
     type: "text",
     isRequired: 1,
   },
   {
-    labelname: "Регистр",
+    labelname: "WPD_0048",
     pathname: "positionName",
     type: "text",
     isRequired: 1,
   },
   {
-    labelname: "Төрсөн огноо",
+    labelname: "WPD_0049",
     pathname: "dateOfBirth",
     type: "date",
     isRequired: 1,
   },
   {
-    labelname: "Хүйс",
+    labelname: "WPD_0050",
     pathname: "gender",
     type: "combo",
     name: "name",
@@ -272,19 +271,19 @@ const formInput = [
     isRequired: 1,
   },
   {
-    labelname: "Утас",
+    labelname: "WPD_0051",
     pathname: "phoneNumber",
     type: "number",
     isRequired: 1,
   },
   {
-    labelname: "И-мэйл",
+    labelname: "WPD_0052",
     pathname: "EMAIL",
     type: "email",
     isRequired: 1,
   },
   {
-    labelname: "Хот",
+    labelname: "WPD_0053",
     pathname: "cityId",
     type: "combo",
     lookupId: "1448415981113",
@@ -292,7 +291,7 @@ const formInput = [
     isRequired: 1,
   },
   {
-    labelname: "Дүүрэг",
+    labelname: "WPD_0054",
     pathname: "districtId",
     type: "combo",
     lookupId: "144436175673444",
@@ -301,7 +300,7 @@ const formInput = [
     isRequired: 1,
   },
   {
-    labelname: "Хороо",
+    labelname: "WPD_0055",
     pathname: "streetId",
     type: "combo",
     lookupId: "1448415981268",

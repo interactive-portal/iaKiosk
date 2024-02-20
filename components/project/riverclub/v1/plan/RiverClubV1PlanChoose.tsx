@@ -4,9 +4,11 @@ import { useContext } from "react";
 import RenderAtom from "@/components/common/Atom/RenderAtom";
 import BlockDiv from "@/components/common/Block/BlockDiv";
 import { useRouter } from "next/router";
+import { useTranslation } from "react-i18next";
 
 const RiverClubV1PlanChoose = ({ planItems }: { planItems: any }) => {
   const { query } = useRouter();
+  const { t } = useTranslation("translate");
   const currentLanguage = Array.isArray(query.lang)
     ? query.lang.join("")
     : query.lang || "mn";
@@ -23,6 +25,8 @@ const RiverClubV1PlanChoose = ({ planItems }: { planItems: any }) => {
   const staticItem2 = data[1];
   const staticItem3 = data[2];
 
+  console.log("readyData", readyDatasrc);
+
   return (
     <BlockDiv className="mx-[20px] my-[26px] p-[35px] bg-white flex flex-row gap-[24px] items-center justify-between">
       {/* select plan button */}
@@ -32,12 +36,12 @@ const RiverClubV1PlanChoose = ({ planItems }: { planItems: any }) => {
         }`}
       >
         <RenderAtom
-          item={staticItem?.button || planItems?.[0]?.button}
+          item={t(staticItem?.button || planItems?.[0]?.button)}
           renderType="button"
           className={`font-[700] text-[30px] text-start text-black uppercase`}
         />
         <RenderAtom
-          item={staticItem?.description || planItems?.[0]?.description}
+          item={t(staticItem?.description || planItems?.[0]?.description)}
           renderType="text"
           className={`font-normal w-max text-[15px] text-end`}
         />
@@ -49,12 +53,12 @@ const RiverClubV1PlanChoose = ({ planItems }: { planItems: any }) => {
         }`}
       >
         <RenderAtom
-          item={staticItem2?.title || planItems?.[1]?.title}
+          item={t(staticItem2?.title || planItems?.[1]?.title)}
           renderType="title"
           className={`font-[400] text-[20px] text-black`}
         />
         <RenderAtom
-          item={staticItem2?.description || planItems?.[1]?.description}
+          item={t(staticItem2?.description || planItems?.[1]?.description)}
           renderType="text"
           className={`font-normal text-[16px]`}
         />
@@ -67,7 +71,7 @@ const RiverClubV1PlanChoose = ({ planItems }: { planItems: any }) => {
       >
         <RenderAtom
           item={{
-            value: staticItem3?.button || planItems?.[2]?.button,
+            value: t(staticItem3?.button || planItems?.[2]?.button),
             positionnemgoo: {
               url: {
                 path: `/workouts`,
@@ -81,7 +85,7 @@ const RiverClubV1PlanChoose = ({ planItems }: { planItems: any }) => {
           className={`font-[700] text-black text-[30px] text-start uppercase`}
         />
         <RenderAtom
-          item={staticItem3?.description || planItems?.[2]?.description}
+          item={t(staticItem3?.description || planItems?.[2]?.description)}
           renderType="text"
           className={`text-end text-black w-max font-normal text-[16px]`}
         />
