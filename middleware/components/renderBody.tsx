@@ -33,7 +33,12 @@ const RenderBody = ({
   const widgetList = _.find(mergedPageNemgoo, { sectionCode: "body" });
 
   return (
-    <main className={bodyDefault?.className || "main"}>
+    <main
+      className={bodyDefault?.className || "main"}
+      style={{
+        minHeight: "1710px",
+      }}
+    >
       {/* {JSON.stringify(meta_bp_layout_section)} */}
       <RenderSections
         mergedLayout={widgetList?.children}
