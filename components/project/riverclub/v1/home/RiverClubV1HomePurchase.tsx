@@ -44,63 +44,46 @@ const RiverClubV1HomePurchase = ({
   const [showModal, setShowModal] = useToggle(false);
 
   return (
-    <BlockDiv className="flex items-center justify-center w-max bg-black">
-      <BlockDiv className="mx-[112px] my-[26px] py-[25px] px-[40px] bg-white flex items-center justify-between gap-x-[120px]">
-        <BlockDiv className="flex flex-col gap-y-[18px]">
-          <RenderAtom
-            item={t(staticItem?.title || item?.title)}
-            renderType="title"
-            className={`uppercase text-[20px] font-[400]`}
-          />
-          <RenderAtom
-            item={t(staticItem?.description || item?.description)}
-            renderType="text"
-            className={`uppercase text-[16px] font-[400] w-[434px]`}
-          />
-        </BlockDiv>
-        <BlockDiv className="flex relative flex-col gap-y-[12px]">
-          <BlockDiv className="py-[30px] px-[12px] bg-[#BAD405] rounded-[11px] flex flex-col items-center justify-center">
+    <div className="px-[90px]">
+      <BlockDiv className="flex items-center justify-center w-full ">
+        <BlockDiv className=" my-[26px] py-[40px] px-[70px] bg-white flex items-center justify-between w-full">
+          <BlockDiv className="flex flex-col gap-y-[18px]">
             <RenderAtom
-              item={t(staticItem?.count || item?.count)}
+              item={t(staticItem?.title || item?.title)}
+              renderType="title"
+              className={`uppercase text-[24px] font-bold`}
+            />
+            <RenderAtom
+              item={t(staticItem?.description || item?.description)}
               renderType="text"
-              className={`text-[13px] font-[400] text-center tracking-widest`}
+              className={`uppercase text-[16px] font-[300] w-[440px] text-justify leading-[22px]`}
             />
-            {/* <RenderAtom
-              item={staticItem?.button || item?.button}
-              renderType="button"
-              className={`h-max font-[400] text-[16px] w-max text-black/40 leading-[0px] -mb-[2px]`}
-              onClick={() => setShowModal(true)}
-            />
-            <RenderAtom
-              item={staticItem?.button || item?.button}
-              renderType="button"
-              className={`h-max font-[700] text-[17px] w-max text-black leading-[0px]`}
-              onClick={() => setShowModal(true)}
-            />
-            <RenderAtom
-              item={staticItem?.button || item?.button}
-              renderType="button"
-              className={`h-max font-[400] text-[16px] w-max text-black/40 leading-[0px] -mt-[2px]`}
-              onClick={() => setShowModal(true)}
-            /> */}
           </BlockDiv>
-          {/* <BlockModal2 isShowModal={showModal} setIsShowModal={setShowModal}>
-            <PurchaseOneTimeTicket
-              modalTop={staticItem2 || modalTop}
-              purchaseAgeBtn={staticItem3 || purchaseAgeBtn}
-              QRpay={staticItem4 || QRpay}
-            />
-          </BlockModal2> */}
-          <BlockDiv>
-            {/* <RenderAtom
-              item={staticItem?.count || item?.count}
-              renderType="text"
-              className={`text-[13px] font-[400] text-center tracking-widest`}
-            /> */}
+          <BlockDiv className="flex relative flex-col justify-between">
+            <img src="/images/onemore.png" className="w-full" />
+            <BlockDiv className="flex flex-col gap-y-2 gap-x-4 mt-6">
+              <div
+                className="py-[10px] px-[20px] italic bg-black text-white rounded-[6px] flex flex-col items-center justify-center text-[20px] font-[400] text-center tracking-widest leading-[16px] cursor-pointer"
+                style={{
+                  boxShadow: "4px 4px 4px 0px #00000040",
+                }}
+              >
+                ТОМ ХҮН
+              </div>
+              <div
+                className="py-[10px] px-[20px] italic bg-[#BAD405] rounded-[6px] flex flex-col items-center justify-center text-[20px] font-[400] text-center tracking-widest leading-[16px] cursor-pointer"
+                style={{
+                  boxShadow: "4px 4px 4px 0px #00000040",
+                }}
+              >
+                ХҮҮХЭД
+              </div>
+            </BlockDiv>
+            <BlockDiv></BlockDiv>
           </BlockDiv>
         </BlockDiv>
       </BlockDiv>
-    </BlockDiv>
+    </div>
   );
 };
 

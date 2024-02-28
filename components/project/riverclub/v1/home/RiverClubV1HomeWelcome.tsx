@@ -31,10 +31,13 @@ const RiverClubV1HomeWelcome = () => {
 
   const staticItem = language === "mn" ? readyDatasrc[1] : readyDatasrc[0];
 
-  const readyData =
-    readyDatasrc?.filter((item: any) => {
-      return item?.booktypeid == "1000900805";
-    }) || staticItem;
+  const readyData = readyDatasrc?.filter((item: any) => {
+    return item?.booktypeid == "1000900805";
+  });
+
+  const dataSrc = _.isEmpty(readyData) ? readyDatasrc : readyData;
+
+  console.log(readyDatasrc);
 
   return (
     <BlockDiv className="arrowCustomStyle">
@@ -51,7 +54,7 @@ const RiverClubV1HomeWelcome = () => {
           arrowClassName: "bg-transparent",
         }}
       >
-        {readyData?.map((item: any, index: number) => {
+        {dataSrc?.map((item: any, index: number) => {
           return (
             <RiverHomeBanner
               key={index}

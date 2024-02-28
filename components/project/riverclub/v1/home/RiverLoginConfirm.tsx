@@ -22,7 +22,6 @@ const RiverLoginConfirm: FC<PropsType> = ({
 }) => {
   useEffect(() => {
     if (openModal) clickCamera();
-    // Cookies.remove("customer");
   }, [openModal]);
 
   const clickCamera = () => {
@@ -42,8 +41,6 @@ const RiverLoginConfirm: FC<PropsType> = ({
         notification.success({
           message: "Амжилттай нэвтэрлээ",
         });
-        // router.push(`/selectplan`);
-        console.log("user", res?.result);
         router.push(`/userprofile/profile`);
         if (selectDateModal) {
           selectDateModal(true);
@@ -53,24 +50,14 @@ const RiverLoginConfirm: FC<PropsType> = ({
       } else {
         ws.send('{"action":"Close"}');
 
-        // ws.send('{"action":"Close"}');
         setNeedSignUp(true);
       }
     };
 
-    ws.onerror = function (event) {
-      // alert(event.data);
-    };
+    ws.onerror = function (event) {};
 
     ws.onclose = function () {
-      // setNeedSignUp(true);
-      // setSignIn(true);
-      // setOpenModal(false);
-
       console.log("Connection is closed");
-      // setNeedSignUp(true);
-
-      // }
     };
   };
 
@@ -82,7 +69,7 @@ const RiverLoginConfirm: FC<PropsType> = ({
           <p className="uppercase text-[34px] underline text-center text-white font-semibold">
             Царай танигдахгүй байна
           </p>
-          <p className="text-[30px] text-white">дахин оролдоно уу!</p>
+          <p className="text-[30px] text-white uppercase">дахин оролдоно уу!</p>
           <div className=" w-full flex gap-[16px] px-[64px] mt-[30px]">
             <div
               className="w-full  text-[20px] text-center uppercase rounded font-medium py-2 cursor-pointer "
@@ -111,10 +98,15 @@ const RiverLoginConfirm: FC<PropsType> = ({
             </div>
           </div>
         </div>
-        <p className="uppercase text-[34px] underline text-start text-white mt-[70px]">
-          Та бүртгэлгүй байгаа тул бүртгэлээ хийнэ үү.
+        <p
+          className="uppercase text-[32px] text-start text-white mt-[70px] font-bold leading-[32px]"
+          style={{
+            boxShadow: " 0px 0px 5px 0px #0000001A",
+          }}
+        >
+          клубын бүртгэл?
         </p>
-        <div className="bg-white px-[40px] py-[27px] flex mt-[20px] ">
+        <div className="bg-white px-[40px] py-[27px] flex flex-col mt-[20px] ">
           <div>
             <p className="text-[20px] text-black uppercase leading-[29px]">
               Ривер клубт тавтай морил
@@ -124,7 +116,35 @@ const RiverLoginConfirm: FC<PropsType> = ({
               хичээлүүдээс сонгон өөрийн төлөвлөгөөг гаргаарай.
             </p>
           </div>
-          <div
+          <div className="mt-6 flex gap-x-[20px] items-center">
+            <button
+              className="italic text-[20px] leading-[16px] uppercase bg-[#BAD405] rounded-[6px] p-4"
+              style={{
+                boxShadow: " 4px 4px 4px 0px #00000040",
+              }}
+              onClick={() =>
+                router.push({
+                  pathname: "/bioinput",
+                })
+              }
+            >
+              гишүүн болох
+            </button>
+            <button
+              className="italic text-[14px] leading-[16px] uppercase bg-black text-white rounded-[6px] p-4"
+              style={{
+                boxShadow: " 4px 4px 4px 0px #00000040",
+              }}
+              onClick={() => {
+                router.push({
+                  pathname: "/price",
+                });
+              }}
+            >
+              Үнэ харах
+            </button>
+          </div>
+          {/* <div
             className="bg-[#BAD405] p-[10px] rounded-[10px] cursor-pointer"
             onClick={() => router.push("/bioinput")}
           >
@@ -134,7 +154,7 @@ const RiverLoginConfirm: FC<PropsType> = ({
             <p className="text-[15px] leading-[35px] text-black text-right">
               онлайн бүртгэл
             </p>
-          </div>
+          </div> */}
         </div>
       </div>
     );
@@ -162,6 +182,18 @@ const RiverLoginConfirm: FC<PropsType> = ({
             }  max-w-[640px] mx-auto duration-75`}
           >
             {needSignUpModal()}
+          </div>
+          <div className="absolute top-5 right-10">
+            <i
+              className="fa-regular fa-xmark fa-5x  cursor-pointer text-gray-400 hover:text-white duration-150"
+              onClick={() => {
+                // var ws = new WebSocket(
+                //   `${process.env.NEXT_PUBLIC_FACECAMERA_URL}`
+                // );
+                // ws.send('{"action":"Close"}');
+                setOpenModal(!openModal);
+              }}
+            ></i>
           </div>
           {/* <div className="fixed bottom-4 max-w-[640px] mx-auto translate-y-[100%]">
             <p className="uppercase text-[34px] underline text-start text-white">

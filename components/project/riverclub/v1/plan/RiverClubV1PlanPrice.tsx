@@ -23,7 +23,7 @@ const RiverClubV1PlanPrice = () => {
 
   // console.log("readydata", readyDatasrc);
 
-  // Cookies.set("customer", { customerId: "16989172064822" });
+  Cookies.set("customer", { customerId: "16989172064822" });
 
   const { callProcess, isProcessWorking } = useCallProcess();
   const [selectDateModal, setSelectDateModal] = useState(false);
@@ -78,10 +78,10 @@ const RiverClubV1PlanPrice = () => {
 
   // багцыг select хийх эсвэл login хийх
   const selectItem = async (e: any, item: any) => {
-    setOpenLogin(true);
+    // setOpenLogin(true);
     // if (signIn) {
     //   setSignIn(false);
-    // setSelectDateModal(true);
+    setSelectDateModal(true);
     // }
     setTemplateId(null);
     setSelectItem(_.values(item)?.[0]?.[activeIndex]);
@@ -286,16 +286,8 @@ const RiverClubV1PlanPrice = () => {
 
 const UpperSection = ({ item, dark, setactiveIndex, selectItem }: any) => {
   return (
-    <BlockDiv className="bg-black w-full flex flex-col items-center justify-center mb-[28px]">
-      <RenderAtom
-        item={{
-          value:
-            "Танд асуух зүйл гарвал үйлчилгээний ажилтан танд туслахад бэлэн.",
-        }}
-        renderType="text"
-        className={`text-white text-start w-full font-normal text-[16px] mt-[7px]`}
-      />
-      <BlockDiv className="my-[63px] mx-[85px] grid grid-cols-3 items-center gap-x-[88px]">
+    <BlockDiv className="w-full flex flex-col items-center justify-center mb-[28px]">
+      <BlockDiv className=" grid grid-cols-3 items-center gap-x-[60px]  ">
         {_.values(item)?.map((obj: any, index: number) => {
           return (
             <Card
@@ -332,7 +324,11 @@ const Card = ({
   // const
 
   return (
-    <BlockDiv className="flex flex-col items-start h-[500px]">
+    <BlockDiv
+      className={`flex flex-col items-start h-[500px] ${
+        dark ? "bg-black" : "bg-white"
+      }  px-[30px] py-[50px] rounded-[6px]`}
+    >
       <RenderAtom
         item={{ value: "ЭРЭЛТТЭЙ" }}
         renderType="title"
@@ -402,7 +398,7 @@ const Card = ({
           value: "Багц сонгох",
         }}
         renderType="button"
-        className={`font-[700] text-[16px] text-black py-[23px] px-[54px] bg-[#BAD405] uppercase mt-[16px] rounded-[8px]`}
+        className={`font-[400] text-[20px] text-black italic bg-[#BAD405] uppercase mt-[16px] rounded-[8px] w-max`}
         onClick={(e: any) => selectItem(e, item)}
       />
     </BlockDiv>
@@ -433,7 +429,7 @@ const CardItem = ({ readyData, dark, kFormatter, setactiveIndex }: any) => {
               Number(obj?.saleprice)
             )} <span className="text-[16px]"> / ${obj?.monthname}</span>`}
             renderType="title"
-            className={`text-[36px] cursor-pointer font-medium flex items-center leading-[24px] ${
+            className={`text-[36px] cursor-pointer font-bold flex items-center leading-[24px]  ${
               obj?.priceSeason && obj?.priceHalfYear
                 ? "flex"
                 : `items-center justify-center`
@@ -448,6 +444,14 @@ const CardItem = ({ readyData, dark, kFormatter, setactiveIndex }: any) => {
               setActive(index);
               setactiveIndex(index);
             }}
+            customStyle={
+              dark &&
+              active == index && {
+                background: "linear-gradient(180deg, #ADFF00 0%, #0CB1AB 100%)",
+                WebkitTextFillColor: "transparent",
+                WebkitBackgroundClip: "text",
+              }
+            }
           />
         );
       })}
@@ -457,19 +461,21 @@ const CardItem = ({ readyData, dark, kFormatter, setactiveIndex }: any) => {
 
 const BottomSection = ({ item, dark, setactiveIndex, selectItem }: any) => {
   return (
-    <BlockDiv className="bg-white px-[25px] p-4 mb-36">
-      <BlockDiv className="grid grid-cols-4 gap-[4px] items-center">
-        {_.values(item).map((item: any, index: number) => {
-          return (
-            <Card
-              item={item}
-              key={index}
-              dark={dark}
-              setactiveIndex={setactiveIndex}
-              selectItem={selectItem}
-            />
-          );
-        })}
+    <BlockDiv className="">
+      <BlockDiv className="grid grid-cols-3 gap-x-[60px] items-center">
+        {_.values(item)
+          .slice(0, 3)
+          .map((item: any, index: number) => {
+            return (
+              <Card
+                item={item}
+                key={index}
+                dark={dark}
+                setactiveIndex={setactiveIndex}
+                selectItem={selectItem}
+              />
+            );
+          })}
       </BlockDiv>
     </BlockDiv>
   );

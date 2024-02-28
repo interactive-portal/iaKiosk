@@ -23,18 +23,18 @@ const RiverClubV1BioInputCondition = () => {
   const data = language === "mn" ? readyDatasrc[1] : readyDatasrc[0];
   const staticItem = data[0];
   return (
-    <BlockDiv className="bg-white py-[31px] px-[123px] flex gap-x-2">
+    <BlockDiv className="bg-white py-[20px] px-[123px] flex gap-x-2">
       <BlockDiv>
         <BlockDiv>
           <RenderAtom
             item={t(staticItem?.title)}
             renderType="title"
-            className={`text-black text-[20px] font-normal mb-[4px]`}
+            className={`text-black text-[28px] font-bold mb-[15px] leading-[27px] uppercase`}
           />
           <RenderAtom
             item={t(staticItem?.description)}
             renderType="text"
-            className={`text-[16px] font-normal mb-[10px] text-black`}
+            className={`text-[16px] font-normal mt-[20px] text-[#303030] leading-[22px]`}
           />
           {/* <BlockDiv className="flex gap-x-[26px] mt-[10px]">
             <BlockDiv className="w-[210px] h-[60px] bg-[#BAD405] cursor-pointer flex items-center justify-center rounded-[8px]">

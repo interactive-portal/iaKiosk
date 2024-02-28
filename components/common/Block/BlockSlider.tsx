@@ -10,6 +10,8 @@ export default function BlockSlider({
   divNumber = "blockSlider1",
   customProps,
   children,
+  padding,
+  textAlign,
 }: {
   type?: "simple" | "mini" | "full" | "modern";
   divNumber?: string;
@@ -24,6 +26,8 @@ export default function BlockSlider({
     reactSlickSettings?: any;
   };
   children?: any;
+  padding?: any;
+  textAlign?: any;
 }) {
   const arrowDefaultClass = `absolute my-auto inset-y-1/2 z-30 flex items-center justify-center rounded-full text-white text-xl w-10 h-10 ${customProps?.arrowClassName}`;
 
@@ -56,7 +60,7 @@ export default function BlockSlider({
     appendDots: (dots: any) => (
       <div
         style={{
-          marginTop: "15px",
+          marginTop: "",
           position: "unset",
         }}
       >
@@ -157,20 +161,34 @@ export default function BlockSlider({
             padding: 0;
             margin: 0;
             list-style: none;
-            text-align: center;
-            // background: #F9FAFB;
+            text-align: ${textAlign || "start"};
+            padding:${padding || "0px 105px 0px 105px"};
           }
 
 
           .${divNumber} .${divNumber}DotBlock > ul {
               list-style: none;
               padding: 0;
+
           }
 
           .${divNumber} .${divNumber}DotBlock > ul li {
+
+            border-radius:100%;
             position: relative;
             display: inline-block;
             transition: background-color 5.1s;
+          }
+
+          .${divNumber} .${divNumber}DotBlock > ul li div {
+            width:10px !important;
+            height:10px !important;
+            border-radius:100%;
+            border:1px solid black;
+            // background:transparent !important;
+            position: relative;
+            display: inline-block;
+            transition: background-color 2s;
           }
 
           .${divNumber} .${divNumber}DotBlock > ul li:hover,
@@ -180,10 +198,17 @@ export default function BlockSlider({
 
           .slick-track .slick-track {
             display: none;
+            width:auto !important;
           }
           .fas {
             display:flex !important
           }
+
+
+          .${divNumber}DotBlock > ul li.slick-active div {
+            background:black !important;
+          }
+
 
         `}
       </style>

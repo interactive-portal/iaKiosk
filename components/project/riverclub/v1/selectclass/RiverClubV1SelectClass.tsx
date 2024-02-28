@@ -4,6 +4,7 @@ import BlockDiv from "@/components/common/Block/BlockDiv";
 import WidgetWrapperContext from "@/components/common/engineBox/Wrapper/WidgetUniversalWrapper";
 import { useContext } from "react";
 import Cookies from "js-cookie";
+import _ from "lodash";
 
 const RiverClubV1SelectClass = () => {
   const { readyDatasrc } = useContext(WidgetWrapperContext);
@@ -14,83 +15,111 @@ const RiverClubV1SelectClass = () => {
   const user: any = Cookies.get("customer");
 
   return (
-    <BlockDiv className="mx-[20px] my-[26px] p-[35px] bg-white flex flex-row gap-[24px] items-center justify-between">
-      <BlockDiv
-        className={`${
-          staticItem?.isActive
-            ? "bg-[linear-gradient(180deg,_#00B0AB_0%,_#BAD405_100%)] w-full rounded-[12px] px-[14px] py-[12px]"
-            : "hidden"
-        }`}
-      >
-        <RenderAtom
-          item={staticItem?.pin}
-          renderType="text"
-          className={`${
-            staticItem?.pin ? "text-[12px] font-normal text-black" : "hidden"
-          }`}
-        />
-        <RenderAtom
-          item={staticItem?.title}
-          renderType="title"
-          className={`font-bold text-[30px] leading-6`}
-        />
-        <RenderAtom
-          item={`<sup className="text-[16px] font-normal">₮</sup>${staticItem?.price}k <span className="text-[16px]"> /${staticItem?.payTime}</span>`}
-          renderType="title"
-          className={`${
-            staticItem?.price ? "text-[28px] font-bold w-max" : "hidden"
-          }`}
-        />
-        <RenderAtom
-          item={staticItem?.subtitle}
-          renderType="text"
-          className={`${staticItem?.subtitle ? "text-end" : "hidden"}`}
-        />
-      </BlockDiv>
-      {/* paragraph */}
-      <BlockDiv className="flex flex-col items-start h-full justify-between w-[3000px]">
-        <RenderAtom
-          item={{ value: user?.firstName }}
-          renderType="title"
-          className={`font-[400] text-[20px] text-black`}
-        />
-      </BlockDiv>
-      <BlockDiv
-        className={`${
-          staticItem3?.isActive
-            ? "rounded-[12px] bg-[linear-gradient(180deg,_#00B0AB_0%,_#BAD405_100%)] leading-[0px] w-[400px] h-[108px] flex flex-col items-start"
-            : "hidden"
-        }`}
-      >
-        <RenderAtom
-          item={{ value: staticItem3?.pin }}
-          renderType="text"
-          className={`text-black font-[400] text-[12px] leading-[0px] mt-5 mb-0 pb-0`}
-        />
-        <RenderAtom
-          item={staticItem3?.title}
-          renderType="button"
-          className={`font-[700] text-[28px] capitalize text-black w-max`}
-        />
-        <BlockDiv className="flex items-end gap-x-1">
+    <div className="grid grid-cols-12 w-full p-[25px] gap-x-6">
+      <div className="col-span-8 my-[50px]">
+        <BlockDiv className="p-[20px] bg-white rounded-[6px] ">
+          <div className="flex items-end gap-x-6">
+            <p className="uppercase text-[16px] leading-[16px] text-black">
+              welcome
+            </p>
+            <p className="uppercase text-[28px] font-bold leading-[27px]">
+              дОРЖСҮРЭН ЭНХБАТ
+            </p>
+          </div>
+          <p className="font-[300] text-[14px] leading-[22px] mt-6">
+            Спиннинг бол тэсвэр хатуужил, хурд. зүрх судасны үйл ажиллагааг
+            сайжруулж өндөр хэмжээний калори шатаах эрч хүчтэй кардио дасгал юм.
+          </p>
+        </BlockDiv>
+        <div className="flex items-center justify-between px-[80px] mt-10 gap-x-4">
+          <div
+            className="bg-black text-[26px] leading-[26px] text-white uppercase px-10 py-4 rounded-[6px] cursor-pointer"
+            style={{
+              boxShadow: "4px 4px 4px 0px #00000040",
+            }}
+          >
+            АЛЧУУР & ХАЛАТ авах
+          </div>
+          <div
+            className="bg-[#BAD405] text-[26px] leading-[26px] text-black uppercase px-10 py-4 rounded-[6px] cursor-pointer"
+            style={{
+              boxShadow: "4px 4px 4px 0px #00000040",
+            }}
+          >
+            Locker сонгох
+          </div>
+        </div>
+      </div>
+      <div className="col-span-4 ">
+        <BlockDiv
+          className={`flex flex-col items-start h-[447px] bg-black  px-[30px] py-[50px] rounded-[6px]`}
+        >
           <RenderAtom
-            item={`Off`}
-            renderType="text"
-            className={`font-[400] text-[16px] h-max`}
+            item={{ value: "ЭРЭЛТТЭЙ" }}
+            renderType="title"
+            className={`font-normal text-[12px] uppercase text-white`}
           />
           <RenderAtom
-            item={`${staticItem3?.off}%`}
+            item={{ value: "title" }}
+            renderType="title"
+            className={`font-[700] text-[28px] uppercase text-white`}
+          />
+          <BlockDiv className="flex flex-col items-start justify-center mt-[10px] min-h-[120px]">
+            {/* <CardItem
+          readyData={readyData}
+          dark={dark}
+          setactiveIndex={setactiveIndex}
+        /> */}
+          </BlockDiv>
+          {/* Includes */}
+          <BlockDiv className="flex flex-col gap-y-[4px] h-[70px] justify-end mt-[30px] align-text-top">
+            {_.map([""], (innerItem: any, index: number) => {
+              return (
+                <BlockDiv className="flex items-center" key={index}>
+                  <div className="">
+                    <i
+                      className={`fa-solid fa-check w-[18px] fa-xs  h-[18px] mr-[8px] p-[3px] flex items-center justify-center  rounded-full text-black bg-[#B3B3B3]
+                  `}
+                      style={{
+                        display: "flex !important",
+                      }}
+                    />
+                  </div>
+                  <RenderAtom
+                    item={{ value: "ФИТНЕСС" }}
+                    renderType="text"
+                    className={`font-medium text-[12px] text-white`}
+                  />
+                </BlockDiv>
+              );
+            })}
+            <style>
+              {`
+            .fa-check{
+              display:flex !important
+            }
+            `}
+            </style>
+          </BlockDiv>
+          {/* includes done here */}
+          <RenderAtom
+            item={{
+              value: "Цагийн хязгааргүй фитнес болон бассейнээр үйлчлүүлнэ. ",
+            }}
             renderType="text"
-            className={`text-[36px] font-[700]`}
+            className={`font-medium text-[12px] mt-[36px] h-[70px] text-[#B3B3B3]`}
           />
           <RenderAtom
-            item={`${staticItem3?.payTime}`}
-            renderType="text"
-            className={`font-[400] text-[16px] w-max h-max`}
+            item={{
+              value: "Багц сонгох",
+            }}
+            renderType="button"
+            className={`font-[400] text-[20px] text-black italic bg-[#BAD405] uppercase mt-[16px] rounded-[8px] w-max`}
+            // onClick={(e: any) => selectItem(e, item)}
           />
         </BlockDiv>
-      </BlockDiv>
-    </BlockDiv>
+      </div>
+    </div>
   );
 };
 

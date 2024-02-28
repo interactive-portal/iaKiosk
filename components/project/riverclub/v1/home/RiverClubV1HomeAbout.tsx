@@ -26,7 +26,7 @@ const RiverClubV1HomeAbout = () => {
   const staticItem = data[0];
 
   return (
-    <BlockDiv>
+    <BlockDiv className="py-10">
       <BlockSlider
         type="simple"
         customProps={{
@@ -34,7 +34,7 @@ const RiverClubV1HomeAbout = () => {
             padding: "0 10px 0 0",
           },
           reactSlickSettings: {
-            dots: false,
+            dots: true,
             infinite: false,
             variableWidth: false,
             speed: 500,
@@ -49,7 +49,7 @@ const RiverClubV1HomeAbout = () => {
         {_.map(staticItem?.item, (item: any, index: number) => {
           return (
             <BlockDiv
-              className="flex flex-col items-center justify-center   mb-24 bg-[#CACACA]"
+              className="flex flex-col items-center justify-center gap-y-6 bg-[#CACACA]"
               key={index}
             >
               <RenderAtom
@@ -57,21 +57,16 @@ const RiverClubV1HomeAbout = () => {
                 renderType="image"
                 className={`w-full h-full`}
               />
-              <BlockDiv className="mt-[26px] flex flex-col items-center justify-center px-[170px]">
+              <BlockDiv className="px-[105px] mt-[26px] flex flex-col items-start justify-center ">
                 <RenderAtom
                   item={t(item?.title)}
                   renderType="title"
-                  className={`font-normal text-[20px] text-black mb-[18px] uppercase`}
+                  className={`font-bold text-[20px] text-black mb-[18px] uppercase`}
                 />
                 <RenderAtom
                   item={t(item?.description)}
                   renderType="title"
-                  className={`font-normal text-[16px] mb-[22px] text-center`}
-                />
-                <RenderAtom
-                  item={t(item?.button)}
-                  renderType="button"
-                  className={`underline font-normal text-black  text-[16px] mb-[27px]`}
+                  className={`font-normal text-[16px] mb-[22px] text-start`}
                 />
               </BlockDiv>
             </BlockDiv>

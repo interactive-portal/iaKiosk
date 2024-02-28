@@ -18,16 +18,9 @@ const Combo: FC<PropsType> = ({ obj, criteria }) => {
     getValues,
   } = useFormContext();
 
-  const [formValue, setformValue] = useState(getValues());
+  const errorMessage = errors["EMAIL"];
 
-  // const criteria = {
-  //   [obj?.criteriaPath]: [
-  //     {
-  //       operator: "=",
-  //       operand: formValue[obj?.criteriaPath] || "",
-  //     },
-  //   ],
-  // };
+  const [formValue, setformValue] = useState(getValues());
 
   let {
     data: readyData,
@@ -45,8 +38,7 @@ const Combo: FC<PropsType> = ({ obj, criteria }) => {
   const [selectIndex, setSelectIndex] = useState(0);
 
   const onchange = (e: any) => {
-    // setSelectIndex(e.nativeEvent.target.selectedIndex);
-    // onmouseenter={, mutate()}
+    setSelectIndex(e.nativeEvent.target.selectedIndex);
     setValue(obj?.pathname, e);
     setformValue(getValues());
   };
@@ -63,6 +55,7 @@ const Combo: FC<PropsType> = ({ obj, criteria }) => {
           <Select
             onChange={onchange}
             className="text-[16px] h-[60px]"
+            placeholder={obj?.labelname}
             options={options?.map((item: any, index: number) => {
               return {
                 value: item?.id,
@@ -96,6 +89,9 @@ const Combo: FC<PropsType> = ({ obj, criteria }) => {
           };
         })}
       /> */}
+      {/* <p className="text-red-500 text-[14px] leading-4 ">
+        {errorMessage?.message || ""}
+      </p> */}
       <style>
         {`
           ant-select-selector {

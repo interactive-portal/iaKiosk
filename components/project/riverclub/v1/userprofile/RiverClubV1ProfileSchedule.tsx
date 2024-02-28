@@ -17,7 +17,6 @@ const RiverClubV1ProfileSchedule = () => {
   const staticItem3 = readyDatasrc[2];
 
   const user = Cookies.get("customer");
-  console.log("dddddd customer staticItem", staticItem);
 
   return (
     <BlockDiv className="mx-[20px] my-[25px] bg-black w-[1040px] px-[36px] py-[33px]">
@@ -65,7 +64,6 @@ const RiverClubV1ProfileSchedule = () => {
 const EachCard = ({ item, lockerItem, withdrawItem }: any) => {
   const [showLockerModal, setShowLockerModal] = useToggle(false);
   const [showWithdrawModal, setShowWidthdrawModal] = useToggle(false);
-  console.log("itememememme", item);
   return (
     <BlockDiv className="grid grid-cols-2 gap-[24px]">
       {/* card 1 */}

@@ -110,10 +110,15 @@ const RiverLoginModal: FC<PropsType> = ({
             </div>
           </div>
         </div>
-        <p className="uppercase text-[34px] underline text-start text-white mt-[70px]">
-          Та бүртгэлгүй байгаа тул бүртгэлээ хийнэ үү.
+        <p
+          className="uppercase text-[32px] text-start text-white mt-[70px] font-bold leading-[32px]"
+          style={{
+            boxShadow: " 0px 0px 5px 0px #0000001A",
+          }}
+        >
+          клубын бүртгэл?
         </p>
-        <div className="bg-white px-[40px] py-[27px] flex mt-[20px] ">
+        <div className="bg-white px-[40px] py-[27px] flex flex-col mt-[20px] ">
           <div>
             <p className="text-[20px] text-black uppercase leading-[29px]">
               Ривер клубт тавтай морил
@@ -123,7 +128,35 @@ const RiverLoginModal: FC<PropsType> = ({
               хичээлүүдээс сонгон өөрийн төлөвлөгөөг гаргаарай.
             </p>
           </div>
-          <div
+          <div className="mt-6 flex gap-x-[20px] items-center">
+            <button
+              className="italic text-[20px] leading-[16px] uppercase bg-[#BAD405] rounded-[6px] p-4"
+              style={{
+                boxShadow: " 4px 4px 4px 0px #00000040",
+              }}
+              onClick={() =>
+                router.push({
+                  pathname: "/bioinput",
+                })
+              }
+            >
+              гишүүн болох
+            </button>
+            <button
+              className="italic text-[14px] leading-[16px] uppercase bg-black text-white rounded-[6px] p-4"
+              style={{
+                boxShadow: " 4px 4px 4px 0px #00000040",
+              }}
+              onClick={() => {
+                router.push({
+                  pathname: "/price",
+                });
+              }}
+            >
+              Үнэ харах
+            </button>
+          </div>
+          {/* <div
             className="bg-[#BAD405] p-[10px] rounded-[10px] cursor-pointer"
             onClick={() => router.push("/bioinput")}
           >
@@ -133,7 +166,7 @@ const RiverLoginModal: FC<PropsType> = ({
             <p className="text-[15px] leading-[35px] text-black text-right">
               онлайн бүртгэл
             </p>
-          </div>
+          </div> */}
         </div>
       </div>
     );
@@ -157,7 +190,7 @@ const RiverLoginModal: FC<PropsType> = ({
           </div>
           <div
             className={`fixed top-[50%] ${
-              needSignUp ? "opacity-1" : "opacity-0"
+              needSignUp ? "opacity-1" : "opacity-1"
             }  max-w-[640px] mx-auto duration-75`}
           >
             {needSignUpModal()}

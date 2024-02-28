@@ -10,26 +10,27 @@ import { useTranslation } from "react-i18next";
 const RiverClubV1HomeElevate = () => {
   const { query } = useRouter();
   const { t } = useTranslation("translate");
-  const currentLanguage = Array.isArray(query.lang)
-    ? query.lang.join("")
-    : query.lang || "mn";
 
-  const [language, setLanguage] = useState(currentLanguage);
-
-  const { readyDatasrc } = useContext(WidgetWrapperContext);
-  const data = language === "mn" ? readyDatasrc[1] : readyDatasrc[0];
-
-  const staticItem = data[0];
-  const staticItem2 = data[1];
-
-  useEffect(() => {
-    setLanguage(currentLanguage);
-  }, [currentLanguage]);
+  const { readyDatasrc, widgetnemgooReady } = useContext(WidgetWrapperContext);
+  const { options } = widgetnemgooReady;
 
   return (
     <BlockDiv className="flex flex-col gap-y-[40px] mx-[105px] my-[40px]">
-      <UpperSection item={staticItem} />
-      <BottomSection item={staticItem2} />
+      {readyDatasrc?.map((item: any, index: number) => {
+        let number = 0;
+        if (options?.contentOrigin == "left") {
+          number = 1;
+        }
+        if (index % 2 == number) {
+          return <UpperSection item={item} key={index} />;
+        } else {
+          return (
+            <div key={index}>
+              <BottomSection item={item} />
+            </div>
+          );
+        }
+      })}
     </BlockDiv>
   );
 };
@@ -43,23 +44,23 @@ const UpperSection = ({ item }: any) => {
         renderType="image"
         className={`w-[397px] h-[398px]`}
       />
-      <BlockDiv className="flex flex-col mt-[15px]">
+      <BlockDiv className="flex flex-col gap-y-[30px] mt-[20px]">
         <RenderAtom
           item={t(item?.title)}
           renderType="title"
-          className={`font-[400] text-[32px] text-black uppercase mb-[34px]`}
+          className={`font-[700] text-[28px] text-black uppercase leading-[28px]`}
         />
         <RenderAtom
           item={t(item?.subtitle)}
           renderType="text"
-          className={`font-[400] text-[16px] mb-[24px]`}
+          className={`font-[400] text-[16px]`}
         />
         <RenderAtom
           item={t(item?.description)}
           renderType="text"
-          className={`font-[400] text-[16px] mb-[36px]`}
+          className={`font-[400] text-[16px] text-justify`}
         />
-        {/* <RenderAtom
+        <RenderAtom
           item={{
             value: t(item?.button?.title),
             positionnemgoo: {
@@ -69,8 +70,11 @@ const UpperSection = ({ item }: any) => {
             },
           }}
           renderType="button"
-          className={`text-[16px] font-[400] bg-black w-[220px] py-[14px] px-[18px] uppercase`}
-        /> */}
+          className={`text-[14px] font-[400] bg-black w-[175px] py-[14px] px-[18px] uppercase rounded-[6px]`}
+          // customStyle={{
+          //   boxShadow: "#000000 25%",
+          // }}
+        />
       </BlockDiv>
     </BlockDiv>
   );
@@ -80,23 +84,23 @@ const BottomSection = ({ item }: any) => {
   const { t } = useTranslation("translate");
   return (
     <BlockDiv className="flex gap-x-[50px]">
-      <BlockDiv className="flex flex-col mt-[15px]">
+      <BlockDiv className="flex flex-col gap-y-[30px] mt-[20px]">
         <RenderAtom
           item={t(item?.title)}
           renderType="title"
-          className={`font-[400] text-[32px] text-black uppercase mb-[34px]`}
+          className={`font-[700] text-[28px] text-black uppercase  leading-[28px]`}
         />
         <RenderAtom
           item={t(item?.subtitle)}
           renderType="text"
-          className={`font-[400] text-[16px] mb-[24px]`}
+          className={`font-[400] text-[16px] `}
         />
         <RenderAtom
           item={t(item?.description)}
           renderType="text"
-          className={`font-[400] text-[16px] mb-[36px]`}
+          className={`font-[400] text-[16px] text-justify`}
         />
-        {/* <RenderAtom
+        <RenderAtom
           item={{
             value: t(item?.button?.title),
             positionnemgoo: {
@@ -106,8 +110,8 @@ const BottomSection = ({ item }: any) => {
             },
           }}
           renderType="button"
-          className={`text-[16px] font-[400] bg-black w-[220px] py-[14px] px-[18px] uppercase`}
-        /> */}
+          className={`text-[14px] font-[400] bg-black w-[175px] py-[14px] px-[18px] uppercase rounded-[6px]`}
+        />
       </BlockDiv>
       <RenderAtom
         item={item?.mainimage}

@@ -3,6 +3,7 @@ import { DatePicker, DatePickerProps } from "antd";
 import { data } from "autoprefixer";
 import { useFormContext, Controller, useForm } from "react-hook-form";
 import moment from "moment";
+import { error } from "console";
 
 type PropsType = {
   obj?: any;
@@ -20,6 +21,8 @@ const Date: FC<PropsType> = ({ obj }) => {
   const onchange: DatePickerProps["onChange"] = (date, dateString) => {
     setValue(obj?.pathname, dateString);
   };
+
+  console.log(errors);
 
   return (
     <div className="flex flex-col ">

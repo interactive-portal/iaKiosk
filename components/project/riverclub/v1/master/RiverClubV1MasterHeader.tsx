@@ -43,33 +43,35 @@ const RiverClubV1MasterHeader: FC<PropsType> = ({ data, options, mutate }) => {
   const customer = Cookies.get("customer");
 
   return (
-    <BlockDiv
-      customClassName={`${widgetnemgooReady?.design?.className} z-[99]`}
-    >
-      <BlockDiv className="bg-black  w-[1080px] h-max flex flex-col items-end">
-        <LanguageSetting item={language} />
-        <BlockDiv className="flex bg-[#202020] w-full h-max items-center justify-between pl-[57px]">
-          <RenderAtom
-            item={{
-              value: logo?.mainimage,
-              positionnemgoo: {
-                url: {
-                  path: `${logo?.slug}`,
+    <div className="relative h-[98px] w-full">
+      <BlockDiv
+        customClassName={`${widgetnemgooReady?.design?.className} z-[99] flex justify-between w-full mr-[30px] `}
+      >
+        <BlockDiv className="bg-black  w-[1080px] h-max flex flex-col items-end">
+          <LanguageSetting item={language} />
+          <BlockDiv className="flex bg-[#202020] w-full h-max items-center justify-between pl-[57px]">
+            <RenderAtom
+              item={{
+                value: logo?.mainimage,
+                positionnemgoo: {
+                  url: {
+                    path: `${logo?.slug}`,
+                  },
                 },
-              },
-            }}
-            renderType="image"
-            className={`w-[142px] cursor-pointer h-[36px] my-[10px] mr-[45px]`}
-          />
-          <Menu item={menu} t={t} />
-          {/* {customer ? (
+              }}
+              renderType="image"
+              className={`w-[142px] cursor-pointer h-[36px] my-[10px] mr-[45px]`}
+            />
+            <Menu item={menu} t={t} />
+            {/* {customer ? (
             <i className="fa-solid fa-user fa-xl mr-6 text-[#BAD405]"></i>
           ) : ( */}
-          <MemberButton item={button} t={t} />
-          {/* )} */}
+            <MemberButton item={button} t={t} />
+            {/* )} */}
+          </BlockDiv>
         </BlockDiv>
       </BlockDiv>
-    </BlockDiv>
+    </div>
   );
 };
 
@@ -158,7 +160,7 @@ const MemberButton = ({ item, t }: any) => {
           },
         }}
         renderType="button"
-        className={`text-black text-[16px] font-[700] p-[24px] rounded-[8px] w-max bg-[#BAD405]`}
+        className={`text-black text-[16px] font-[400] p-[24px] rounded-[8px] w-max italic uppercase bg-[#BAD405]`}
       />
     </BlockDiv>
   );

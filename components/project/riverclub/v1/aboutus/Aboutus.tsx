@@ -8,8 +8,15 @@ import "swiper/css/scrollbar";
 import "swiper/css/free-mode";
 import useSWR from "swr";
 import _ from "lodash";
+import { useContext } from "react";
+import WidgetWrapperContext from "@/components/common/engineBox/Wrapper/WidgetUniversalWrapper";
+import { useRouter } from "next/router";
 
 const AboutUs = () => {
+  const { widgetnemgooReady } = useContext(WidgetWrapperContext);
+  const { options } = widgetnemgooReady;
+  const router = useRouter();
+
   const colors = [
     "#F3E686",
     "#B6CCBC",
@@ -28,12 +35,6 @@ const AboutUs = () => {
     "#D7D0C5",
     "#AEC1D1",
   ];
-  const data = {
-    image: "/images/aboutus.png",
-    title: "ӨҮЛЭН",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do ",
-  };
 
   let { data: readyData } = useSWR(`
   /api/get-process?command=fitKioskTrainerList_DV_004&parameters=${JSON.stringify(
@@ -47,13 +48,26 @@ const AboutUs = () => {
     return;
   }
 
+  const dataReady = options?.viewCount
+    ? readyData?.result?.fitkioskclassdv.slice(0, options?.viewCount)
+    : readyData?.result?.fitkioskclassdv;
+
   return (
     <>
-      {readyData?.result?.fitkioskclassdv?.map((obj: any, ind: number) => {
+      <div className="flex items-center px-[40px] py-6 gap-x-4">
+        <p className="uppercase text-[30px] font-bold min-w-[160px]">
+          Багш нар
+        </p>
+        <p className="text-[18px] font-[400]">
+          Спиннинг бол тэсвэр хатуужил, хурд. зүрх судасны үйл ажиллагааг
+          сайжруулж өндөр хэмжээний калори шатаах эрч хүчтэй кардио дасгал юм.
+        </p>
+      </div>
+      {dataReady?.map((obj: any, ind: number) => {
         return (
-          <div className="flex flex-col gap-y-">
+          <div className="flex flex-col gap-y-" key={ind}>
             <div className="grid grid-cols-12 w-full py-4 px-10">
-              <p className="text-[22px] font-normal col-span-2 uppercase">
+              <p className="text-[22px] font-bold col-span-2 uppercase">
                 {obj?.name}
               </p>
               <p className="col-span-10 uppercase text-[16px]">
@@ -64,7 +78,6 @@ const AboutUs = () => {
               <Swiper slidesPerView={4.5} spaceBetween={20}>
                 {!_.isEmpty(obj?.fitkiosktrainerdv) &&
                   obj?.fitkiosktrainerdv.map((item: any, index: number) => {
-                    console.log(item);
                     return (
                       <SwiperSlide key={index} className="">
                         <div
@@ -85,7 +98,10 @@ const AboutUs = () => {
                                 item?.fitkiosktrainerclass_dv?.map(
                                   (obj1: any, index: number) => {
                                     return (
-                                      <div className="border-t border-black">
+                                      <div
+                                        className="border-t border-black"
+                                        key={index}
+                                      >
                                         <p className="uppercase text-black text-[20px] font-bold">
                                           {obj1?.classname}
                                         </p>
@@ -107,6 +123,23 @@ const AboutUs = () => {
           </div>
         );
       })}
+      {options?.button && (
+        <div className="px-[25px] mt-4">
+          <button
+            className="bg-black text-white text-[14px] px-6 py-4 rounded-[6px] uppercase"
+            style={{
+              boxShadow: "4px 4px 4px 0px #00000040",
+            }}
+            onClick={() =>
+              router.push({
+                pathname: "/aboutus",
+              })
+            }
+          >
+            {options?.button}
+          </button>
+        </div>
+      )}
     </>
   );
 };

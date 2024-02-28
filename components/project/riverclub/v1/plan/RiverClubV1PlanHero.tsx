@@ -25,22 +25,24 @@ const RiverClubV1PlanHero = () => {
   const staticItem = readyDatasrc?.[0]?.[0];
 
   return (
-    <BlockDiv className="relative w-full h-[300px] flex items-center justify-center mt-24">
+    <BlockDiv className="relative w-full h-[300px] flex items-center justify-center">
       <BlockSlider
         divNumber="RiverHomeSliderBlock"
         customProps={{
           reactSlickSettings: {
-            arrows: true,
+            arrows: false,
             dots: false,
             variableWidth: false,
-            infinite: false,
+            infinite: true,
             swipeToSlide: true,
+            autoplay: true,
+            speed: 300,
           },
           arrowClassName: "bg-transparent",
         }}
       >
-        {_.map(staticItem?.mainimage || [""], (item: any, index: number) => {
-          return <RiverPlanBanner key={index} item={staticItem} />;
+        {_.map(readyDatasrc, (item: any, index: number) => {
+          return <RiverPlanBanner key={index} item={item} />;
         })}
       </BlockSlider>
     </BlockDiv>
@@ -55,7 +57,7 @@ const RiverPlanBanner = ({ item }: any) => {
     <BlockDiv className="h-[300px] flex items-center justify-center relative bg-gray-200">
       <BlockDiv className="h-full bg-black/30">
         <img
-          src="/images/bannerInput.png"
+          src={item?.mainimage}
           className="w-[1080px] h-full absolute inset-0 bg-black/30"
         />
         {/* <RenderAtom
@@ -68,7 +70,7 @@ const RiverPlanBanner = ({ item }: any) => {
         <RenderAtom
           item={t(item?.title)}
           renderType="title"
-          className={`text-[52px] font-[700] mb-[50px] text-white text-center font-roboto uppercase leading-[50px]`}
+          className={`text-[52px] font-[700] mb-[50px] text-white text-center font-roboto uppercase leading-[50px] px-20`}
         />
         <RenderAtom
           item={t(item?.description)}
