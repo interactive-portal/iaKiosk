@@ -78,6 +78,7 @@ const AboutUs = () => {
               <Swiper slidesPerView={4.5} spaceBetween={20}>
                 {!_.isEmpty(obj?.fitkiosktrainerdv) &&
                   obj?.fitkiosktrainerdv.map((item: any, index: number) => {
+                    console.log("item :>> ", item);
                     return (
                       <SwiperSlide key={index} className="">
                         <div
@@ -87,7 +88,10 @@ const AboutUs = () => {
                           }}
                         >
                           <img
-                            src={`http://riverclub.veritech.mn:85/${item?.picture}`}
+                            src={`http://riverclub.veritech.mn:85/${
+                              item?.picture ||
+                              "storage/uploads/metavalue/photo_original/photo_15843279694444230.jpg"
+                            }`}
                             className="h-[200px] w-full rounded-t-lg object-cover"
                           />
                           <div className="px-4 py-6">

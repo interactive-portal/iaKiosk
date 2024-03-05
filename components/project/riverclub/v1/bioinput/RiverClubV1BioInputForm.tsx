@@ -198,9 +198,7 @@ const RiverClubV1BioInputForm = () => {
           <p className="font-bold text-[32px] text-[#202020]">02</p>
         </div>
         <div>
-          <p className="uppercase font-bold text-[32px]">
-            Ривер клубт тавтай морил
-          </p>
+          <p className="uppercase font-bold text-[32px]">тавтай морил</p>
           <p className="uppercase font-[300] text-[14px]">
             ХҮНИЙ ХУВИЙН МЭДЭЭЛЭЛ ХАМГААЛАХ ТУХАЙ ХУУЛИЙН ДАГУУ РИВЕР КЛУБ НЬ
             ТАНЫ ХУВИЙН МЭДЭЭЛЛИЙГ ЦААШ ЗАДРУУЛАХ,БОЛОВСРУУЛАХ ЗЭРГЭЭР

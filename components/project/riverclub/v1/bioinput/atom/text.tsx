@@ -15,7 +15,7 @@ const Text: FC<PropsType> = ({ obj }) => {
   return (
     <div className="flex flex-col ">
       <label className="text-[16px] font-medium  text-[#2A2A2A]">
-        {obj?.labelname}
+        {obj?.labelname} <span className="text-red-500">*</span>
       </label>
       <input
         type="text"
