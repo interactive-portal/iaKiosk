@@ -11,6 +11,7 @@ import _ from "lodash";
 import { useContext } from "react";
 import WidgetWrapperContext from "@/components/common/engineBox/Wrapper/WidgetUniversalWrapper";
 import { useRouter } from "next/router";
+import RenderAtom from "@/components/common/Atom/RenderAtom";
 
 const AboutUs = () => {
   const { widgetnemgooReady } = useContext(WidgetWrapperContext);
@@ -86,13 +87,23 @@ const AboutUs = () => {
                             background: colors[index],
                           }}
                         >
-                          <img
+                          <RenderAtom
+                            item={
+                              item?.picture ||
+                              "storage/uploads/metavalue/photo_original/photo_15843279694444230.jpg"
+                            }
+                            renderType="image"
+                            customClassName={
+                              "h-[200px] w-full rounded-t-lg object-cover"
+                            }
+                          />
+                          {/* <img
                             src={`http://riverclub.veritech.mn:85/${
                               item?.picture ||
                               "storage/uploads/metavalue/photo_original/photo_15843279694444230.jpg"
                             }`}
                             className="h-[200px] w-full rounded-t-lg object-cover"
-                          />
+                          /> */}
                           <div className="px-4 py-6">
                             <p className="text-[20px]">{item?.trainername}</p>
                             <p className="text-[10px]">{item?.description}</p>

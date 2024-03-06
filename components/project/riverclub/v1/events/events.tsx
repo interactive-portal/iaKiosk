@@ -1,3 +1,4 @@
+import RenderAtom from "@/components/common/Atom/RenderAtom";
 import WidgetWrapperContext from "@/components/common/engineBox/Wrapper/WidgetUniversalWrapper";
 import moment from "moment";
 import { useRouter } from "next/router";
@@ -73,10 +74,15 @@ const Events = () => {
                 </p>
                 {/* <p className="text-[16px] uppercase">Tax : free</p> */}
               </div>
-              <img
+              <RenderAtom
+                item={item?.photo}
+                renderType="image"
+                customClassName={"w-[237px] h-[237px] object-cover"}
+              />
+              {/* <img
                 src={`http://riverclub.veritech.mn:85/${item?.photo}`}
                 className="w-[237px] h-[237px] object-cover"
-              />
+              /> */}
               <div
                 className={`${
                   left ? "pl-5" : "pr-5"

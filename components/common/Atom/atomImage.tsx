@@ -4,6 +4,7 @@ import { useContext } from "react";
 import { twMergeUtil } from "@/components/common/engineBox/util/atomHelper";
 import { processCloudinaryImage } from "@/components/common/engineBox/util/imageHelper";
 import WidgetWrapperContext from "@/components/common/engineBox/Wrapper/WidgetUniversalWrapper";
+import { useState, useEffect } from "react";
 
 export default function AtomImageV2({
   item,
@@ -44,22 +45,33 @@ export default function AtomImageV2({
 
   //storage гэсэн замтай ирвэл өмнө нь домэйнийг залгаж өгөх ёстой.
   // const ddd = process.env?.[`NEXT_PUBLIC_METAHOST_${metaNameV2}_IMAGEROOTURL`];
-  const metaNameV2 = cloudContext?.hostObject?.metaNameV2 || "PROD";
-  //   const imageRootUrl =
-  //     metaNameV2 === "DEV"
-  //       ? process.env.NEXT_PUBLIC_METAHOST_DEV_IMAGEROOTURL
-  //       : metaNameV2 === "UAT"
-  //       ? process.env.NEXT_PUBLIC_METAHOST_UAT_IMAGEROOTURL
-  //       : process.env.NEXT_PUBLIC_METAHOST_PROD_IMAGEROOTURL;
+
+  const [videoSrc, setImgSrc] = useState<any>();
+
+  const checkFile = async (item: any) => {
+    const data = await fetch(`/api/get-file?param=${item}`, {
+      cache: "force-cache",
+    });
+    if (data?.ok) {
+      setImgSrc(data.url);
+    } else {
+      // console.log(data);
+    }
+  };
+
+  useEffect(() => {
+    checkFile(value);
+  }, [videoSrc]);
+
   const imageRootUrl =
     process.env.NEXT_PUBLIC_IMAGE_URL || "http://riverclub.veritech.mn:85/";
 
   // const imageRootUrl =
   //   process.env?.[`NEXT_PUBLIC_METAHOST_${metaNameV2}_IMAGEROOTURL`] || "";
 
-  const imgSrc = _.startsWith(value, "storage/")
-    ? `${imageRootUrl}${value}`
-    : value;
+  const imgSrc = _.startsWith(value, "storage/") ? `${videoSrc}` : value;
+
+  // console.log(imgSrc);
 
   const imgSrcReady = processCloudinaryImage(
     imgSrc,
@@ -97,3 +109,10 @@ export default function AtomImageV2({
     />
   );
 }
+// function useState<T>(): [any, any] {
+//   throw new Error("Function not implemented.");
+// }
+
+// function useEffect(arg0: () => void, arg1: any[]) {
+//   throw new Error("Function not implemented.");
+// }

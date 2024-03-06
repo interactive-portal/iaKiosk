@@ -23,7 +23,7 @@ const RiverClubV1PlanPrice = () => {
 
   // console.log("readydata", readyDatasrc);
 
-  Cookies.set("customer", { customerId: "16989172064822" });
+  // Cookies.set("customer", { customerId: "16989172064822" });
 
   const { callProcess, isProcessWorking } = useCallProcess();
   const [selectDateModal, setSelectDateModal] = useState(false);
@@ -78,11 +78,11 @@ const RiverClubV1PlanPrice = () => {
 
   // багцыг select хийх эсвэл login хийх
   const selectItem = async (e: any, item: any) => {
-    // setOpenLogin(true);
-    // if (signIn) {
-    //   setSignIn(false);
-    setSelectDateModal(true);
-    // }
+    setOpenLogin(true);
+    if (signIn) {
+      setSignIn(false);
+      setSelectDateModal(true);
+    }
     setTemplateId(null);
     setSelectItem(_.values(item)?.[0]?.[activeIndex]);
     // if (customer) {

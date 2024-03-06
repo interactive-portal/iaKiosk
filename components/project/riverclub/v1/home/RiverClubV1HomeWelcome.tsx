@@ -37,7 +37,9 @@ const RiverClubV1HomeWelcome = () => {
 
   const dataSrc = _.isEmpty(readyData) ? readyDatasrc : readyData;
 
-  console.log(readyDatasrc);
+  if (_.isEmpty(dataSrc)) {
+    return;
+  }
 
   return (
     <BlockDiv className="arrowCustomStyle">
@@ -87,6 +89,14 @@ const RiverHomeBanner = ({
   const { t } = useTranslation("translate");
   return (
     <BlockDiv className="h-[570px] flex items-center justify-center relative bg-gray-200">
+      {/* <RenderAtom
+        item={
+          item?.imgurl ||
+          "storage/uploads/metavalue/photo_original/photo_15843279694444230.jpg"
+        }
+        renderType="image"
+        customClassName={"w-[1080px] h-full absolute top-0 left-0"}
+      /> */}
       <img
         src={`http://riverclub.veritech.mn:85/${item?.imgurl}`}
         alt=""
