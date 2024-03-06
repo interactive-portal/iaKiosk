@@ -78,7 +78,6 @@ const AboutUs = () => {
               <Swiper slidesPerView={4.5} spaceBetween={20}>
                 {!_.isEmpty(obj?.fitkiosktrainerdv) &&
                   obj?.fitkiosktrainerdv.map((item: any, index: number) => {
-                    console.log("item :>> ", item);
                     return (
                       <SwiperSlide key={index} className="">
                         <div

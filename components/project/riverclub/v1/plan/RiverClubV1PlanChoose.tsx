@@ -12,8 +12,6 @@ const RiverClubV1PlanChoose = ({ planItems }: { planItems: any }) => {
 
   const { readyDatasrc } = useContext(WidgetWrapperContext);
 
-  console.log(readyDatasrc);
-
   return (
     <BlockDiv className="bg-white py-[40px] px-[50px] gap-x-[40px] grid-cols-12 grid mx-[25px]">
       <BlockDiv className="col-span-8 w-full flex">

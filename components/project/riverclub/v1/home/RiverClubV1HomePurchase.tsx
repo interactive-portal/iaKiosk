@@ -29,19 +29,17 @@ const RiverClubV1HomePurchase = ({
 
   const [language, setLanguage] = useState(currentLanguage);
 
-  useEffect(() => {
-    setLanguage(currentLanguage);
-  }, [currentLanguage]);
   const { readyDatasrc } = useContext(WidgetWrapperContext);
 
   const data = language === "mn" ? readyDatasrc[1] : readyDatasrc[0];
 
   const staticItem = data[0];
-  const staticItem2 = data[1];
-  const staticItem3 = data[2];
-  const staticItem4 = data[3];
 
-  const [showModal, setShowModal] = useToggle(false);
+  // let {data : readyData} = useSWR(`
+  // /api/get-data?mateid=1701156148201731
+  // `)
+
+  // console.log("readyDatareadyData", readyData)
 
   return (
     <div className="px-[90px]">
@@ -173,3 +171,6 @@ export const QRPay = ({ item }: any) => {
     </BlockDiv>
   );
 };
+function useSWR(arg0: string): { data: any } {
+  throw new Error("Function not implemented.");
+}
