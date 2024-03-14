@@ -153,7 +153,7 @@ const PaymentModal: FC<PropsType> = ({
     setModal("date");
   };
 
-  console.log("contract ", contractId);
+  // console.log("contract ", contractId);
 
   const content = () => {
     switch (modalContent) {
@@ -287,55 +287,70 @@ const PaymentModal: FC<PropsType> = ({
         return (
           <div className="flex items-center justify-center h-full mx-auto">
             <div
-              className="w-[424px] h- box-border relative rounded"
+              className="w-[634px] h- box-border relative rounded"
               style={{
                 background: "var(--202020, #202020)",
               }}
             >
               <div className="p-[30px]">
-                <p className="text-[#BAD405] text-[22px] uppercase font-bold">
+                <p className="text-[#BAD405] text-[28px] uppercase font-bold">
                   Төлбөр төлөх
                 </p>
-                <div className="rounded-lg border border-[#DEDEDE]  mt-[50px]">
-                  <div className="flex flex-col gap-[20px] py-[45px] border-b mx-[25px] border-white">
-                    <div className="flex items-center justify-between text-white text-[16px]">
+                <div
+                  className="rounded-lg border border-[#00B0AB]  mt-[50px] py-4"
+                  // style={{
+                  //   border: "1px solid",
+                  //   borderImageSource:
+                  //     "linear-gradient(180deg, #00B0AB 0%, #BAD405 100%)",
+                  // }}
+                >
+                  <div className="text-[16px] text-center text-white my-4">
+                    ТА QPAY БОЛОН ӨӨРИЙН БАНКНЫ КАРТААР ТӨЛБӨРӨӨ ТӨЛӨХ
+                    БОЛОМЖТОЙ.
+                  </div>
+                  <div className="flex flex-col gap-[20px] py-[10px] border rounded-lg mx-[25px] border-white font-bold text-[32px] text-white px-4">
+                    <div className="flex items-center gap-x-10">
+                      <p className="">{item?.classificationname}</p>
+                      <p>{item?.saleprice}₮</p>
+                    </div>
+                    {/* <div className="flex items-center justify-between text-white text-[16px]">
                       <p className="">Багц </p>
                       <p className="font-bold">{item?.classificationname}</p>
                     </div>
                     <div className="flex items-center justify-between text-white text-[16px]">
                       <p className="">Хугацаа </p>
                       <p className="font-bold">{item?.monthname}</p>
-                    </div>
+                    </div> */}
                   </div>
-                  <div className="flex items-center justify-between text-white text-[16px] mx-[25px] py-[20px]">
+                  <div className="flex items-center justify-center gap-x-6 text-white text-[32px] uppercase font-bold mx-[25px] py-[20px] ">
                     <p className="">Үнийн дүн </p>
                     <p className="font-bold">{item?.saleprice}₮</p>
                   </div>
                 </div>
               </div>
-              <div className="pb-[20px] w-full flex gap-[16px] px-[30px] cursor-pointer">
+              <div className="pb-[20px] w-full flex gap-[16px] px-[100px] cursor-pointer">
                 <div
-                  className="w-full  text-[20px] text-center uppercase rounded font-medium py-2 flex items-center justify-center"
+                  className="w-full italic text-[20px] text-center uppercase rounded-[8px] font-medium py-2 flex items-center justify-center"
                   style={{
-                    color: "var(--202020, #202020)",
-                    background: "var(--green-main, #BAD405)",
+                    color: "#C4C4C4",
+                    background: "#272A32",
                   }}
                   onClick={() => {
                     setSelectDateModal(false);
                     setModal("date");
                   }}
                 >
-                  ЦУЦЛАХ
+                  БОЛИХ
                 </div>
                 <div
-                  className="w-full  text-[20px] text-center uppercase rounded font-medium py-2"
+                  className="w-full  text-[20px] text-center uppercase rounded-[8px] font-medium py-2 italic"
                   style={{
                     color: "var(--202020, #202020)",
                     background: "var(--green-main, #BAD405)",
                   }}
                   onClick={() => checkPayment()}
                 >
-                  ТӨЛБӨР ТӨЛӨХ
+                  КАРТААР ТӨЛӨХ
                 </div>
               </div>
             </div>

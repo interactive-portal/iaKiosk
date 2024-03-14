@@ -52,24 +52,44 @@ const RiverClubV1SelectClass = () => {
       </div>
       <div className="col-span-4 ">
         <BlockDiv
-          className={`flex flex-col items-start h-[447px] bg-black  px-[30px] py-[50px] rounded-[6px]`}
+          className={`flex flex-col items-start h-[447px] bg-[#202020]  px-[30px] py-[50px] rounded-[6px]`}
         >
           <RenderAtom
-            item={{ value: "ЭРЭЛТТЭЙ" }}
-            renderType="title"
-            className={`font-normal text-[12px] uppercase text-white`}
+            item={{ value: "exp 2024.04.05" }}
+            renderType="text"
+            customClassName={""}
+            customStyle={{
+              background: "linear-gradient(180deg, #ADFF00 0%, #0CB1AB 100%)",
+              WebkitTextFillColor: "transparent",
+              WebkitBackgroundClip: "text",
+            }}
           />
           <RenderAtom
-            item={{ value: "title" }}
+            item={{ value: "Алтан" }}
             renderType="title"
             className={`font-[700] text-[28px] uppercase text-white`}
           />
-          <BlockDiv className="flex flex-col items-start justify-center mt-[10px] min-h-[120px]">
-            {/* <CardItem
-          readyData={readyData}
-          dark={dark}
-          setactiveIndex={setactiveIndex}
-        /> */}
+          <BlockDiv className="flex flex-col items-start justify-center mt-[10px] min-h-auto">
+            <p
+              className="text-[36px] font-medium"
+              style={{
+                background: "linear-gradient(180deg, #ADFF00 0%, #0CB1AB 100%)",
+                WebkitTextFillColor: "transparent",
+                WebkitBackgroundClip: "text",
+              }}
+            >
+              ₮1.485k<span className="text-[17px]">/90 өдөр</span>
+            </p>
+            {/* <RenderAtom
+              item={{ value: "₮1.485k ₮1.485k" }}
+              renderType="text"
+              customClassName={""}
+              customStyle={{
+                background: "linear-gradient(180deg, #ADFF00 0%, #0CB1AB 100%)",
+                WebkitTextFillColor: "transparent",
+                WebkitBackgroundClip: "text",
+              }}
+            /> */}
           </BlockDiv>
           {/* Includes */}
           <BlockDiv className="flex flex-col gap-y-[4px] h-[70px] justify-end mt-[30px] align-text-top">
@@ -111,10 +131,19 @@ const RiverClubV1SelectClass = () => {
           />
           <RenderAtom
             item={{
-              value: "Багц сонгох",
+              value: "Сунгах",
             }}
             renderType="button"
-            className={`font-[400] text-[20px] text-black italic bg-[#BAD405] uppercase mt-[16px] rounded-[8px] w-max`}
+            className={`font-[400] text-[20px] text-black italic bg-[#BAD405] uppercase mt-[16px] rounded-[8px] w-max min-w-[180px]`}
+            // onClick={(e: any) => selectItem(e, item)}
+          />
+
+          <RenderAtom
+            item={{
+              value: "Хөлдөөх",
+            }}
+            renderType="button"
+            className={`font-[400] text-center text-[20px] text-white italic bg-black uppercase mt-[16px] rounded-[8px] w-max min-w-[180px] py-2`}
             // onClick={(e: any) => selectItem(e, item)}
           />
         </BlockDiv>

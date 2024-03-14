@@ -3,7 +3,8 @@ import WidgetWrapperContext from "@/components/common/engineBox/Wrapper/WidgetUn
 import { useContext } from "react";
 
 const Description = () => {
-  const { readyDatasrc } = useContext(WidgetWrapperContext);
+  const { readyDatasrc, widgetnemgooReady } = useContext(WidgetWrapperContext);
+  const options = widgetnemgooReady?.options;
   return (
     <div className="mx-[150px] py-10">
       <BlockSlider
@@ -28,9 +29,14 @@ const Description = () => {
       >
         {readyDatasrc?.map((item: any, index: number) => {
           return (
-            <div className="flex flex-col gap-y-4" key={index}>
-              <p className="text-[28px] font-bold uppercase">{item?.title}</p>
-              <p className="text-[16px] font-[300]">{item?.description}</p>
+            <div
+              className={`${
+                options?.textClass && options?.textClass
+              } flex flex-col gap-y-4`}
+              key={index}
+            >
+              <p className={`text-[28px] font-bold uppercase`}>{item?.title}</p>
+              <p className={`text-[16px] font-[300]`}>{item?.description}</p>
             </div>
           );
         })}
