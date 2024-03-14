@@ -43,6 +43,7 @@ const RiverClubV1HomeAbout = () => {
             autoplay: true,
             autoplaySpeed: 5000,
             arrows: true,
+            loop: true,
           },
         }}
       >

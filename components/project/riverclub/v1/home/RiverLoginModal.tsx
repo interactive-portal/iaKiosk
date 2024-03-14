@@ -190,7 +190,7 @@ const RiverLoginModal: FC<PropsType> = ({
           </div>
           <div
             className={`fixed top-[50%] ${
-              needSignUp ? "opacity-1" : "opacity-1"
+              needSignUp ? "opacity-1" : "opacity-0"
             }  max-w-[640px] mx-auto duration-75`}
           >
             {needSignUpModal()}

@@ -97,11 +97,16 @@ const RiverHomeBanner = ({
         renderType="image"
         customClassName={"w-[1080px] h-full absolute top-0 left-0"}
       /> */}
-      <img
+      <RenderAtom
+        item={{ value: item?.imgurl }}
+        renderType="image"
+        customClassName={"w-[1080px] h-full absolute top-0 left-0"}
+      />
+      {/* <img
         src={`http://riverclub.veritech.mn:85/${item?.imgurl}`}
         alt=""
         className="w-[1080px] h-full absolute top-0 left-0"
-      />
+      /> */}
       <BlockDiv className="z-20 w-full flex items-center justify-center flex-col h-max px-[216px]">
         <RenderAtom
           item={item?.title}
