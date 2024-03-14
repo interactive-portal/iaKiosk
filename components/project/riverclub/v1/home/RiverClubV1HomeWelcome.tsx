@@ -87,6 +87,7 @@ const RiverHomeBanner = ({
   clickCamera,
 }: any) => {
   const { t } = useTranslation("translate");
+
   return (
     <BlockDiv className="h-[570px] flex items-center justify-center relative bg-gray-200">
       {/* <RenderAtom
@@ -98,7 +99,7 @@ const RiverHomeBanner = ({
         customClassName={"w-[1080px] h-full absolute top-0 left-0"}
       /> */}
       <RenderAtom
-        item={{ value: item?.imgurl }}
+        item={item?.imgurl}
         renderType="image"
         customClassName={"w-[1080px] h-full absolute top-0 left-0"}
       />

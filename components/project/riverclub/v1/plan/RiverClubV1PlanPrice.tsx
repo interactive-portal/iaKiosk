@@ -21,8 +21,6 @@ import { useEvent } from "react-use";
 const RiverClubV1PlanPrice = () => {
   const { readyDatasrc } = useContext(WidgetWrapperContext);
 
-  // console.log("readydata", readyDatasrc);
-
   // Cookies.set("customer", { customerId: "16989172064822" });
 
   const { callProcess, isProcessWorking } = useCallProcess();

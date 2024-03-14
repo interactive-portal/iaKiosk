@@ -12,7 +12,7 @@ type PropsType = {
 const Combo: FC<PropsType> = ({ obj, criteria }) => {
   const {
     register,
-    formState: { errors },
+    formState: { errors, defaultValues },
     setValue,
     control,
     getValues,
@@ -37,10 +37,18 @@ const Combo: FC<PropsType> = ({ obj, criteria }) => {
   const options = _.values(readyData?.result);
   const [selectIndex, setSelectIndex] = useState(0);
 
+  const defaultvalue = options?.filter(
+    (item) => item?.id == defaultValues?.[`${obj?.pathname}`]
+  );
+
+  const [values, setValues] = useState(defaultvalue?.[0]?.[obj?.name]);
+
   const onchange = (e: any) => {
-    setSelectIndex(e.nativeEvent.target.selectedIndex);
+    // setSelectIndex(e.nativeEvent.target.selectedIndex);
     setValue(obj?.pathname, e);
     setformValue(getValues());
+    const value = options?.filter((item) => item?.id == e);
+    setValues(value?.[0]?.[obj?.name]);
   };
 
   return (
@@ -56,6 +64,7 @@ const Combo: FC<PropsType> = ({ obj, criteria }) => {
             onChange={onchange}
             className="text-[16px] h-[60px]"
             placeholder={obj?.labelname}
+            value={obj?.name == "cityname" ? values || "Улаанбаатар" : values}
             options={options?.map((item: any, index: number) => {
               return {
                 value: item?.id,

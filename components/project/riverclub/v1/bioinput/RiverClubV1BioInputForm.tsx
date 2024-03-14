@@ -35,7 +35,11 @@ const RiverClubV1BioInputForm = () => {
 
   const [openLogin, setOpenLogin] = useState(false);
 
-  const methods = useForm();
+  const methods: any = useForm({
+    defaultValues: {
+      cityId: "11",
+    },
+  });
   const router = useRouter();
 
   const onSubmit = async (data: any) => {
@@ -52,22 +56,18 @@ const RiverClubV1BioInputForm = () => {
 
   const saved = async (e: any) => {
     e.preventDefault();
-    // const res = await axios.post(`/api/post-process`, {
-    //   processcode: "fitCrmCustomerKiosk_DV_001",
-    //   parameters: processParam,
-    // });
+    const res = await axios.post(`/api/post-process`, {
+      processcode: "fitCrmCustomerKiosk_DV_001",
+      parameters: processParam,
+    });
 
-    console.log(processParam);
-
-    // if (res.data?.status == "success") {
-    //   // setDialog(true);
-    //   notification.success({
-    //     message: "Бүртгэл амжилттай хийгдлээ",
-    //   });
-    //   router.push(`/selectplan`);
-    // }
-
-    // console.log("tabnamemseseses");
+    if (res.data?.status == "success") {
+      setDialog(true);
+      notification.success({
+        message: "Бүртгэл амжилттай хийгдлээ",
+      });
+      // router.push(`/selectplan`);
+    }
   };
 
   const clickCamera = () => {
@@ -261,6 +261,7 @@ const RiverClubV1BioInputForm = () => {
                   style={{
                     boxShadow: "4px 4px 4px 0px #00000040",
                   }}
+                  onClick={() => setOpenModal(false)}
                 >
                   Болих
                 </button>

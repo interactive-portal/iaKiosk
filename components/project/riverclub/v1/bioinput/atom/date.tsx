@@ -22,8 +22,6 @@ const Date: FC<PropsType> = ({ obj }) => {
     setValue(obj?.pathname, dateString);
   };
 
-  console.log(errors);
-
   return (
     <div className="flex flex-col ">
       <label className="text-[16px] font-medium  text-[#2A2A2A] mb-[8px]">

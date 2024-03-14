@@ -49,11 +49,13 @@ export default function AtomImageV2({
   const [videoSrc, setImgSrc] = useState<any>();
 
   const checkFile = async (item: any) => {
+    // console.log(item);
     const data = await fetch(`/api/get-file?param=${item}`, {
       cache: "force-cache",
     });
     if (data?.ok) {
       setImgSrc(data.url);
+      // console.log(data.url);
     } else {
       // console.log(data);
     }
@@ -70,8 +72,6 @@ export default function AtomImageV2({
   //   process.env?.[`NEXT_PUBLIC_METAHOST_${metaNameV2}_IMAGEROOTURL`] || "";
 
   const imgSrc = _.startsWith(value, "storage/") ? `${videoSrc}` : value;
-
-  // console.log(imgSrc);
 
   const imgSrcReady = processCloudinaryImage(
     imgSrc,
