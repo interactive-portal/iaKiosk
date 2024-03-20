@@ -57,7 +57,7 @@ export default function AtomImageV2({
       setImgSrc(data.url);
       // console.log(data.url);
     } else {
-      // console.log(data);
+      console.log(data);
     }
   };
 
