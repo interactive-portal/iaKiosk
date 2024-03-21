@@ -61,7 +61,7 @@ const RiverClubV1HomePurchase = ({
             <img src="/images/onemore.png" className="w-full" />
             <BlockDiv className="flex flex-col gap-y-2 gap-x-4 mt-6">
               <div
-                className="py-[10px] px-[20px] italic bg-black text-white rounded-[6px] flex flex-col items-center justify-center text-[20px] font-[400] text-center tracking-widest leading-[16px] cursor-pointer"
+                className="py-[10px] px-[20px] italic bg-black text-white rounded-[6px] flex flex-col items-center justify-center text-[20px] font-[400] text-center tracking-widest leading-[16px] cursor-pointer opacity-50"
                 style={{
                   boxShadow: "4px 4px 4px 0px #00000040",
                 }}
@@ -69,7 +69,7 @@ const RiverClubV1HomePurchase = ({
                 ТОМ ХҮН
               </div>
               <div
-                className="py-[10px] px-[20px] italic bg-[#BAD405] rounded-[6px] flex flex-col items-center justify-center text-[20px] font-[400] text-center tracking-widest leading-[16px] cursor-pointer"
+                className="py-[10px] px-[20px] italic bg-[#BAD405] rounded-[6px] flex flex-col items-center justify-center text-[20px] font-[400] text-center tracking-widest leading-[16px] cursor-pointer opacity-50"
                 style={{
                   boxShadow: "4px 4px 4px 0px #00000040",
                 }}

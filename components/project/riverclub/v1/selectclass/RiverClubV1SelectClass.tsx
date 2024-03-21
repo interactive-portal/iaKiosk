@@ -5,6 +5,8 @@ import WidgetWrapperContext from "@/components/common/engineBox/Wrapper/WidgetUn
 import { useContext } from "react";
 import Cookies from "js-cookie";
 import _ from "lodash";
+import fetchJson from "@/util/helper";
+import useSWR from "swr";
 
 const RiverClubV1SelectClass = () => {
   const { readyDatasrc } = useContext(WidgetWrapperContext);
@@ -13,6 +15,15 @@ const RiverClubV1SelectClass = () => {
   const staticItem3 = readyDatasrc[2];
 
   const user: any = Cookies.get("customer");
+  const param = JSON.stringify({
+    customerId: "16989172064822",
+  });
+
+  let { data: readyData } = useSWR(
+    `/api/get-process?command=fit_ContractPackage_DV_004&parameters=${param}`
+  );
+
+  console.log("readyData", readyData);
 
   return (
     <div className="grid grid-cols-12 w-full p-[25px] gap-x-6">
@@ -33,7 +44,7 @@ const RiverClubV1SelectClass = () => {
         </BlockDiv>
         <div className="flex items-center justify-between px-[80px] mt-10 gap-x-4">
           <div
-            className="bg-black text-[26px] leading-[26px] text-white uppercase px-10 py-4 rounded-[6px] cursor-pointer"
+            className="bg-black text-[26px] leading-[26px] text-white uppercase px-10 py-4 rounded-[6px] cursor-pointer opacity-50"
             style={{
               boxShadow: "4px 4px 4px 0px #00000040",
             }}
@@ -41,7 +52,7 @@ const RiverClubV1SelectClass = () => {
             АЛЧУУР & ХАЛАТ авах
           </div>
           <div
-            className="bg-[#BAD405] text-[26px] leading-[26px] text-black uppercase px-10 py-4 rounded-[6px] cursor-pointer"
+            className="bg-[#BAD405] text-[26px] leading-[26px] text-black uppercase px-10 py-4 rounded-[6px] cursor-pointer opacity-50"
             style={{
               boxShadow: "4px 4px 4px 0px #00000040",
             }}
@@ -52,10 +63,10 @@ const RiverClubV1SelectClass = () => {
       </div>
       <div className="col-span-4 ">
         <BlockDiv
-          className={`flex flex-col items-start h-[447px] bg-[#202020]  px-[30px] py-[50px] rounded-[6px]`}
+          className={`flex flex-col items-start min-h-[447px] bg-[#202020]  px-[30px] py-[50px] rounded-[6px]`}
         >
           <RenderAtom
-            item={{ value: "exp 2024.04.05" }}
+            item={{ value: `exp ${readyData?.result?.enddate}` }}
             renderType="text"
             customClassName={""}
             customStyle={{
@@ -65,12 +76,12 @@ const RiverClubV1SelectClass = () => {
             }}
           />
           <RenderAtom
-            item={{ value: "Алтан" }}
+            item={{ value: readyData?.result?.itemname }}
             renderType="title"
             className={`font-[700] text-[28px] uppercase text-white`}
           />
           <BlockDiv className="flex flex-col items-start justify-center mt-[10px] min-h-auto">
-            <p
+            {/* <p
               className="text-[36px] font-medium"
               style={{
                 background: "linear-gradient(180deg, #ADFF00 0%, #0CB1AB 100%)",
@@ -79,7 +90,7 @@ const RiverClubV1SelectClass = () => {
               }}
             >
               ₮1.485k<span className="text-[17px]">/90 өдөр</span>
-            </p>
+            </p> */}
             {/* <RenderAtom
               item={{ value: "₮1.485k ₮1.485k" }}
               renderType="text"
@@ -135,7 +146,7 @@ const RiverClubV1SelectClass = () => {
             }}
             renderType="button"
             className={`font-[400] text-[20px] text-black italic bg-[#BAD405] uppercase mt-[16px] rounded-[8px] w-max min-w-[180px]`}
-            // onClick={(e: any) => selectItem(e, item)}
+            onClick={(e: any) => (window.location.href = "/price")}
           />
 
           <RenderAtom
@@ -143,7 +154,7 @@ const RiverClubV1SelectClass = () => {
               value: "Хөлдөөх",
             }}
             renderType="button"
-            className={`font-[400] text-center text-[20px] text-white italic bg-black uppercase mt-[16px] rounded-[8px] w-max min-w-[180px] py-2`}
+            className={`font-[400] text-center text-[20px] text-white italic bg-black uppercase mt-[16px] rounded-[8px] w-max min-w-[180px] py-2 opacity-50`}
             // onClick={(e: any) => selectItem(e, item)}
           />
         </BlockDiv>
