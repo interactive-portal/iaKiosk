@@ -14,16 +14,15 @@ const RiverClubV1SelectClass = () => {
   const staticItem2 = readyDatasrc[1];
   const staticItem3 = readyDatasrc[2];
 
-  const user: any = Cookies.get("customer");
+  const session: any = Cookies.getJSON("customer");
+
   const param = JSON.stringify({
-    customerId: "16989172064822",
+    customerId: session?.customerId || "17097020804073",
   });
 
   let { data: readyData } = useSWR(
     `/api/get-process?command=fit_ContractPackage_DV_004&parameters=${param}`
   );
-
-  console.log("readyData", readyData);
 
   return (
     <div className="grid grid-cols-12 w-full p-[25px] gap-x-6">
@@ -34,7 +33,7 @@ const RiverClubV1SelectClass = () => {
               welcome
             </p>
             <p className="uppercase text-[28px] font-bold leading-[27px]">
-              дОРЖСҮРЭН ЭНХБАТ
+              {session?.customerName}
             </p>
           </div>
           <p className="font-[300] text-[14px] leading-[22px] mt-6">

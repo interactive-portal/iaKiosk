@@ -54,7 +54,9 @@ const RiverLoginConfirm: FC<PropsType> = ({
       }
     };
 
-    ws.onerror = function (event) {};
+    ws.onerror = function (event) {
+      ws.send('{"action":"Close"}');
+    };
 
     ws.onclose = function () {
       console.log("Connection is closed");
@@ -190,7 +192,7 @@ const RiverLoginConfirm: FC<PropsType> = ({
                 // var ws = new WebSocket(
                 //   `${process.env.NEXT_PUBLIC_FACECAMERA_URL}`
                 // );
-                // ws.send('{"action":"Close"}');
+
                 setOpenModal(!openModal);
               }}
             ></i>
