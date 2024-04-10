@@ -42,8 +42,6 @@ const SelectLocker: FC<PropsType> = ({ open, setOpen }) => {
   };
 
   const clicked = async () => {
-    setLoading(true);
-
     if (contine) {
       const param = {
         customerId: session?.customerId,
@@ -54,6 +52,8 @@ const SelectLocker: FC<PropsType> = ({ open, setOpen }) => {
         parameters: param,
       });
       if (result?.data?.status == "success") {
+        setLoading(true);
+
         setContractId(result?.data?.result?.id);
         setTimeout(function () {
           setLoading(false);
