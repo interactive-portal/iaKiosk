@@ -2,7 +2,7 @@ import React from "react";
 import RenderAtom from "@/components/common/Atom/RenderAtom";
 import BlockDiv from "@/components/common/Block/BlockDiv";
 import _ from "lodash";
-import { QRPay } from "../home/RiverClubV1HomePurchase";
+// import { QRPay } from "../home/RiverClubV1HomePurchase";
 
 const RiverClubV1Withdraw = ({ item, payment }: any) => {
   return (
@@ -41,7 +41,7 @@ const RiverClubV1Withdraw = ({ item, payment }: any) => {
               className="placeholder:font-[300] placeholder:text-[16px] placeholder:text-[#BAD405] text-[#BAD405] bg-[#030303] focus:border-none focus:outline-none border-none outline-none"
             ></input>
           </BlockDiv>
-          <BigCard item={item} QRpay={payment} />
+          {/* <BigCard item={item} QRpay={payment} /> */}
         </BlockDiv>
       </BlockDiv>
     </BlockDiv>
@@ -78,7 +78,7 @@ const BigCard = ({ item, QRpay }: any, { total }: any) => {
         })}
       </BlockDiv>
 
-      <QRPay item={QRpay} />
+      {/* <QRPay item={QRpay} /> */}
     </BlockDiv>
   );
 };
