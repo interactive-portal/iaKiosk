@@ -42,6 +42,8 @@ const SelectLocker: FC<PropsType> = ({ open, setOpen }) => {
   };
 
   const clicked = async () => {
+    setLoading(true);
+
     if (contine) {
       const param = {
         customerId: session?.customerId,
@@ -53,12 +55,13 @@ const SelectLocker: FC<PropsType> = ({ open, setOpen }) => {
       });
       if (result?.data?.status == "success") {
         setContractId(result?.data?.result?.id);
-        setLoading(true);
         setTimeout(function () {
           setLoading(false);
 
           printed();
         }, 2000);
+      } else {
+        setLoading(false);
       }
     } else {
       if (selectedLocker) {
