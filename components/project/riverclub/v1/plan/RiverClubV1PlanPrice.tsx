@@ -21,7 +21,7 @@ import { useEvent } from "react-use";
 const RiverClubV1PlanPrice = () => {
   const { readyDatasrc } = useContext(WidgetWrapperContext);
 
-  // Cookies.set("customer", { customerId: "17097020804073" });
+  Cookies.set("customer", { customerId: "17097020804073" });
 
   const { callProcess, isProcessWorking } = useCallProcess();
   const [selectDateModal, setSelectDateModal] = useState(false);
