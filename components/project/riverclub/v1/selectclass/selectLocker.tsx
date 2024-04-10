@@ -34,7 +34,7 @@ const SelectLocker: FC<PropsType> = ({ open, setOpen }) => {
       pageOrientation: "portrait",
       isPrintSaveTemplate: "1",
       paperInput: "portrait",
-      pageSize: "a4",
+      pageSize: "a5",
       printType: "1col",
       templatemetaid: "1712217398127902",
       templateIds: "1712217398127902",
@@ -153,7 +153,7 @@ const SelectLocker: FC<PropsType> = ({ open, setOpen }) => {
             {contine ? "хэвлэх" : "үргэлжлүүлэх"}
           </button>
         </div>{" "}
-        <div className="w-[500px] bg-black overflow-scroll rounded-lg printContent hidden">
+        <div className="w-[200px] h-[100px] bg-black overflow-scroll rounded-lg printContent hidden">
           <iframe id="content" className="h-0 w-0 absolute"></iframe>
           <div id={"portraid"}>
             <ReportTemplate
