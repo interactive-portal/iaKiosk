@@ -172,7 +172,7 @@ const RiverClubV1PlanPrice = () => {
               ""
             )}
           </div>
-          <p className="text-white text-[20px] ml-4">
+          <p className="text-[#202020] text-[20px] ml-4">
             Үйлчилгээний нөхцөлийг хүлээн зөвшөөрч байна
           </p>
         </div>
@@ -260,9 +260,8 @@ const RiverClubV1PlanPrice = () => {
         destroyOnClose={true}
       >
         {modalContent()}
-      </Modal>
-      <style>
-        {`
+        <style>
+          {`
           .ant-picker-input >input{
             color:white !important;
           }
@@ -276,8 +275,13 @@ const RiverClubV1PlanPrice = () => {
             width: auto !important;
             max-width:100% !important
           }
+          .ant-modal-content {
+            background-color:transparent !important;
+            box-shadow:none !important;
+          }
           `}
-      </style>
+        </style>
+      </Modal>
     </BlockDiv>
   );
 };

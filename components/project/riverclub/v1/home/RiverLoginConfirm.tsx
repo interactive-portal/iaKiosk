@@ -185,7 +185,7 @@ const RiverLoginConfirm: FC<PropsType> = ({
           >
             {needSignUpModal()}
           </div>
-          <div className="absolute top-5 right-10">
+          {/* <div className="absolute top-5 right-10">
             <i
               className="fa-regular fa-xmark fa-5x  cursor-pointer text-gray-400 hover:text-white duration-150"
               onClick={() => {
@@ -196,7 +196,7 @@ const RiverLoginConfirm: FC<PropsType> = ({
                 setOpenModal(!openModal);
               }}
             ></i>
-          </div>
+          </div> */}
           {/* <div className="fixed bottom-4 max-w-[640px] mx-auto translate-y-[100%]">
             <p className="uppercase text-[34px] underline text-start text-white">
               клубын бүртгэл?
@@ -222,9 +222,8 @@ const RiverLoginConfirm: FC<PropsType> = ({
             </div>
           </div> */}
         </div>
-      </Modal>
-      <style>
-        {`
+        <style>
+          {`
 		:where(.css-dev-only-do-not-override-3mqfnx).ant-modal .ant-modal-content {
 			padding:0px;
 			border-radius:0px;
@@ -243,7 +242,8 @@ const RiverLoginConfirm: FC<PropsType> = ({
 			height: 100%;
 		   }
 		`}
-      </style>
+        </style>
+      </Modal>
     </>
   );
 };

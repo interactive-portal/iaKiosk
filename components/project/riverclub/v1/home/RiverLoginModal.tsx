@@ -220,9 +220,8 @@ const RiverLoginModal: FC<PropsType> = ({
             </div>
           </div> */}
         </div>
-      </Modal>
-      <style>
-        {`
+        <style>
+          {`
 		:where(.css-dev-only-do-not-override-3mqfnx).ant-modal .ant-modal-content {
 			padding:0px;
 			border-radius:0px;
@@ -241,7 +240,8 @@ const RiverLoginModal: FC<PropsType> = ({
 			height: 100%;
 		   }
 		`}
-      </style>
+        </style>
+      </Modal>
     </>
   );
 };

@@ -1,9 +1,10 @@
 import axios from "axios";
 import Payment from "../payment/payment";
-import { FC, useState } from "react";
-import { notification } from "antd";
+import { FC, useEffect, useState } from "react";
+import { Spin, notification } from "antd";
 import Cookies from "js-cookie";
 import ReportTemplate from "@/middleware/ReportTemplate/ReportTemplate";
+import Qpay from "../qpay/qpay";
 
 type PropsType = {
   item?: any;
@@ -18,6 +19,7 @@ const PaymentModal: FC<PropsType> = ({
 }) => {
   const [modalContent, setModalContent] = useState("pay");
   const [paymentResult, setPaymentResult] = useState<any>();
+  const [qpayResult, setQpayResult] = useState<any>();
   const [printOptions, setPrintOptions] = useState({
     lang: {
       mn: "",
@@ -41,6 +43,7 @@ const PaymentModal: FC<PropsType> = ({
     },
   });
   const [contractId, setContractId] = useState();
+  const [loading, setLoading] = useState(false);
 
   const session: any = Cookies.getJSON("customer");
 
@@ -54,7 +57,7 @@ const PaymentModal: FC<PropsType> = ({
         console.log("payment result backasdasdasd", item);
         if (item?.status == "success") {
           setPaymentResult(item);
-          paymentProcess(item);
+          paymentProcess(item, "pos");
         } else {
           setSelectDateModal(false);
           notification.error({
@@ -65,41 +68,76 @@ const PaymentModal: FC<PropsType> = ({
     );
   };
 
-  const paymentProcess = async (payment: any) => {
-    console.log("payment result", paymentResult);
+  useEffect(() => {
+    // console.log(qpayResult);
+    if (qpayResult) {
+      // console.log(qpayResult)
+    }
+  }, [qpayResult]);
+
+  const paymentProcess = async (payment: any, type: any) => {
+    // console.log("payment result", paymentResult);
+    setLoading(true);
+    const param =
+      type == "pos"
+        ? {
+            subTotal: Number(item?.saleprice),
+            total: Number(item?.saleprice),
+            customerId: session?.customerId,
+            vat: Number(item?.vat),
+            fitKioskSalesDtlNew_DV: {
+              productId: item?.id,
+              sectionId: item?.sectionid,
+              unitPrice: Number(item?.saleprice),
+              lineTotalPrice: Number(item?.saleprice),
+              percentVat: "10",
+              uniVat: item?.vat,
+              lineTotalVat: item?.vat,
+              unitAmount: Number(item?.saleprice),
+              lineTotalAmount: Number(item?.saleprice),
+            },
+
+            fitKioskSalesPaymentNew_DV: {
+              // paymentMethodCode: payment?.pan,
+              // bankId: 500000,
+              amount: Number(item?.saleprice),
+              // paymentTypeId: "2", 40
+              // confirmCode: payment?.authcode,
+              // refenceNumber: payment?.rrn,
+              // terminalNumber: payment?.terminalid,
+              extTransactionId: payment?.traceno || payment?.invoice_id,
+            },
+          }
+        : {
+            subTotal: Number(item?.saleprice),
+            total: Number(item?.saleprice),
+            customerId: session?.customerId,
+            vat: Number(item?.vat),
+            fitKioskSalesDtlNew_DV: {
+              productId: item?.id,
+              sectionId: item?.sectionid,
+              unitPrice: Number(item?.saleprice),
+              lineTotalPrice: Number(item?.saleprice),
+              percentVat: "10",
+              uniVat: item?.vat,
+              lineTotalVat: item?.vat,
+              unitAmount: Number(item?.saleprice),
+              lineTotalAmount: Number(item?.saleprice),
+            },
+
+            fitKioskSalesPaymentNew_DV: {
+              amount: Number(item?.saleprice),
+              paymentTypeId: "40",
+              extTransactionId: payment?.invoice_id,
+            },
+          };
     const res = await axios.post(`/api/post-process`, {
       processcode: "fitKioskSalesNew_DV_001",
-      parameters: {
-        subTotal: Number(item?.saleprice),
-        total: Number(item?.saleprice),
-        customerId: session?.customerId,
-        vat: Number(item?.vat),
-        fitKioskSalesDtlNew_DV: {
-          productId: item?.id,
-          sectionId: item?.sectionid,
-          unitPrice: Number(item?.saleprice),
-          lineTotalPrice: Number(item?.saleprice),
-          percentVat: "10",
-          uniVat: item?.vat,
-          lineTotalVat: item?.vat,
-          unitAmount: Number(item?.saleprice),
-          lineTotalAmount: Number(item?.saleprice),
-        },
-        fitKioskSalesPaymentNew_DV: {
-          paymentMethodCode: payment?.pan,
-          bankId: 500000,
-          amount: Number(item?.saleprice),
-          paymentTypeId: "2",
-          confirmCode: payment?.authcode,
-          refenceNumber: payment?.rrn,
-          terminalNumber: payment?.terminalid,
-          extTransactionId: payment?.traceno,
-        },
-      },
+      parameters: param,
     });
-
+    // console.log(param);
     if (res?.data?.status == "success") {
-      console.log("processoos irsen resposne", res);
+      // console.log("processoos irsen resposne", res);
       setPrintOptions({
         lang: {
           mn: "",
@@ -128,13 +166,13 @@ const PaymentModal: FC<PropsType> = ({
           id: res?.data?.result?.id,
         },
       });
-      console.log("ebarimtaas irsen dun ");
       if (ebarimtResult?.data?.status == "success") {
+        setLoading(false);
         setContractId(res?.data?.result?.id);
         setModalContent("ebarimt");
       }
     } else {
-      console.log("aldaaa", res);
+      // console.log("aldaaa", res);
     }
   };
 
@@ -150,10 +188,12 @@ const PaymentModal: FC<PropsType> = ({
     setSelectDateModal(false);
     setModalContent("pay");
     Cookies.remove("customer");
-    setModal("date");
+    if (setModal) {
+      setModal("date");
+    }
   };
 
-  // console.log("contract ", contractId);
+  // console.log(loading);
 
   const content = () => {
     switch (modalContent) {
@@ -285,9 +325,9 @@ const PaymentModal: FC<PropsType> = ({
         );
       default:
         return (
-          <div className="flex items-center justify-center h-full mx-auto">
+          <div className=" h-full w-full">
             <div
-              className="w-[634px] h- box-border relative rounded"
+              className="w-full h-full box-border relative rounded"
               style={{
                 background: "var(--202020, #202020)",
               }}
@@ -326,7 +366,15 @@ const PaymentModal: FC<PropsType> = ({
                     <p className="">Үнийн дүн </p>
                     <p className="font-bold">{item?.saleprice}₮</p>
                   </div>
+                  <Qpay
+                    item={item}
+                    setPay={setQpayResult}
+                    paymentProcess={paymentProcess}
+                    setModalContent={setModalContent}
+                  />
                 </div>
+                {/* <div className="rounded-lg border border-[#00B0AB]  mt-[50px] py-4">
+                </div> */}
               </div>
               <div className="pb-[20px] w-full flex gap-[16px] px-[100px] cursor-pointer">
                 <div
@@ -337,7 +385,9 @@ const PaymentModal: FC<PropsType> = ({
                   }}
                   onClick={() => {
                     setSelectDateModal(false);
-                    setModal("date");
+                    if (setModal) {
+                      setModal("date");
+                    }
                   }}
                 >
                   БОЛИХ
@@ -359,7 +409,19 @@ const PaymentModal: FC<PropsType> = ({
     }
   };
 
-  return <>{content()}</>;
+  return (
+    <>
+      <div className="">
+        <Spin
+          className="text-[#BAD405] full-screen"
+          fullscreen
+          spinning={loading}
+          size="large"
+        />
+      </div>
+      {content()}
+    </>
+  );
 };
 
 export default PaymentModal;

@@ -26,8 +26,6 @@ export const runService = async (
     },
   };
 
-  // console.log("pCOmmmen", requestBody);
-
   var myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
 

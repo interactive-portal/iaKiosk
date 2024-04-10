@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import RenderAtom from "@/components/common/Atom/RenderAtom";
 import BlockDiv from "@/components/common/Block/BlockDiv";
 import WidgetWrapperContext from "@/components/common/engineBox/Wrapper/WidgetUniversalWrapper";
@@ -7,9 +7,14 @@ import Cookies from "js-cookie";
 import _ from "lodash";
 import fetchJson from "@/util/helper";
 import useSWR from "swr";
+import SelectLocker from "./selectLocker";
+import Basket from "./basket";
 
 const RiverClubV1SelectClass = () => {
   const { readyDatasrc } = useContext(WidgetWrapperContext);
+  const [openLocker, setOpenLocker] = useState(false);
+  const [openBasket, setOpenBasket] = useState(false);
+
   const staticItem = readyDatasrc[0];
   const staticItem2 = readyDatasrc[1];
   const staticItem3 = readyDatasrc[2];
@@ -43,18 +48,20 @@ const RiverClubV1SelectClass = () => {
         </BlockDiv>
         <div className="flex items-center justify-between px-[80px] mt-10 gap-x-4">
           <div
-            className="bg-black text-[26px] leading-[26px] text-white uppercase px-10 py-4 rounded-[6px] cursor-pointer opacity-50"
+            className="bg-black text-[26px] leading-[26px] text-white uppercase px-10 py-4 rounded-[6px] cursor-pointer"
             style={{
               boxShadow: "4px 4px 4px 0px #00000040",
             }}
+            onClick={() => setOpenBasket(true)}
           >
             АЛЧУУР & ХАЛАТ авах
           </div>
           <div
-            className="bg-[#BAD405] text-[26px] leading-[26px] text-black uppercase px-10 py-4 rounded-[6px] cursor-pointer opacity-50"
+            className="bg-[#BAD405] text-[26px] leading-[26px] text-black uppercase px-10 py-4 rounded-[6px] cursor-pointer"
             style={{
               boxShadow: "4px 4px 4px 0px #00000040",
             }}
+            onClick={() => setOpenLocker(true)}
           >
             Locker сонгох
           </div>
@@ -158,6 +165,8 @@ const RiverClubV1SelectClass = () => {
           />
         </BlockDiv>
       </div>
+      <SelectLocker open={openLocker} setOpen={setOpenLocker} />
+      <Basket open={openBasket} setOpen={setOpenBasket} />
     </div>
   );
 };

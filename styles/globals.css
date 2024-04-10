@@ -191,3 +191,9 @@ h6 {
   --clr-spinner: var(--clr2);
   animation-delay: calc(var(--animation-duration) / 10 * -3);
 }
+
+:where(.css-dev-only-do-not-override-2q8sxy).ant-modal .ant-modal-close-x {
+  font-size: 40px;
+  color: white;
+  right: 20px;
+}

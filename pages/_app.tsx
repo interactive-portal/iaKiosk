@@ -1,5 +1,5 @@
 import "@/styles/globals.css";
-import { roboto } from "@/styles/fonts";
+import { roboto, rubik } from "@/styles/fonts";
 // import "public/icon/css/all.css";
 // import { roboto } from "@/fonts";
 // import Layout from "@/components/layout";
@@ -43,9 +43,11 @@ function App({ Component, pageProps }: AppProps) {
             }}
           >
             <CloudStore>
-              <Layout {...pageProps}>
-                <Component {...pageProps} />
-              </Layout>
+              <main className={`${rubik?.className}`}>
+                <Layout {...pageProps}>
+                  <Component {...pageProps} />
+                </Layout>
+              </main>
             </CloudStore>
           </SWRConfig>
         </SessionProvider>
