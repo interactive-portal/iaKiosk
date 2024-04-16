@@ -162,7 +162,7 @@ const RiverClubV1PlanPrice = () => {
         <div className="px-[64px] flex items-center mb-8 cursor-pointer">
           <div
             className={`w-[30px] h-[30px] rounded-lg flex items-center justify-center ${
-              activeCheck ? "bg-blue-300" : "bg-white"
+              activeCheck ? "bg-blue-300" : "bg-[#202020]"
             } `}
             onClick={() => setActiveCheck(!activeCheck)}
           >

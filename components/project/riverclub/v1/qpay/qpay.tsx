@@ -203,8 +203,8 @@ export default function Qpay({
               unoptimized
               src={`data:image/jpeg;base64,${res.qr_image}`}
               alt="QR Code"
-              width={400}
-              height={400}
+              width={150}
+              height={150}
             />
           )}
         </div>
