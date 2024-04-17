@@ -27,7 +27,7 @@ const BasketList: FC<PropsType> = ({ setProduct, obj }) => {
       <div className="bg-[#BAD405] text-black p-4 rounded-[11px]">
         <p className="uppercase text-[26px]">{obj?.itemname}</p>
         <div className="flex items-center justify-between">
-          <div className="flex items-center gap-x-1 text-[16px]">
+          <div className="flex items-center gap-x-1 text-[26px]">
             <p
               className="font-bold cursor-pointer"
               onClick={() => {
@@ -46,7 +46,7 @@ const BasketList: FC<PropsType> = ({ setProduct, obj }) => {
               +
             </p>
           </div>
-          <p className="text-[26px]">
+          <p className="text-[40px]">
             ₮{displayInThousands(Number(obj?.saleprice) * count)}
           </p>
         </div>

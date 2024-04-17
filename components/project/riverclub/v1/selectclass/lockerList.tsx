@@ -28,35 +28,79 @@ const LockerList: FC<PropsType> = ({ selected, setSelected }) => {
     return;
   }
 
+  function divideArray(arr: any) {
+    const midIndex = Math.floor(arr.length / 2);
+    const firstHalf = arr.slice(0, midIndex);
+    const secondHalf = arr.slice(midIndex);
+    return [firstHalf, secondHalf];
+  }
+
   const orderList = _.orderBy(list?.result, ["lockernumber"], ["asc"]);
+  const [firstHalf, secondHalf] = divideArray(
+    _.filter(orderList, {
+      id: null,
+    })
+  );
+
+  console.log("firstHalf", firstHalf);
+  console.log("secondHalf", secondHalf);
 
   return (
-    <div className="flex items-center max-w-full overflow-x-scroll gap-x-2 scroll">
-      {orderList.map((item: any, ind: number) => {
-        if (item?.id == null) {
-          return (
-            <div
-              className={`p-4 font-bold text-[28px] border border-[#BBD540] rounded-[11px] cursor-pointer
+    <div className="flex flex-col gap-y-10 items-center max-w-full gap-x-2 ">
+      <div className="flex items-center max-w-full gap-x-4 overflow-x-scroll scroll pb-2">
+        {firstHalf?.map((item: any, ind: number) => {
+          if (item?.id == null) {
+            return (
+              <div
+                className={`p-4 font-bold text-[28px] border border-[#BBD540] rounded-[11px] cursor-pointer
 
 			  `}
-              style={
-                selected == item
-                  ? {
-                      background:
-                        "linear-gradient(180deg, #ADFF00 0%, #0CB1AB 100%)",
-                      WebkitTextFillColor: "transparent",
-                      WebkitBackgroundClip: "text",
-                    }
-                  : {}
-              }
-              key={ind}
-              onClick={() => setSelected(item)}
-            >
-              {item?.lockernumber}
-            </div>
-          );
-        }
-      })}
+                style={
+                  selected == item
+                    ? {
+                        background:
+                          "linear-gradient(180deg, #ADFF00 0%, #0CB1AB 100%)",
+                        WebkitTextFillColor: "transparent",
+                        WebkitBackgroundClip: "text",
+                      }
+                    : {}
+                }
+                key={ind}
+                onClick={() => setSelected(item)}
+              >
+                {item?.lockernumber}
+              </div>
+            );
+          }
+        })}
+      </div>
+      <div className="flex items-center max-w-full gap-x-4 overflow-x-scroll scroll pb-2">
+        {secondHalf?.map((item: any, ind: number) => {
+          if (item?.id == null) {
+            return (
+              <div
+                className={`p-4 font-bold text-[28px] border border-[#BBD540] rounded-[11px] cursor-pointer
+
+			  `}
+                style={
+                  selected == item
+                    ? {
+                        background:
+                          "linear-gradient(180deg, #ADFF00 0%, #0CB1AB 100%)",
+                        WebkitTextFillColor: "transparent",
+                        WebkitBackgroundClip: "text",
+                      }
+                    : {}
+                }
+                key={ind}
+                onClick={() => setSelected(item)}
+              >
+                {item?.lockernumber}
+              </div>
+            );
+          }
+        })}
+      </div>
       <style>
         {`
 			.scroll::-webkit-scrollbar {
@@ -70,6 +114,11 @@ const LockerList: FC<PropsType> = ({ selected, setSelected }) => {
 				border-radius:10px;
 				padding:10px 0px;
 			  }
+        .scroll::-webkit-scrollbar-track {
+          background:#E0E0E080;
+          border-radius:10px;
+          padding:10px 0px;
+          }
 		`}
       </style>
     </div>
