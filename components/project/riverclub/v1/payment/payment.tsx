@@ -9,7 +9,12 @@ export default function bankIpTerminalTransfer(
   callback: any
 ) {
   if ("WebSocket" in window) {
-    console.log("WebSocket is supported by your Browser!");
+    console.log(
+      "WebSocket is supported by your Browser!",
+      amount,
+      terminalId,
+      deviceType
+    );
     // Let us open a web socket
     var ws = new WebSocket("ws://localhost:58324/socket");
     var dvctype = "";
@@ -167,6 +172,7 @@ export default function bankIpTerminalTransfer(
     };
 
     ws.onerror = function (event: any) {
+      console.log(event);
       var resultJson = {
         Status: "Error",
         Error: event.code,

@@ -68,15 +68,7 @@ const PaymentModal: FC<PropsType> = ({
     );
   };
 
-  // useEffect(() => {
-  //   // console.log(qpayResult);
-  //   if (qpayResult) {
-  //     // console.log(qpayResult)
-  //   }
-  // }, [qpayResult]);
-
   const paymentProcess = async (payment: any, type: any) => {
-    // console.log("payment result", paymentResult);
     setLoading(true);
     const param =
       type == "pos"
@@ -98,13 +90,13 @@ const PaymentModal: FC<PropsType> = ({
             },
 
             fitKioskSalesPaymentNew_DV: {
-              // paymentMethodCode: payment?.pan,
-              // bankId: 500000,
+              paymentMethodCode: payment?.pan,
+              bankId: 500000,
               amount: Number(item?.saleprice),
-              // paymentTypeId: "2", 40
-              // confirmCode: payment?.authcode,
-              // refenceNumber: payment?.rrn,
-              // terminalNumber: payment?.terminalid,
+              paymentTypeId: "2",
+              confirmCode: payment?.authcode,
+              refenceNumber: payment?.rrn,
+              terminalNumber: payment?.terminalid,
               extTransactionId: payment?.traceno || payment?.invoice_id,
             },
           }
