@@ -88,7 +88,7 @@ export default function bankIpTerminalTransfer(
       var received_msg = evt.data;
       var jsonData = JSON.parse(received_msg);
 
-      //   console.log("jsonData", jsonData);
+      console.log("jsonData", jsonData);
 
       if (jsonData.status == "success") {
         var getParse = JSON.parse(jsonData.details[0].value);
