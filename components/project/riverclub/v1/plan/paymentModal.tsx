@@ -68,12 +68,12 @@ const PaymentModal: FC<PropsType> = ({
     );
   };
 
-  useEffect(() => {
-    // console.log(qpayResult);
-    if (qpayResult) {
-      // console.log(qpayResult)
-    }
-  }, [qpayResult]);
+  // useEffect(() => {
+  //   // console.log(qpayResult);
+  //   if (qpayResult) {
+  //     // console.log(qpayResult)
+  //   }
+  // }, [qpayResult]);
 
   const paymentProcess = async (payment: any, type: any) => {
     // console.log("payment result", paymentResult);
@@ -336,14 +336,7 @@ const PaymentModal: FC<PropsType> = ({
                 <p className="text-[#BAD405] text-[28px] uppercase font-bold">
                   Төлбөр төлөх
                 </p>
-                <div
-                  className="rounded-lg border border-[#00B0AB]  mt-[50px] py-4"
-                  // style={{
-                  //   border: "1px solid",
-                  //   borderImageSource:
-                  //     "linear-gradient(180deg, #00B0AB 0%, #BAD405 100%)",
-                  // }}
-                >
+                <div className="rounded-lg border border-[#00B0AB]  mt-[50px] py-4">
                   <div className="text-[16px] text-center text-white my-4">
                     ТА QPAY БОЛОН ӨӨРИЙН БАНКНЫ КАРТААР ТӨЛБӨРӨӨ ТӨЛӨХ
                     БОЛОМЖТОЙ.
@@ -353,14 +346,6 @@ const PaymentModal: FC<PropsType> = ({
                       <p className="">{item?.classificationname}</p>
                       <p>{item?.saleprice}₮</p>
                     </div>
-                    {/* <div className="flex items-center justify-between text-white text-[16px]">
-                      <p className="">Багц </p>
-                      <p className="font-bold">{item?.classificationname}</p>
-                    </div>
-                    <div className="flex items-center justify-between text-white text-[16px]">
-                      <p className="">Хугацаа </p>
-                      <p className="font-bold">{item?.monthname}</p>
-                    </div> */}
                   </div>
                   <div className="flex items-center justify-center gap-x-6 text-white text-[32px] uppercase font-bold mx-[25px] py-[20px] ">
                     <p className="">Үнийн дүн </p>
@@ -373,8 +358,6 @@ const PaymentModal: FC<PropsType> = ({
                     setModalContent={setModalContent}
                   />
                 </div>
-                {/* <div className="rounded-lg border border-[#00B0AB]  mt-[50px] py-4">
-                </div> */}
               </div>
               <div className="pb-[20px] w-full flex gap-[16px] px-[100px] cursor-pointer">
                 <div

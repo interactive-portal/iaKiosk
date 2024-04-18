@@ -31,7 +31,7 @@ const Basket: FC<PropsType> = ({ open, setOpen }) => {
       <Modal
         open={open}
         title="АЛЧУУР & ХАЛАТ"
-        width={634}
+        width={500}
         onCancel={() => setOpen(false)}
         footer={false}
         destroyOnClose

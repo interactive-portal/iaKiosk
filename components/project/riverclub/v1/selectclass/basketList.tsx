@@ -22,8 +22,8 @@ const BasketList: FC<PropsType> = ({ setProduct, obj }) => {
     );
   }
   return (
-    <div className="max-w-[217px] bg-white rounded-[11px]">
-      <img src="/images/alchuur.png" className="w-full " />
+    <div className="w-full bg-white rounded-[11px]">
+      <img src="/images/alchuur.png" className="w-full" />
       <div className="bg-[#BAD405] text-black p-4 rounded-[11px]">
         <p className="uppercase text-[26px]">{obj?.itemname}</p>
         <div className="flex items-center justify-between">
