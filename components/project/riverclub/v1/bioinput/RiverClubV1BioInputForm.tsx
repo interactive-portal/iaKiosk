@@ -42,8 +42,6 @@ const RiverClubV1BioInputForm = () => {
   });
   const router = useRouter();
 
-  var ws = new WebSocket(`${process.env.NEXT_PUBLIC_FACECAMERA_URL}`);
-
   const onSubmit = async (data: any) => {
     // setProcessParam(param);
     clickCamera();
@@ -69,12 +67,12 @@ const RiverClubV1BioInputForm = () => {
       notification.success({
         message: "Бүртгэл амжилттай хийгдлээ",
       });
-      ws.send('{"action":"Close"}');
-      // router.push(`/selectplan`);
     }
   };
 
   const clickCamera = () => {
+    var ws = new WebSocket(`${process.env.NEXT_PUBLIC_FACECAMERA_URL}`);
+
     setOpenModal(true);
     // e.preventDefault();
 
@@ -89,8 +87,8 @@ const RiverClubV1BioInputForm = () => {
       if (res?.result.image != null) {
         setImageToken(res?.result.image);
         setValue(res?.result?.value);
-        setOpenModal(false);
-        // ws.send('{"action":"Close"}');
+        // setOpenModal(false);
+        ws.send('{"action":"Close"}');
 
         // [image] = res.image;
         // [value] = res.value;
