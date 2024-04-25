@@ -38,7 +38,7 @@ const RiverClubV1SelectClass = () => {
               welcome
             </p>
             <p className="uppercase text-[28px] font-bold leading-[27px]">
-              {session?.customerName}
+              {session?.firstName} {session?.lastName}
             </p>
           </div>
           <p className="font-[300] text-[14px] leading-[22px] mt-6">
