@@ -228,8 +228,8 @@ const RiverClubV1BioInputForm = () => {
         onCancel={() => setOpenModal(false)}
         footer={false}
       >
-        <div className="w-full h-full pt-[150px] relative">
-          <div className="absolute top-[100%] left-[5%]">
+        <div className="w-full h-full relative">
+          <div className="absolute top-1/2 left-[5%]">
             <div className="text-[26px] font-medium text-white uppercase text-center px-[150px]">
               <p className="">
                 ТА ДЭЛГЭЦИЙН ӨМНӨ ЦАРАЙГАА ТОД, ЭГЦ ХАРАГДАХААР БАЙРЛАНА УУ.
