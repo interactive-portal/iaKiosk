@@ -51,6 +51,8 @@ const RiverClubV1BioInputForm = () => {
       value: value,
     };
 
+    console.log("param", param);
+
     setProcessParam(param);
   };
 
@@ -82,8 +84,10 @@ const RiverClubV1BioInputForm = () => {
 
     ws.onmessage = function (event) {
       var res = JSON.parse(event.data);
+      console.log("resresssssss", res);
 
       if (res?.result.image != null) {
+        console.log("resresssssss", res);
         setImageToken(res?.result.image);
         setValue(res?.result?.value);
         // setOpenModal(false);
