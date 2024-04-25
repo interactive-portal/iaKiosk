@@ -43,29 +43,22 @@ const RiverClubV1BioInputForm = () => {
   const router = useRouter();
 
   const onSubmit = async (data: any) => {
-    // setProcessParam(param);
     clickCamera();
-    const param = {
-      ...data,
-      image: imageToken,
-      value: value,
-    };
-
-    console.log("param", param);
-
-    setProcessParam(param);
+    setProcessParam(data);
   };
 
   const saved = async (e: any) => {
     e.preventDefault();
+    const param = { ...processParam, image: imageToken, value: value };
     const res = await axios.post(`/api/post-process`, {
       processcode: "fitCrmCustomerKiosk_DV_001",
-      parameters: processParam,
+      parameters: param,
     });
 
     if (res.data?.status == "success") {
       setDialog(true);
       setOpenModal(false);
+
       notification.success({
         message: "Бүртгэл амжилттай хийгдлээ",
       });
@@ -76,7 +69,6 @@ const RiverClubV1BioInputForm = () => {
     var ws = new WebSocket(`${process.env.NEXT_PUBLIC_FACECAMERA_URL}`);
 
     setOpenModal(true);
-    // e.preventDefault();
 
     ws.onopen = function () {
       ws.send('{"action":"GetImage"}');
@@ -90,13 +82,8 @@ const RiverClubV1BioInputForm = () => {
         console.log("resresssssss", res);
         setImageToken(res?.result.image);
         setValue(res?.result?.value);
-        // setOpenModal(false);
         ws.send('{"action":"Close"}');
-
-        // [image] = res.image;
-        // [value] = res.value;
       } else {
-        // alert(res.message);
       }
     };
 
