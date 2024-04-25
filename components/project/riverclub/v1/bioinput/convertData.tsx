@@ -8,13 +8,13 @@ const convertDate = (value: any) => {
   var odd = 0;
   var gender = "";
   if (value.length === 10) {
-    x = value.substring(2, 2);
-    y = value.substring(4, 2);
-    z = value.substring(6, 2);
-    console.log(value.substring(2, 2));
-    console.log(y);
+    x = value.substring(2, 4);
+    y = value.substring(4, 6);
+    z = value.substring(6, 8);
+    console.log(value.substring(2, 4), "x");
+    console.log(y, "y");
 
-    console.log(z);
+    console.log(z, "z");
 
     if (y > 12) {
       x = 2000 + Number(x);
@@ -23,11 +23,14 @@ const convertDate = (value: any) => {
       x = 1900 + Number(x);
       ages = Number(yy) - Number(x);
     }
-    var gender1 = Number(value.substring(8, 1) % 2);
+    var gender1 = Number(value.substring(8, 1)) % 2;
+
     if (!gender1) gender = "2";
     else gender = "1";
+
+    const date = x + "-" + y + "-" + z;
+    return { date, gender };
   }
-  return <></>;
 };
 
 export default convertDate;

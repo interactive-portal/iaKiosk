@@ -18,6 +18,7 @@ import Cookies from "js-cookie";
 import RiverLoginModal from "../home/RiverLoginModal";
 import { useRouter } from "next/router";
 import { useTranslation } from "react-i18next";
+import convertDate from "./convertData";
 
 const RiverClubV1BioInputForm = () => {
   const { config, headerData, positionConfig, metaConfig } =
@@ -131,6 +132,12 @@ const RiverClubV1BioInputForm = () => {
                   ],
                 };
               }
+              const value = methods.watch();
+              let birthday: any;
+              if (value?.positionName?.length == 10) {
+                birthday = convertDate(value?.positionName);
+                console.log(birthday);
+              }
               switch (obj?.type) {
                 case "text":
                   return <Text key={index} obj={newObj} />;
@@ -139,11 +146,26 @@ const RiverClubV1BioInputForm = () => {
                 case "number":
                   return <Number key={index} obj={newObj} />;
                 case "date":
-                  return <Date key={index} obj={newObj} />;
+                  return (
+                    // <Date key={index} obj={newObj} value={birthday?.date} />
+                    <div className="flex flex-col">
+                      <label className="text-[16px] font-medium  text-[#2A2A2A] mb-[8px]">
+                        {t(obj?.labelname)}{" "}
+                        <span className="text-red-500">*</span>
+                      </label>
+                      <input
+                        disabled={true}
+                        className="mt-[8px] px-[14px] py-[17px] text-[16px] rounded-lg focus-visible:outline-none focus-visible:border-none"
+                        value={birthday?.date}
+                        name={obj?.pathname}
+                      />
+                    </div>
+                  );
                 case "email":
                   return <Email key={index} obj={newObj} />;
               }
             })}
+
             <div></div>
             <div className="">
               <div className="flex gap-x-4 items-center mb-6">
