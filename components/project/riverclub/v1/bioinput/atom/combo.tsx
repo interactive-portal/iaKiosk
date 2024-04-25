@@ -103,8 +103,9 @@ const Combo: FC<PropsType> = ({ obj, criteria }) => {
       </p> */}
       <style>
         {`
-          ant-select-selector {
+          .ant-select-selector {
             padding:8px 16px;
+            border:1px solid black !important;
           }
         `}
       </style>

@@ -33,7 +33,7 @@ const Number: FC<PropsType> = ({ obj }) => {
               }
             : {}
         )}
-        className={`mt-[8px] px-[14px] py-[17px] text-[16px] rounded-lg focus-visible:outline-none ${
+        className={`mt-[8px] px-[14px] border border-black py-[17px] text-[16px] rounded-lg focus-visible:outline-none ${
           errorMessage && "ring-1 ring-red-500"
         }`}
         // style={{

@@ -30,6 +30,7 @@ const RiverClubV1BioInputForm = () => {
 
   const [imageToken, setImageToken] = useState<any>();
   const [value, setValue] = useState<any>();
+  const [foreign, setForeign] = useState("");
   const [birthday, setBirthday] = useState("");
 
   const [openModal, setOpenModal] = useState(false);
@@ -122,6 +123,8 @@ const RiverClubV1BioInputForm = () => {
     }
   }, [methods.watch()]);
 
+  console.log(foreign);
+
   return (
     <BlockDiv className="bg-[#CACACA] px-[123px]  py-2">
       <div className="flex items-start py-10 gap-x-12">
@@ -164,29 +167,66 @@ const RiverClubV1BioInputForm = () => {
               }
               switch (obj?.type) {
                 case "text":
-                  return <Text key={index} obj={newObj} />;
+                  if (obj?.pathname == "positionName") {
+                    return (
+                      <div className="flex gap-x-6">
+                        <div className="flex flex-col ">
+                          <label className="text-[16px] font-medium  text-[#2A2A2A]">
+                            Улс
+                          </label>
+                          <div className="flex min-h-[50px] gap-x-2 text-[16px]">
+                            <div className="flex gap-x-2 items-center">
+                              <input
+                                type="checkbox"
+                                onChange={() => setForeign("")}
+                                checked={foreign == "" ? true : false}
+                                className="rounded-full"
+                              />
+                              <div>Монгол</div>
+                            </div>
+                            <div className="flex gap-x-1 items-center">
+                              <input
+                                type="checkbox"
+                                checked={foreign == "" ? false : true}
+                                onChange={() => setForeign("1")}
+                                className="rounded-full"
+                              />
+                              <div>Бусад</div>
+                            </div>
+                          </div>
+                        </div>
+                        <Text key={index} obj={newObj} />
+                      </div>
+                    );
+                  } else {
+                    return <Text key={index} obj={newObj} />;
+                  }
                 case "combo":
                   return <Combo criteria={criteria} key={index} obj={newObj} />;
                 case "number":
                   return <Number key={index} obj={newObj} />;
                 case "date":
-                  return (
-                    // <Date key={index} obj={newObj} value={birthday?.date} />
-                    <div className="flex flex-col">
-                      <label className="text-[16px] font-medium  text-[#2A2A2A] mb-[8px]">
-                        {t(obj?.labelname)}{" "}
-                        <span className="text-red-500">*</span>
-                      </label>
-                      <input
-                        disabled={true}
-                        className="mt-[8px] px-[14px] py-[17px] text-[16px] rounded-lg focus-visible:outline-none focus-visible:border-none"
-                        onChange={(e) => {
-                          setBirthday(e.target.value);
-                        }}
-                        value={birthdays?.date}
-                      />
-                    </div>
-                  );
+                  if (foreign != "") {
+                    <Date key={index} obj={newObj} />;
+                  } else {
+                    return (
+                      <div className="flex flex-col">
+                        <label className="text-[16px] font-medium  text-[#2A2A2A] mb-[8px]">
+                          {t(obj?.labelname)}{" "}
+                          <span className="text-red-500">*</span>
+                        </label>
+                        <input
+                          disabled={true}
+                          className="mt-[8px] px-[14px] py-[17px] text-[16px] rounded-lg focus-visible:outline-none focus-visible:border-none"
+                          onChange={(e) => {
+                            setBirthday(e.target.value);
+                          }}
+                          value={birthdays?.date}
+                        />
+                      </div>
+                    );
+                  }
+
                 case "email":
                   return <Email key={index} obj={newObj} />;
               }

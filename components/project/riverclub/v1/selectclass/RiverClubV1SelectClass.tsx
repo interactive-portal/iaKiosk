@@ -31,37 +31,41 @@ const RiverClubV1SelectClass = () => {
 
   const router = useRouter();
 
-  setIdleTimeout(
-    10000,
-    function () {
-      router.push("/home");
-    },
-    function () {}
-  );
+  console.log(router.asPath);
 
-  function setIdleTimeout(millis: any, onIdle: any, onUnidle: any) {
-    var timeout: any = 0;
-    startTimer();
+  if (router?.asPath == "/userprofile/profile/") {
+    setIdleTimeout(
+      10000,
+      function () {
+        router.push("/home");
+      },
+      function () {}
+    );
 
-    function startTimer() {
-      timeout = setTimeout(onExpires, millis);
-      document.addEventListener("mousemove", onActivity);
-      document.addEventListener("keypress", onActivity);
-    }
+    function setIdleTimeout(millis: any, onIdle: any, onUnidle: any) {
+      var timeout: any = 0;
+      startTimer();
 
-    function onExpires() {
-      timeout = 0;
-      onIdle();
-    }
+      function startTimer() {
+        timeout = setTimeout(onExpires, millis);
+        window.addEventListener("mousemove", onActivity);
+        window.addEventListener("keypress", onActivity);
+      }
 
-    function onActivity() {
-      if (timeout) clearTimeout(timeout);
-      else onUnidle();
-      //since the mouse is moving, we turn off our event hooks for 1 second
-      document.removeEventListener("mousemove", onActivity);
-      document.removeEventListener("keypress", onActivity);
-      console.log("adaadsa");
-      setTimeout(startTimer, 1000);
+      function onExpires() {
+        timeout = 0;
+        onIdle();
+      }
+
+      function onActivity() {
+        if (timeout) clearTimeout(timeout);
+        else onUnidle();
+        //since the mouse is moving, we turn off our event hooks for 1 second
+        window.removeEventListener("mousemove", onActivity);
+        window.removeEventListener("keypress", onActivity);
+        console.log("adaadsa");
+        setTimeout(startTimer, 1000);
+      }
     }
   }
 

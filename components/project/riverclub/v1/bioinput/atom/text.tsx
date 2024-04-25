@@ -25,7 +25,7 @@ const Text: FC<PropsType> = ({ obj }) => {
           obj?.pathname,
           obj.isRequired == 1 ? { required: "Заавал бөглөх талбар !" } : {}
         )}
-        className={`mt-[8px] px-[14px] py-[17px] text-[16px] rounded-lg focus-visible:outline-none focus-visible:border-none ${
+        className={`mt-[8px] px-[14px] py-[17px] text-[16px] border-black border rounded-lg focus-visible:outline-none focus-visible:border-none ${
           errorMessage && "ring-1 ring-red-500"
         }`}
         // style={{
