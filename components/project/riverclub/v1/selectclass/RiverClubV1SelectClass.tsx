@@ -5,10 +5,10 @@ import WidgetWrapperContext from "@/components/common/engineBox/Wrapper/WidgetUn
 import { useContext } from "react";
 import Cookies from "js-cookie";
 import _ from "lodash";
-import fetchJson from "@/util/helper";
 import useSWR from "swr";
 import SelectLocker from "./selectLocker";
 import Basket from "./basket";
+import { useRouter } from "next/router";
 
 const RiverClubV1SelectClass = () => {
   const { readyDatasrc } = useContext(WidgetWrapperContext);
@@ -22,12 +22,48 @@ const RiverClubV1SelectClass = () => {
   const session: any = Cookies.getJSON("customer");
 
   const param = JSON.stringify({
-    customerId: session?.customerId || "17097020804073",
+    customerId: session?.customerId || "17122024822283",
   });
 
   let { data: readyData } = useSWR(
     `/api/get-process?command=fit_ContractPackage_DV_004&parameters=${param}`
   );
+
+  const router = useRouter();
+
+  setIdleTimeout(
+    10000,
+    function () {
+      router.push("/home");
+    },
+    function () {}
+  );
+
+  function setIdleTimeout(millis: any, onIdle: any, onUnidle: any) {
+    var timeout: any = 0;
+    startTimer();
+
+    function startTimer() {
+      timeout = setTimeout(onExpires, millis);
+      document.addEventListener("mousemove", onActivity);
+      document.addEventListener("keypress", onActivity);
+    }
+
+    function onExpires() {
+      timeout = 0;
+      onIdle();
+    }
+
+    function onActivity() {
+      if (timeout) clearTimeout(timeout);
+      else onUnidle();
+      //since the mouse is moving, we turn off our event hooks for 1 second
+      document.removeEventListener("mousemove", onActivity);
+      document.removeEventListener("keypress", onActivity);
+      console.log("adaadsa");
+      setTimeout(startTimer, 1000);
+    }
+  }
 
   return (
     <div className="grid grid-cols-12 w-full p-[25px] gap-x-6">
@@ -56,102 +92,89 @@ const RiverClubV1SelectClass = () => {
           >
             АЛЧУУР & ХАЛАТ авах
           </div>
-          <div
-            className="bg-[#BAD405] text-[26px] leading-[26px] text-black uppercase px-10 py-4 rounded-[6px] cursor-pointer"
-            style={{
-              boxShadow: "4px 4px 4px 0px #00000040",
-            }}
-            onClick={() => setOpenLocker(true)}
-          >
-            Locker сонгох
-          </div>
+          {readyData?.result != "" && (
+            <div
+              className="bg-[#BAD405] text-[26px] leading-[26px] text-black uppercase px-10 py-4 rounded-[6px] cursor-pointer"
+              style={{
+                boxShadow: "4px 4px 4px 0px #00000040",
+              }}
+              onClick={() => setOpenLocker(true)}
+            >
+              Locker сонгох
+            </div>
+          )}
         </div>
       </div>
       <div className="col-span-4 ">
         <BlockDiv
           className={`flex flex-col items-start min-h-[447px] bg-[#202020]  px-[30px] py-[50px] rounded-[6px]`}
         >
-          <RenderAtom
-            item={{ value: `exp ${readyData?.result?.enddate}` }}
-            renderType="text"
-            customClassName={""}
-            customStyle={{
-              background: "linear-gradient(180deg, #ADFF00 0%, #0CB1AB 100%)",
-              WebkitTextFillColor: "transparent",
-              WebkitBackgroundClip: "text",
-            }}
-          />
-          <RenderAtom
-            item={{ value: readyData?.result?.itemname }}
-            renderType="title"
-            className={`font-[700] text-[28px] uppercase text-white`}
-          />
-          <BlockDiv className="flex flex-col items-start justify-center mt-[10px] min-h-auto">
-            {/* <p
-              className="text-[36px] font-medium"
-              style={{
-                background: "linear-gradient(180deg, #ADFF00 0%, #0CB1AB 100%)",
-                WebkitTextFillColor: "transparent",
-                WebkitBackgroundClip: "text",
-              }}
-            >
-              ₮1.485k<span className="text-[17px]">/90 өдөр</span>
-            </p> */}
-            {/* <RenderAtom
-              item={{ value: "₮1.485k ₮1.485k" }}
-              renderType="text"
-              customClassName={""}
-              customStyle={{
-                background: "linear-gradient(180deg, #ADFF00 0%, #0CB1AB 100%)",
-                WebkitTextFillColor: "transparent",
-                WebkitBackgroundClip: "text",
-              }}
-            /> */}
-          </BlockDiv>
-          {/* Includes */}
-          <BlockDiv className="flex flex-col gap-y-[4px] h-[70px] justify-end mt-[30px] align-text-top">
-            {_.map([""], (innerItem: any, index: number) => {
-              return (
-                <BlockDiv className="flex items-center" key={index}>
-                  <div className="">
-                    <i
-                      className={`fa-solid fa-check w-[18px] fa-xs  h-[18px] mr-[8px] p-[3px] flex items-center justify-center  rounded-full text-black bg-[#B3B3B3]
+          {readyData?.result != "" && (
+            <>
+              <RenderAtom
+                item={{ value: `exp ${readyData?.result?.enddate}` }}
+                renderType="text"
+                customClassName={""}
+                customStyle={{
+                  background:
+                    "linear-gradient(180deg, #ADFF00 0%, #0CB1AB 100%)",
+                  WebkitTextFillColor: "transparent",
+                  WebkitBackgroundClip: "text",
+                }}
+              />
+              <RenderAtom
+                item={{ value: readyData?.result?.itemname }}
+                renderType="title"
+                className={`font-[700] text-[28px] uppercase text-white`}
+              />
+              <BlockDiv className="flex flex-col items-start justify-center mt-[10px] min-h-auto"></BlockDiv>
+              {/* Includes */}
+              <BlockDiv className="flex flex-col gap-y-[4px] h-[70px] justify-end mt-[30px] align-text-top">
+                {_.map([""], (innerItem: any, index: number) => {
+                  return (
+                    <BlockDiv className="flex items-center" key={index}>
+                      <div className="">
+                        <i
+                          className={`fa-solid fa-check w-[18px] fa-xs  h-[18px] mr-[8px] p-[3px] flex items-center justify-center  rounded-full text-black bg-[#B3B3B3]
                   `}
-                      style={{
-                        display: "flex !important",
-                      }}
-                    />
-                  </div>
-                  <RenderAtom
-                    item={{ value: "ФИТНЕСС" }}
-                    renderType="text"
-                    className={`font-medium text-[12px] text-white`}
-                  />
-                </BlockDiv>
-              );
-            })}
-            <style>
-              {`
+                          style={{
+                            display: "flex !important",
+                          }}
+                        />
+                      </div>
+                      <RenderAtom
+                        item={{ value: "ФИТНЕСС" }}
+                        renderType="text"
+                        className={`font-medium text-[12px] text-white`}
+                      />
+                    </BlockDiv>
+                  );
+                })}
+                <style>
+                  {`
             .fa-check{
               display:flex !important
             }
             `}
-            </style>
-          </BlockDiv>
-          {/* includes done here */}
-          <RenderAtom
-            item={{
-              value: "Цагийн хязгааргүй фитнес болон бассейнээр үйлчлүүлнэ. ",
-            }}
-            renderType="text"
-            className={`font-medium text-[12px] mt-[36px] h-[70px] text-[#B3B3B3]`}
-          />
+                </style>
+              </BlockDiv>
+              {/* includes done here */}
+              <RenderAtom
+                item={{
+                  value:
+                    "Цагийн хязгааргүй фитнес болон бассейнээр үйлчлүүлнэ. ",
+                }}
+                renderType="text"
+                className={`font-medium text-[12px] mt-[36px] h-[70px] text-[#B3B3B3]`}
+              />
+            </>
+          )}
           <RenderAtom
             item={{
               value: "Сунгах",
             }}
             renderType="button"
-            className={`font-[400] text-[20px] text-black italic bg-[#BAD405] uppercase mt-[16px] rounded-[8px] w-max min-w-[180px]`}
+            className={`font-[400] text-[20px] text-center text-black italic bg-[#BAD405] uppercase mt-[16px] rounded-[8px] w-max min-w-[180px]`}
             onClick={(e: any) => (window.location.href = "/price")}
           />
 
