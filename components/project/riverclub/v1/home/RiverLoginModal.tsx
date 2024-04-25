@@ -2,6 +2,7 @@ import { FC, useEffect } from "react";
 import { Modal, notification } from "antd";
 import { useRouter } from "next/router";
 import Cookies from "js-cookie";
+import { sign } from "crypto";
 
 type PropsType = {
   openModal: any;
@@ -42,16 +43,16 @@ const RiverLoginModal: FC<PropsType> = ({
         notification.success({
           message: "Амжилттай нэвтэрлээ",
         });
-        router.push(`/userprofile/profile`);
         if (selectDateModal) {
           selectDateModal(true);
         }
         setOpenModal(false);
-        setSignIn(true);
+        if (setSignIn) {
+          setSignIn(true);
+        }
       } else {
         ws.send('{"action":"Close"}');
 
-        // ws.send('{"action":"Close"}');
         setNeedSignUp(true);
       }
     };
