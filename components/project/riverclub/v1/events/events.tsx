@@ -88,8 +88,8 @@ const Events = () => {
                   left ? "pl-5" : "pr-5"
                 } h-full flex flex-col items-start mt-4 text-[20px] font-medium min-w-[73px]`}
               >
-                <p>{moment(item?.startdate).format("MM-DD")}</p>
-                <p>{moment(item?.endate).format("MM-DD")}</p>
+                <p>{moment(item?.startdate).format("MM.DD")}</p>
+                <p>{moment(item?.endate).format("MM.DD")}</p>
               </div>
             </div>
           );
