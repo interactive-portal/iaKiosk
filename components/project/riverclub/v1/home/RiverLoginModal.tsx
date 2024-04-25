@@ -43,6 +43,7 @@ const RiverLoginModal: FC<PropsType> = ({
         notification.success({
           message: "Амжилттай нэвтэрлээ",
         });
+        router.push("/userprofile/profile");
         if (selectDateModal) {
           selectDateModal(true);
         }
@@ -67,7 +68,7 @@ const RiverLoginModal: FC<PropsType> = ({
       // ws.send('{"action":"Close"}');
       // setNeedSignUp(true);
       // setSignIn(true);
-      // setOpenModal(false);
+      setOpenModal(false);
       // setNeedSignUp(true);
       // }
     };
