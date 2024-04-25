@@ -58,7 +58,9 @@ const RiverLoginModal: FC<PropsType> = ({
     };
 
     ws.onerror = function (event) {
-      // alert(event.data);
+      ws.send('{"action":"Close"}');
+
+      alert(event);
     };
 
     ws.onclose = function () {
@@ -68,7 +70,6 @@ const RiverLoginModal: FC<PropsType> = ({
       // setSignIn(true);
       // setOpenModal(false);
 
-      console.log("Connection is closed");
       // setNeedSignUp(true);
 
       // }
