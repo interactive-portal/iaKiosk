@@ -63,6 +63,7 @@ const RiverClubV1BioInputForm = () => {
 
     if (res.data?.status == "success") {
       setDialog(true);
+      setOpenModal(false);
       notification.success({
         message: "Бүртгэл амжилттай хийгдлээ",
       });
