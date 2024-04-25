@@ -49,6 +49,8 @@ const PaymentModal: FC<PropsType> = ({
 
   const session: any = Cookies.getJSON("customer");
 
+  console.log("contract", contract);
+
   const checkPayment = () => {
     setModalContent("card");
     Payment(

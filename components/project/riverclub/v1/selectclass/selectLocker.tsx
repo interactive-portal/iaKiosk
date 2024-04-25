@@ -47,6 +47,7 @@ const SelectLocker: FC<PropsType> = ({ open, setOpen }) => {
         customerId: session?.customerId,
         cardId: selectedLocker?.lockerid,
       };
+      console.log(param);
       const result = await axios.post(`/api/post-process`, {
         processcode: "fitKioskLockerCheckIn_DV_001",
         parameters: param,

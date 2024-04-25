@@ -58,7 +58,6 @@ const DatePickerModal: FC<PropsType> = ({
       customerId: customer?.customerId,
       durationTypeId: item?.monthid,
       startDate: startDate,
-      // endDate: result,
       itemId: item?.id,
       price: item?.saleprice,
       amount: item?.saleprice,
