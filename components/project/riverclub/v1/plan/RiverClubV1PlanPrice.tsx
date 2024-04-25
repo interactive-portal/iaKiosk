@@ -17,6 +17,7 @@ import Payment from "../payment/payment";
 import PaymentModal from "./paymentModal";
 import DatePickerModal from "./datePickerModal";
 import { useEvent } from "react-use";
+import convertDate from "../bioinput/convertData";
 
 const RiverClubV1PlanPrice = () => {
   const { readyDatasrc } = useContext(WidgetWrapperContext);
@@ -202,6 +203,8 @@ const RiverClubV1PlanPrice = () => {
 
   console.log("contractId", contractId);
 
+  convertDate("НБ98070719");
+
   const modalContent = () => {
     switch (modal) {
       case "date":
@@ -260,7 +263,8 @@ const RiverClubV1PlanPrice = () => {
         onCancel={() => {
           setSelectDateModal(false), setModal("date");
         }}
-        destroyOnClose={true}
+        afterOpenChange={() => setModal("date")}
+        destroyOnClose
       >
         {modalContent()}
         <style>

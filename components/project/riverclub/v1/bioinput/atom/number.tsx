@@ -19,7 +19,9 @@ const Number: FC<PropsType> = ({ obj }) => {
         <span className="text-red-500">*</span>
       </label>
       <input
-        type="number"
+        type="text"
+        inputMode="numeric"
+        pattern="[0-9]*"
         autoComplete="off"
         placeholder={obj?.labelname}
         {...register(
