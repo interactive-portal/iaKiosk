@@ -10,12 +10,14 @@ type PropsType = {
   item?: any;
   setSelectDateModal?: any;
   setModal?: any;
+  contract?: any;
 };
 
 const PaymentModal: FC<PropsType> = ({
   item,
   setSelectDateModal,
   setModal,
+  contract,
 }) => {
   const [modalContent, setModalContent] = useState("pay");
   const [paymentResult, setPaymentResult] = useState<any>();
@@ -77,6 +79,7 @@ const PaymentModal: FC<PropsType> = ({
             total: Number(item?.saleprice),
             customerId: session?.customerId,
             vat: Number(item?.vat),
+            contractId: contract,
             fitKioskSalesDtlNew_DV: {
               productId: item?.id,
               sectionId: item?.sectionid,
@@ -105,6 +108,7 @@ const PaymentModal: FC<PropsType> = ({
             total: Number(item?.saleprice),
             customerId: session?.customerId,
             vat: Number(item?.vat),
+            contractId: contract,
             fitKioskSalesDtlNew_DV: {
               productId: item?.id,
               sectionId: item?.sectionid,
