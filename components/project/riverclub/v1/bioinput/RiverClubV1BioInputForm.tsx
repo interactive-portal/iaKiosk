@@ -30,6 +30,7 @@ const RiverClubV1BioInputForm = () => {
 
   const [imageToken, setImageToken] = useState<any>();
   const [value, setValue] = useState<any>();
+  const [birthday, setBirthday] = useState("");
 
   const [openModal, setOpenModal] = useState(false);
   const [dialog, setDialog] = useState(false);
@@ -41,16 +42,26 @@ const RiverClubV1BioInputForm = () => {
       cityId: "11",
     },
   });
+
   const router = useRouter();
 
   const onSubmit = async (data: any) => {
+    console.log("birthday", birthday);
+
     clickCamera();
     setProcessParam(data);
   };
 
   const saved = async (e: any) => {
     e.preventDefault();
-    const param = { ...processParam, image: imageToken, value: value };
+    const param = {
+      ...processParam,
+      image: imageToken,
+      value: value,
+      dateOfBirth: birthday,
+    };
+
+    console.log(param);
     const res = await axios.post(`/api/post-process`, {
       processcode: "fitCrmCustomerKiosk_DV_001",
       parameters: param,
@@ -63,6 +74,8 @@ const RiverClubV1BioInputForm = () => {
       notification.success({
         message: "Бүртгэл амжилттай хийгдлээ",
       });
+    } else {
+      alert(res?.data?.text);
     }
   };
 
@@ -98,6 +111,17 @@ const RiverClubV1BioInputForm = () => {
     };
   };
 
+  useEffect(() => {
+    let birthdays: any;
+    console.log(methods.watch()?.positionName);
+
+    if (methods.watch()?.positionName?.length == 10) {
+      birthdays = convertDate(methods.watch()?.positionName);
+      setBirthday(birthdays?.date);
+      console.log(birthdays);
+    }
+  }, [methods.watch()]);
+
   return (
     <BlockDiv className="bg-[#CACACA] px-[123px]  py-2">
       <div className="flex items-start py-10 gap-x-12">
@@ -132,11 +156,11 @@ const RiverClubV1BioInputForm = () => {
                   ],
                 };
               }
+
               const value = methods.watch();
-              let birthday: any;
+              let birthdays: any;
               if (value?.positionName?.length == 10) {
-                birthday = convertDate(value?.positionName);
-                console.log(birthday);
+                birthdays = convertDate(value?.positionName);
               }
               switch (obj?.type) {
                 case "text":
@@ -156,8 +180,10 @@ const RiverClubV1BioInputForm = () => {
                       <input
                         disabled={true}
                         className="mt-[8px] px-[14px] py-[17px] text-[16px] rounded-lg focus-visible:outline-none focus-visible:border-none"
-                        value={birthday?.date}
-                        name={obj?.pathname}
+                        onChange={(e) => {
+                          setBirthday(e.target.value);
+                        }}
+                        value={birthdays?.date}
                       />
                     </div>
                   );

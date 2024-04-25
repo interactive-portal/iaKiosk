@@ -7,14 +7,10 @@ const convertDate = (value: any) => {
   var ages = 0;
   var odd = 0;
   var gender = "";
-  if (value.length === 10) {
+  if (value?.length === 10) {
     x = value.substring(2, 4);
     y = value.substring(4, 6);
     z = value.substring(6, 8);
-    console.log(value.substring(2, 4), "x");
-    console.log(y, "y");
-
-    console.log(z, "z");
 
     if (y > 12) {
       x = 2000 + Number(x);
