@@ -60,7 +60,9 @@ const RiverLoginConfirm: FC<PropsType> = ({
 
     ws.onclose = function () {
       console.log("Connection is closed");
-      setOpenModal(false);
+      if (!needSignUp) {
+        setOpenModal(false);
+      }
     };
   };
 
