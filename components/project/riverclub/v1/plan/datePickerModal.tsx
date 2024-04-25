@@ -69,6 +69,7 @@ const DatePickerModal: FC<PropsType> = ({
     });
 
     if (res?.data?.status == "success") {
+      console.log("0createcontract", res);
       setTemplateId(res?.data?.result?.templateId);
       setContractId(res?.data?.result?.id);
       setModal("template");

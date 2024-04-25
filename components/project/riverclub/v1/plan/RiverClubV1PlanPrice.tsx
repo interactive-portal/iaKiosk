@@ -76,7 +76,7 @@ const RiverClubV1PlanPrice = () => {
 
   // багцыг select хийх эсвэл login хийх
   const selectItem = async (e: any, item: any) => {
-    setOpenLogin(true);
+    // setOpenLogin(true);
     if (signIn) {
       setSignIn(false);
       setSelectDateModal(true);
@@ -200,6 +200,8 @@ const RiverClubV1PlanPrice = () => {
     </div>
   );
 
+  console.log("contractId", contractId);
+
   const modalContent = () => {
     switch (modal) {
       case "date":
@@ -223,6 +225,7 @@ const RiverClubV1PlanPrice = () => {
             item={selectedItem}
             setSelectDateModal={setSelectDateModal}
             setModal={setModal}
+            contract={contractId}
           />
         );
     }
