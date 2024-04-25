@@ -82,7 +82,6 @@ const RiverClubV1BioInputForm = () => {
 
     ws.onmessage = function (event) {
       var res = JSON.parse(event.data);
-      setOpenModal(false);
 
       if (res?.result.image != null) {
         setImageToken(res?.result.image);
