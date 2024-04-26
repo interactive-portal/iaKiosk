@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import RenderAtom from "@/components/common/Atom/RenderAtom";
 import BlockDiv from "@/components/common/Block/BlockDiv";
 import WidgetWrapperContext from "@/components/common/engineBox/Wrapper/WidgetUniversalWrapper";
@@ -30,19 +30,6 @@ const RiverClubV1SelectClass = () => {
   );
 
   const router = useRouter();
-
-  console.log(router.asPath);
-
-  if (router?.asPath == "/userprofile/profile/") {
-    setIdleTimeout(
-      10000,
-      function () {
-        router.push("/home");
-      },
-      function () {}
-    );
-  }
-
   function setIdleTimeout(millis: any, onIdle: any, onUnidle: any) {
     var timeout: any = 0;
     startTimer();
@@ -68,6 +55,18 @@ const RiverClubV1SelectClass = () => {
       setTimeout(startTimer, 1000);
     }
   }
+
+  useEffect(() => {
+    if (router?.asPath == "/userprofile/profile/") {
+      setIdleTimeout(
+        10000,
+        function () {
+          router.push("/home");
+        },
+        function () {}
+      );
+    }
+  });
 
   return (
     <div className="grid grid-cols-12 w-full p-[25px] gap-x-6">

@@ -67,7 +67,7 @@ const RiverClubV1PlanPrice = () => {
   const [openLogin, setOpenLogin] = useState(false);
   const [selectedItem, setSelectItem] = useState<any>();
   const [templateId, setTemplateId] = useState<any>();
-  const [contractId, setContractId] = useState<any>();
+  const [contractId, setContractId] = useState<any>("");
   const [needSignUp, setNeedSignUp] = useState(false);
   const [signIn, setSignIn] = useState(false);
 
@@ -200,10 +200,6 @@ const RiverClubV1PlanPrice = () => {
       </div>
     </div>
   );
-
-  console.log("contractId", contractId);
-
-  convertDate("НБ98070719");
 
   const modalContent = () => {
     switch (modal) {
