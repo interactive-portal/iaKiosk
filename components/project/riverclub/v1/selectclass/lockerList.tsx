@@ -1,18 +1,21 @@
 import _ from "lodash";
 import useSWR from "swr";
-import { FC } from "react";
+import { FC, useEffect } from "react";
+import Cookies from "js-cookie";
+import fetchJson from "@/util/helper";
 
 type PropsType = {
   selected?: any;
   setSelected?: any;
+  gender?: any;
 };
 
-const LockerList: FC<PropsType> = ({ selected, setSelected }) => {
+const LockerList: FC<PropsType> = ({ selected, setSelected, gender }) => {
   const criteria = JSON.stringify({
     lockerType: [
       {
-        operator: "=",
-        operand: "Фитнес - Эрэгтэй",
+        operator: "like",
+        operand: `%${gender}%`,
       },
     ],
   });
@@ -42,9 +45,6 @@ const LockerList: FC<PropsType> = ({ selected, setSelected }) => {
     })
   );
 
-  console.log("firstHalf", firstHalf);
-  console.log("secondHalf", secondHalf);
-
   return (
     <div className="flex flex-col gap-y-10 items-center max-w-full gap-x-2 ">
       <div className="flex items-center max-w-full gap-x-4 overflow-x-scroll scroll pb-2">
@@ -59,14 +59,22 @@ const LockerList: FC<PropsType> = ({ selected, setSelected }) => {
                   selected == item
                     ? {
                         background:
-                          "linear-gradient(180deg, #ADFF00 0%, #0CB1AB 100%)",
+                          item?.isgx == 1
+                            ? "linear-gradient(180deg, #AE4A00 25.42%, #DB00FF 116.62%)"
+                            : "linear-gradient(180deg, #ADFF00 0%, #0CB1AB 100%)",
                         WebkitTextFillColor: "transparent",
                         WebkitBackgroundClip: "text",
                       }
                     : {}
                 }
                 key={ind}
-                onClick={() => setSelected(item)}
+                onClick={() => {
+                  if (selected == item) {
+                    setSelected(null);
+                  } else {
+                    setSelected(item);
+                  }
+                }}
               >
                 {item?.lockernumber}
               </div>
@@ -86,14 +94,22 @@ const LockerList: FC<PropsType> = ({ selected, setSelected }) => {
                   selected == item
                     ? {
                         background:
-                          "linear-gradient(180deg, #ADFF00 0%, #0CB1AB 100%)",
+                          item?.isgx == 1
+                            ? "linear-gradient(180deg, #AE4A00 25.42%, #DB00FF 116.62%)"
+                            : "linear-gradient(180deg, #ADFF00 0%, #0CB1AB 100%)",
                         WebkitTextFillColor: "transparent",
                         WebkitBackgroundClip: "text",
                       }
                     : {}
                 }
                 key={ind}
-                onClick={() => setSelected(item)}
+                onClick={() => {
+                  if (selected == item) {
+                    setSelected(null);
+                  } else {
+                    setSelected(item);
+                  }
+                }}
               >
                 {item?.lockernumber}
               </div>
@@ -101,6 +117,7 @@ const LockerList: FC<PropsType> = ({ selected, setSelected }) => {
           }
         })}
       </div>
+
       <style>
         {`
 			.scroll::-webkit-scrollbar {

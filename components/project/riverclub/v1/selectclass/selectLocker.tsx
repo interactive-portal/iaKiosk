@@ -1,10 +1,11 @@
 import { Modal, notification } from "antd";
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import LockerList from "./lockerList";
 import Cookies from "js-cookie";
 import axios from "axios";
 import ReportTemplate from "@/middleware/ReportTemplate/ReportTemplate";
 import { Spin } from "antd";
+import fetchJson from "@/util/helper";
 
 type PropsType = {
   open?: any;
@@ -16,7 +17,25 @@ const SelectLocker: FC<PropsType> = ({ open, setOpen }) => {
   const [selectedLocker, setSelectedLocker] = useState<any>();
   const [contractId, setContractId] = useState("");
   const [loading, setLoading] = useState(false);
+  const [gender, setGender] = useState("");
   const session = Cookies.getJSON("customer");
+
+  const param = JSON.stringify({
+    filterCustomerId: session?.customerId,
+  });
+
+  useEffect(() => {
+    if (session) getMale();
+  }, [session]);
+
+  const getMale = async () => {
+    const result = await fetchJson(
+      `/api/get-process?command=fitKioskFindGenderGet_004&parameters=${param}`
+    );
+    setGender(result?.result?.gender);
+  };
+
+  console.log(gender);
 
   const printOptions = {
     lang: {
@@ -47,7 +66,6 @@ const SelectLocker: FC<PropsType> = ({ open, setOpen }) => {
         customerId: session?.customerId,
         cardId: selectedLocker?.lockerid,
       };
-      console.log(param);
       const result = await axios.post(`/api/post-process`, {
         processcode: "fitKioskLockerCheckIn_DV_001",
         parameters: param,
@@ -137,7 +155,41 @@ const SelectLocker: FC<PropsType> = ({ open, setOpen }) => {
             <LockerList
               selected={selectedLocker}
               setSelected={setSelectedLocker}
+              gender={gender}
             />
+          </div>
+        )}
+        {gender == "Эмэгтэй" && (
+          <div className="mt-2 px-10">
+            <p>Түлхүүрийн тайлбар</p>
+            <div className="flex items-center gap-x-4 mt-2">
+              <div className="p-3 border border-[#BBD540] rounded-[11px] text-[28px] font-bold bg-[#424242]">
+                <div
+                  className=""
+                  style={{
+                    background:
+                      "linear-gradient(180deg, #ADFF00 0%, #0CB1AB 100%)",
+                    WebkitTextFillColor: "transparent",
+                    WebkitBackgroundClip: "text",
+                  }}
+                >
+                  GX
+                </div>
+              </div>
+              <div className="p-3 border border-[#BBD540] rounded-[11px] text-[28px] font-bold bg-[#424242]">
+                <div
+                  className=""
+                  style={{
+                    background:
+                      "linear-gradient(180deg, #AE4A00 25.42%, #DB00FF 116.62%)",
+                    WebkitTextFillColor: "transparent",
+                    WebkitBackgroundClip: "text",
+                  }}
+                >
+                  FITNESS
+                </div>
+              </div>
+            </div>
           </div>
         )}
         <div className="mx-10 flex items-center justify-between text-[20px] gap-x-4">

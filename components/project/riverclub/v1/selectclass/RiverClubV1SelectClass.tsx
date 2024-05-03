@@ -30,6 +30,7 @@ const RiverClubV1SelectClass = () => {
   );
 
   const router = useRouter();
+
   function setIdleTimeout(millis: any, onIdle: any, onUnidle: any) {
     var timeout: any = 0;
     startTimer();
@@ -51,15 +52,14 @@ const RiverClubV1SelectClass = () => {
       //since the mouse is moving, we turn off our event hooks for 1 second
       window.removeEventListener("mousemove", onActivity);
       window.removeEventListener("keypress", onActivity);
-      console.log("adaadsa");
       setTimeout(startTimer, 1000);
     }
   }
 
   useEffect(() => {
-    if (router?.asPath == "/userprofile/profile/") {
+    if (window.location.pathname == "/userprofile/profile/") {
       setIdleTimeout(
-        10000,
+        15000,
         function () {
           router.push("/home");
         },

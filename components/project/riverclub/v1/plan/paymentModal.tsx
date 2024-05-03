@@ -192,6 +192,21 @@ const PaymentModal: FC<PropsType> = ({
   };
 
   // console.log(loading);
+  const deleteContract = async () => {
+    const res = await axios.post(`/api/post-process`, {
+      processcode: "fitKioskDeleteContract_DV_005",
+      parameters: {
+        id: contract,
+      },
+    });
+    if (res?.data?.status == "success") {
+      notification.success({
+        message: "Амжилттай цуцлагдлаа",
+      });
+    } else {
+      alert(res?.data?.error);
+    }
+  };
 
   const content = () => {
     switch (modalContent) {
@@ -366,6 +381,7 @@ const PaymentModal: FC<PropsType> = ({
                   }}
                   onClick={() => {
                     setSelectDateModal(false);
+                    deleteContract();
                     if (setModal) {
                       setModal("date");
                     }
