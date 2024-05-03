@@ -92,24 +92,24 @@ const RiverHomeBanner = ({
 
   return (
     <BlockDiv className="h-[570px] flex items-center justify-center relative bg-gray-200">
-      {/* <RenderAtom
+      <RenderAtom
         item={
           item?.imgurl ||
           "storage/uploads/metavalue/photo_original/photo_15843279694444230.jpg"
         }
         renderType="image"
         customClassName={"w-[1080px] h-full absolute top-0 left-0"}
-      /> */}
+      />
       {/* <RenderAtom
         item={{ value: `${item?.imgurl}` }}
         renderType="image"
         customClassName={"w-[1080px] h-full absolute top-0 left-0"}
       /> */}
-      <img
+      {/* <img
         src={`/images/homebanner.jpg`}
         alt=""
         className="w-[1080px] h-full absolute top-0 left-0"
-      />
+      /> */}
       <BlockDiv className="z-20 w-full flex items-center justify-center flex-col h-max px-[216px]">
         <RenderAtom
           item={item?.title}
