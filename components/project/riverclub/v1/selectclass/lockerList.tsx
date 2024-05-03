@@ -45,6 +45,7 @@ const LockerList: FC<PropsType> = ({ selected, setSelected, gender }) => {
     })
   );
 
+  console.log(selected);
   return (
     <div className="flex flex-col gap-y-10 items-center max-w-full gap-x-2 ">
       <div className="flex items-center max-w-full gap-x-4 overflow-x-scroll scroll pb-2">
@@ -59,7 +60,7 @@ const LockerList: FC<PropsType> = ({ selected, setSelected, gender }) => {
                   selected == item
                     ? {
                         background:
-                          item?.isgx == 1
+                          item?.isgx == 0
                             ? "linear-gradient(180deg, #AE4A00 25.42%, #DB00FF 116.62%)"
                             : "linear-gradient(180deg, #ADFF00 0%, #0CB1AB 100%)",
                         WebkitTextFillColor: "transparent",
@@ -94,7 +95,7 @@ const LockerList: FC<PropsType> = ({ selected, setSelected, gender }) => {
                   selected == item
                     ? {
                         background:
-                          item?.isgx == 1
+                          item?.isgx == 0
                             ? "linear-gradient(180deg, #AE4A00 25.42%, #DB00FF 116.62%)"
                             : "linear-gradient(180deg, #ADFF00 0%, #0CB1AB 100%)",
                         WebkitTextFillColor: "transparent",
