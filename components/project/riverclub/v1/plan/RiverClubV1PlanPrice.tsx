@@ -18,6 +18,11 @@ import PaymentModal from "./paymentModal";
 import DatePickerModal from "./datePickerModal";
 import { useEvent } from "react-use";
 import convertDate from "../bioinput/convertData";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
 
 const RiverClubV1PlanPrice = () => {
   const { readyDatasrc } = useContext(WidgetWrapperContext);
@@ -201,6 +206,24 @@ const RiverClubV1PlanPrice = () => {
     </div>
   );
 
+  const deleteContract = async () => {
+    if (contractId) {
+      const res = await axios.post(`/api/post-process`, {
+        processcode: "fitKioskDeleteContract_DV_005",
+        parameters: {
+          id: contractId,
+        },
+      });
+      if (res?.data?.status == "success") {
+        notification.success({
+          message: "Амжилттай цуцлагдлаа",
+        });
+      } else {
+        alert(res?.data?.error);
+      }
+    }
+  };
+
   const modalContent = () => {
     switch (modal) {
       case "date":
@@ -230,6 +253,8 @@ const RiverClubV1PlanPrice = () => {
     }
   };
 
+  console.log(bottomData);
+
   // Үндсэн content хэсэг
   return (
     <BlockDiv className="mx-[20px] flex flex-col mb-[30px]">
@@ -257,7 +282,9 @@ const RiverClubV1PlanPrice = () => {
         open={selectDateModal}
         footer={false}
         onCancel={() => {
-          setSelectDateModal(false), setModal("date");
+          {
+            setSelectDateModal(false), setModal("date"), deleteContract();
+          }
         }}
         afterOpenChange={() => setModal("date")}
         destroyOnClose
@@ -291,20 +318,29 @@ const RiverClubV1PlanPrice = () => {
 
 const UpperSection = ({ item, dark, setactiveIndex, selectItem }: any) => {
   return (
-    <BlockDiv className="w-full flex flex-col items-center justify-center mb-[28px]">
-      <BlockDiv className=" grid grid-cols-3 items-center gap-x-[60px]  ">
+    <BlockDiv className="w-full mb-[28px]">
+      <Swiper
+        slidesPerView={3}
+        spaceBetween={60}
+        modules={[Navigation, Pagination]}
+      >
+        {/* <BlockDiv className=" grid grid-cols-3 items-center gap-x-[60px]  "> */}
         {_.values(item)?.map((obj: any, index: number) => {
+          console.log(item);
           return (
-            <Card
-              item={obj}
-              dark={dark}
-              key={index}
-              setactiveIndex={setactiveIndex}
-              selectItem={selectItem}
-            />
+            <SwiperSlide key={index}>
+              <Card
+                item={obj}
+                dark={dark}
+                key={index}
+                setactiveIndex={setactiveIndex}
+                selectItem={selectItem}
+              />
+            </SwiperSlide>
           );
         })}
-      </BlockDiv>
+      </Swiper>
+      {/* </BlockDiv> */}
     </BlockDiv>
   );
 };
@@ -391,7 +427,7 @@ const Card = ({
       {/* includes done here */}
       <RenderAtom
         item={{
-          value: "Цагийн хязгааргүй фитнес болон бассейнээр үйлчлүүлнэ. ",
+          value: "Цагийн хязгааргүй фитнес болон бассейнээр үйлчлүүлнэ.",
         }}
         renderType="text"
         className={`font-medium text-[12px] mt-[36px] h-[70px] ${
@@ -467,21 +503,28 @@ const CardItem = ({ readyData, dark, kFormatter, setactiveIndex }: any) => {
 const BottomSection = ({ item, dark, setactiveIndex, selectItem }: any) => {
   return (
     <BlockDiv className="">
-      <BlockDiv className="grid grid-cols-3 gap-x-[60px] items-center">
-        {_.values(item)
-          .slice(0, 3)
-          .map((item: any, index: number) => {
-            return (
+      <Swiper
+        slidesPerView={3}
+        spaceBetween={60}
+        modules={[Pagination]}
+        pagination={true}
+      >
+        {/* <BlockDiv className=" grid grid-cols-3 items-center gap-x-[60px]  "> */}
+        {_.values(item)?.map((obj: any, index: number) => {
+          return (
+            <SwiperSlide key={index}>
               <Card
-                item={item}
-                key={index}
+                item={obj}
                 dark={dark}
+                key={index}
                 setactiveIndex={setactiveIndex}
                 selectItem={selectItem}
               />
-            );
-          })}
-      </BlockDiv>
+            </SwiperSlide>
+          );
+        })}
+      </Swiper>
+      {/* </BlockDiv> */}
     </BlockDiv>
   );
 };
