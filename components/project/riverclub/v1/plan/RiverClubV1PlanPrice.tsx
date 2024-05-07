@@ -253,8 +253,6 @@ const RiverClubV1PlanPrice = () => {
     }
   };
 
-  console.log(bottomData);
-
   // Үндсэн content хэсэг
   return (
     <BlockDiv className="mx-[20px] flex flex-col mb-[30px]">

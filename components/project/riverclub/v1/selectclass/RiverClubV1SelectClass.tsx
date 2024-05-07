@@ -56,17 +56,17 @@ const RiverClubV1SelectClass = () => {
     }
   }
 
-  useEffect(() => {
-    if (window.location.pathname == "/userprofile/profile/") {
-      setIdleTimeout(
-        15000,
-        function () {
-          router.push("/home");
-        },
-        function () {}
-      );
-    }
-  });
+  setIdleTimeout(
+    10000,
+    function () {
+      if (window.location.pathname == "/userprofile/profile/") {
+        router.push("/home");
+      } else {
+        console.log("10sec bolloo");
+      }
+    },
+    function () {}
+  );
 
   return (
     <div className="grid grid-cols-12 w-full p-[25px] gap-x-6">
