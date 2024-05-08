@@ -23,7 +23,11 @@ const RiverClubV1HomeAbout = () => {
   }, [currentLanguage]);
   const { readyDatasrc } = useContext(WidgetWrapperContext);
   const data = language === "mn" ? readyDatasrc[1] : readyDatasrc[0];
-  const staticItem = data[0];
+  const staticItem = data?.[0];
+
+  const readyData = readyDatasrc?.filter((item: any) => {
+    return item?.booktypeid == "1000900803";
+  });
 
   return (
     <BlockDiv className="py-10">
@@ -47,16 +51,16 @@ const RiverClubV1HomeAbout = () => {
           },
         }}
       >
-        {_.map(staticItem?.item, (item: any, index: number) => {
+        {_.map(readyData, (item: any, index: number) => {
           return (
             <BlockDiv
               className="flex flex-col items-center justify-center gap-y-6 bg-[#CACACA]"
               key={index}
             >
               <RenderAtom
-                item={item?.mainimage}
+                item={item?.imgurl}
                 renderType="image"
-                className={`w-full h-full`}
+                className={`w-full h-full max-h-[360px]`}
               />
               <BlockDiv className="px-[105px] mt-[26px] flex flex-col items-start justify-center ">
                 <RenderAtom
@@ -65,7 +69,7 @@ const RiverClubV1HomeAbout = () => {
                   className={`font-bold text-[20px] text-black mb-[18px] uppercase`}
                 />
                 <RenderAtom
-                  item={t(item?.description)}
+                  item={t(item?.body)}
                   renderType="title"
                   className={`font-normal text-[16px] mb-[22px] text-start`}
                 />

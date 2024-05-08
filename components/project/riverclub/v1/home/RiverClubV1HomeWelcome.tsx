@@ -41,7 +41,7 @@ const RiverClubV1HomeWelcome = () => {
     return;
   }
 
-  console.log(dataSrc);
+  console.log(readyDatasrc);
 
   return (
     <BlockDiv className="arrowCustomStyle">

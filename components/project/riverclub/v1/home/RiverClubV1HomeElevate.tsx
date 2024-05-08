@@ -14,9 +14,13 @@ const RiverClubV1HomeElevate = () => {
   const { readyDatasrc, widgetnemgooReady } = useContext(WidgetWrapperContext);
   const { options } = widgetnemgooReady;
 
+  const readyData = readyDatasrc?.filter((item: any) => {
+    return item?.booktypeid == "1000900801";
+  });
+
   return (
     <BlockDiv className="flex flex-col gap-y-[40px] mx-[105px] my-[40px]">
-      {readyDatasrc?.map((item: any, index: number) => {
+      {readyData?.map((item: any, index: number) => {
         let number = 0;
         if (options?.contentOrigin == "left") {
           number = 1;
@@ -40,9 +44,9 @@ const UpperSection = ({ item }: any) => {
   return (
     <BlockDiv className="flex gap-x-[50px]">
       <RenderAtom
-        item={item?.mainimage}
+        item={item?.imgurl}
         renderType="image"
-        className={`w-[397px] h-[398px]`}
+        className={`min-w-[397px] h-[398px]`}
       />
       <BlockDiv className="flex flex-col gap-y-[30px] mt-[20px]">
         <RenderAtom
@@ -56,16 +60,16 @@ const UpperSection = ({ item }: any) => {
           className={`font-[400] text-[16px]`}
         />
         <RenderAtom
-          item={t(item?.description)}
+          item={t(item?.body)}
           renderType="text"
           className={`font-[400] text-[16px] text-justify`}
         />
         <RenderAtom
           item={{
-            value: t(item?.button?.title),
+            value: t("хичээлүүд харах"),
             positionnemgoo: {
               url: {
-                path: `${item?.button?.link}`,
+                path: `/selectplan`,
               },
             },
           }}
@@ -96,16 +100,16 @@ const BottomSection = ({ item }: any) => {
           className={`font-[400] text-[16px] `}
         />
         <RenderAtom
-          item={t(item?.description)}
+          item={t(item?.body)}
           renderType="text"
           className={`font-[400] text-[16px] text-justify`}
         />
         <RenderAtom
           item={{
-            value: t(item?.button?.title),
+            value: t("үнэ харах"),
             positionnemgoo: {
               url: {
-                path: `${item?.button?.link}`,
+                path: `/price`,
               },
             },
           }}
@@ -114,9 +118,9 @@ const BottomSection = ({ item }: any) => {
         />
       </BlockDiv>
       <RenderAtom
-        item={item?.mainimage}
+        item={item?.imgurl}
         renderType="image"
-        className={`w-[397px] h-[398px]`}
+        className={`min-w-[397px] max-w-[397px] h-[398px]`}
       />
     </BlockDiv>
   );

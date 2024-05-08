@@ -324,7 +324,6 @@ const UpperSection = ({ item, dark, setactiveIndex, selectItem }: any) => {
       >
         {/* <BlockDiv className=" grid grid-cols-3 items-center gap-x-[60px]  "> */}
         {_.values(item)?.map((obj: any, index: number) => {
-          console.log(item);
           return (
             <SwiperSlide key={index}>
               <Card
