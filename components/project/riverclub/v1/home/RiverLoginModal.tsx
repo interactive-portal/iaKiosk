@@ -68,7 +68,7 @@ const RiverLoginModal: FC<PropsType> = ({
       // ws.send('{"action":"Close"}');
       // setNeedSignUp(true);
       // setSignIn(true);
-      setOpenModal(false);
+      // setOpenModal(false);
       // setNeedSignUp(true);
       // }
     };
@@ -177,7 +177,9 @@ const RiverLoginModal: FC<PropsType> = ({
       <Modal
         open={openModal}
         width={1080}
-        onCancel={() => setOpenModal(false)}
+        onCancel={() => {
+          setOpenModal(false), setNeedSignUp(false);
+        }}
         footer={false}
         destroyOnClose
       >
