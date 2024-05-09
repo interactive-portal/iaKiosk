@@ -69,7 +69,7 @@ const RiverLoginModal: FC<PropsType> = ({
       // setNeedSignUp(true);
       // setSignIn(true);
       // setOpenModal(false);
-      if (!setNeedSignUp) {
+      if (!needSignUp) {
         setOpenModal(false);
       }
       // setNeedSignUp(true);
