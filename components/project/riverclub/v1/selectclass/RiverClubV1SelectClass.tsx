@@ -22,7 +22,7 @@ const RiverClubV1SelectClass = () => {
   const session: any = Cookies.getJSON("customer");
 
   const param = JSON.stringify({
-    customerId: session?.customerId || "17122024822283",
+    customerId: session?.customerId,
   });
 
   let { data: readyData } = useSWR(

@@ -61,7 +61,7 @@ const RiverLoginModal: FC<PropsType> = ({
     ws.onerror = function (event) {
       ws.send('{"action":"Close"}');
 
-      alert(event);
+      // alert(event);
     };
 
     ws.onclose = function () {

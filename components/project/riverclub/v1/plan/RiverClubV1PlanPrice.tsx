@@ -27,7 +27,7 @@ import "swiper/css/pagination";
 const RiverClubV1PlanPrice = () => {
   const { readyDatasrc } = useContext(WidgetWrapperContext);
 
-  // Cookies.set("customer", { customerId: "17097020804073" });
+  // Cookies.set("customer", { customerId: "1522748739210" });
 
   const { callProcess, isProcessWorking } = useCallProcess();
   const [selectDateModal, setSelectDateModal] = useState(false);
@@ -186,7 +186,7 @@ const RiverClubV1PlanPrice = () => {
           <div
             className="w-full bg-[#272A32] text-[#C4C4C4] text-[20px] text-center uppercase rounded font-medium py-2"
             onClick={() => {
-              setSelectDateModal(false), setModal("date");
+              setSelectDateModal(false), setModal("date"), deleteContract();
             }}
           >
             Болих
