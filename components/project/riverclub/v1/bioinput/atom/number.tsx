@@ -36,10 +36,6 @@ const Number: FC<PropsType> = ({ obj }) => {
         className={`mt-[8px] px-[14px] border border-black py-[17px] text-[16px] rounded-lg focus-visible:outline-none ${
           errorMessage && "ring-1 ring-red-500"
         }`}
-        // style={{
-        //   boxShadow:
-        //     "0px 1px 1px 0px rgba(0, 0, 0, 0.12), 0px 0px 0px 1px rgba(0, 0, 0, 0.64), 0px 2px 5px 0px rgba(103, 110, 118, 0.08)",
-        // }}
       />
       {errorMessage && (
         <p className="text-red-500 text-[14px]">{errorMessage || ""}</p>
