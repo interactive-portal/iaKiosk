@@ -14,7 +14,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
   };
 
   const drestApiAddress =
-    "http://192.168.89.21:8383/erp-services/RestWS/runGetFile?pJsonString=" +
+    "http://192.168.89.21:8016/erp-services/RestWS/runGetFile?pJsonString=" +
     JSON.stringify(pJsonString);
 
   let { data } = await axios.get<Readable>(drestApiAddress, {

@@ -46,7 +46,7 @@ const UpperSection = ({ item }: any) => {
       <RenderAtom
         item={item?.imgurl}
         renderType="image"
-        className={`min-w-[397px] h-[398px]`}
+        className={`min-w-[397px] h-[398px] max-w-[397px]`}
       />
       <BlockDiv className="flex flex-col gap-y-[30px] mt-[20px]">
         <RenderAtom

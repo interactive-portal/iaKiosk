@@ -57,7 +57,6 @@ export default function AtomImageV2({
       setImgSrc(data.url);
       // console.log(data.url);
     } else {
-      console.log(data);
     }
   };
 
@@ -66,7 +65,7 @@ export default function AtomImageV2({
   }, [videoSrc]);
 
   const imageRootUrl =
-    process.env.NEXT_PUBLIC_IMAGE_URL || "http://riverclub.veritech.mn:85/";
+    process.env.NEXT_PUBLIC_IMAGE_URL || "http://riverclub.veritech.mn/";
 
   // const imageRootUrl =
   //   process.env?.[`NEXT_PUBLIC_METAHOST_${metaNameV2}_IMAGEROOTURL`] || "";

@@ -279,7 +279,7 @@ const PaymentModal: FC<PropsType> = ({
                 <ReportTemplate
                   options={printOptions}
                   data={{
-                    contractId: contractId || "17022810340782",
+                    contractId: contractId,
                     // contractId:
                     //   "170174683396510" ||
                     //   "17022810222312" ||
