@@ -15,6 +15,9 @@ import "public/icon/css/all.css";
 import "styles/globals.css";
 import ErrorBoundary from "@/components/layout/ErrorBoundary";
 import { appWithTranslation } from "next-i18next";
+import { Router } from "next/router";
+import { useEffect, useState } from "react";
+import Loading from "./kiosk/loading";
 
 function App({ Component, pageProps }: AppProps) {
   return (
