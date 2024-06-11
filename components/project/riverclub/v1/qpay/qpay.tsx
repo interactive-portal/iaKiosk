@@ -21,7 +21,7 @@ export default function Qpay({
   close?: any;
   status?: any;
   content?: any;
-  setPay: any;
+  setPay?: any;
   paymentProcess?: any;
   setModalContent?: any;
 }) {
@@ -60,13 +60,13 @@ export default function Qpay({
       amount: Number(item?.saleprice),
       callback_url: "http://localhost:4000/",
     };
-    // console.log("params qpay", params);
+    console.log("params qpay", params);
     const { data } = await axios.post(`/api/post-process`, {
       processcode: "QPAY_V2_CREATEINVOICE_SIMPLE",
       parameters: params,
     });
 
-    // console.log("data :>> ", data);
+    console.log("data :>> ", data);
     if (data.status == "success") {
       setDatasrc(data.result);
       qpayMutate();
@@ -101,7 +101,9 @@ export default function Qpay({
   useEffect(() => {
     if (statusPayment) {
       setStatusPayment(statusPayment);
-      setPay(statusPayment);
+      if (setPay) {
+        setPay(statusPayment);
+      }
     }
   }, [statusPayment]);
 
@@ -211,6 +213,13 @@ export default function Qpay({
         <div className="flex justify-center py-4 text-lg border-t  border-gray-300 text-white">
           QR код уншуулна уу
         </div>
+        <style>
+          {`
+          .ant-statistic-content-value {
+          color:white !important;
+          }
+          `}
+        </style>
       </>
     );
   };

@@ -16,14 +16,11 @@ import { useRouter } from "next/router";
 import { useTranslation } from "react-i18next";
 import convertDate from "@/components/project/riverclub/v1/bioinput/convertData";
 import Layout from "../kioskLayout";
+import OpenCamera from "./openCamera";
 
 const Form = () => {
-  const { config, headerData, positionConfig, metaConfig } =
-    useContext(WidgetWrapperContext);
   const { t } = useTranslation("translate");
   const [processParam, setProcessParam] = useState<any>();
-
-  // const { getValues } = useFormContext();
 
   const [imageToken, setImageToken] = useState<any>();
   const [value, setValue] = useState<any>();
@@ -76,38 +73,6 @@ const Form = () => {
   const saved = async (e: any) => {
     e.preventDefault();
   };
-
-  // const clickCamera = () => {
-  //   var ws = new WebSocket(`${process.env.NEXT_PUBLIC_FACECAMERA_URL}`);
-
-  //   setOpenModal(true);
-
-  //   ws.onopen = function () {
-  //     ws.send('{"action":"GetImage"}');
-  //   };
-
-  //   ws.onmessage = function (event) {
-  //     var res = JSON.parse(event.data);
-  //     console.log("resresssssss", res);
-
-  //     if (res?.result.image != null) {
-  //       console.log("resresssssss", res);
-  //       setImageToken(res?.result.image);
-  //       setValue(res?.result?.value);
-  //       ws.send('{"action":"Close"}');
-  //     } else {
-  //     }
-  //   };
-
-  //   ws.onerror = function (event) {
-  //     // alert(event.data);
-  //   };
-
-  //   ws.onclose = function () {
-  //     // console.log("Connection is closed");
-  //     // }
-  //   };
-  // };
 
   useEffect(() => {
     let birthdays: any;
@@ -233,6 +198,7 @@ const Form = () => {
                 <img
                   src="/images/Face_id_white.png"
                   className="w-[150px] h-[150px] mt-4"
+                  onClick={() => setOpenLogin(true)}
                 />
               </div>
             </div>
@@ -282,6 +248,15 @@ const Form = () => {
 		`}
         </style>
       </BlockDiv>
+      <Modal
+        width={1080}
+        footer={false}
+        title={false}
+        open={openLogin}
+        onCancel={() => setOpenLogin(!openLogin)}
+      >
+        <OpenCamera />
+      </Modal>
     </Layout>
   );
 };

@@ -3,16 +3,22 @@ import { useRouter } from "next/router";
 import moment from "moment";
 import Layout from "../kioskLayout";
 import { useEffect, useState } from "react";
-import { Spin } from "antd";
+import { Spin, notification } from "antd";
 import ReportTemplate from "@/middleware/ReportTemplate/ReportTemplate";
 import fetchJson from "@/util/helper";
 import Cookies from "js-cookie";
 import axios from "axios";
+import Pay from "./pay";
 
 const Sell = () => {
+  const [item, setItem] = useState<any>();
   const [loading, setLoading] = useState(true);
   const [templateId, setTemplateId] = useState("");
   const [contractId, setContractId] = useState("");
+  const [activeCheck, setActiveCheck] = useState(false);
+  const [nextButtonView, setNextButtonView] = useState(false);
+  const [contentType, setContentType] = useState("contract");
+
   const customer: any = Cookies.getJSON("customer");
   const router = useRouter();
   const date = moment().format("YYYY-MM-DD");
@@ -59,6 +65,7 @@ const Sell = () => {
     );
     if (result?.status == "success") {
       const readydata = result?.result?.[0];
+      setItem(readydata);
       const param = {
         contracttypeid: readydata?.contracttypeid,
         contractTotalAmount: readydata?.saleprice,
@@ -74,10 +81,26 @@ const Sell = () => {
         parameters: param,
       });
       if (res?.data?.status == "success") {
-        console.log(res?.data?.result);
         setTemplateId(res?.data?.result?.templateId);
         setContractId(res?.data?.result?.id);
         setLoading(false);
+      }
+    }
+  };
+
+  const checkContract = async () => {
+    setLoading(true);
+    const res = await axios.post(`/api/post-process`, {
+      processcode: "fitKioskContractIsConfirm_DV_001",
+      parameters: {
+        id: contractId,
+        isComfirm: "1",
+      },
+    });
+    if (res?.data?.status == "success") {
+      setLoading(false);
+      if (res?.data?.result?.isConfirm !== "0") {
+        setNextButtonView(true);
       }
     }
   };
@@ -90,25 +113,77 @@ const Sell = () => {
     );
   }
 
+  const content = () => {
+    switch (contentType) {
+      case "pay":
+        return <Pay item={item} contractId={contractId} />;
+      default:
+        return (
+          <div>
+            <div className="flex flex-col px-10 gap-y-10 text-white uppercase">
+              <p className="text-[64px] text-center">ГЭРЭЭ</p>
+              <div className="max-h-[1234px] overflow-y-scroll">
+                <ReportTemplate
+                  options={printOptions}
+                  data={{ contractId: contractId }}
+                />
+              </div>
+              <div className="flex items-center justify-center">
+                <div className="flex items-center gap-x-4">
+                  <div
+                    className={`w-[80px] h-[80px] rounded-lg flex items-center border border-white justify-center ${
+                      activeCheck ? "bg-blue-300" : "bg-transparent"
+                    } `}
+                    onClick={() => {
+                      checkContract(), setActiveCheck(true);
+                    }}
+                  >
+                    {activeCheck ? (
+                      <i className="fa-solid fa-check fa-xl text-white"></i>
+                    ) : (
+                      ""
+                    )}
+                  </div>
+                  <p className="text-[36px]">ЗӨВШӨӨРӨВ</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        );
+    }
+  };
+
   return (
-    <Layout>
-      <div className="flex flex-col px-10 gap-y-10 text-white uppercase">
-        <p className="text-[64px]">ГЭРЭЭ</p>
-        <div className="max-h-[1234px]">
-          <ReportTemplate
-            options={printOptions}
-            data={{ contractId: contractId }}
-          />
-        </div>
-        <div className="flex items-center gap-x-4">
-          <input
-            type="checkbox"
-            className="w-[80px] h-[80px] rounded-[13px] bg-transparent border-[3px] border-white"
-          />
-          <p className="text-[36px]">ЗӨВШӨӨРӨВ</p>
-        </div>
+    <div
+      className="w-full h-screen flex flex-col justify-between relative"
+      style={{
+        backgroundImage: "url(/images/home1.png)",
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "cover",
+        fontFamily: "AG",
+      }}
+    >
+      <div className="w-full py-10 flex items-center justify-center uppercase">
+        <img src="/images/logo.png" alt="home" />
       </div>
-    </Layout>
+      <div className=" my-20 w-full px-20  uppercase h-full text-center">
+        {content()}
+      </div>
+      <button
+        className="absolute bottom-10 left-10 text-white uppercase text-[48px]"
+        onClick={() => router.back()}
+      >
+        back
+      </button>
+      {nextButtonView && (
+        <button
+          className="absolute bottom-10 right-10 text-white uppercase text-[48px]"
+          onClick={() => setContentType("pay")}
+        >
+          next
+        </button>
+      )}
+    </div>
   );
 };
 

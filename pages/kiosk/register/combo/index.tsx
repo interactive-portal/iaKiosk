@@ -9,13 +9,22 @@ const Combo = () => {
         ХОСОЛСОН БАГЦ
       </div>
       <div className="w-[836px] mx-auto flex flex-col gap-y-14 text-[64px]">
-        <div className="bg-white rounded-[76px] text-[#525050] py-[40px]">
+        <div
+          className="bg-white rounded-[76px] text-[#525050] py-[40px]"
+          onClick={() => router.push("/kiosk/register/combo/basseinFit")}
+        >
           БАССЕЙН ФИТНЕСС
         </div>
-        <div className="bg-white rounded-[76px] text-[#525050] py-[40px]">
+        <div
+          className="bg-white rounded-[76px] text-[#525050] py-[40px]"
+          onClick={() => router.push("/kiosk/register/combo/fitSaun")}
+        >
           ФИТНЕСС САУН
         </div>
-        <div className="bg-white rounded-[76px] text-[#525050] py-[40px]">
+        <div
+          className="bg-white rounded-[76px] text-[#525050] py-[40px]"
+          onClick={() => router.push("/kiosk/register/combo/basseinSaun")}
+        >
           БАССЕЙН САУН
         </div>
       </div>

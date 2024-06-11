@@ -51,7 +51,7 @@ const Pool = () => {
                       key={rowInd}
                       onClick={() =>
                         router.push({
-                          pathname: "/kiosk/sell",
+                          pathname: "/kiosk/form",
                           query: {
                             i: rowItem?.id,
                           },
