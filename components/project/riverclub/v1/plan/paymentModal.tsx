@@ -316,6 +316,7 @@ const PaymentModal: FC<PropsType> = ({
                   #portraid {
                     page-break-before: always;
                     page-break-inside: avoid;
+                    padding:30px;
                   }
 
                   .button {

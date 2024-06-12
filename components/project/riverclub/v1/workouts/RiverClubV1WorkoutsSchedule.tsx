@@ -18,7 +18,13 @@ const RiverClubV1WorkoutsSchedule = () => {
     data: readyData,
     error,
     mutate,
-  } = useSWR(`/api/get-data?metaid=1718173876298102`);
+  } = useSWR(
+    `/api/get-process?command=fitKioskClassMainGet_004&parameters=${JSON.stringify(
+      {
+        filterId: 1,
+      }
+    )}`
+  );
 
   console.log(readyData);
 
@@ -56,7 +62,7 @@ const RiverClubV1WorkoutsSchedule = () => {
         </BlockDiv>
       </BlockDiv>
       <BlockDiv className="even:bg-[#CACACA] px-[25px] mb-[35px]">
-        <Card item={readyData?.result} />
+        <Card item={readyData?.result?.fitkioskclassmainlist} />
       </BlockDiv>
     </BlockDiv>
   );
@@ -103,7 +109,7 @@ const Card = ({ item }: any) => {
                 </div>
                 <div className="col-span-9 flex justify-between w-full p-[10px] gap-x-[20px]">
                   <MiddleText item={item} />
-                  <ScheduleTable item={item} />
+                  <ScheduleTable item={item?.fitkioskclassmaindtllist} />
                 </div>
               </BlockDiv>
             </div>
@@ -152,69 +158,33 @@ const MiddleText = ({ item, language }: any) => {
 const ScheduleTable = ({ item }: any) => {
   return (
     <BlockDiv className="col-span-3 w-full items-center min-w-[200px]">
-      {/* <div className="flex justify-end ">
-        <div className="w-max">
-          <p className="text-[18px] text-black font-[400] bg-[#F0F423] rounded-[5px] p-[2px]">
-            тайван
-          </p>
-          <p className="text-[18px] text-black font-[400] bg-[#D0A200] rounded-[5px] p-[2px] mt-2">
-            yoga
-          </p>
-        </div>
-      </div> */}
       <div className="mt-4 w-full">
-        <BlockSlider
-          type="simple"
-          customProps={{
-            slickslideRawClass: {
-              padding: "0 10px 0 0",
-            },
-            reactSlickSettings: {
-              dots: true,
-              infinite: false,
-              variableWidth: false,
-              speed: 500,
-              slidesToShow: 1,
-              slidesToScroll: 1,
-              autoplay: true,
-              autoplaySpeed: 5000,
-              arrows: false,
-            },
-          }}
-          padding="0px"
-          textAlign="end"
-        >
-          {_.map(item?.classSchedule, (innerItem: any, index: number) => {
+        <BlockDiv className="flex flex-col">
+          <div className="w-full text-right mb-4">
+            <p className="text-[#202020] text-[26px]">
+              {/* {innerItem?.classTitle} */}
+            </p>
+          </div>
+          {_.map(item, (timetable: any, index: number) => {
             return (
-              <BlockDiv className="flex flex-col" key={index}>
-                <div className="w-full text-right mb-4">
-                  <p className="text-[#202020] text-[26px]">
-                    {innerItem?.classTitle}
-                  </p>
-                </div>
-                {_.map(innerItem?.schedule, (timetable: any, index: number) => {
-                  return (
-                    <BlockDiv
-                      className="flex items-center justify-end gap-x-2 mb-[2px]"
-                      key={index}
-                    >
-                      <RenderAtom
-                        item={timetable?.day}
-                        renderType="text"
-                        className={`uppercase font-[300] text-[16px] text-[#414141]`}
-                      />
-                      <RenderAtom
-                        item={timetable?.time}
-                        renderType="text"
-                        className={`uppercase font-[300] text-[16px] text-[#414141]`}
-                      />
-                    </BlockDiv>
-                  );
-                })}
+              <BlockDiv
+                className="flex items-center justify-end gap-x-2 mb-[2px]"
+                key={index}
+              >
+                <RenderAtom
+                  item={timetable?.week}
+                  renderType="text"
+                  className={`uppercase font-[300] text-[16px] text-[#414141]`}
+                />
+                <RenderAtom
+                  item={timetable?.time}
+                  renderType="text"
+                  className={`uppercase font-[300] text-[16px] text-[#414141]`}
+                />
               </BlockDiv>
             );
           })}
-        </BlockSlider>
+        </BlockDiv>
       </div>
       {/* view more button */}
       {/* <BlockDiv className=" flex items-end justify-end mt-6">
