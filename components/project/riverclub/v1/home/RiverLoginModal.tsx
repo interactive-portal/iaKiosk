@@ -108,7 +108,10 @@ const RiverLoginModal: FC<PropsType> = ({
               //   background: "var(--green-main, #BAD405)",
               // }}
               onClick={() => {
-                setOpenModal(false);
+                {
+                  setOpenModal(false);
+                  router.reload();
+                }
               }}
             >
               болих
