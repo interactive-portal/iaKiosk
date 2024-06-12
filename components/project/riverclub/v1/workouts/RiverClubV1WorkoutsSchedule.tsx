@@ -6,17 +6,27 @@ import WidgetWrapperContext from "@/components/common/engineBox/Wrapper/WidgetUn
 import _ from "lodash";
 import { useRouter } from "next/router";
 import BlockSlider from "@/components/common/Block/BlockSlider";
+import useSWR from "swr";
+import moment from "moment";
 
 const RiverClubV1WorkoutsSchedule = () => {
   const router = useRouter();
   const { nemgooDatasrc, readyDatasrc } = useContext(WidgetWrapperContext);
   const [activeTab, setActiveTab] = useState(0);
 
+  let {
+    data: readyData,
+    error,
+    mutate,
+  } = useSWR(`/api/get-data?metaid=1718173876298102`);
+
+  console.log(readyData);
+
   return (
     <BlockDiv className="">
       <BlockDiv className=" flex items-center justify-center py-[20px] bg-black px-[40px]">
         <BlockDiv className="flex w-full ">
-          {_.map(
+          {/* {_.map(
             [
               "Бүх хичээлүүд",
               "Бассейн",
@@ -42,11 +52,11 @@ const RiverClubV1WorkoutsSchedule = () => {
                 </div>
               );
             }
-          )}
+          )} */}
         </BlockDiv>
       </BlockDiv>
       <BlockDiv className="even:bg-[#CACACA] px-[25px] mb-[35px]">
-        <Card item={readyDatasrc} />
+        <Card item={readyData?.result} />
       </BlockDiv>
     </BlockDiv>
   );
@@ -86,7 +96,7 @@ const Card = ({ item }: any) => {
               >
                 <div className="col-span-3">
                   <RenderAtom
-                    item={item?.mainimage}
+                    item={item?.picture || "/images/aboutus.png"}
                     renderType="image"
                     className={`w-auto col-span-4 h-full`}
                   />
@@ -110,41 +120,30 @@ const MiddleText = ({ item, language }: any) => {
     <BlockDiv className="w-max col-span-6 ">
       <BlockDiv className="flex flex-col gap-y-4">
         <RenderAtom
-          item={item?.title}
+          item={item?.name}
           renderType="title"
           className={`font-[700] text-[32px]  uppercase leading-[32px]`}
         />
+        <div className="flex items-center text-[16px] text-[#202020] font-[300] min-w-[400px] gap-x-10">
+          <p>start {moment(item?.startat).format("YYYY-MM-DD")}</p>
+          <p>{item?.dayleft}</p>
+        </div>
         <RenderAtom
           item={item?.description}
           renderType="text"
           className={`text-[16px] font-[300] uppercase text-justify`}
         />
         <RenderAtom
-          item={`дасгалжуулагч : Жазей`}
+          item={`дасгалжуулагч : ${item?.trainername}`}
           renderType="title"
           className={`text-black font-[700] text-[16px] uppercase`}
         />
-        <BlockDiv className="flex items-center gap-x-2 w-full">
-          {_.map(item?.exerciseType, (item: any, index: number) => {
-            return (
-              <RenderAtom
-                key={index}
-                item={item}
-                renderType="text"
-                className={`text-black font-[400] mr-2 text-[17px] lowercase w-max px-2 rounded-[3px] bg-[${cardColors[index]}]`}
-                customStyle={{
-                  background: cardColors[index],
-                  // fontFamily: "Nunito sans",
-                }}
-              />
-            );
-          })}
-        </BlockDiv>
-        <RenderAtom
+        <BlockDiv className="flex items-center gap-x-2 w-full"></BlockDiv>
+        {/* <RenderAtom
           item={item?.button}
           renderType="button"
           className={`bg-black text-white text-[20px] font-[400] max-w-[180px] text-center italic rounded-[6px] uppercase`}
-        />
+        /> */}
       </BlockDiv>
     </BlockDiv>
   );
@@ -153,7 +152,7 @@ const MiddleText = ({ item, language }: any) => {
 const ScheduleTable = ({ item }: any) => {
   return (
     <BlockDiv className="col-span-3 w-full items-center min-w-[200px]">
-      <div className="flex justify-end ">
+      {/* <div className="flex justify-end ">
         <div className="w-max">
           <p className="text-[18px] text-black font-[400] bg-[#F0F423] rounded-[5px] p-[2px]">
             тайван
@@ -162,7 +161,7 @@ const ScheduleTable = ({ item }: any) => {
             yoga
           </p>
         </div>
-      </div>
+      </div> */}
       <div className="mt-4 w-full">
         <BlockSlider
           type="simple"

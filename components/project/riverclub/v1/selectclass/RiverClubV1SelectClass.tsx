@@ -9,15 +9,16 @@ import useSWR from "swr";
 import SelectLocker from "./selectLocker";
 import Basket from "./basket";
 import { useRouter } from "next/router";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
 
 const RiverClubV1SelectClass = () => {
   const { readyDatasrc } = useContext(WidgetWrapperContext);
   const [openLocker, setOpenLocker] = useState(false);
   const [openBasket, setOpenBasket] = useState(false);
-
-  const staticItem = readyDatasrc[0];
-  const staticItem2 = readyDatasrc[1];
-  const staticItem3 = readyDatasrc[2];
 
   const session: any = Cookies.getJSON("customer");
 
@@ -109,87 +110,104 @@ const RiverClubV1SelectClass = () => {
         </div>
       </div>
       <div className="col-span-4 ">
-        <BlockDiv
-          className={`flex flex-col items-start min-h-[447px] bg-[#202020]  px-[30px] py-[50px] rounded-[6px]`}
+        <Swiper
+          slidesPerView={1}
+          modules={[Navigation, Pagination]}
+          pagination={true}
         >
-          {readyData?.result != "" && (
-            <>
-              <RenderAtom
-                item={{ value: `exp ${readyData?.result?.enddate}` }}
-                renderType="text"
-                customClassName={""}
-                customStyle={{
-                  background:
-                    "linear-gradient(180deg, #ADFF00 0%, #0CB1AB 100%)",
-                  WebkitTextFillColor: "transparent",
-                  WebkitBackgroundClip: "text",
-                }}
-              />
-              <RenderAtom
-                item={{ value: readyData?.result?.itemname }}
-                renderType="title"
-                className={`font-[700] text-[28px] uppercase text-white`}
-              />
-              <BlockDiv className="flex flex-col items-start justify-center mt-[10px] min-h-auto"></BlockDiv>
-              {/* Includes */}
-              <BlockDiv className="flex flex-col gap-y-[4px] h-[70px] justify-end mt-[30px] align-text-top">
-                {_.map([""], (innerItem: any, index: number) => {
-                  return (
-                    <BlockDiv className="flex items-center" key={index}>
-                      <div className="">
-                        <i
-                          className={`fa-solid fa-check w-[18px] fa-xs  h-[18px] mr-[8px] p-[3px] flex items-center justify-center  rounded-full text-black bg-[#B3B3B3]
-                  `}
-                          style={{
-                            display: "flex !important",
+          {readyData?.result?.fit_contractpackagedtl_dv?.map(
+            (item: any, ind: number) => {
+              return (
+                <SwiperSlide key={ind}>
+                  <BlockDiv
+                    className={`flex flex-col items-start min-h-[447px] bg-[#202020]  px-[30px] py-[50px] rounded-[6px]`}
+                  >
+                    {readyData?.result != "" && (
+                      <>
+                        <RenderAtom
+                          item={{ value: `exp ${item?.startdate}` }}
+                          renderType="text"
+                          customClassName={""}
+                          customStyle={{
+                            background:
+                              "linear-gradient(180deg, #ADFF00 0%, #0CB1AB 100%)",
+                            WebkitTextFillColor: "transparent",
+                            WebkitBackgroundClip: "text",
                           }}
                         />
-                      </div>
-                      <RenderAtom
-                        item={{ value: "ФИТНЕСС" }}
-                        renderType="text"
-                        className={`font-medium text-[12px] text-white`}
-                      />
-                    </BlockDiv>
-                  );
-                })}
-                <style>
-                  {`
+                        <RenderAtom
+                          item={{ value: item?.itemname }}
+                          renderType="title"
+                          className={`font-[700] text-[28px] uppercase text-white`}
+                        />
+                        <BlockDiv className="flex flex-col items-start justify-center mt-[10px] min-h-auto"></BlockDiv>
+                        {/* Includes */}
+                        {/* <BlockDiv className="flex flex-col gap-y-[4px] h-[70px] justify-end mt-[30px] align-text-top">
+                          {_.map([""], (innerItem: any, index: number) => {
+                            return (
+                              <BlockDiv
+                                className="flex items-center"
+                                key={index}
+                              >
+                                <div className="">
+                                  <i
+                                    className={`fa-solid fa-check w-[18px] fa-xs  h-[18px] mr-[8px] p-[3px] flex items-center justify-center  rounded-full text-black bg-[#B3B3B3]
+                  `}
+                                    style={{
+                                      display: "flex !important",
+                                    }}
+                                  />
+                                </div>
+                                <RenderAtom
+                                  item={{ value: "ФИТНЕСС" }}
+                                  renderType="text"
+                                  className={`font-medium text-[12px] text-white`}
+                                />
+                              </BlockDiv>
+                            );
+                          })}
+                          <style>
+                            {`
             .fa-check{
               display:flex !important
             }
             `}
-                </style>
-              </BlockDiv>
-              {/* includes done here */}
-              <RenderAtom
-                item={{
-                  value:
-                    "Цагийн хязгааргүй фитнес болон бассейнээр үйлчлүүлнэ. ",
-                }}
-                renderType="text"
-                className={`font-medium text-[12px] mt-[36px] h-[70px] text-[#B3B3B3]`}
-              />
-            </>
-          )}
-          <RenderAtom
-            item={{
-              value: "Сунгах",
-            }}
-            renderType="button"
-            className={`font-[400] text-[20px] text-center text-black italic bg-[#BAD405] uppercase mt-[16px] rounded-[8px] w-max min-w-[180px]`}
-            onClick={(e: any) => (window.location.href = "/price")}
-          />
+                          </style>
+                        </BlockDiv> */}
+                        {/* includes done here */}
+                        <RenderAtom
+                          item={{
+                            value:
+                              "Цагийн хязгааргүй фитнес болон бассейнээр үйлчлүүлнэ. ",
+                          }}
+                          renderType="text"
+                          className={`font-medium text-[12px] mt-[36px] h-[70px] text-[#B3B3B3]`}
+                        />
+                      </>
+                    )}
+                    <RenderAtom
+                      item={{
+                        value: "Сунгах",
+                      }}
+                      renderType="button"
+                      className={`font-[400] text-[20px] text-center text-black italic bg-[#BAD405] uppercase mt-[16px] rounded-[8px] w-max min-w-[180px]`}
+                      onClick={(e: any) => (window.location.href = "/price")}
+                    />
 
-          <RenderAtom
-            item={{
-              value: "Хөлдөөх",
-            }}
-            renderType="button"
-            className={`font-[400] text-center text-[20px] text-white italic bg-black uppercase mt-[16px] rounded-[8px] w-max min-w-[180px] py-2 opacity-50`}
-            // onClick={(e: any) => selectItem(e, item)}
-          />
-        </BlockDiv>
+                    <RenderAtom
+                      item={{
+                        value: "Хөлдөөх",
+                      }}
+                      renderType="button"
+                      className={`font-[400] text-center text-[20px] text-white italic bg-black uppercase mt-[16px] rounded-[8px] w-max min-w-[180px] py-2 opacity-50`}
+                      // onClick={(e: any) => selectItem(e, item)}
+                    />
+                  </BlockDiv>
+                </SwiperSlide>
+              );
+            }
+          )}
+        </Swiper>
       </div>
       <SelectLocker open={openLocker} setOpen={setOpenLocker} />
       <Basket open={openBasket} setOpen={setOpenBasket} />
