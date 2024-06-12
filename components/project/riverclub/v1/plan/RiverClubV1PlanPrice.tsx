@@ -82,17 +82,13 @@ const RiverClubV1PlanPrice = () => {
 
   // багцыг select хийх эсвэл login хийх
   const selectItem = async (e: any, item: any) => {
-    setSignIn(false);
+    // setSignIn(false);
     setOpenLogin(true);
-    console.log(signIn);
-    if (signIn) {
-      setSelectDateModal(true);
-    }
+    // if (signIn) {
+    //   setSelectDateModal(true);
+    // }
     setTemplateId(null);
     setSelectItem(_.values(item)?.[0]?.[activeIndex]);
-    // if (customer) {
-    // } else {
-    // }
   };
 
   // reportTemplate дуудах
