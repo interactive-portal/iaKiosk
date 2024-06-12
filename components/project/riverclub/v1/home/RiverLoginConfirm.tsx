@@ -127,11 +127,13 @@ const RiverLoginConfirm: FC<PropsType> = ({
               style={{
                 boxShadow: " 4px 4px 4px 0px #00000040",
               }}
-              onClick={() =>
+              onClick={() => {
+                setOpenModal(false);
+
                 router.push({
                   pathname: "/bioinput",
-                })
-              }
+                });
+              }}
             >
               гишүүн болох
             </button>
