@@ -159,7 +159,7 @@ const SelectLocker: FC<PropsType> = ({ open, setOpen }) => {
             />
           </div>
         )}
-        {gender == "Эмэгтэй" && (
+        {/* {gender == "Эмэгтэй" && (
           <div className="mt-2 px-10">
             <p>Түлхүүрийн тайлбар</p>
             <div className="flex items-center gap-x-4 mt-2">
@@ -191,7 +191,7 @@ const SelectLocker: FC<PropsType> = ({ open, setOpen }) => {
               </div>
             </div>
           </div>
-        )}
+        )} */}
         <div className="mx-10 flex items-center justify-between text-[20px] gap-x-4">
           <button
             className="w-full text-[#C4C4C4] uppercase bg-[#272A32] rounded-[8px]"
