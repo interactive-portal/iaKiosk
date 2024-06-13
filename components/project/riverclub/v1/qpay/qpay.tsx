@@ -6,7 +6,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import useSWR from "swr";
 // import SuccessCard from "../../card/successCard";
-import Countdown from "antd/es/statistic/Countdown";
+// import {Statistic} from "antd";
 
 export default function Qpay({
   item,
@@ -26,6 +26,8 @@ export default function Qpay({
   setModalContent?: any;
 }) {
   if (_.isEmpty(item)) return <>Not Data</>;
+
+  const { Countdown } = Statistic;
 
   const [res, setDatasrc] = useState<any>({});
   const [statusPay, setStatusPayment] = useState<any>();
