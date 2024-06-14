@@ -58,6 +58,12 @@ const CheckUser: FC<PropsType> = ({ setOpenModal }) => {
         setContentType("success");
         // setImageToken(res?.result.image);
         // setValue(res?.result?.value);
+        router.push({
+          pathname: "/kiosk/extend/userinfo",
+          query: {
+            c: res?.result?.c,
+          },
+        });
         ws.send('{"action":"Close"}');
       } else {
         setContentType("error");
