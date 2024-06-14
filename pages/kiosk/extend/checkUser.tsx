@@ -36,12 +36,12 @@ const CheckUser: FC<PropsType> = ({ setOpenModal }) => {
         let { data: readyData } = useSWR(
           `/api/get-process?command=fit_ContractPackage_DV_004&parameters=${param}`
         );
+        console.log("userInfouserInfouserInfouserInfouserInfo", readyData);
+
         if (readyData?.result == "success") {
           setContentType("success");
           setLoading(false);
         }
-
-        console.log("userInfouserInfouserInfouserInfouserInfo", readyData);
 
         // setImageToken(res?.result.image);
         // setValue(res?.result?.value);
@@ -58,7 +58,7 @@ const CheckUser: FC<PropsType> = ({ setOpenModal }) => {
     };
 
     ws.onclose = function () {
-      setOpenModal(false);
+      // setOpenModal(false);
       // setContentType("error");
       // console.log("Connection is closed");
       // }
