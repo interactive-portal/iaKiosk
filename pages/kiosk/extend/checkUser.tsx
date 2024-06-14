@@ -4,7 +4,7 @@ import { useState } from "react";
 import useSWR from "swr";
 
 const CheckUser = () => {
-  const [contentType, setContentType] = useState("error");
+  const [contentType, setContentType] = useState("");
   const [loading, setLoading] = useState(false);
 
   const router = useRouter();
