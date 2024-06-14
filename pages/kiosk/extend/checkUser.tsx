@@ -51,7 +51,7 @@ const CheckUser: FC<PropsType> = ({ setOpenModal }) => {
       var res = JSON.parse(event.data);
       console.log("resresssssss", res);
 
-      if (res?.result.image != null) {
+      if (res?.status == "success") {
         setLoading(true);
         setCustomer(res?.result);
         Cookies.set("customer", res?.result);
