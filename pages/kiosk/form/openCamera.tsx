@@ -91,7 +91,11 @@ const OpenCamera: FC<PropsType> = ({
   const content = () => {
     switch (contentType) {
       case "opencamera":
-        return <></>;
+        return (
+          <div className="flex items-center justify-center text-[48px] text-white">
+            ТА КАМЕР ЛУУ ХАРНА УУ!
+          </div>
+        );
       case "error":
         return (
           <div className="flex flex-col items-center justify-center gap-y-[50px] mx-[20px]">

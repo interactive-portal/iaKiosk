@@ -1,7 +1,13 @@
+import { Spin } from "antd";
+import { useRouter } from "next/router";
 import { useState } from "react";
+import useSWR from "swr";
 
 const CheckUser = () => {
   const [contentType, setContentType] = useState("error");
+  const [loading, setLoading] = useState(false);
+
+  const router = useRouter();
   const clickCamera = () => {
     setContentType("opencamera");
     var ws = new WebSocket(`${process.env.NEXT_PUBLIC_FACECAMERA_URL}`);
@@ -17,11 +23,26 @@ const CheckUser = () => {
       console.log("resresssssss", res);
 
       if (res?.result.image != null) {
-        console.log("resresssssss", res);
+        setLoading(true);
+        ws.onclose = function () {};
+        const param = JSON.stringify({
+          customerId: res?.result?.customerId,
+        });
+
+        let { data: readyData } = useSWR(
+          `/api/get-process?command=fit_ContractPackage_DV_004&parameters=${param}`
+        );
+        if (readyData?.result == "success") {
+          setContentType("success");
+          setLoading(false);
+        }
+        console.log(readyData);
+
         // setImageToken(res?.result.image);
         // setValue(res?.result?.value);
         ws.send('{"action":"Close"}');
       } else {
+        setContentType("error");
       }
     };
 
@@ -64,6 +85,17 @@ const CheckUser = () => {
                 onClick={() => clickCamera()}
               >
                 БОЛИХ
+              </button>
+            </div>
+            <div className="text-center mt-20">
+              <span className="text-white text-[48px] text-center px-10">
+                ЦАРАЙ ТАНИГДАХГҮЙ БАЙНА
+              </span>
+              <button
+                className="p-8 rounded-[87px] bg-[#A68B5C] text-white text-[40px] uppercase mt-10"
+                onClick={() => router.push("/kiosk/price")}
+              >
+                гишүүн болох
               </button>
             </div>
             <style>
@@ -122,6 +154,11 @@ const CheckUser = () => {
         );
     }
   };
+
+  if (loading) {
+    return <Spin fullscreen size="large" />;
+  }
+
   return (
     <div className="w-[900px]">
       {content()}
