@@ -28,7 +28,6 @@ const CheckUser: FC<PropsType> = ({ setOpenModal }) => {
 
       if (res?.result.image != null) {
         setLoading(true);
-        ws.onclose = function () {};
         const param = JSON.stringify({
           customerId: res?.result?.customerId,
         });
