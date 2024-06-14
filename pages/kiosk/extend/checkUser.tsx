@@ -1,4 +1,6 @@
+import fetchJson from "@/util/helper";
 import { Spin } from "antd";
+import Cookies from "js-cookie";
 import { useRouter } from "next/router";
 import { useState, FC } from "react";
 import useSWR from "swr";
@@ -10,6 +12,29 @@ type PropsType = {
 const CheckUser: FC<PropsType> = ({ setOpenModal }) => {
   const [contentType, setContentType] = useState("");
   const [loading, setLoading] = useState(false);
+
+  const [customer, setCustomer] = useState<any>({});
+
+  // const fetchData = async (res: any) => {
+  //   const param = JSON.stringify({
+  //     customerId: res?.result?.customerId,
+  //   });
+  //   const result = await fetchJson(
+  //     `/api/get-process?command=fit_ContractPackage_DV_004&parameters=${param}`
+  //   );
+
+  //   console.log(result);
+  // };
+
+  // let { data: readyData } = useSWR(
+  //   `/api/get-process?command=fit_ContractPackage_DV_004&parameters=${param}`
+  // );
+  // console.log("userInfouserInfouserInfouserInfouserInfo", readyData);
+
+  // if (readyData?.result == "success") {
+  //   setContentType("success");
+  //   setLoading(false);
+  // }
 
   const router = useRouter();
   const clickCamera = () => {
@@ -28,20 +53,9 @@ const CheckUser: FC<PropsType> = ({ setOpenModal }) => {
 
       if (res?.result.image != null) {
         setLoading(true);
-        const param = JSON.stringify({
-          customerId: res?.result?.customerId,
-        });
-
-        let { data: readyData } = useSWR(
-          `/api/get-process?command=fit_ContractPackage_DV_004&parameters=${param}`
-        );
-        console.log("userInfouserInfouserInfouserInfouserInfo", readyData);
-
-        if (readyData?.result == "success") {
-          setContentType("success");
-          setLoading(false);
-        }
-
+        setCustomer(res?.result);
+        Cookies.set("customer", res?.result);
+        setContentType("success");
         // setImageToken(res?.result.image);
         // setValue(res?.result?.value);
         ws.send('{"action":"Close"}');
@@ -63,6 +77,7 @@ const CheckUser: FC<PropsType> = ({ setOpenModal }) => {
       // }
     };
   };
+
   const content = () => {
     switch (contentType) {
       case "opencamera":
@@ -128,7 +143,17 @@ const CheckUser: FC<PropsType> = ({ setOpenModal }) => {
             </span>
             <span className="text-white text-[32px]">ТАНД БАЯРЛАЛАА</span>
             <div className="uppercase mt-[200px]">
-              <button className="p-8 rounded-[87px] bg-[#A68B5C] text-white text-[40px] uppercase">
+              <button
+                className="p-8 rounded-[87px] bg-[#A68B5C] text-white text-[40px] uppercase"
+                onClick={() =>
+                  router.push({
+                    pathname: "/kiosk/extend/userinfo",
+                    query: {
+                      c: customer?.customerId,
+                    },
+                  })
+                }
+              >
                 дараагийн хуудас
               </button>
             </div>
