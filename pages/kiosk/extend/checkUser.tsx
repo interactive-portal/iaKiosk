@@ -1,9 +1,13 @@
 import { Spin } from "antd";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useState, FC } from "react";
 import useSWR from "swr";
 
-const CheckUser = () => {
+type PropsType = {
+  setOpenModal?: any;
+};
+
+const CheckUser: FC<PropsType> = ({ setOpenModal }) => {
   const [contentType, setContentType] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -15,7 +19,7 @@ const CheckUser = () => {
     // setOpenModal(true);
 
     ws.onopen = function () {
-      ws.send('{"action":"GetImage"}');
+      ws.send('{"action":"GetPerson"}');
     };
 
     ws.onmessage = function (event) {
@@ -36,7 +40,8 @@ const CheckUser = () => {
           setContentType("success");
           setLoading(false);
         }
-        console.log(readyData);
+
+        console.log("userInfouserInfouserInfouserInfouserInfo", readyData);
 
         // setImageToken(res?.result.image);
         // setValue(res?.result?.value);
@@ -47,10 +52,14 @@ const CheckUser = () => {
     };
 
     ws.onerror = function (event) {
+      setOpenModal(false);
       // alert(event.data);
+      // setContentType("error");
     };
 
     ws.onclose = function () {
+      setOpenModal(false);
+      // setContentType("error");
       // console.log("Connection is closed");
       // }
     };

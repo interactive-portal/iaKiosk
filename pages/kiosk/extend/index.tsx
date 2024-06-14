@@ -80,8 +80,9 @@ const Extend = () => {
         onCancel={() => setOpenModal(false)}
         title={false}
         footer={false}
+        destroyOnClose
       >
-        <CheckUser />
+        <CheckUser setOpenModal={setOpenModal} />
       </Modal>
     </Layout>
   );
