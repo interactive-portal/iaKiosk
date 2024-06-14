@@ -11,7 +11,7 @@ import Date from "@/components/project/riverclub/v1/bioinput/atom/date";
 import Email from "@/components/project/riverclub/v1/bioinput/atom/email";
 
 import axios from "axios";
-import { Modal, notification } from "antd";
+import { Modal, Spin, notification } from "antd";
 import { useRouter } from "next/router";
 import { useTranslation } from "react-i18next";
 import convertDate from "@/components/project/riverclub/v1/bioinput/convertData";
@@ -22,15 +22,10 @@ const Form = () => {
   const { t } = useTranslation("translate");
   const [processParam, setProcessParam] = useState<any>();
 
-  const [imageToken, setImageToken] = useState<any>();
-  const [value, setValue] = useState<any>();
   const [foreign, setForeign] = useState("");
   const [birthday, setBirthday] = useState("");
-
-  const [openModal, setOpenModal] = useState(false);
-  const [dialog, setDialog] = useState(false);
-
   const [openLogin, setOpenLogin] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const methods: any = useForm({
     defaultValues: {
@@ -41,37 +36,10 @@ const Form = () => {
   const router = useRouter();
 
   const onSubmit = async (data: any) => {
-    console.log("birthday", data);
-
     // clickCamera();
+
     setProcessParam(data);
-    const param = {
-      ...processParam,
-      image: imageToken,
-      value: value,
-      dateOfBirth: birthday,
-    };
-
-    console.log(param);
-    const res = await axios.post(`/api/post-process`, {
-      processcode: "fitCrmCustomerKiosk_DV_001",
-      parameters: param,
-    });
-
-    if (res.data?.status == "success") {
-      setDialog(true);
-      setOpenModal(false);
-
-      notification.success({
-        message: "Бүртгэл амжилттай хийгдлээ",
-      });
-    } else {
-      alert(res?.data?.text);
-    }
-  };
-
-  const saved = async (e: any) => {
-    e.preventDefault();
+    setOpenLogin(true);
   };
 
   useEffect(() => {
@@ -83,6 +51,14 @@ const Form = () => {
       console.log(birthdays);
     }
   }, [methods.watch()]);
+
+  if (loading) {
+    return (
+      <Layout>
+        <Spin fullscreen />
+      </Layout>
+    );
+  }
 
   return (
     <Layout>
@@ -198,7 +174,7 @@ const Form = () => {
                 <img
                   src="/images/Face_id_white.png"
                   className="w-[150px] h-[150px] mt-4"
-                  onClick={() => setOpenLogin(true)}
+                  // onClick={() => setOpenLogin(true)}
                 />
               </div>
             </div>
@@ -254,8 +230,14 @@ const Form = () => {
         title={false}
         open={openLogin}
         onCancel={() => setOpenLogin(!openLogin)}
+        destroyOnClose
       >
-        <OpenCamera />
+        <OpenCamera
+          setProcessParam={setProcessParam}
+          processParam={processParam}
+          birthday={birthday}
+          setLoading={setLoading}
+        />
       </Modal>
     </Layout>
   );

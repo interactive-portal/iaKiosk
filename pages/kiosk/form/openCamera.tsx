@@ -1,35 +1,89 @@
-import { useState } from "react";
+import { notification } from "antd";
+import axios from "axios";
+import { useRouter } from "next/router";
+import { useState, FC } from "react";
 
-const OpenCamera = () => {
-  const [contentType, setContentType] = useState("success");
+type PropsType = {
+  setProcessParam?: any;
+  processParam?: any;
+  birthday?: any;
+  setLoading?: any;
+};
+
+const OpenCamera: FC<PropsType> = ({
+  setProcessParam,
+  processParam,
+  birthday,
+  setLoading,
+}) => {
+  const [contentType, setContentType] = useState("");
+  const router = useRouter();
+  const saved = async (e: any) => {
+    e.preventDefault();
+    setLoading(true);
+    const param = {
+      ...processParam,
+      birthday: birthday,
+    };
+
+    const res = await axios.post(`/api/post-process`, {
+      processcode: "fitCrmCustomerKiosk_DV_001",
+      parameters: param,
+    });
+
+    if (res.data?.status == "success") {
+      setLoading(false);
+      router.push({
+        pathname: "/kiosk/sell",
+        query: {
+          i: router.query?.i,
+          c: res?.data?.result?.id,
+        },
+      });
+
+      // notification.success({
+      //   message: "Бүртгэл амжилттай хийгдлээ",
+      // });
+    } else {
+      setLoading(false);
+      alert(res?.data?.text);
+    }
+  };
+
   const clickCamera = () => {
     setContentType("opencamera");
     var ws = new WebSocket(`${process.env.NEXT_PUBLIC_FACECAMERA_URL}`);
 
-    // setOpenModal(true);
-
     ws.onopen = function () {
       ws.send('{"action":"GetImage"}');
     };
-
+    console.log(processParam);
     ws.onmessage = function (event) {
       var res = JSON.parse(event.data);
-      console.log("resresssssss", res);
 
       if (res?.result.image != null) {
-        console.log("resresssssss", res);
+        setProcessParam({
+          ...processParam,
+          image: res?.result?.image,
+          value: res?.result?.value,
+        });
         // setImageToken(res?.result.image);
         // setValue(res?.result?.value);
         ws.send('{"action":"Close"}');
+        setContentType("success");
       } else {
+        setContentType("error");
       }
     };
 
     ws.onerror = function (event) {
       // alert(event.data);
+      setContentType("success");
     };
 
     ws.onclose = function () {
+      setContentType("success");
+
       // console.log("Connection is closed");
       // }
     };
@@ -88,7 +142,10 @@ const OpenCamera = () => {
             </span>
             <span className="text-white text-[32px]">ТАНД БАЯРЛАЛАА</span>
             <div className="uppercase mt-[200px]">
-              <button className="p-8 rounded-[87px] bg-[#A68B5C] text-white text-[40px] uppercase">
+              <button
+                className="p-8 rounded-[87px] bg-[#A68B5C] text-white text-[40px] uppercase"
+                onClick={(e) => saved(e)}
+              >
                 дараагийн хуудас
               </button>
             </div>

@@ -69,7 +69,7 @@ const Sell = () => {
       const param = {
         contracttypeid: readydata?.contracttypeid,
         contractTotalAmount: readydata?.saleprice,
-        customerId: customer?.customerId,
+        customerId: router.query?.c,
         durationTypeId: readydata?.monthid,
         startDate: date,
         itemId: readydata?.id,
