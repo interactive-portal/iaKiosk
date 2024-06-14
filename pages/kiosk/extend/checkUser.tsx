@@ -61,7 +61,7 @@ const CheckUser: FC<PropsType> = ({ setOpenModal }) => {
         router.push({
           pathname: "/kiosk/extend/userinfo",
           query: {
-            c: res?.result?.c,
+            c: res?.result?.customerId,
           },
         });
         ws.send('{"action":"Close"}');
