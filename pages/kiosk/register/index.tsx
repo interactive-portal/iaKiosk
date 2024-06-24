@@ -6,30 +6,30 @@ const Register = () => {
   return (
     <Layout>
       <div className="text-[64px] flex flex-col gap-y-10">
-        <div className="uppercase text-[90px] text-[#A68B5C] mb-10">
-          үнийн мэдээлэл
+        <div className="uppercase text-[90px] text-[#A68B5C] mb-10 w-[844px]">
+          БҮРТГЭЛ
         </div>
         <div
           className="bg-white rounded-[76px] text-[#525050] py-[40px]"
-          //   onClick={() => router.push("/kiosk/price/pool")}
+          onClick={() => router.push("/kiosk/register/pool")}
         >
           БАССЕЙН
         </div>
         <div
           className="bg-white rounded-[76px] text-[#525050] py-[40px]"
-          //   onClick={() => router.push("/kiosk/price/fitness")}
+          onClick={() => router.push("/kiosk/register/fitness")}
         >
           ФИТНЕСС
         </div>
         <div
           className="bg-white rounded-[76px] text-[#525050] py-[40px]"
-          //   onClick={() => router.push("/kiosk/price/saun")}
+          onClick={() => router.push("/kiosk/register/sauna")}
         >
           САУН
         </div>
         <div
           className="bg-white rounded-[76px] text-[#525050] py-[40px]"
-          //   onClick={() => router.push("/kiosk/price/skovsh")}
+          onClick={() => router.push("/kiosk/price/skovsh")}
         >
           СКВОШ
         </div>

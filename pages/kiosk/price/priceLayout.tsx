@@ -13,7 +13,7 @@ const PriceLayout = ({ children, coverImagePath, title }: any) => {
       }}
     >
       <div
-        className="w-full h-[400px] relative text-center uppercase py-auto flex items-center justify-center text-[120px] text-white"
+        className="w-full h-[400px] relative text-center uppercase py-auto flex items-center justify-center text-[200px] text-white"
         style={{
           backgroundImage: `url(${coverImagePath})`,
           backgroundRepeat: "no-repeat",

@@ -20,7 +20,9 @@ const Page = () => {
   const router = useRouter();
   return (
     <Layout>
-      <div className="uppercase text-[90px] text-[#A68B5C] mb-10">бүртгэл</div>
+      <div className="uppercase text-[90px] text-[#A68B5C] mb-10">
+        ҮНИЙН МЭДЭЭЛЭЛ
+      </div>
       <div className="w-[836px] mx-auto flex flex-col gap-y-14 text-[64px] max-h-[1200px] overflow-auto">
         {groupByData?.map((item: any, ind: number) => {
           const rowItem = _.keys(item)?.[0];

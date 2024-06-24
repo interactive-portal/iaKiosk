@@ -32,7 +32,8 @@ const Pool = () => {
     .value();
 
   return (
-    <PriceLayout coverImagePath="/images/pool.png" title={router.query?.n}>
+    // router.query?.n
+    <PriceLayout coverImagePath="/images/pool.png" title={"БАССЕЙН"}>
       <div className="flex flex-col gap-y-6 max-h-[1200px] overflow-auto">
         {groupByData?.map((obj: any, ind: number) => {
           const rowData = _.values(obj)?.[0];
