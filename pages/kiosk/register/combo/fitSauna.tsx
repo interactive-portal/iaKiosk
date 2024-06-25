@@ -14,13 +14,8 @@ const FitSauna: React.FC = () => {
     },
   ];
 
-  const warningToCostumer = ["БАССЕЙН 7 ХОНОГТ 4 УДАА ОРОХ ХЯЗГААРТАЙ"];
-
   return (
-    <ComboLayout
-      coverImagePaths={["/images/fitness.jpeg", "/images/saun.png"]}
-      title=" САУН ФИТНЕСС "
-    >
+    <ComboLayout coverImagePath="/images/saun.png" title=" САУН ФИТНЕСС ">
       <div className="flex flex-col max-h-[1200px] overflow-auto p-2">
         <p className="text-[64px] text-[#A68B5C] text-center">ХОСОЛСОН БАГЦ</p>
         {datas.map((data, index) => (
@@ -46,10 +41,6 @@ const FitSauna: React.FC = () => {
             </div>
           </div>
         ))}
-        <div className=" text-center text-white ">
-          <h1 className="text-[64px]">САНАМЖ</h1>
-          <p className="text-[40px] ">{warningToCostumer}</p>
-        </div>
       </div>
     </ComboLayout>
   );

@@ -29,7 +29,7 @@ const Register = () => {
         </div>
         <div
           className="bg-white rounded-[76px] text-[#525050] py-[40px]"
-          onClick={() => router.push("/kiosk/price/skovsh")}
+          onClick={() => router.push("/kiosk/register/squash")}
         >
           СКВОШ
         </div>

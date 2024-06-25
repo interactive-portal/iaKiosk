@@ -14,23 +14,22 @@ const BasseinFit: React.FC = () => {
     },
   ];
 
+  const warningToCostumer = ["БАССЕЙН 7 ХОНОГТ 4 УДАА ОРОХ ХЯЗГААРТАЙ"];
+
   return (
-    <ComboLayout
-      coverImagePaths={["/images/fitness.jpeg", "/images/saun.png"]}
-      title="ФИТНЕСС САУН"
-    >
-      <div className="flex flex-col gap-y-6 max-h-[1200px] overflow-auto p-6">
+    <ComboLayout coverImagePath={"/images/fitness.jpeg"} title="ФИТНЕСС САУН">
+      <div className="flex flex-col max-h-[1200px] overflow-auto p-6">
         <p className="text-[64px] text-[#A68B5C] text-center">ХОСОЛСОН БАГЦ</p>
         {datas.map((data, index) => (
           <div
             key={index}
-            className="flex flex-col gap-y-3 text-white uppercase py-10 "
+            className="flex flex-col text-white uppercase mt-[70px]"
           >
             <div className="grid grid-cols justify-center">
               {data.options.map((option, idx) => (
                 <div
                   key={idx}
-                  className="flex flex-col w-[876px] items-center text-[40px] rounded-[87px] bg-white/30 cursor-pointer"
+                  className="flex  flex-col w-[876px] items-center text-[40px] rounded-[87px] bg-white/30 cursor-pointer"
                   onClick={() =>
                     router.push({
                       pathname: "/kiosk/form",
@@ -44,6 +43,10 @@ const BasseinFit: React.FC = () => {
             </div>
           </div>
         ))}
+      </div>
+      <div className=" text-center text-white mt-[200px] ">
+        <h1 className="text-[64px]">САНАМЖ</h1>
+        <p className="text-[40px] ">{warningToCostumer}</p>
       </div>
     </ComboLayout>
   );

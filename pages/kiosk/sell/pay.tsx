@@ -2,6 +2,8 @@ import Qpay from "@/components/project/riverclub/v1/qpay/qpay";
 import axios from "axios";
 import Cookies from "js-cookie";
 import { FC, useState } from "react";
+import Layout from "../kioskLayout";
+import { useRouter } from "next/navigation";
 
 type PropsType = {
   item?: any;
@@ -9,6 +11,7 @@ type PropsType = {
 };
 
 const Pay: FC<PropsType> = ({ item, contractId }) => {
+  const router = useRouter();
   const [contentType, setContentType] = useState("");
 
   const session: any = Cookies.getJSON("customer");
@@ -152,9 +155,9 @@ const Pay: FC<PropsType> = ({ item, contractId }) => {
           <>
             <div className="flex flex-col gap-y-10 text-start">
               <div className="flex flex-col gap-y-4 text-white">
-                <label className="text-[48px]">үйлчилгээний төрөл</label>
+                <label className="text-[48px]">Үйлчилгээний төрөл</label>
                 <input
-                  className="bg-[#D9D9D94D] border border-white min-h-[118px] rounded-[23px] px-10 text-[48px]"
+                  className="bg-[#D9D9D94D] border  border-white min-h-[118px] rounded-[23px] px-10 text-[48px]"
                   value={item?.itemname}
                 />
               </div>
@@ -175,7 +178,8 @@ const Pay: FC<PropsType> = ({ item, contractId }) => {
             </div>
             <div
               className="bg-[#A68B5C] text-white text-[70px] rounded-[87px]  mt-[300px] py-8"
-              onClick={() => setContentType("choose")}
+              // onClick={() => setContentType("choose")}
+              onClick={() => router.push("/kiosk/sell/ebarimt")}
             >
               ТӨЛБӨР ТӨЛӨХ
             </div>
@@ -185,10 +189,10 @@ const Pay: FC<PropsType> = ({ item, contractId }) => {
   };
 
   return (
-    <div>
-      <p className="text-[90px] text-[#A68B5C]">ТӨЛБӨР ТӨЛӨХ</p>
+    <Layout>
+      <p className="text-[90px] text-[#A68B5C] ">ТӨЛБӨР ТӨЛӨХ</p>
       {content()}
-    </div>
+    </Layout>
   );
 };
 

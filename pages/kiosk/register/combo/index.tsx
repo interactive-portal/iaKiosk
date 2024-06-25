@@ -25,7 +25,7 @@ const Combo = () => {
           className="bg-white rounded-[76px] text-[#525050] py-[40px]"
           onClick={() => router.push("/kiosk/register/combo/basseinSaun")}
         >
-          БАССЕЙН САУН
+          САУН БАССЕЙН
         </div>
       </div>
     </Layout>

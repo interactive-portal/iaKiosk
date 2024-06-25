@@ -32,7 +32,6 @@ const Pool = () => {
     .value();
 
   return (
-    // router.query?.n
     <PriceLayout coverImagePath="/images/pool.png" title={"БАССЕЙН"}>
       <div className="flex flex-col gap-y-6 max-h-[1200px] items-center overflow-auto pv-6">
         <div>

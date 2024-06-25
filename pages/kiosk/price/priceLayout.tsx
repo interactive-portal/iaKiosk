@@ -12,8 +12,11 @@ const PriceLayout = ({ children, coverImagePath, title }: any) => {
         fontFamily: "AG",
       }}
     >
+      {/* <div className="w-full py-10 flex items-center justify-center uppercase">
+        <img src="/images/logo.png" alt="home" />
+      </div> */}
       <div
-        className="w-full h-[400px] relative text-center uppercase py-auto flex items-center justify-center text-[200px] text-white"
+        className="w-full h-[300px] relative text-center uppercase  flex items-center justify-center text-[130px] text-white "
         style={{
           backgroundImage: `url(${coverImagePath})`,
           backgroundRepeat: "no-repeat",
