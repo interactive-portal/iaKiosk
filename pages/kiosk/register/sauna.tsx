@@ -1,6 +1,7 @@
 import React from "react";
 import { useRouter } from "next/router";
 import PriceLayout from "../price/priceLayout";
+import RegisterLayout from "./registerLayout";
 
 const Sauna: React.FC = () => {
   const router = useRouter();
@@ -23,7 +24,7 @@ const Sauna: React.FC = () => {
   ];
 
   return (
-    <PriceLayout coverImagePath="/images/sauna.jpeg" title="САУН">
+    <RegisterLayout coverImagePath="/images/sauna.jpeg" title="САУН">
       <div className="flex flex-col gap-y-6 max-h-[1200px] overflow-auto p-6">
         {packages.map((pkg, index) => (
           <div
@@ -51,7 +52,7 @@ const Sauna: React.FC = () => {
           </div>
         ))}
       </div>
-    </PriceLayout>
+    </RegisterLayout>
   );
 };
 

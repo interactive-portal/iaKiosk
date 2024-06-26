@@ -1,6 +1,8 @@
+import { Modal } from "antd";
 import KioskLayout from "../kioskLayout";
 import { useRouter } from "next/router";
-import React from "react";
+import React, { useState } from "react";
+import CheckUser from "../member/checkUser";
 
 interface HomeData {
   pageName: string;
@@ -13,7 +15,7 @@ const Home = () => {
   const homeData: HomeData[] = [
     {
       pageName: "БҮРТГЭЛТЭЙ ГИШҮҮН",
-      path: "/kiosk/member",
+      path: "/kiosk/member/checkUser",
       bgColor: "#D9D9D9",
       textColor: "#525050",
     },
@@ -37,6 +39,8 @@ const Home = () => {
     router.push(path);
   };
 
+  const [openModal, setOpenModal] = useState(false);
+
   const Button: React.FC<HomeData> = ({
     pageName,
     path,
@@ -55,7 +59,7 @@ const Home = () => {
   return (
     <KioskLayout>
       <div className="text-[#A68B5C] text-[96px] mt-[250px]">welcome</div>
-      <div className="w-[836px] mx-auto flex flex-col gap-y-8 text-[64px] mt-[150px]">
+      <div className="w-[836px] mx-auto flex flex-col gap-y-14 text-[64px] mt-[200px]">
         {homeData.map((item, index) => (
           <Button
             key={index}
@@ -66,6 +70,15 @@ const Home = () => {
           />
         ))}
       </div>
+      <Modal
+        open={openModal}
+        onCancel={() => setOpenModal(false)}
+        title={false}
+        footer={false}
+        destroyOnClose
+      >
+        <CheckUser />
+      </Modal>
     </KioskLayout>
   );
 };

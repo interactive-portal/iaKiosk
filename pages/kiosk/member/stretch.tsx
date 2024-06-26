@@ -46,8 +46,8 @@ const Stretch = () => {
       </div>
       <div className="flex justify-center">
         <button
-          onClick={() => router.push("/kiosk/sell")}
-          className="bg-[#A68B5C] text-white py-2 px-4 rounded-2xl text-[40px] w-[378px]"
+          onClick={() => router.push("/kiosk/extend")}
+          className="bg-[#A68B5C] text-white h-[64px] px-4 rounded-2xl text-[40px] w-[378px]"
         >
           СУНГАЛТ ХИЙХ
         </button>

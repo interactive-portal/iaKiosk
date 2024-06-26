@@ -27,13 +27,13 @@ const Page = () => {
       </div>
       <div className="mt-[700px] ">
         <div
-          className="bg-white rounded-[76px] text-[#525050]  h-[152px] w-[836px] flex justify-center items-center font-semibold text-[44px]"
+          className="bg-white rounded-[76px] text-[#525050] text-[64px] h-[152px] w-[836px] flex justify-center items-center font-semibold "
           onClick={() => router.push("/kiosk/member/contract")}
         >
           <p>БҮРТГЭЛТЭЙ ГЭРЭЭ</p>
         </div>
         <div
-          className="bg-white rounded-[76px] text-[#525050] mt-[50px] h-[152px] w-[836px] flex justify-center items-center font-semibold text-[44px]"
+          className="bg-white rounded-[76px] text-[#525050] mt-[50px] h-[152px] w-[836px] flex justify-center items-center font-semibold text-[64px]"
           onClick={() => router.push("/kiosk/price/saunaPrice")}
         >
           ШИНЭ БАГЦ

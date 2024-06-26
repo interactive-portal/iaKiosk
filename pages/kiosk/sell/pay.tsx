@@ -13,11 +13,12 @@ type PropsType = {
 const Pay: FC<PropsType> = ({ item, contractId }) => {
   const router = useRouter();
   const [contentType, setContentType] = useState("");
+  const [isCardScanned, setIsCardScanned] = useState(false);
 
   const session: any = Cookies.getJSON("customer");
   const paymentProcess = async (payment: any, type: any) => {
     const param =
-      type == "pos"
+      type === "pos"
         ? {
             subTotal: Number(item?.saleprice),
             total: Number(item?.saleprice),
@@ -35,7 +36,6 @@ const Pay: FC<PropsType> = ({ item, contractId }) => {
               unitAmount: Number(item?.saleprice),
               lineTotalAmount: Number(item?.saleprice),
             },
-
             fitKioskSalesPaymentNew_DV: {
               paymentMethodCode: payment?.pan,
               bankId: 500000,
@@ -64,58 +64,40 @@ const Pay: FC<PropsType> = ({ item, contractId }) => {
               unitAmount: Number(item?.saleprice),
               lineTotalAmount: Number(item?.saleprice),
             },
-
             fitKioskSalesPaymentNew_DV: {
               amount: Number(item?.saleprice),
               paymentTypeId: "40",
               extTransactionId: payment?.invoice_id,
             },
           };
+
     const res = await axios.post(`/api/post-process`, {
       processcode: "fitKioskSalesNew_DV_001",
       parameters: param,
     });
-    // console.log(param);
-    if (res?.data?.status == "success") {
-      console.log("processoos irsen resposne", res);
-      //   setPrintOptions({
-      //     lang: {
-      //       mn: "",
-      //       en: "",
-      //     },
-      //     ishtml: 1,
-      //     print_options: {
-      //       numberOfCopies: "1",
-      //       isPrintNewPage: "1",
-      //       isSettingsDialog: "0",
-      //       isShowPreview: "1",
-      //       isPrintPageBottom: "0",
-      //       isPrintPageRight: "0",
-      //       pageOrientation: "portrait",
-      //       isPrintSaveTemplate: "1",
-      //       paperInput: "portrait",
-      //       pageSize: "a5",
-      //       printType: "1col",
-      //       templatemetaid: res?.data?.result?.templateId,
-      //       templateIds: res?.data?.result?.templateId,
-      //     },
-      //   });
+
+    if (res?.data?.status === "success") {
       const ebarimtResult = await axios.post(`/api/post-process`, {
         processcode: "kiosk_Ebarimt_Send",
         parameters: {
           id: res?.data?.result?.id,
         },
       });
-      if (ebarimtResult?.data?.status == "success") {
-        // setLoading(false);
-        // setContractId(res?.data?.result?.id);
-        // setModalContent("ebarimt");
+
+      if (ebarimtResult?.data?.status === "success") {
+        setIsCardScanned(true);
       }
     } else {
-      // console.log("aldaaa", res);
+      console.log("Payment failed", res);
     }
   };
+
   const content = () => {
+    if (isCardScanned) {
+      router.push("/kiosk/sell/ebarimt");
+      return null;
+    }
+
     switch (contentType) {
       case "choose":
         return (
@@ -139,11 +121,7 @@ const Pay: FC<PropsType> = ({ item, contractId }) => {
           </div>
         );
       case "qpay":
-        return (
-          <>
-            <Qpay item={item} paymentProcess={paymentProcess} />
-          </>
-        );
+        return <Qpay item={item} paymentProcess={paymentProcess} />;
       case "card":
         return (
           <div className="min-h-[900px] flex items-center justify-center mt-20">
@@ -155,9 +133,9 @@ const Pay: FC<PropsType> = ({ item, contractId }) => {
           <>
             <div className="flex flex-col gap-y-10 text-start">
               <div className="flex flex-col gap-y-4 text-white">
-                <label className="text-[48px]">Үйлчилгээний төрөл</label>
+                <label className="text-[48px] mt-20">Үйлчилгээний төрөл</label>
                 <input
-                  className="bg-[#D9D9D94D] border  border-white min-h-[118px] rounded-[23px] px-10 text-[48px]"
+                  className="bg-[#D9D9D94D] border border-white min-h-[118px] rounded-[23px] px-10 text-[48px]"
                   value={item?.itemname}
                 />
               </div>
@@ -177,9 +155,8 @@ const Pay: FC<PropsType> = ({ item, contractId }) => {
               </div>
             </div>
             <div
-              className="bg-[#A68B5C] text-white text-[70px] rounded-[87px]  mt-[300px] py-8"
-              // onClick={() => setContentType("choose")}
-              onClick={() => router.push("/kiosk/sell/ebarimt")}
+              className="bg-[#A68B5C] text-white text-[70px] rounded-[87px]  mt-[200px] py-8"
+              onClick={() => setContentType("choose")}
             >
               ТӨЛБӨР ТӨЛӨХ
             </div>

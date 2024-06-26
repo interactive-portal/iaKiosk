@@ -11,77 +11,87 @@ const UserInfo = () => {
     `/api/get-process?command=fit_ContractPackage_DV_004&parameters=${param}`
   );
 
-  console.log(readyData);
+  const fields = [
+    { label: "ГЭРЭЭНИЙ ДУГААР", key: "contractNumber" },
+    { label: "ОВОГ", key: "lastName" },
+    { label: "СЕРИАЛ ДУГААР", key: "serialNumber" },
+    { label: "НЭР", key: "firstName" },
+    { label: "РЕГИСТЕР", key: "registration" },
+    { label: "БАЙГУУЛСАН ОГНОО", key: "contractDate" },
+    { label: "ТӨЛӨВ", key: "status" },
+    { label: "ҮЙЛЧИЛГЭЭНИЙ НЭР", key: "serviceName" },
+    { label: "БАГЦЫН ХУГАЦАА", key: "packageDuration" },
+    { label: "ЭХЛЭХ ДУУСАХ ОГНОО", key: "startEndDate" },
+  ];
+
+  const fields2 = [
+    { label: "ГЭРЭЭНИЙ ДУГААР", key: "contractNumber" },
+    { label: "ОВОГ", key: "lastName" },
+    { label: "СЕРИАЛ ДУГААР", key: "serialNumber" },
+    { label: "НЭР", key: "firstName" },
+    { label: "РЕГИСТЕР", key: "registration" },
+    { label: "БАЙГУУЛСАН ОГНОО", key: "contractDate" },
+    { label: "ТӨЛӨВ", key: "status" },
+    { label: "ҮЙЛЧИЛГЭЭНИЙ НЭР", key: "serviceName" },
+    { label: "БАГЦЫН ХУГАЦАА", key: "packageDuration" },
+    { label: "ЭХЛЭХ ДУУСАХ ОГНОО", key: "startEndDate" },
+  ];
+
+  const getFieldValue = (key: string) => {
+    return readyData?.result?.[key] || "Null";
+  };
 
   return (
     <Layout>
-      <div className="text-center text-[#A68B5C] text-[64px]">ИЛЭРЦ</div>
-      <div className="text-white flex items-center justify-center min-w-[800px]">
-        <div className="grid grid-cols-2 gap-4  p-6 rounded-lg w-full text-[32px] text-start">
-          <div className="flex justify-between flex-col gap-y-2">
-            <span>ГЭРЭЭНИЙ ДУГААР</span>
-            <span className="bg-white px-3 py-1 rounded-[20px] text-[#525050]">
-              2400123
-            </span>
-          </div>
-          <div className="flex justify-between flex-col gap-y-2">
-            <span>ОВОГ</span>
-            <span className="bg-white px-3 py-1 rounded-[20px] text-[#525050]">
-              ЦЭЦЭГ
-            </span>
-          </div>
-          <div className="flex justify-between flex-col gap-y-2">
-            <span>СЕРИАЛ ДУГААР</span>
-            <span className="bg-white px-3 py-1 rounded-[20px] text-[#525050]">
-              463135
-            </span>
-          </div>
-          <div className="flex justify-between flex-col gap-y-2">
-            <span>НЭР</span>
-            <span className="bg-white px-3 py-1 rounded-[20px] text-[#525050]">
-              НОМИНЗАЯА
-            </span>
-          </div>
-          <div className="flex justify-between flex-col gap-y-2">
-            <span>РЕГИСТЕР</span>
-            <span className="bg-white px-3 py-1 rounded-[20px] text-[#525050]">
-              НЭ56220345
-            </span>
-          </div>
-          <div className="flex justify-between flex-col gap-y-2">
-            <span>БАЙГУУЛСАН ОГНОО</span>
-            <span className="bg-white px-3 py-1 rounded-[20px] text-[#525050]">
-              2024.02.27
-            </span>
-          </div>
-          <div className="flex justify-between flex-col gap-y-2">
-            <span>ТӨЛӨВ</span>
-            <span className="bg-white px-3 py-1 rounded-[20px] text-[#525050]">
-              ШИНЭ
-            </span>
-          </div>
-          <div className="flex justify-between flex-col gap-y-2">
-            <span>ҮЙЛЧИЛГЭЭНИЙ НЭР</span>
-            <span className="bg-white px-3 py-1 rounded-[20px] text-[#525050]">
-              ФИТНЕСС
-            </span>
-          </div>
-          <div className="flex justify-between flex-col gap-y-2">
-            <span>БАГЦЫН ХУГАЦАА</span>
-            <span className="bg-white px-3 py-1 rounded-[20px] text-[#525050]">
-              3 САР
-            </span>
-          </div>
-          <div className="flex justify-between flex-col gap-y-2">
-            <span>ЭХЛЭХ ДУУСАХ ОГНОО</span>
-            <span className="bg-white px-3 py-1 rounded-[20px] text-[#525050]">
-              2024.02.27 - 2024.06.27
-            </span>
+      <div>
+        <div className="text-center text-[#A68B5C] text-[64px]">ИЛЭРЦ</div>
+        <div className="text-white flex items-center justify-center min-w-[800px]">
+          <div className="grid grid-cols-2 gap-4 rounded-lg w-full text-[32px] text-start">
+            {fields.map((field) => (
+              <div
+                key={field.key}
+                className="flex justify-between flex-col gap-y-2"
+              >
+                <span>{field.label}</span>
+                <span className="bg-white px-5  rounded-[20px] text-[#525050]">
+                  {getFieldValue(field.key)}
+                </span>
+              </div>
+            ))}
           </div>
         </div>
-      </div>
-      <div className="text-white">
+        <div className="flex justify-center">
+          <button className="mt-5 flex text-[40px] items-center h-[64px] bg-[#A68B5C] rounded-full w-[349px] text-white justify-center gap-10">
+            СУНГАЛТ ХИЙХ
+          </button>
+        </div>
+        <div className="text-center text-white mt-5 text-[40px]">СКОВШ</div>
+        <div className="text-white flex items-center justify-center min-w-[800px]">
+          <div className="grid grid-cols-2 gap-4  rounded-lg w-full text-[32px] text-start">
+            {fields.map((field) => (
+              <div
+                key={field.key}
+                className="flex justify-between flex-col gap-y-2"
+              >
+                <span>{field.label}</span>
+                <span className="bg-white px-5 rounded-[20px] text-[#525050]">
+                  {getFieldValue(field.key)}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className="flex justify-center">
+          <button
+            className="mt-5  flex text-[40px] items-center h-[64px] bg-[#A68B5C] rounded-full w-[349px] text-white justify-center gap-10"
+            onClick={() => router.push("riosk/extend/stretch")}
+          >
+            СУНГАЛТ ХИЙХ
+          </button>
+        </div>
+        {/* <div className="text-white">
         {JSON.stringify(readyData?.result, undefined, 4)}
+      </div> */}
       </div>
     </Layout>
   );

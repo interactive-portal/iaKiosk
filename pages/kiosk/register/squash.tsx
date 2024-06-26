@@ -3,6 +3,7 @@ import useSWR from "swr";
 import { useRouter } from "next/router";
 import _ from "lodash";
 import Cookies from "js-cookie";
+import RegisterLayout from "./registerLayout";
 
 const Squash = () => {
   const router = useRouter();
@@ -33,7 +34,7 @@ const Squash = () => {
 
   return (
     // router.query?.n
-    <PriceLayout coverImagePath="/images/squash.jpeg" title={"СКОВШ"}>
+    <RegisterLayout coverImagePath="/images/squash.jpeg" title={"СКОВШ"}>
       <div className="flex flex-col gap-y-6 max-h-[1200px] overflow-auto">
         {groupByData?.map((obj: any, ind: number) => {
           const rowData = _.values(obj)?.[0];
@@ -69,7 +70,7 @@ const Squash = () => {
           );
         })}
       </div>
-    </PriceLayout>
+    </RegisterLayout>
   );
 };
 

@@ -3,6 +3,7 @@ import useSWR from "swr";
 import { useRouter } from "next/router";
 import _ from "lodash";
 import Cookies from "js-cookie";
+import RegisterLayout from "./registerLayout";
 
 const Pool = () => {
   const router = useRouter();
@@ -32,7 +33,7 @@ const Pool = () => {
     .value();
 
   return (
-    <PriceLayout coverImagePath="/images/pool.png" title={"БАССЕЙН"}>
+    <RegisterLayout coverImagePath="/images/pool.png" title={"БАССЕЙН"}>
       <div className="flex flex-col gap-y-6 max-h-[1200px] items-center overflow-auto pv-6">
         <div>
           {groupByData?.map((obj: any, ind: number) => {
@@ -70,7 +71,7 @@ const Pool = () => {
           })}
         </div>
       </div>
-    </PriceLayout>
+    </RegisterLayout>
   );
 };
 

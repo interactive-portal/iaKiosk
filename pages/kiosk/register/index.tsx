@@ -10,31 +10,31 @@ const Register = () => {
           БҮРТГЭЛ
         </div>
         <div
-          className="bg-white rounded-[76px] text-[#525050] py-[40px]"
+          className="bg-white rounded-full text-[#525050] py-[40px]"
           onClick={() => router.push("/kiosk/register/pool")}
         >
           БАССЕЙН
         </div>
         <div
-          className="bg-white rounded-[76px] text-[#525050] py-[40px]"
+          className="bg-white rounded-full text-[#525050] py-[40px]"
           onClick={() => router.push("/kiosk/register/fitness")}
         >
           ФИТНЕСС
         </div>
         <div
-          className="bg-white rounded-[76px] text-[#525050] py-[40px]"
+          className="bg-white rounded-full text-[#525050] py-[40px]"
           onClick={() => router.push("/kiosk/register/sauna")}
         >
           САУН
         </div>
         <div
-          className="bg-white rounded-[76px] text-[#525050] py-[40px]"
+          className="bg-white rounded-full text-[#525050] py-[40px]"
           onClick={() => router.push("/kiosk/register/squash")}
         >
           СКВОШ
         </div>
         <div
-          className="bg-[#A68B5C] rounded-[76px] text-[#FFFFFF] py-[40px]"
+          className="bg-[#A68B5C] rounded-full text-[#FFFFFF] py-[40px]"
           onClick={() => router.push("/kiosk/register/combo")}
         >
           ХОСОЛСОН БАГЦ

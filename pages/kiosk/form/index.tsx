@@ -92,7 +92,7 @@ const Form = () => {
                       return (
                         <div className="flex gap-x-6">
                           <div className="flex flex-col ">
-                            <label className="text-[16px] font-medium  text-[#2A2A2A]">
+                            {/* <label className="text-[16px] font-medium  text-[#2A2A2A]">
                               Улс
                             </label>
                             <div className="flex min-h-[50px] gap-x-2 text-[16px]">
@@ -114,7 +114,7 @@ const Form = () => {
                                 />
                                 <div>Бусад</div>
                               </div>
-                            </div>
+                            </div> */}
                           </div>
                           <Text key={index} obj={newObj} />
                         </div>
@@ -245,6 +245,18 @@ const Form = () => {
 
 const formInput = [
   {
+    labelname: "ГЭРЭЭНИЙ ДУГААР",
+    pathname: "contractName",
+    type: "text",
+    isRequired: 1,
+  },
+  {
+    labelname: "ОН САР",
+    pathname: "contractName",
+    type: "text",
+    isRequired: 1,
+  },
+  {
     labelname: "ОВОГ",
     pathname: "lastName",
     type: "text",
@@ -276,18 +288,7 @@ const formInput = [
     lookupId: "1448432578544",
     isRequired: 1,
   },
-  {
-    labelname: "УТАС",
-    pathname: "phoneNumber",
-    type: "number",
-    isRequired: 1,
-  },
-  {
-    labelname: "И-МЭЙЛ",
-    pathname: "EMAIL",
-    type: "email",
-    isRequired: 1,
-  },
+
   {
     labelname: "ХОТ",
     pathname: "cityId",
@@ -312,6 +313,18 @@ const formInput = [
     lookupId: "1448415981268",
     criteriaPath: "districtId",
     name: "streetname",
+    isRequired: 1,
+  },
+  {
+    labelname: "УТАС",
+    pathname: "phoneNumber",
+    type: "number",
+    isRequired: 1,
+  },
+  {
+    labelname: "И-МЭЙЛ",
+    pathname: "EMAIL",
+    type: "email",
     isRequired: 1,
   },
   // {

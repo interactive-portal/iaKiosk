@@ -166,30 +166,28 @@ import PriceLayout from "./priceLayout";
 const FitnessPrice = () => {
   return (
     <PriceLayout>
-      <div>
-        <div className="mt-[100px]">
-          <p className="flex justify-center text-[#A68B5C] text-[64px]">
-            ФИТНЕСС
-          </p>
-        </div>
-        <div className="mt-[90px] ">
+      <div className="mt-[100px]">
+        <p className="flex justify-center text-[#A68B5C] text-[64px]">
+          ФИТНЕСС
+        </p>
+      </div>
+      <div className="mt-[90px] ">
+        <img
+          src="/images/fitnessPrice.png"
+          alt="Fitness Price"
+          className="h-[300px]"
+        />
+        <div className="grid justify-center w-full">
           <img
-            src="/images/fitnessPrice.png"
-            alt="Fitness Price"
-            className="h-[300px]"
+            src="/images/fitnessSanamj.png"
+            alt="Fitness Sanamj"
+            className="h-[316px]"
           />
-          <div className="grid justify-center w-full">
-            <img
-              src="/images/fitnessSanamj.png"
-              alt="Fitness Sanamj"
-              className="h-[316px]"
-            />
-            <img
-              src="/images/fitnessHunglult.png"
-              alt="Fitness Hunglult"
-              className="h-[316px] w-full  "
-            />
-          </div>
+          <img
+            src="/images/fitnessHunglult.png"
+            alt="Fitness Hunglult"
+            className="h-[316px] w-full  "
+          />
         </div>
       </div>
     </PriceLayout>

@@ -1,6 +1,7 @@
 import React from "react";
 import { useRouter } from "next/router";
-import PriceLayout from "../price/priceLayout";
+
+import RegisterLayout from "./registerLayout";
 
 const Fitness: React.FC = () => {
   const router = useRouter();
@@ -43,7 +44,7 @@ const Fitness: React.FC = () => {
   ];
 
   return (
-    <PriceLayout coverImagePath="/images/fitness.jpeg" title="ФИТНЕСС">
+    <RegisterLayout coverImagePath="/images/fitness.jpeg" title="ФИТНЕСС">
       <div className="flex flex-col  gap-y-6 max-h-[1200px] overflow-auto p-6">
         {datas.map((data, index) => (
           <div
@@ -71,15 +72,7 @@ const Fitness: React.FC = () => {
           </div>
         ))}
       </div>
-      <div className="flex justify-between text-white text-[40px] mt-10">
-        <div onClick={() => router.push("/")} className="cursor-pointer">
-          HOME
-        </div>
-        <div onClick={() => router.back()} className="cursor-pointer">
-          BACK
-        </div>
-      </div>
-    </PriceLayout>
+    </RegisterLayout>
   );
 };
 

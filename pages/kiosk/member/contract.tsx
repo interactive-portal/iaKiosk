@@ -116,9 +116,9 @@ const Contract: React.FC = () => {
 
             <button
               onClick={() => router.push("/kiosk/member/stretch")}
-              className="flex justify-center items-center text-center bg-[#A68B5C] text-white text-[40px] w-[349px] rounded-full mt-[40px]"
+              className=" h-[64px] text-center bg-[#A68B5C] text-white text-[40px] w-[349px] rounded-3xl mt-[40px]"
             >
-              СУНГАЛТ ХИЙХ
+              <p className="flex justify-center items-center">СУНГАЛТ ХИЙХ</p>
             </button>
           </div>
         </div>

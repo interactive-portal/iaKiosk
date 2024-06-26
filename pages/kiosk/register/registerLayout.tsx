@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 
-const PriceLayout = ({ children, coverImagePath, title }: any) => {
+const RegisterLayout = ({ children, coverImagePath, title }: any) => {
   const router = useRouter();
   return (
     <div
@@ -12,11 +12,8 @@ const PriceLayout = ({ children, coverImagePath, title }: any) => {
         fontFamily: "AG",
       }}
     >
-      <div className="w-full py-10 flex items-center justify-center uppercase">
-        <img src="/images/logo.png" alt="home" />
-      </div>
-      {/* <div
-        className="w-full  relative text-center uppercase  flex items-center justify-center text-[130px] text-white "
+      <div
+        className="w-full h-[400px] relative text-center uppercase  flex items-center justify-center text-[130px] text-white "
         style={{
           backgroundImage: `url(${coverImagePath})`,
           backgroundRepeat: "no-repeat",
@@ -24,9 +21,9 @@ const PriceLayout = ({ children, coverImagePath, title }: any) => {
         }}
       >
         {title}
-      </div> */}
+      </div>
       <div>
-        <div className="w-full px-10">{children}</div>
+        <div className="w-full px-10 mt-[30px]">{children}</div>
       </div>
       <button
         className="absolute bottom-10 left-10 text-white uppercase text-[48px]"
@@ -44,4 +41,4 @@ const PriceLayout = ({ children, coverImagePath, title }: any) => {
   );
 };
 
-export default PriceLayout;
+export default RegisterLayout;

@@ -7,12 +7,14 @@ const Extend = () => {
   const [openModal, setOpenModal] = useState(false);
   return (
     <Layout>
-      <div className="uppercase text-[90px] text-[#A68B5C] mb-10">ТУСЛАМЖ</div>
-      <div className="relative min-w-[665px]">
+      <div className="uppercase text-[90px] text-[#A68B5C] mb-10 mt-[150px]">
+        СУНГАЛТ
+      </div>
+      <div className="relative min-w-[665px] mt-[100px]">
         <i className="fa-solid fa-magnifying-glass absolute top-1/2 left-6 fa-2xl text-[#525050]"></i>
         <input
           type="text"
-          className="min-h-[87px] bg-white text-[#525050] text-[36px] min-w-[665px] rounded-[26px] pl-[70px]"
+          className="min-h-[87px] text-[#525050] text-[36px] min-w-[665px] rounded-[26px] pl-[70px]"
           placeholder="ХАЙЛТ"
         />
       </div>
@@ -21,7 +23,7 @@ const Extend = () => {
       </div>
       <div className="w-full text-center flex justify-center mt-[200px]">
         <button
-          className="flex items-center gap-x-10 bg-[#A68B5C] rounded-[26px] text-white px-10 py-6"
+          className="flex items-center  bg-[#A68B5C] rounded-[26px] w-[443px] text-white px-10 py-6 justify-center gap-10"
           onClick={() => setOpenModal(!openModal)}
         >
           <p className="text-[40px]">ХАЙЛТ</p>

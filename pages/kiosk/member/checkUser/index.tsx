@@ -2,8 +2,7 @@ import { notification } from "antd";
 import axios from "axios";
 import { useRouter } from "next/router";
 import { useState, FC } from "react";
-import Layout from "../kioskLayout";
-import CameraLayout from "./cameraLayout";
+import CameraLayout from "../../form/cameraLayout";
 
 type PropsType = {
   setProcessParam?: any;
@@ -94,13 +93,13 @@ const OpenCamera: FC<PropsType> = ({
     switch (contentType) {
       case "opencamera":
         return (
-          <div className="flex items-center justify-center text-[48px] text-white">
+          <div className=" items-center justify-center text-[48px] text-white ">
             <img
               src="/images/cameraMan.jpeg"
               alt="man"
-              className="h-[702px] w-[828px] rounded-2xl"
+              className="h-[828px] w-[828px] rounded-2xl"
             />
-            ТА КАМЕР ЛУУ ХАРНА УУ!asdc
+            <p className="mt-20"> ТА КАМЕР ЛУУ ХАРНА УУ!</p>
           </div>
         );
       case "error":
@@ -155,7 +154,8 @@ const OpenCamera: FC<PropsType> = ({
             <div className="uppercase mt-[200px]">
               <button
                 className="p-8 rounded-[87px] bg-[#A68B5C] text-white text-[40px] uppercase"
-                onClick={(e) => saved(e)}
+                // onClick={(e) => saved(e)}
+                onClick={() => router.push("/kiosk/member")}
               >
                 дараагийн хуудас
               </button>
@@ -178,14 +178,13 @@ const OpenCamera: FC<PropsType> = ({
               //   onClick={() => setOpenLogin(true)}
             />
             <span className="text-white text-[36px] text-center px-10">
-              ЦАРАЙГАА ТАНИУЛСНААР БҮРТГЭЛ ДУУСНА. ЦААШИД КЛУБ НЭВТРЭХДЭЭ ЦАРАЙ
-              ТАНИУЛЖ НЭВТРЭХ ТУЛ ЗААВРЫГ АНХААРАЛТАЙ ДАГААРАЙ.
+              ЦАРАЙГАА ТАНИУЛЖ СУНГАЛТАА ҮРГЭЛЖЛҮҮНЭ ҮҮ!
             </span>
             <button
-              className="text-[64px] text-[#525050] bg-white rounded-[87px] w-full py-10 mx-10"
+              className="text-[64px] text-[#525050] bg-white rounded-[87px] w-[395px] py-10 mx-10"
               onClick={() => clickCamera()}
             >
-              ЦАРАЙ ТАНИУЛАХ
+              SCAN
             </button>
           </div>
         );
