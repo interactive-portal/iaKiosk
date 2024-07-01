@@ -80,7 +80,7 @@ const Stretch: React.FC = () => {
     <Layout>
       <div className="text-center text-[#A68B5C] text-[64px]">СУНГАЛТ</div>
 
-      <div className="text-white flex items-center justify-center min-w-[800px]">
+      <div className="text-white px-[100px] flex items-center justify-center min-w-[800px]">
         <div className="grid grid-cols-2 gap-4 p-6 rounded-lg w-full text-[32px] text-start">
           {userFields.map((field) => (
             <div key={field.key} className="flex flex-col gap-y-2">
@@ -95,8 +95,19 @@ const Stretch: React.FC = () => {
           ))}
         </div>
       </div>
+      <div className="px-[100px]  mt-[100px] w-full text-[40px] text-start ">
+        {contractFields.map((field) => (
+          <div className="flex justify-between items-center text-white mt-[25px] ">
+            <p>{field.label}</p>
+            <input
+              type="text"
+              className="bg-[#D9D9D94D] border-white border-2 px-3 py-1 rounded-2xl text-[#525050] w-[430px] h-[86px]"
+            />
+          </div>
+        ))}
+      </div>
 
-      {contractData.length > 0 &&
+      {/* {contractData.length > 0 &&
         contractData.map((contract, index) => (
           <div
             key={index}
@@ -116,9 +127,9 @@ const Stretch: React.FC = () => {
               ))}
             </div>
           </div>
-        ))}
+        ))} */}
 
-      <div className="flex justify-center">
+      <div className="flex mt-[80px] justify-center">
         <button
           className="flex text-[64px] items-center  bg-[#A68B5C] h-[120px] rounded-2xl w-[619px] text-white justify-center gap-10"
           onClick={() => router.push("/kiosk/sell/pay/")}

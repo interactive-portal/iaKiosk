@@ -14,7 +14,7 @@ const Text: FC<PropsType> = ({ obj }) => {
 
   return (
     <div className="flex flex-col ">
-      <label className="text-[16px] font-medium  text-[#2A2A2A]">
+      <label className="text-[16px] mt-[8px] font-medium  text-[#2A2A2A]">
         {obj?.labelname} <span className="text-red-500">*</span>
       </label>
       <input
@@ -25,7 +25,7 @@ const Text: FC<PropsType> = ({ obj }) => {
           obj?.pathname,
           obj.isRequired == 1 ? { required: "Заавал бөглөх талбар !" } : {}
         )}
-        className={`mt-[8px] px-[14px] py-[17px] text-[16px] border-black border rounded-lg focus-visible:outline-none focus-visible:border-none ${
+        className={`mt-[8px] px-[14px] border border-black py-[17px] text-[16px] rounded-lg focus-visible:outline-none ${
           errorMessage && "ring-1 ring-red-500"
         }`}
         // style={{

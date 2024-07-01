@@ -62,7 +62,7 @@ const index: FC<PropsType> = ({
             </BlockDiv>
           </nav>
           <main
-            className="flex flex-col w-full bg-white overflow-x-hidden overflow-y-auto mb-14"
+            className="flex flex-col w-full bg-black overflow-x-hidden overflow-y-auto mb-14"
             style={{ msOverflowStyle: "none", scrollbarWidth: "none" }}
           >
             <BlockDiv customClassName="flex w-full">

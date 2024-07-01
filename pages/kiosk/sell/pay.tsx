@@ -4,6 +4,7 @@ import Cookies from "js-cookie";
 import { FC, useState } from "react";
 import Layout from "../kioskLayout";
 import { useRouter } from "next/navigation";
+import Warning from "./warning";
 
 type PropsType = {
   item?: any;
@@ -14,8 +15,10 @@ const Pay: FC<PropsType> = ({ item, contractId }) => {
   const router = useRouter();
   const [contentType, setContentType] = useState("");
   const [isCardScanned, setIsCardScanned] = useState(false);
+  const [showWarning, setShowWarning] = useState(false);
 
   const session: any = Cookies.getJSON("customer");
+
   const paymentProcess = async (payment: any, type: any) => {
     const param =
       type === "pos"
@@ -85,7 +88,10 @@ const Pay: FC<PropsType> = ({ item, contractId }) => {
       });
 
       if (ebarimtResult?.data?.status === "success") {
-        setIsCardScanned(true);
+        setShowWarning(true);
+        setTimeout(() => {
+          setIsCardScanned(true);
+        }, 2000); // Show warning for 2 seconds before navigating
       }
     } else {
       console.log("Payment failed", res);
@@ -125,13 +131,13 @@ const Pay: FC<PropsType> = ({ item, contractId }) => {
       case "card":
         return (
           <div className="min-h-[900px] flex items-center justify-center mt-20">
-            <p className="text-white text-[64px] ">ТА КАРТАА УНШУУЛНА УУ!</p>
+            <Warning />
           </div>
         );
       default:
         return (
           <>
-            <div className="flex flex-col gap-y-10 text-start">
+            <div className="flex flex-col gap-y-10 text-start mt-[50px]">
               <div className="flex flex-col gap-y-4 text-white">
                 <label className="text-[48px] mt-20">Үйлчилгээний төрөл</label>
                 <input
@@ -156,7 +162,7 @@ const Pay: FC<PropsType> = ({ item, contractId }) => {
             </div>
             <div
               className="bg-[#A68B5C] text-white text-[70px] rounded-[87px]  mt-[200px] py-8"
-              onClick={() => setContentType("choose")}
+              onClick={() => router.push("/kiosk/sell/warning")}
             >
               ТӨЛБӨР ТӨЛӨХ
             </div>

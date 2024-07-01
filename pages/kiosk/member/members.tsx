@@ -22,7 +22,7 @@ const Members: React.FC<MembersProps> = ({
     };
 
   return (
-    <div className="p-4 rounded-xl text-white mb-4">
+    <div className="p-4 w-full text-white mb-4">
       <p className="text-[40px] mb-4 text-start">ГИШҮҮН {number}</p>
       <div className="grid grid-cols-2 gap-4 items-center">
         <div>

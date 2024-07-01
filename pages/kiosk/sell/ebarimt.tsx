@@ -11,13 +11,13 @@ const Ebarimt = () => {
     <div className="mt-[350px]">
       <p className="text-[90px] text-[#A68B5C]">e-barimt</p>
       <button
-        className="h-[174px] w-[844px] bg-white rounded-full text-[64px] mt-[80px]"
-        onClick={() => router.push("/kiosk/sell/warning")}
+        className="h-[174px] w-[844px] bg-white text-[#525050] rounded-full text-[64px] mt-[80px]"
+        onClick={() => setView("payment")}
       >
         ХУВЬ ХҮН
       </button>
       <button
-        className="h-[174px] w-[844px] bg-white rounded-full text-[64px] mt-[50px]"
+        className="h-[174px] w-[844px] bg-white text-[#525050] rounded-full text-[64px] mt-[50px]"
         onClick={() => setView("organization")}
       >
         БАЙГУУЛЛАГА
@@ -33,13 +33,13 @@ const Ebarimt = () => {
           <p className="text-white text-[46px] text-start px-10 mb-10">
             БАЙГУУЛЛАГЫН РЕГИСТЕР
           </p>
-          <input className="bg-[#D9D9D94D] border border-white min-h-[118px] rounded-full px-10 text-[48px] w-[788px]" />
+          <input className="bg-[#D9D9D94D] border text-white border-white min-h-[118px] rounded-full px-10 text-[48px] w-[788px]" />
         </div>
         <div>
           <p className="text-white text-[46px] text-start px-10 mb-10">
             БАЙГУУЛЛАГЫН НЭР
           </p>
-          <input className="bg-[#D9D9D94D] border border-white min-h-[118px] rounded-full px-10 text-[48px]  w-[788px]" />
+          <input className="bg-[#D9D9D94D] text-white border border-white min-h-[118px] rounded-full px-10 text-[48px]  w-[788px]" />
         </div>
       </div>
 
@@ -53,34 +53,42 @@ const Ebarimt = () => {
   );
 
   const renderPaymentView = () => (
-    <div className="mt-[350px]">
-      <p className="text-[90px] text-[#A68B5C]">ТӨЛБӨР ТӨЛӨХ АРГА</p>
+    <div className="mt-[300px]">
+      <p className="text-[90px] text-[#A68B5C]">ТӨЛБӨР ТӨЛӨХ </p>
       <button
-        className="h-[174px] w-[844px] bg-white rounded-full text-[64px] mt-[80px]"
+        className="h-[174px] w-[844px] bg-white pb-[21px] rounded-full text-[#525050] text-[64px] mt-[80px] uppercase"
         onClick={() => setView("card")}
       >
         Карт
       </button>
       <button
-        className="h-[174px] w-[844px] bg-white rounded-full text-[64px] mt-[50px]"
+        className=" uppercase h-[174px] w-[844px] text-[#525050] pb-[21px] bg-white rounded-full text-[64px] mt-[50px]"
         onClick={() => setView("qpay")}
       >
-        QPay
+        Social Pay
+      </button>
+      <button
+        className="uppercase h-[174px] pb-[21px] text-[#525050] w-[844px] bg-white rounded-full text-[64px] mt-[50px]"
+        onClick={() => setView("qpay")}
+      >
+        Q Pay
       </button>
     </div>
   );
 
   const handleQpayPayment = async () => {
-    // Logic for Qpay payment
-    // After payment is successful:
     setView("receipt");
   };
 
-  //   const renderQpay = () => <Qpay onPaymentSuccess={handleQpayPayment} />;
-
   const renderReceiptView = () => (
-    <div className="min-h-[900px] flex items-center justify-center mt-20">
+    <div className="min-h-[900px] flex items-center justify-center mt-[250px]">
       <p className="text-white text-[64px]">ТА ТӨЛБӨРИЙН БАРИМТАА АВНА УУ!</p>
+    </div>
+  );
+
+  const renderCardReceiptView = () => (
+    <div className="min-h-[900px] flex items-center justify-center mt-[250px]">
+      <p className="text-white text-[64px]">ТА КАРТАА УНШУУЛНА УУ!</p>
     </div>
   );
 
@@ -89,8 +97,9 @@ const Ebarimt = () => {
       {view === "default" && renderDefaultView()}
       {view === "organization" && renderOrganizationView()}
       {view === "payment" && renderPaymentView()}
-      {/* {view === "qpay" && renderQpay()} */}
       {view === "receipt" && renderReceiptView()}
+      {view === "card" && renderCardReceiptView()}
+      {/* {view === "qpay" && <Qpay onPaymentSuccess={handleQpayPayment} />} */}
     </Layout>
   );
 };

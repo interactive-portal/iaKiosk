@@ -67,7 +67,7 @@ const Contract: React.FC = () => {
       <p className="text-[64px] font-medium text-[#A68B5C] text-center mb-8">
         ИЛЭРЦ
       </p>
-      <div className="flex gap-16 mb-8">
+      <div className="flex gap-16 mb-8 px-[80px]">
         <div>
           <p className="text-[32px] text-white text-start">ОВОГ</p>
           <input
@@ -89,7 +89,10 @@ const Contract: React.FC = () => {
       </div>
 
       {data.contracts.map((contract, contractIndex) => (
-        <div key={contractIndex} className="p-8 rounded-3xl text-white mb-8 ">
+        <div
+          key={contractIndex}
+          className="px-[100px] rounded-3xl text-white mt-[80px] "
+        >
           <p className="text-[40px] p-4">{contract.title}</p>
           <div className="grid grid-cols-2 gap-4">
             {contract.fields.map((field, fieldIndex) => (
@@ -108,17 +111,23 @@ const Contract: React.FC = () => {
 
             <div>
               <p className="text-[32px] text-start">ЭХЛЭХ ДУУСАХ ОГНОО</p>
-              <input
-                type="date"
-                className="bg-white rounded-3xl font-medium text-[30px] px-4 h-[43px] w-full text-black"
-              />
+              <div className="bg-white rounded-3xl p-4">
+                <input
+                  type="date"
+                  className="rounded-full font-medium text-[30px] px-4 h-[43px] w-full text-black"
+                />
+                <input
+                  type="date"
+                  className="rounded-full font-medium text-[30px] px-4 h-[43px] w-full text-black"
+                />
+              </div>
             </div>
 
             <button
               onClick={() => router.push("/kiosk/member/stretch")}
-              className=" h-[64px] text-center bg-[#A68B5C] text-white text-[40px] w-[349px] rounded-3xl mt-[40px]"
+              className="pb-[21px] h-[64px] text-center bg-[#A68B5C] text-white text-[40px] w-[410px] rounded-3xl mt-[80px]"
             >
-              <p className="flex justify-center items-center">СУНГАЛТ ХИЙХ</p>
+              <p className=" flex justify-center items-center">СУНГАЛТ ХИЙХ</p>
             </button>
           </div>
         </div>

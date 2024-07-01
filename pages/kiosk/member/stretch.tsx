@@ -22,7 +22,7 @@ const Stretch = () => {
       <p className="text-[64px] font-medium text-[#A68B5C] text-center mb-8">
         БАССЕЙН БАГЦ
       </p>
-      <div>
+      <div className="self-start ">
         {members.map((member, index) => (
           <Members
             key={index}
@@ -34,12 +34,13 @@ const Stretch = () => {
           />
         ))}
       </div>
-      <div className="flex justify-center mb-8 mt-[100px]">
+
+      <div className="flex justify-center mb-8 mt-[80px]">
         <button
-          className="text-black bg-white text-[40px] py-2 px-4 rounded-2xl"
-          onClick={() =>
-            setMembers([...members, { name: "", registration: "", serial: "" }])
-          }
+          className="text-black bg-white text-[40px] h-[80px]  pb-[11px] px-4 rounded-2xl"
+          // onClick={() =>
+          //   setMembers([...members, { name: "", registration: "", serial: "" }])
+          // }
         >
           ГИШҮҮН НЭМЭХ
         </button>
@@ -47,7 +48,7 @@ const Stretch = () => {
       <div className="flex justify-center">
         <button
           onClick={() => router.push("/kiosk/extend")}
-          className="bg-[#A68B5C] text-white h-[64px] px-4 rounded-2xl text-[40px] w-[378px]"
+          className="bg-[#A68B5C] text-white px-4  h-[80px]  pb-[11px] rounded-2xl text-[40px] w-[378px]"
         >
           СУНГАЛТ ХИЙХ
         </button>

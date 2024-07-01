@@ -4,7 +4,7 @@ const Page = () => {
   const router = useRouter();
   return (
     <div
-      className="max-w-[1080px] h-screen"
+      className="max-w-[1080px] h-screen  overflow-hidden"
       onClick={() => router.push("/kiosk/home")}
       style={{
         backgroundImage: "url(/images/layout.png)",

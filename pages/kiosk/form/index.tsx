@@ -66,7 +66,7 @@ const Form = () => {
       <BlockDiv className="py-2 text-[32px] text-white">
         <FormProvider {...methods}>
           <form onSubmit={methods.handleSubmit(onSubmit)}>
-            <div className="grid grid-cols-2 gap-10">
+            <div className="grid grid-cols-2 gap-10 ">
               {formInput?.map((obj: any, index: number) => {
                 let newObj = { ...obj, labelname: t(obj?.labelname) };
                 let criteria;
@@ -90,34 +90,9 @@ const Form = () => {
                   case "text":
                     if (obj?.pathname == "positionName") {
                       return (
-                        <div className="flex gap-x-6">
-                          <div className="flex flex-col ">
-                            {/* <label className="text-[16px] font-medium  text-[#2A2A2A]">
-                              Улс
-                            </label>
-                            <div className="flex min-h-[50px] gap-x-2 text-[16px]">
-                              <div className="flex gap-x-2 items-center">
-                                <input
-                                  type="checkbox"
-                                  onChange={() => setForeign("")}
-                                  checked={foreign == "" ? true : false}
-                                  className="rounded-full"
-                                />
-                                <div>Монгол</div>
-                              </div>
-                              <div className="flex gap-x-1 items-center">
-                                <input
-                                  type="checkbox"
-                                  checked={foreign == "" ? false : true}
-                                  onChange={() => setForeign("1")}
-                                  className="rounded-full"
-                                />
-                                <div>Бусад</div>
-                              </div>
-                            </div> */}
-                          </div>
-                          <Text key={index} obj={newObj} />
-                        </div>
+                        // <div className="flex mt-[8px] ">
+                        <Text key={index} obj={newObj} />
+                        // </div>
                       );
                     } else {
                       return <Text key={index} obj={newObj} />;

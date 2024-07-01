@@ -141,7 +141,7 @@ const OpenCamera: FC<PropsType> = ({
         );
       case "success":
         return (
-          <div className="flex flex-col items-center justify-center gap-y-[50px] mx-[20px]">
+          <div className="flex  flex-col items-center justify-center gap-y-[50px] mx-[20px]">
             <img
               src="/images/Face_id_white.png"
               className="w-[366px] h-[366px] mt-4"
@@ -153,7 +153,7 @@ const OpenCamera: FC<PropsType> = ({
             <span className="text-white text-[32px]">ТАНД БАЯРЛАЛАА</span>
             <div className="uppercase mt-[200px]">
               <button
-                className="p-8 rounded-[87px] bg-[#A68B5C] text-white text-[40px] uppercase"
+                className="p-8 pt-[21px] rounded-[87px] bg-[#A68B5C] text-white text-[40px] uppercase"
                 // onClick={(e) => saved(e)}
                 onClick={() => router.push("/kiosk/member")}
               >
@@ -181,7 +181,7 @@ const OpenCamera: FC<PropsType> = ({
               ЦАРАЙГАА ТАНИУЛЖ СУНГАЛТАА ҮРГЭЛЖЛҮҮНЭ ҮҮ!
             </span>
             <button
-              className="text-[64px] text-[#525050] bg-white rounded-[87px] w-[395px] py-10 mx-10"
+              className="text-[64px] pt-[21px] text-[#525050] bg-white rounded-[87px] w-[395px] py-10 mx-10"
               onClick={() => clickCamera()}
             >
               SCAN
@@ -192,7 +192,7 @@ const OpenCamera: FC<PropsType> = ({
   };
   return (
     <CameraLayout>
-      <div className="mt-[200px]">
+      <div className="mt-[300px]">
         {content()}
         <style>
           {`

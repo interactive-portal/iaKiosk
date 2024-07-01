@@ -61,7 +61,7 @@ const UserInfo = () => {
           </div>
         </div>
         <div className="flex justify-center">
-          <button className="mt-5 flex text-[40px] items-center h-[64px] bg-[#A68B5C] rounded-full w-[349px] text-white justify-center gap-10">
+          <button className="mt-5 pb-[11px] flex text-[40px] items-center h-[64px] bg-[#A68B5C] rounded-full w-[349px] text-white justify-center gap-10">
             СУНГАЛТ ХИЙХ
           </button>
         </div>
@@ -83,15 +83,15 @@ const UserInfo = () => {
         </div>
         <div className="flex justify-center">
           <button
-            className="mt-5  flex text-[40px] items-center h-[64px] bg-[#A68B5C] rounded-full w-[349px] text-white justify-center gap-10"
-            onClick={() => router.push("riosk/extend/stretch")}
+            className="mt-5 pb-[11px] flex text-[40px] items-center h-[64px] bg-[#A68B5C] rounded-full w-[349px] text-white justify-center gap-10"
+            onClick={() => router.push("userinfo/stretch")}
           >
             СУНГАЛТ ХИЙХ
           </button>
         </div>
         {/* <div className="text-white">
-        {JSON.stringify(readyData?.result, undefined, 4)}
-      </div> */}
+          {JSON.stringify(readyData?.result, undefined, 4)}
+        </div> */}
       </div>
     </Layout>
   );

@@ -100,7 +100,7 @@ const OpenCamera: FC<PropsType> = ({
               alt="man"
               className="h-[702px] w-[828px] rounded-2xl"
             />
-            ТА КАМЕР ЛУУ ХАРНА УУ!asdc
+            ТА КАМЕР ЛУУ ХАРНА УУ!
           </div>
         );
       case "error":
