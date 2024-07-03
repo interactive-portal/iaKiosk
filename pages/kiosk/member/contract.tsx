@@ -91,7 +91,7 @@ const Contract: React.FC = () => {
       {data.contracts.map((contract, contractIndex) => (
         <div
           key={contractIndex}
-          className="px-[100px] rounded-3xl text-white mt-[80px] "
+          className="px-[100px] rounded-3xl text-white mt-[px] "
         >
           <p className="text-[40px] p-4">{contract.title}</p>
           <div className="grid grid-cols-2 gap-4">

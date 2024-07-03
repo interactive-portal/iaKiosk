@@ -4,7 +4,7 @@ const CameraLayout = ({ children }: { children: React.ReactNode }) => {
   const router = useRouter();
   return (
     <div
-      className="w-full 2xl:w-[1000px] md:p-[90px] h-screen flex flex-col relative justify-center items-center overflow-hidden"
+      className="w-full 2xl:w-[1000px]  2xl:h-[1600px]  h-screen flex flex-col relative justify-center items-center overflow-hidden"
       style={{
         backgroundImage: "url(/images/home1.png)",
         backgroundRepeat: "no-repeat",

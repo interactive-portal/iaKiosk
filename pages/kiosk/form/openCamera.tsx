@@ -94,14 +94,15 @@ const OpenCamera: FC<PropsType> = ({
     switch (contentType) {
       case "opencamera":
         return (
-          <div className="flex items-center justify-center text-[48px] text-white">
-            <img
-              src="/images/cameraMan.jpeg"
-              alt="man"
-              className="h-[702px] w-[828px] rounded-2xl"
-            />
-            ТА КАМЕР ЛУУ ХАРНА УУ!
-          </div>
+          // <div className="flex items-center justify-center text-[48px] text-white">
+          //   <img
+          //     src="/images/cameraMan.jpeg"
+          //     alt="man"
+          //     className="h-[702px] w-[828px] rounded-2xl"
+          //   />
+          //   ТА КАМЕР ЛУУ ХАРНА УУ!
+          // </div>
+          <></>
         );
       case "error":
         return (

@@ -2,9 +2,11 @@ import { Modal } from "antd";
 import KioskLayout from "../kioskLayout";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
-import CheckUser from "../member/checkUser";
+
 import BlockDiv from "@/components/common/Block/BlockDiv";
 import Layout from "../kioskLayout";
+import CheckUser from "../member/checkUser";
+// import CheckUser from "../extend/checkUser";
 
 interface HomeData {
   pageName: string;
@@ -41,8 +43,6 @@ const Home = () => {
     router.push(path);
   };
 
-  const [openModal, setOpenModal] = useState(false);
-
   const Button: React.FC<HomeData> = ({
     pageName,
     path,
@@ -58,6 +58,7 @@ const Home = () => {
     </div>
   );
 
+  const [openModal, setOpenModal] = useState(false);
   return (
     <Layout>
       <div className="text-[#A68B5C] text-[48px] md:text-[96px] mt-[100px] md:mt-[250px] text-center">
@@ -81,7 +82,7 @@ const Home = () => {
         footer={false}
         destroyOnClose
       >
-        <CheckUser />
+        <CheckUser setOpenModal={setOpenModal} />
       </Modal>
     </Layout>
   );

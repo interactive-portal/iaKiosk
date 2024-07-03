@@ -1,106 +1,328 @@
-import { notification } from "antd";
-import axios from "axios";
+// import { notification } from "antd";
+// import axios from "axios";
+// import { useRouter } from "next/router";
+// import { useState, FC } from "react";
+// import CameraLayout from "../../form/cameraLayout";
+
+// type PropsType = {
+//   setProcessParam?: any;
+//   processParam?: any;
+//   birthday?: any;
+//   setLoading?: any;
+// };
+
+// const OpenCamera: FC<PropsType> = ({
+//   setProcessParam,
+//   processParam,
+//   birthday,
+//   setLoading,
+// }) => {
+//   const [contentType, setContentType] = useState("");
+//   const router = useRouter();
+//   const saved = async (e: any) => {
+//     e.preventDefault();
+//     setLoading(true);
+//     const param = {
+//       ...processParam,
+//       birthday: birthday,
+//     };
+
+//     const res = await axios.post(`/api/post-process`, {
+//       processcode: "fitCrmCustomerKiosk_DV_001",
+//       parameters: param,
+//     });
+
+//     if (res.data?.status == "success") {
+//       setLoading(false);
+//       router.push({
+//         pathname: "/kiosk/sell",
+//         query: {
+//           i: router.query?.i,
+//           c: res?.data?.result?.id,
+//         },
+//       });
+
+//       notification.success({
+//         message: "Бүртгэл амжилттай хийгдлээ",
+//       });
+//     } else {
+//       setLoading(false);
+//       alert(res?.data?.text);
+//     }
+//   };
+
+//   const clickCamera = () => {
+//     setContentType("opencamera");
+//     var ws = new WebSocket(`${process.env.NEXT_PUBLIC_FACECAMERA_URL}`);
+
+//     ws.onopen = function () {
+//       ws.send('{"action":"GetImage"}');
+//     };
+//     console.log(processParam);
+//     ws.onmessage = function (event) {
+//       var res = JSON.parse(event.data);
+//       console.log("ressssss", res.result.image);
+//       // if (res?.result.image != null) {
+//       //   setProcessParam({
+//       //     ...processParam,
+//       //     image: res?.result?.image,
+//       //     value: res?.result?.value,
+//       //   });
+//       //   // setImageToken(res?.result.image);
+//       //   // setValue(res?.result?.value);
+//       //   ws.send('{"action":"Close"}');
+//       //   setContentType("success");
+//       // } else {
+//       //   setContentType("error");
+//       // }
+//     };
+
+//     ws.onerror = function (event) {
+//       // alert(event.data);
+//       setContentType("success");
+//     };
+
+//     ws.onclose = function () {
+//       setContentType("success");
+
+//       // console.log("Connection is closed");
+//       // }
+//     };
+//   };
+//   const content = () => {
+//     switch (contentType) {
+//       case "opencamera":
+//         return (
+{
+  /* <div className=" items-center justify-center text-[48px] text-white ">
+  <img
+    src="/images/cameraMan.jpeg"
+    alt="man"
+    className="h-[828px] w-[828px] rounded-2xl"
+  />
+  <p className="mt-20"> ТА КАМЕР ЛУУ ХАРНА УУ!</p>
+</div>; */
+}
+//         );
+//       case "error":
+//         return (
+//           <div className="flex flex-col items-center justify-center gap-y-[50px] mx-[20px]">
+//             <img
+//               src="/images/Face_id_white.png"
+//               className="w-[366px] h-[366px] mt-4"
+//               //   onClick={() => setOpenLogin(true)}
+//             />
+//             <span className="text-white text-[36px] text-center px-10">
+//               ЦАРАЙ ТАНИГДАХГҮЙ БАЙНА
+//             </span>
+//             <span className="text-white text-[32px] text-center px-10">
+//               ДАХИН ОРОЛДОНО УУ!
+//             </span>
+//             <div className="flex items-center gap-x-2 justify-between w-full">
+//               <button
+//                 className="text-[36px] text-[#525050] bg-white rounded-[87px] w-full py-2"
+//                 onClick={() => clickCamera()}
+//               >
+//                 ДАХИН ОРОЛДОХ
+//               </button>
+//               <button
+//                 className="text-[36px] text-[#525050] bg-white rounded-[87px] w-full py-2"
+//                 onClick={() => clickCamera()}
+//               >
+//                 БОЛИХ
+//               </button>
+//             </div>
+//             <style>
+//               {`
+// 				.ant-modal-body {
+// 				width:100%;
+// 				}
+// 				`}
+//             </style>
+//           </div>
+//         );
+//       case "success":
+//         return (
+//           <div className="flex  flex-col items-center justify-center gap-y-[50px] mx-[20px]">
+//             <img
+//               src="/images/Face_id_white.png"
+//               className="w-[366px] h-[366px] mt-4"
+//               //   onClick={() => setOpenLogin(true)}
+//             />
+//             <span className="text-white text-[48px] text-center px-10">
+//               ЦАРАЙ ТАНИЛТ АМЖИЛТТАЙ
+//             </span>
+//             <span className="text-white text-[32px]">ТАНД БАЯРЛАЛАА</span>
+//             <div className="uppercase mt-[200px]">
+//               <button
+//                 className="p-8 pt-[21px] rounded-[87px] bg-[#A68B5C] text-white text-[40px] uppercase"
+//                 // onClick={(e) => saved(e)}
+//                 onClick={() => router.push("/kiosk/member")}
+//               >
+//                 дараагийн хуудас
+//               </button>
+//             </div>
+//             <style>
+//               {`
+//     .ant-modal-body {
+//     width:100%;
+//     }
+//     `}
+//             </style>
+//           </div>
+//         );
+//       default:
+//         return (
+//           <div className="flex flex-col items-center justify-center gap-y-[50px] mx-[100px]">
+//             <img
+//               src="/images/Face_id_white.png"
+//               className="w-[366px] h-[366px] mt-4"
+//               //   onClick={() => setOpenLogin(true)}
+//             />
+//             <span className="text-white text-[36px] text-center px-10">
+//               ЦАРАЙГАА ТАНИУЛЖ СУНГАЛТАА ҮРГЭЛЖЛҮҮНЭ ҮҮ!
+//             </span>
+//             <button
+//               className="text-[64px] pt-[21px] text-[#525050] bg-white rounded-[87px] w-[395px] py-10 mx-10"
+//               onClick={() => clickCamera()}
+//             >
+//               SCAN
+//             </button>
+//           </div>
+//         );
+//     }
+//   };
+//   return (
+//     <CameraLayout>
+//       <div className="mt-[300px]">
+//         {content()}
+//         <style>
+//           {`
+// 						.ant-modal-body {
+// 						display:flex;
+// 						justify-content:center;
+// 						align-items:center;
+// 						font-family:AG;
+// 						}
+// 						`}
+//         </style>
+//       </div>
+//     </CameraLayout>
+//   );
+// };
+
+// export default OpenCamera;
+
+import fetchJson from "@/util/helper";
+import { Spin } from "antd";
+import Cookies from "js-cookie";
 import { useRouter } from "next/router";
 import { useState, FC } from "react";
+import useSWR from "swr";
 import CameraLayout from "../../form/cameraLayout";
 
 type PropsType = {
-  setProcessParam?: any;
-  processParam?: any;
-  birthday?: any;
-  setLoading?: any;
+  setOpenModal?: any;
 };
 
-const OpenCamera: FC<PropsType> = ({
-  setProcessParam,
-  processParam,
-  birthday,
-  setLoading,
-}) => {
+const CheckUser: FC<PropsType> = ({ setOpenModal }) => {
   const [contentType, setContentType] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const [customer, setCustomer] = useState<any>({});
+
+  // const fetchData = async (res: any) => {
+  //   const param = JSON.stringify({
+  //     customerId: res?.result?.customerId,
+  //   });
+  //   const result = await fetchJson(
+  //     `/api/get-process?command=fit_ContractPackage_DV_004&parameters=${param}`
+  //   );
+
+  //   console.log(result);
+  // };
+
+  // let { data: readyData } = useSWR(
+  //   `/api/get-process?command=fit_ContractPackage_DV_004&parameters=${param}`
+  // );
+  // console.log("userInfouserInfouserInfouserInfouserInfo", readyData);
+
+  // if (readyData?.result == "success") {
+  //   setContentType("success");
+  //   setLoading(false);
+  // }
+
   const router = useRouter();
-  const saved = async (e: any) => {
-    e.preventDefault();
-    setLoading(true);
-    const param = {
-      ...processParam,
-      birthday: birthday,
-    };
-
-    const res = await axios.post(`/api/post-process`, {
-      processcode: "fitCrmCustomerKiosk_DV_001",
-      parameters: param,
-    });
-
-    if (res.data?.status == "success") {
-      setLoading(false);
-      router.push({
-        pathname: "/kiosk/sell",
-        query: {
-          i: router.query?.i,
-          c: res?.data?.result?.id,
-        },
-      });
-
-      // notification.success({
-      //   message: "Бүртгэл амжилттай хийгдлээ",
-      // });
-    } else {
-      setLoading(false);
-      alert(res?.data?.text);
-    }
-  };
-
   const clickCamera = () => {
     setContentType("opencamera");
     var ws = new WebSocket(`${process.env.NEXT_PUBLIC_FACECAMERA_URL}`);
 
+    // setOpenModal(true);
+
     ws.onopen = function () {
-      ws.send('{"action":"GetImage"}');
+      ws.send('{"action":"GetPerson"}');
     };
-    console.log(processParam);
+
     ws.onmessage = function (event) {
       var res = JSON.parse(event.data);
+      console.log("resresssssss", res);
 
-      if (res?.result.image != null) {
-        setProcessParam({
-          ...processParam,
-          image: res?.result?.image,
-          value: res?.result?.value,
-        });
+      if (res?.status == "success") {
+        setLoading(true);
+        setCustomer(res?.result);
+        Cookies.set("customer", res?.result);
+        setContentType("success");
         // setImageToken(res?.result.image);
         // setValue(res?.result?.value);
+        router.push({
+          pathname: "/kiosk/member/",
+          query: {
+            c: res?.result?.customerId,
+          },
+        });
         ws.send('{"action":"Close"}');
-        setContentType("success");
       } else {
         setContentType("error");
       }
     };
 
     ws.onerror = function (event) {
+      setOpenModal(false);
       // alert(event.data);
-      setContentType("success");
+      // setContentType("error");
     };
 
     ws.onclose = function () {
-      setContentType("success");
-
+      // setOpenModal(false);
+      // setContentType("error");
       // console.log("Connection is closed");
       // }
     };
   };
+
   const content = () => {
     switch (contentType) {
       case "opencamera":
         return (
-          <div className=" items-center justify-center text-[48px] text-white ">
-            <img
-              src="/images/cameraMan.jpeg"
-              alt="man"
-              className="h-[828px] w-[828px] rounded-2xl"
-            />
-            <p className="mt-20"> ТА КАМЕР ЛУУ ХАРНА УУ!</p>
-          </div>
+          <>
+            <div className="flex flex-col items-center justify-center gap-y-[50px] mx-[100px]">
+              <img
+                src="/images/Face_id_white.png"
+                className="w-[366px] h-[366px] mt-4"
+                //   onClick={() => setOpenLogin(true)}
+              />
+              <span className="text-white text-[36px] text-center px-10">
+                ЦАРАЙГАА ТАНИУЛЖ СУНГАЛТАА ҮРГЭЛЖЛҮҮНЭ ҮҮ!
+              </span>
+              <button
+                className="text-[64px] text-[#525050] bg-white rounded-[87px] w-full py-10 mx-10"
+                onClick={() => clickCamera()}
+              >
+                SCAN
+              </button>
+            </div>
+            ;
+          </>
         );
       case "error":
         return (
@@ -130,6 +352,17 @@ const OpenCamera: FC<PropsType> = ({
                 БОЛИХ
               </button>
             </div>
+            <div className="text-center mt-20">
+              <span className="text-white text-[48px] text-center px-10">
+                ЦАРАЙ ТАНИГДАХГҮЙ БАЙНА
+              </span>
+              <button
+                className="p-8 rounded-[87px] bg-[#A68B5C] text-white text-[40px] uppercase mt-10"
+                onClick={() => router.push("/kiosk/price")}
+              >
+                гишүүн болох
+              </button>
+            </div>
             <style>
               {`
 				.ant-modal-body {
@@ -141,9 +374,9 @@ const OpenCamera: FC<PropsType> = ({
         );
       case "success":
         return (
-          <div className="flex  flex-col items-center justify-center gap-y-[50px] mx-[20px]">
+          <div className="flex flex-col items-center justify-center gap-y-[50px] mx-[20px]">
             <img
-              src="/images/Face_id_white.png"
+              src="/images/cameraMan.jpeg"
               className="w-[366px] h-[366px] mt-4"
               //   onClick={() => setOpenLogin(true)}
             />
@@ -153,13 +386,20 @@ const OpenCamera: FC<PropsType> = ({
             <span className="text-white text-[32px]">ТАНД БАЯРЛАЛАА</span>
             <div className="uppercase mt-[200px]">
               <button
-                className="p-8 pt-[21px] rounded-[87px] bg-[#A68B5C] text-white text-[40px] uppercase"
-                // onClick={(e) => saved(e)}
-                onClick={() => router.push("/kiosk/member")}
+                className="p-8 rounded-[87px] bg-[#A68B5C] text-white text-[40px] uppercase"
+                onClick={() =>
+                  router.push({
+                    pathname: "/kiosk/member/",
+                    query: {
+                      c: customer?.customerId,
+                    },
+                  })
+                }
               >
                 дараагийн хуудас
               </button>
             </div>
+
             <style>
               {`
     .ant-modal-body {
@@ -181,7 +421,7 @@ const OpenCamera: FC<PropsType> = ({
               ЦАРАЙГАА ТАНИУЛЖ СУНГАЛТАА ҮРГЭЛЖЛҮҮНЭ ҮҮ!
             </span>
             <button
-              className="text-[64px] pt-[21px] text-[#525050] bg-white rounded-[87px] w-[395px] py-10 mx-10"
+              className="text-[64px] text-[#525050] bg-white rounded-[87px] w-full py-10 mx-10"
               onClick={() => clickCamera()}
             >
               SCAN
@@ -190,23 +430,16 @@ const OpenCamera: FC<PropsType> = ({
         );
     }
   };
+
+  if (loading) {
+    return <Spin fullscreen size="large" />;
+  }
+
   return (
     <CameraLayout>
-      <div className="mt-[300px]">
-        {content()}
-        <style>
-          {`
-						.ant-modal-body {
-						display:flex;
-						justify-content:center;
-						align-items:center;
-						font-family:AG;
-						}
-						`}
-        </style>
-      </div>
+      <div className="mt-[300px]">{content()}</div>
     </CameraLayout>
   );
 };
 
-export default OpenCamera;
+export default CheckUser;

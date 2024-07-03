@@ -21,11 +21,11 @@ import OpenCamera from "./openCamera";
 const Form = () => {
   const { t } = useTranslation("translate");
   const [processParam, setProcessParam] = useState<any>();
-
   const [foreign, setForeign] = useState("");
   const [birthday, setBirthday] = useState("");
   const [openLogin, setOpenLogin] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [isSignedIn, setIsSignedIn] = useState(false);
 
   const methods: any = useForm({
     defaultValues: {
@@ -36,8 +36,6 @@ const Form = () => {
   const router = useRouter();
 
   const onSubmit = async (data: any) => {
-    // clickCamera();
-
     setProcessParam(data);
     setOpenLogin(true);
   };
@@ -45,12 +43,26 @@ const Form = () => {
   useEffect(() => {
     let birthdays: any;
 
-    if (methods.watch()?.positionName?.length == 10) {
+    if (methods.watch()?.positionName?.length === 10) {
       birthdays = convertDate(methods.watch()?.positionName);
       setBirthday(birthdays?.date);
-      console.log(birthdays);
     }
   }, [methods.watch()]);
+
+  const checkIfSignedIn = async () => {
+    try {
+      const response = await axios.get("/api/check-sign-in-status");
+      if (response.data?.isSignedIn) {
+        setIsSignedIn(true);
+      }
+    } catch (error) {
+      console.error("Error checking sign-in status", error);
+    }
+  };
+
+  useEffect(() => {
+    checkIfSignedIn();
+  }, []);
 
   if (loading) {
     return (
@@ -62,158 +74,147 @@ const Form = () => {
 
   return (
     <Layout>
-      <p className="uppercase text-[64px] text-white mb-20">АНКЕТ</p>
-      <BlockDiv className="py-2 text-[32px] text-white">
-        <FormProvider {...methods}>
-          <form onSubmit={methods.handleSubmit(onSubmit)}>
-            <div className="grid grid-cols-2 gap-10 ">
-              {formInput?.map((obj: any, index: number) => {
-                let newObj = { ...obj, labelname: t(obj?.labelname) };
-                let criteria;
-                if (obj.criteriaPath) {
-                  criteria = {
-                    [obj?.criteriaPath]: [
-                      {
-                        operator: "=",
-                        operand: methods.watch()[obj?.criteriaPath] || "",
-                      },
-                    ],
-                  };
-                }
-
-                const value = methods.watch();
-                let birthdays: any;
-                if (value?.positionName?.length == 10) {
-                  birthdays = convertDate(value?.positionName);
-                }
-                switch (obj?.type) {
-                  case "text":
-                    if (obj?.pathname == "positionName") {
-                      return (
-                        // <div className="flex mt-[8px] ">
-                        <Text key={index} obj={newObj} />
-                        // </div>
-                      );
-                    } else {
-                      return <Text key={index} obj={newObj} />;
-                    }
-                  case "combo":
-                    return (
-                      <Combo criteria={criteria} key={index} obj={newObj} />
-                    );
-                  case "number":
-                    return <Number key={index} obj={newObj} />;
-                  case "date":
-                    if (foreign != "") {
-                      <Date key={index} obj={newObj} />;
-                    } else {
-                      return (
-                        <div className="flex flex-col">
-                          <label className="text-[16px] font-medium  text-[#2A2A2A] mb-[8px]">
-                            {t(obj?.labelname)}{" "}
-                            <span className="text-red-500">*</span>
-                          </label>
-                          <input
-                            disabled={true}
-                            className="mt-[8px] px-[14px] py-[17px] text-[16px] rounded-lg focus-visible:outline-none focus-visible:border-none"
-                            onChange={(e) => {
-                              setBirthday(e.target.value);
-                            }}
-                            value={birthdays?.date}
-                          />
-                        </div>
-                      );
+      {isSignedIn ? (
+        <p className="uppercase text-[64px] text-white mb-20">
+          You are already signed in and cannot sign in again.
+        </p>
+      ) : (
+        <>
+          <p className="uppercase text-[64px] text-white mb-20">АНКЕТ</p>
+          <BlockDiv className="py-2 text-[32px] text-white">
+            <FormProvider {...methods}>
+              <form onSubmit={methods.handleSubmit(onSubmit)}>
+                <div className="grid grid-cols-2 gap-10 ">
+                  {formInput?.map((obj: any, index: number) => {
+                    let newObj = { ...obj, labelname: t(obj?.labelname) };
+                    let criteria;
+                    if (obj.criteriaPath) {
+                      criteria = {
+                        [obj?.criteriaPath]: [
+                          {
+                            operator: "=",
+                            operand: methods.watch()[obj?.criteriaPath] || "",
+                          },
+                        ],
+                      };
                     }
 
-                  case "email":
-                    return <Email key={index} obj={newObj} />;
+                    const value = methods.watch();
+                    let birthdays: any;
+                    if (value?.positionName?.length === 10) {
+                      birthdays = convertDate(value?.positionName);
+                    }
+                    switch (obj?.type) {
+                      case "text":
+                        return <Text key={index} obj={newObj} />;
+                      case "combo":
+                        return (
+                          <Combo criteria={criteria} key={index} obj={newObj} />
+                        );
+                      case "number":
+                        return <Number key={index} obj={newObj} />;
+                      case "date":
+                        if (foreign !== "") {
+                          return <Date key={index} obj={newObj} />;
+                        } else {
+                          return (
+                            <div className="flex flex-col">
+                              <label className="text-[16px] font-medium  text-[#2A2A2A] mb-[8px]">
+                                {t(obj?.labelname)}
+                                <span className="text-red-500">*</span>
+                              </label>
+                              <input
+                                disabled={true}
+                                className="mt-[8px] px-[14px] py-[17px] text-[16px] rounded-lg focus-visible:outline-none focus-visible:border-none"
+                                onChange={(e) => {
+                                  setBirthday(e.target.value);
+                                }}
+                                value={birthdays?.date}
+                              />
+                            </div>
+                          );
+                        }
+                      case "email":
+                        return <Email key={index} obj={newObj} />;
+                      default:
+                        return null;
+                    }
+                  })}
+                </div>
+                <div className="flex flex-col items-center justify-center gap-y-4 cursor-pointer">
+                  <button
+                    className="bg-[#D9D9D9] text-[#525050] text-[36px] uppercase leading-[34px] py-[20px] rounded-[59px] min-w-[528px] mt-[50px]"
+                    style={{
+                      boxShadow: "4px 4px 4px 0px #00000040",
+                    }}
+                    type="submit"
+                  >
+                    {t("царай таниулах")}
+                  </button>
+                  <img
+                    src="/images/Face_id_white.png"
+                    className="w-[150px] h-[150px] mt-4"
+                  />
+                </div>
+              </form>
+            </FormProvider>
+            <style>
+              {`
+                :where(.css-dev-only-do-not-override-3mqfnx).ant-modal .ant-modal-content {
+                  padding: 0px;
+                  border-radius: 0px;
                 }
-              })}
-
-              <div></div>
-            </div>
-            <div className="">
-              <div
-                className="flex flex-col items-center justify-center gap-y-4 cursor-pointer"
-                // onClick={(e) => clickCamera(e)}
-              >
-                <button
-                  className="bg-[#D9D9D9] text-[#525050] text-[36px] uppercase leading-[34px] py-[20px] rounded-[59px] min-w-[528px]"
-                  style={{
-                    boxShadow: "4px 4px 4px 0px #00000040",
-                  }}
-                  type="submit"
-                >
-                  {t("царай таниулах")}
-                </button>
-                <img
-                  src="/images/Face_id_white.png"
-                  className="w-[150px] h-[150px] mt-4"
-                  // onClick={() => setOpenLogin(true)}
-                />
-              </div>
-            </div>
-          </form>
-        </FormProvider>
-        <style>
-          {`
-		:where(.css-dev-only-do-not-override-3mqfnx).ant-modal .ant-modal-content {
-			padding:0px;
-			border-radius:0px;
-		}
-		.ant-modal, .ant-modal-content {
-			height: 100%;
-			width: 1080px;
-			margin: 0;
-			top: 0;
-			bottom:0;
-			border:none;
-			padding:0px;
-      background:#00000080 !important
-		   }
-		   .ant-modal-body {
-			height: 100%;
-       }
-
-      label {
-        color:white !important;
-        font-size:32px !important;
-        text-align:left !important;
-      }
-
-      input {
-        background:#D9D9D94F;
-        border-radius:23px !important;
-        color:white !important;
-        font-size:32px;
-        border-color:transparent !important;
-      }
-      .ant-select-selector {
-        background:#D9D9D94F !important;
-        color:white !important;
-        border-radius:23px !important;
-        border-color:transparent !important;
-      }
-
-
-		`}
-        </style>
-      </BlockDiv>
-      <Modal
-        width={1080}
-        footer={false}
-        title={false}
-        open={openLogin}
-        onCancel={() => setOpenLogin(!openLogin)}
-        destroyOnClose
-      >
-        <OpenCamera
-          setProcessParam={setProcessParam}
-          processParam={processParam}
-          birthday={birthday}
-          setLoading={setLoading}
-        />
-      </Modal>
+                .ant-modal, .ant-modal-content {
+                  height: 100%;
+                  width: 1080px;
+                  margin: 0;
+                  top: 0;
+                  bottom: 0;
+                  border: none;
+                  padding: 0px;
+                  background: #00000080 !important;
+                }
+                .ant-modal-body {
+                  height: 100%;
+                }
+                label {
+                  color: white !important;
+                  font-size: 32px !important;
+                  text-align: left !important;
+                }
+                input {
+                  background: #D9D9D94F;
+                  border-radius: 23px !important;
+                  color: white !important;
+                  font-size: 32px;
+                  border-color: transparent !important;
+                }
+                .ant-select-selector {
+                  background: #D9D9D94F !important;
+                  color: white !important;
+                  border-radius: 23px !important;
+                  border-color: transparent !important;
+                }
+              `}
+            </style>
+          </BlockDiv>
+          <Modal
+            width={1080}
+            footer={false}
+            title={false}
+            open={openLogin}
+            onCancel={() => setOpenLogin(!openLogin)}
+            destroyOnClose
+          >
+            <OpenCamera
+              setProcessParam={setProcessParam}
+              processParam={processParam}
+              birthday={birthday}
+              setLoading={setLoading}
+            />
+          </Modal>
+        </>
+      )}
     </Layout>
   );
 };
@@ -263,7 +264,6 @@ const formInput = [
     lookupId: "1448432578544",
     isRequired: 1,
   },
-
   {
     labelname: "ХОТ",
     pathname: "cityId",
@@ -302,11 +302,6 @@ const formInput = [
     type: "email",
     isRequired: 1,
   },
-  // {
-  //   labelname: "Овог",
-  //   pathname: "districtId",
-  //   type: "combo",
-  // },
 ];
 
 export default Form;
