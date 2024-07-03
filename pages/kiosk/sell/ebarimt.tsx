@@ -99,7 +99,7 @@ const Ebarimt = () => {
       {view === "payment" && renderPaymentView()}
       {view === "receipt" && renderReceiptView()}
       {view === "card" && renderCardReceiptView()}
-      {/* {view === "qpay" && <Qpay onPaymentSuccess={handleQpayPayment} />} */}
+      {view === "qpay" && <Qpay onPaymentSuccess={handleQpayPayment} />}
     </Layout>
   );
 };

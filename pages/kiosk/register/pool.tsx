@@ -34,42 +34,40 @@ const Pool = () => {
 
   return (
     <RegisterLayout coverImagePath="/images/pool.png" title={"БАССЕЙН"}>
-      <div className="flex flex-col gap-y-6 max-h-[1200px] items-center overflow-auto pv-6">
-        <div>
-          {groupByData?.map((obj: any, ind: number) => {
-            const rowData = _.values(obj)?.[0];
-            return (
-              <div
-                className="flex flex-col gap-y-4 text-white uppercase mt-[20px]"
-                key={ind}
-              >
-                <div className="text-[40px]">{_.keys(obj)?.[0]}</div>
-                <div className="flex items-center gap-x-4">
-                  {rowData?.map((rowItem: any, rowInd: number) => {
-                    console.log(rowItem);
-                    return (
-                      <div
-                        className="flex flex-col items-center text-[40px] rounded-[87px] bg-white/30 px-10"
-                        key={rowInd}
-                        onClick={() =>
-                          router.push({
-                            pathname: "/kiosk/form",
-                            query: {
-                              i: rowItem?.id,
-                            },
-                          })
-                        }
-                      >
-                        <span>{rowItem?.monthname}</span>
-                        <span>{rowItem?.saleprice}</span>
-                      </div>
-                    );
-                  })}
-                </div>
+      <div className="mt-[80px]">
+        {groupByData?.map((obj: any, ind: number) => {
+          const rowData = _.values(obj)?.[0];
+          return (
+            <div
+              className="flex flex-col gap-y-1 text-white uppercase mt-[30px] text-start  "
+              key={ind}
+            >
+              <div className="text-[40px]">{_.keys(obj)?.[0]}</div>
+              <div className="flex items-center gap-x-4">
+                {rowData?.map((rowItem: any, rowInd: number) => {
+                  console.log(rowItem);
+                  return (
+                    <div
+                      className="flex flex-col items-center text-[40px] h-[120px] rounded-[87px] bg-white/30 px-12 "
+                      key={rowInd}
+                      onClick={() =>
+                        router.push({
+                          pathname: "/kiosk/form",
+                          query: {
+                            i: rowItem?.id,
+                          },
+                        })
+                      }
+                    >
+                      <span>{rowItem?.monthname}</span>
+                      <span>{rowItem?.saleprice}</span>
+                    </div>
+                  );
+                })}
               </div>
-            );
-          })}
-        </div>
+            </div>
+          );
+        })}
       </div>
     </RegisterLayout>
   );

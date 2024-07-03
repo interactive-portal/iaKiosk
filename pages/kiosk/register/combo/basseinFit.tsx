@@ -18,7 +18,7 @@ const BasseinFit: React.FC = () => {
 
   return (
     <ComboLayout coverImagePath={"/images/fitness.jpeg"} title="ФИТНЕСС САУН">
-      <div className="flex flex-col max-h-[1200px] overflow-auto p-6">
+      <div className="flex flex-col max-h-[1200px] overflow-auto p-6 mt-[50px]">
         <p className="text-[64px] text-[#A68B5C] text-center">ХОСОЛСОН БАГЦ</p>
         {datas.map((data, index) => (
           <div

@@ -11,6 +11,9 @@ const Email: FC<PropsType> = ({ obj }) => {
     formState: { errors },
   } = useFormContext();
   const errorMessage: any = errors[obj?.pathname]?.message;
+  console.log(
+    `Text Component: Received data for pathname '${obj?.pathname}''${obj?.labelname}'`
+  );
 
   console.log(errorMessage);
   return (

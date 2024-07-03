@@ -172,10 +172,10 @@ const Pay: FC<PropsType> = ({ item, contractId }) => {
   };
 
   return (
-    <Layout>
+    <div className="px-[50px]">
       <p className="text-[90px] text-[#A68B5C] ">ТӨЛБӨР ТӨЛӨХ</p>
       {content()}
-    </Layout>
+    </div>
   );
 };
 

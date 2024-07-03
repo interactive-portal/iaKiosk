@@ -5,7 +5,7 @@ const Register = () => {
   const router = useRouter();
   return (
     <Layout>
-      <div className="text-[64px] flex flex-col gap-y-10">
+      <div className="text-[64px] flex flex-col gap-y-10 mt-[150px]">
         <div className="uppercase text-[90px] text-[#A68B5C] mb-10 w-[844px]">
           БҮРТГЭЛ
         </div>

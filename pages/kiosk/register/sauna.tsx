@@ -25,18 +25,18 @@ const Sauna: React.FC = () => {
 
   return (
     <RegisterLayout coverImagePath="/images/sauna.jpeg" title="САУН">
-      <div className="flex flex-col gap-y-6 max-h-[1200px] overflow-auto p-6">
+      <div className="mt-[150px] w-screen px-[100px]">
         {packages.map((pkg, index) => (
           <div
             key={index}
-            className="flex flex-col gap-y-3 text-white uppercase py-10"
+            className="flex flex-col w-[full] gap-y-3 text-white uppercase py-10"
           >
             <div className="text-[40px] text-start ">{pkg.title}</div>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="flex gap-4">
               {pkg.options.map((option, idx) => (
                 <div
                   key={idx}
-                  className="flex flex-col items-center text-[40px] rounded-[87px] bg-white/30 px-10 py-5 cursor-pointer"
+                  className="flex flex-col items-center text-[40px] rounded-[87px] bg-white/30 w-full px-10 "
                   onClick={() =>
                     router.push({
                       pathname: "/kiosk/form",

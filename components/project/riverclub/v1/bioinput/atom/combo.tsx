@@ -53,7 +53,7 @@ const Combo: FC<PropsType> = ({ obj, criteria }) => {
 
   return (
     <div className="flex flex-col ">
-      <label className="text-[16px] font-medium  text-[#2A2A2A] mb-[8px]">
+      <label className="text-[16px] text-start font-medium  text-[#2A2A2A] mb-[8px]">
         {obj?.labelname} <span className="text-red-500">*</span>
       </label>
       <Controller
@@ -62,7 +62,7 @@ const Combo: FC<PropsType> = ({ obj, criteria }) => {
         render={({ field }) => (
           <Select
             onChange={onchange}
-            className="text-[16px] h-[60px]"
+            className="text-[16px] h-[60px] text-start"
             placeholder={obj?.labelname}
             value={obj?.name == "cityname" ? values || "Улаанбаатар" : values}
             options={options?.map((item: any, index: number) => {

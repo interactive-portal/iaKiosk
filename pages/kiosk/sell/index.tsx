@@ -131,7 +131,7 @@ const Sell = () => {
               <div className="flex items-center justify-center">
                 <div className="flex items-center gap-x-4">
                   <div
-                    className={`w-[80px] h-[80px] rounded-lg flex items-center border border-white justify-center ${
+                    className={`w-[50px] h-[50px] rounded-lg flex items-center border border-white justify-center ${
                       activeCheck ? "bg-blue-300" : "bg-transparent"
                     } `}
                     onClick={() => {
@@ -144,7 +144,7 @@ const Sell = () => {
                       ""
                     )}
                   </div>
-                  <p className="text-[36px]">ЗӨВШӨӨРӨВ</p>
+                  <p className="text-[36px] flex items-center">ЗӨВШӨӨРӨВ</p>
                 </div>
               </div>
             </div>

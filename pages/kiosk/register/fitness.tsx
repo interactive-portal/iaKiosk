@@ -45,18 +45,18 @@ const Fitness: React.FC = () => {
 
   return (
     <RegisterLayout coverImagePath="/images/fitness.jpeg" title="ФИТНЕСС">
-      <div className="flex flex-col  gap-y-6 max-h-[1200px] overflow-auto p-6">
+      <div className="mt-[80px] px-[50px]">
         {datas.map((data, index) => (
           <div
             key={index}
-            className="flex flex-col gap-y-3 text-white uppercase "
+            className="flex flex-col gap-y-1 text-white uppercase mt-[30px] text-start  "
           >
-            <div className="text-[40px] text-start">{data.title}</div>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="text-[40px] ">{data.title}</div>
+            <div className="items-center gap-x-4 grid grid-cols-3 gap-4">
               {data.options.map((option, idx) => (
                 <div
                   key={idx}
-                  className="flex flex-col items-center text-[40px] rounded-[87px] bg-white/30 px-10 py-5 cursor-pointer"
+                  className="flex flex-col py-1 items-center text-[40px] rounded-[87px] bg-white/30 px-10 "
                   onClick={() =>
                     router.push({
                       pathname: "/kiosk/form",
@@ -65,7 +65,7 @@ const Fitness: React.FC = () => {
                   }
                 >
                   <span>{option.month}</span>
-                  <span>{option.price}</span>
+                  <span className="mb-[20px]">{option.price}</span>
                 </div>
               ))}
             </div>
