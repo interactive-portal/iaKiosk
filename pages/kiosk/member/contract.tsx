@@ -74,7 +74,7 @@ const Contract: React.FC = () => {
             type="text"
             value={data.lastName}
             onChange={(e) => handleInputChange(e, "lastName")}
-            className="flex text-[30px] justify-end items-center rounded-3xl px-4 h-[43px] w-[349px] bg-white"
+            className="flex text-[30px] justify-end items-center rounded-3xl px-4 h-[43px] w-[349px] bg-white "
           />
         </div>
         <div>

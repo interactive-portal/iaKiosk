@@ -55,7 +55,7 @@ export default function Layout({ children }: LayoutProps) {
   return (
     <>
       <Head>
-        <title>River Club </title>
+        <title>Kiosk</title>
         <meta name="description" content="Veritech  Erp" />
         <meta property="og:image" content="../../cover.png" />
         <meta property="og:image:alt" content="help.veritech.mn" />

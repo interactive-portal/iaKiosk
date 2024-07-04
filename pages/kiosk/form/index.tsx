@@ -75,9 +75,13 @@ const Form = () => {
   return (
     <Layout>
       {isSignedIn ? (
-        <p className="uppercase text-[64px] text-white mb-20">
-          You are already signed in and cannot sign in again.
-        </p>
+        <div>
+          {/* <RiErrorWarningFill /> */}
+          <p className="uppercase text-[64px] text-white mb-20">
+            УУЧЛААРАЙ ТАНЫ МЭДЭЭЛЭЛ БҮРТГЭГДСЭН БАЙНА. ТА БҮРТГЭЛТЭЙ ГИШҮҮНЭЭР
+            НЭВТЭРНЭ ҮҮ
+          </p>
+        </div>
       ) : (
         <>
           <p className="uppercase text-[64px] text-white mb-20">АНКЕТ</p>

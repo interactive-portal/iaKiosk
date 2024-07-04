@@ -17,8 +17,8 @@ const BasseinSauna: React.FC = () => {
   const warningToCostumer = ["БАССЕЙН 7 ХОНОГТ 4 УДАА ОРОХ ХЯЗГААРТАЙ"];
 
   return (
-    <ComboLayout coverImagePath="/images/fitness.jpeg" title="ФИТНЕСС САУН">
-      <div className="flex flex-col max-h-[1200px] overflow-auto p-6 mt-[50px]">
+    <ComboLayout coverImagePath="/images/pool.png" title="БАССЕЙН САУН">
+      <div className="flex flex-col max-h-[1200px] overflow-auto p-6 mt-[100px]">
         <p className="text-[64px] text-[#A68B5C] text-center">ХОСОЛСОН БАГЦ</p>
         {datas.map((data, index) => (
           <div
@@ -44,7 +44,7 @@ const BasseinSauna: React.FC = () => {
           </div>
         ))}
       </div>
-      <div className=" text-center text-white mt-[200px] ">
+      <div className=" text-center text-white mt-[250px] ">
         <h1 className="text-[64px]">САНАМЖ</h1>
         <p className="text-[40px] ">{warningToCostumer}</p>
       </div>

@@ -15,8 +15,8 @@ const FitSauna: React.FC = () => {
   ];
 
   return (
-    <ComboLayout coverImagePath="/images/saun.png" title=" САУН ФИТНЕСС ">
-      <div className="flex flex-col max-h-[1200px] overflow-auto p-2 mt-[50px]">
+    <ComboLayout coverImagePath="/images/fitness.jpeg" title="ФИТНЕСС САУН">
+      <div className="flex flex-col max-h-[1200px] overflow-auto p-2 mt-[150px]">
         <p className="text-[64px] text-[#A68B5C] text-center">ХОСОЛСОН БАГЦ</p>
         {datas.map((data, index) => (
           <div
