@@ -24,7 +24,7 @@ const Warning = () => {
         ТА НӨАТ-ЫН БАРИМТАА АВСАНААР МӨНГӨН ХЭЛБЭРИЙН БУЦААЛТ БАЙХГҮЙ БОЛОХЫГ
         АНХААРНА УУ!!!
       </p>
-      <div className="flex justify-center gap-5 mt-[200px] text-[36px] text-white">
+      <div className="flex justify-center gap-5 mt-[200px] text-[36px] text-white items-center">
         <input
           type="checkbox"
           className="h-[30px] w-[30px] self-center mt-7"
@@ -32,7 +32,7 @@ const Warning = () => {
           onChange={handleCheckboxChange}
         />
         <button
-          className=" text-white font-bold py-2 px-4 rounded mt-5"
+          className=" text-white font-bold py-2 px-4 rounded mt-7"
           onClick={handleProceed}
         >
           ЗӨВШӨӨРӨВ

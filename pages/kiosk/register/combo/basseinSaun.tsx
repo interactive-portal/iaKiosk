@@ -37,14 +37,14 @@ const BasseinSauna: React.FC = () => {
                   }
                 >
                   <span className="text-[64px]">{option.duration}</span>
-                  <span className="text-[96px]">{option.price}</span>
+                  <span className="text-[90px]">{option.price}</span>
                 </div>
               ))}
             </div>
           </div>
         ))}
       </div>
-      <div className=" text-center text-white mt-[250px] ">
+      <div className=" text-center text-white mt-[200px] ">
         <h1 className="text-[64px]">САНАМЖ</h1>
         <p className="text-[40px] ">{warningToCostumer}</p>
       </div>

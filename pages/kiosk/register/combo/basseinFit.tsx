@@ -47,7 +47,7 @@ const BasseinFit: React.FC = () => {
           </div>
         ))}
       </div>
-      <div className=" text-center text-white mt-[250px] ">
+      <div className=" text-center text-white mt-[200px] ">
         <h1 className="text-[64px]">САНАМЖ</h1>
         <p className="text-[40px] ">{warningToCostumer}</p>
       </div>

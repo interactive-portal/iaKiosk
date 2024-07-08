@@ -1,6 +1,6 @@
 import React, { useState, ChangeEvent } from "react";
 import Layout from "../kioskLayout";
-import { useRouter } from "next/navigation";
+import { useRouter } from "next/router";
 
 interface Field {
   label: string;
@@ -20,6 +20,7 @@ interface Data {
 
 const Contract: React.FC = () => {
   const router = useRouter();
+
   const [data, setData] = useState<Data>({
     lastName: "ЦЭЦЭГ",
     registration: "НЭ56220345",
@@ -104,28 +105,33 @@ const Contract: React.FC = () => {
                   onChange={(e) =>
                     handleChange(contractIndex, fieldIndex, e.target.value)
                   }
-                  className="bg-white rounded-3xl font-medium text-[30px] px-4 h-[43px] w-full text-black"
+                  className="bg-white rounded-3xl  font-normal  text-[30px] px-4 h-[43px] w-full text-black"
                 />
               </div>
             ))}
 
             <div>
-              <p className="text-[32px] text-start">ЭХЛЭХ ДУУСАХ ОГНОО</p>
-              <div className="bg-white rounded-3xl p-4">
-                <input
-                  type="date"
-                  className="rounded-full font-medium text-[30px] px-4 h-[43px] w-full text-black"
-                />
-                <input
-                  type="date"
-                  className="rounded-full font-medium text-[30px] px-4 h-[43px] w-full text-black"
-                />
-              </div>
+              <p className="text-[32px] text-start">ЭХЛЭХ ОГНОО</p>
+              {/* <div className="bg-white rounded-3xl p-4"> */}
+              <input
+                type="date"
+                className="rounded-full font-normal text-[30px] px-4 h-[43px] w-full text-black"
+              />
+              {/* </div> */}
             </div>
-
+            <div>
+              <p className="text-[32px] text-start">ДУУСАХ ОГНОО</p>
+              {/* <div className="bg-white rounded-3xl p-4"> */}
+              <input
+                type="date"
+                className="rounded-full font-normal text-[30px] px-4 h-[43px] w-full text-black"
+              />
+              {/* </div> */}
+            </div>
+            <div></div>
             <button
               onClick={() => router.push("/kiosk/member/stretch")}
-              className="pb-[21px] h-[64px] text-center bg-[#A68B5C] text-white text-[40px] w-[410px] rounded-3xl mt-[80px]"
+              className=" h-[64px] text-center bg-[#A68B5C] text-white text-[40px] w-[410px] rounded-3xl mt-[20px]"
             >
               <p className=" flex justify-center items-center">СУНГАЛТ ХИЙХ</p>
             </button>

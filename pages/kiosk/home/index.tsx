@@ -50,7 +50,7 @@ const Home = () => {
     textColor,
   }) => (
     <div
-      className="rounded-[76px] pt-[21px] pb-[40px] cursor-pointer"
+      className="rounded-[76px] py-6 cursor-pointer"
       style={{ backgroundColor: bgColor, color: textColor }}
       onClick={() => handleNavigation(path)}
     >
@@ -61,7 +61,7 @@ const Home = () => {
   const [openModal, setOpenModal] = useState(false);
   return (
     <Layout>
-      <div className="text-[#A68B5C] text-[48px] md:text-[96px] mt-[100px] md:mt-[250px] text-center">
+      <div className="text-[#A68B5C] text-[48px] md:text-[96px] mt-[100px] md:mt-[250px] text-center ">
         welcome
       </div>
       <div className="w-[80%] md:w-[836px] mx-auto flex flex-col gap-y-8 md:gap-y-14 text-[32px] md:text-[64px] mt-[50px] md:mt-[200px] text-center">

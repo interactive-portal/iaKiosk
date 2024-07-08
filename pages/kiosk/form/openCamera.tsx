@@ -43,9 +43,9 @@ const OpenCamera: FC<PropsType> = ({
         },
       });
 
-      // notification.success({
-      //   message: "Бүртгэл амжилттай хийгдлээ",
-      // });
+      notification.success({
+        message: "Бүртгэл амжилттай хийгдлээ",
+      });
     } else {
       setLoading(false);
       alert(res?.data?.text);

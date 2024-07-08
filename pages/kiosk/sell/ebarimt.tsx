@@ -30,13 +30,13 @@ const Ebarimt = () => {
       <p className="text-[90px] text-[#A68B5C] mb-[100px]">E-barimt</p>
       <div>
         <div>
-          <p className="text-white text-[46px] text-start px-10 mb-10">
+          <p className="text-white text-[46px] text-start px-10 ">
             БАЙГУУЛЛАГЫН РЕГИСТЕР
           </p>
           <input className="bg-[#D9D9D94D] border text-white border-white min-h-[118px] rounded-full px-10 text-[48px] w-[788px]" />
         </div>
         <div>
-          <p className="text-white text-[46px] text-start px-10 mb-10">
+          <p className="text-white text-[46px] text-start px-10 mt-[50px]">
             БАЙГУУЛЛАГЫН НЭР
           </p>
           <input className="bg-[#D9D9D94D] text-white border border-white min-h-[118px] rounded-full px-10 text-[48px]  w-[788px]" />
@@ -44,7 +44,7 @@ const Ebarimt = () => {
       </div>
 
       <button
-        className="h-[174px] text-white w-[844px] bg-[#A68B5C] rounded-full text-[64px] mt-[350px]"
+        className="h-[154px] text-white w-[744px] bg-[#A68B5C] rounded-full text-[64px] mt-[300px]"
         onClick={() => setView("payment")}
       >
         БАТЛАХ
@@ -56,19 +56,19 @@ const Ebarimt = () => {
     <div className="mt-[300px]">
       <p className="text-[90px] text-[#A68B5C]">ТӨЛБӨР ТӨЛӨХ </p>
       <button
-        className="h-[174px] w-[844px] bg-white pb-[21px] rounded-full text-[#525050] text-[64px] mt-[80px] uppercase"
+        className="h-[174px] w-[844px] bg-white rounded-full text-[#525050] text-[64px] mt-[80px] uppercase"
         onClick={() => setView("card")}
       >
         Карт
       </button>
       <button
-        className=" uppercase h-[174px] w-[844px] text-[#525050] pb-[21px] bg-white rounded-full text-[64px] mt-[50px]"
+        className=" uppercase h-[174px] w-[844px] text-[#525050] bg-white rounded-full text-[64px] mt-[50px]"
         onClick={() => setView("qpay")}
       >
         Social Pay
       </button>
       <button
-        className="uppercase h-[174px] pb-[21px] text-[#525050] w-[844px] bg-white rounded-full text-[64px] mt-[50px]"
+        className="uppercase h-[174px] text-[#525050] w-[844px] bg-white rounded-full text-[64px] mt-[50px]"
         onClick={() => setView("qpay")}
       >
         Q Pay
@@ -99,7 +99,7 @@ const Ebarimt = () => {
       {view === "payment" && renderPaymentView()}
       {view === "receipt" && renderReceiptView()}
       {view === "card" && renderCardReceiptView()}
-      {view === "qpay" && <Qpay onPaymentSuccess={handleQpayPayment} />}
+      {/* {view === "qpay" && <Qpay onPaymentSuccess={handleQpayPayment} />} */}
     </Layout>
   );
 };

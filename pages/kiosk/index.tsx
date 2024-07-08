@@ -11,7 +11,9 @@ const Page = () => {
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
       }}
-    ></div>
+    >
+      Get start
+    </div>
   );
 };
 

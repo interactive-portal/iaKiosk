@@ -1,5 +1,10 @@
+import Cookies from "js-cookie";
+import _ from "lodash";
+import { useRouter } from "next/router";
+
 import React, { ChangeEvent } from "react";
 import { FaExchangeAlt, FaTrash } from "react-icons/fa";
+import useSWR from "swr";
 
 interface MembersProps {
   number: number;
@@ -20,6 +25,33 @@ const Members: React.FC<MembersProps> = ({
     (field: string) => (e: ChangeEvent<HTMLInputElement>) => {
       handleChange(number - 1, field, e.target.value);
     };
+
+  const router = useRouter();
+  const criteria = JSON.stringify({
+    classificationname: [
+      {
+        operator: "=",
+        operand: router.query.n,
+      },
+    ],
+  });
+
+  let { data, error, mutate } = useSWR(`
+    /api/get-data?metaid=17138556014631&criteria=${criteria}
+    `);
+
+  const readyData = data ? data?.result : [];
+
+  Cookies.set("customer", { customerId: "1587024272980" });
+
+  const groupByData = _.chain(readyData)
+    .groupBy("classificationname")
+    .map((value, key, wrapped) => {
+      return { [key]: value };
+    })
+    .value();
+
+  console.log("grou[pdata========>", groupByData);
 
   return (
     <div className="p-4 w-full text-white mb-4">

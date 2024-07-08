@@ -35,7 +35,7 @@ const Squash = () => {
   return (
     // router.query?.n
     <RegisterLayout coverImagePath="/images/squash.jpeg" title={"СКОВШ"}>
-      <div className="mt-[80px]">
+      <div className="mt-[20px]">
         {groupByData?.map((obj: any, ind: number) => {
           const rowData = _.values(obj)?.[0];
           return (
@@ -48,8 +48,8 @@ const Squash = () => {
                 {rowData?.map((rowItem: any, rowInd: number) => {
                   console.log(rowItem);
                   return (
-                    <div
-                      className="flex flex-col items-center text-[40px] h-[120px] rounded-[87px] bg-white/30 px-12 "
+                    <button
+                      className=" w-[300px]  grid grid-cols-1 text-center items-center text-[40px] h-[120px] rounded-[87px] bg-white/30 px-12  "
                       key={rowInd}
                       onClick={() =>
                         router.push({
@@ -60,9 +60,11 @@ const Squash = () => {
                         })
                       }
                     >
+                      {/* {rowItem?.monthname} <br />
+                      {rowItem?.saleprice} */}
                       <span>{rowItem?.monthname}</span>
                       <span>{rowItem?.saleprice}</span>
-                    </div>
+                    </button>
                   );
                 })}
               </div>

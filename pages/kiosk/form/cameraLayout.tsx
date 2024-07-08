@@ -9,7 +9,7 @@ const CameraLayout = ({ children }: { children: React.ReactNode }) => {
         backgroundImage: "url(/images/home1.png)",
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
-        fontFamily: "AG",
+        // fontFamily: "AG",
       }}
     >
       <div className="w-full py-10 flex items-center justify-center uppercase">

@@ -27,6 +27,8 @@ const ReportTemplate: FC<PropsType> = ({ data, options }) => {
   const datas = useSWR(
     `/api/get-process?command=getReportTemplate${parameters}`
   );
+
+  console.log("dataa==========", data);
   // const rawData = parseHtml(decode(datas?.data));
 
   return <> {parseHtml(decode(datas?.data?.result))}</>;

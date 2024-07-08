@@ -13,19 +13,19 @@ const Combo = () => {
           className="bg-white rounded-[76px] text-[#525050] py-[30px] "
           onClick={() => router.push("/kiosk/register/combo/basseinFit")}
         >
-          <p className="mb-[21px]"> БАССЕЙН ФИТНЕСС </p>
+          <p> БАССЕЙН ФИТНЕСС </p>
         </div>
         <div
           className="bg-white rounded-[76px] text-[#525050] py-[30px]"
           onClick={() => router.push("/kiosk/register/combo/fitSauna")}
         >
-          <p className="mb-[21px]">ФИТНЕСС САУН</p>
+          <p>ФИТНЕСС САУН</p>
         </div>
         <div
           className="bg-white rounded-[76px] text-[#525050] py-[30px]"
           onClick={() => router.push("/kiosk/register/combo/basseinSaun")}
         >
-          <p className="mb-[21px]">САУН БАССЕЙН</p>
+          <p>САУН БАССЕЙН</p>
         </div>
       </div>
     </Layout>

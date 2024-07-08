@@ -9,7 +9,7 @@ const RegisterLayout = ({ children, coverImagePath, title }: any) => {
         backgroundImage: `url(/images/home1.png)`,
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
-        fontFamily: "AG",
+        // fontFamily: "AG",
       }}
     >
       <div

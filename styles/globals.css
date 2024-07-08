@@ -1,10 +1,17 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
+/* 
 @font-face {
   font-family: AG;
   src: url(../public/icon/webfonts/AGBenguiatMon.woff.ttf);
+} */
+
+@import url("https://fonts.googleapis.com/css2?family=Baskervville+SC&family=Inconsolata:wght@200..900&display=swap");
+.baskervville-sc-regular {
+  font-family: "Baskervville SC", serif;
+  font-weight: 700;
+  font-style: normal;
 }
 
 :root {
@@ -201,7 +208,4 @@ h6 {
   font-size: 40px;
   color: white;
   right: 20px;
-}
-p {
-  font-family: AG;
 }

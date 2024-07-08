@@ -33,8 +33,8 @@ const Pool = () => {
     .value();
 
   return (
-    <RegisterLayout coverImagePath="/images/pool.png" title={"БАССЕЙН"}>
-      <div className="mt-[80px]">
+    <RegisterLayout coverImagePath="/images/pool.png" title={router.query?.n}>
+      <div className="mt-[20px]">
         {groupByData?.map((obj: any, ind: number) => {
           const rowData = _.values(obj)?.[0];
           return (
@@ -43,12 +43,12 @@ const Pool = () => {
               key={ind}
             >
               <div className="text-[40px]">{_.keys(obj)?.[0]}</div>
-              <div className="flex items-center gap-x-4">
+              <div className="flex items-center gap-x-4 ">
                 {rowData?.map((rowItem: any, rowInd: number) => {
                   console.log(rowItem);
                   return (
-                    <div
-                      className="flex flex-col items-center text-[40px] h-[120px] rounded-[87px] bg-white/30 px-12 "
+                    <button
+                      className=" text-[40px] w-[300px] h-[120px] rounded-[87px] bg-white/30 px-14 text-center  "
                       key={rowInd}
                       onClick={() =>
                         router.push({
@@ -59,9 +59,11 @@ const Pool = () => {
                         })
                       }
                     >
-                      <span>{rowItem?.monthname}</span>
-                      <span>{rowItem?.saleprice}</span>
-                    </div>
+                      {rowItem?.monthname} <br /> {rowItem?.saleprice}
+                      {/* {rowItem?.monthname} <br /> {rowItem?.saleprice} */}
+                      {/* <span>{rowItem?.monthname}</span>
+                      <span>{rowItem?.saleprice}</span> */}
+                    </button>
                   );
                 })}
               </div>

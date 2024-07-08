@@ -37,10 +37,11 @@ const Stretch = () => {
 
       <div className="flex justify-center mb-8 mt-[80px]">
         <button
-          className="text-black bg-white text-[40px] h-[80px]  pb-[11px] px-4 rounded-2xl"
+          className="text-black bg-white text-[40px] h-[80px] w-[378px]  rounded-2xl"
           // onClick={() =>
           //   setMembers([...members, { name: "", registration: "", serial: "" }])
           // }
+          onClick={() => router.push("/kiosk/form/addMember")}
         >
           ГИШҮҮН НЭМЭХ
         </button>
@@ -48,12 +49,12 @@ const Stretch = () => {
       <div className="flex justify-center">
         <button
           onClick={() => router.push("/kiosk/extend")}
-          className="bg-[#A68B5C] text-white px-4  h-[80px]  pb-[11px] rounded-2xl text-[40px] w-[378px]"
+          className="bg-[#A68B5C] text-white   h-[80px] rounded-2xl text-[40px] w-[378px]"
         >
           СУНГАЛТ ХИЙХ
         </button>
       </div>
-      <div className="flex justify-center mt-8">
+      <div className="flex justify-center mt-6">
         <p className="text-[#525050] text-[40px] mt-[50px]">
           НЭГ БАГЦ 3-5 ГИШҮҮНТЭЙ БАЙНА.
         </p>

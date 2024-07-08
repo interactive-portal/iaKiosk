@@ -11,7 +11,7 @@ const Extend = () => {
         СУНГАЛТ
       </div>
       <div className="relative min-w-[665px] mt-[100px]">
-        <i className="fa-solid fa-magnifying-glass absolute top-1/2 left-6 fa-2xl text-[#525050]"></i>
+        <i className="fa-solid fa-magnifying-glass absolute top-1/2 left-6 fa-2xl text-white"></i>
         <input
           type="text"
           className="min-h-[87px] text-[#525050] text-[36px] min-w-[665px] rounded-[26px] pl-[70px]"

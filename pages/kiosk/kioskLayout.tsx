@@ -9,7 +9,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
         backgroundImage: "url(/images/home1.png)",
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
-        fontFamily: "AG",
+        // fontFamily: " Baskervville SC",
       }}
     >
       <div className="w-full py-6 md:py-10 flex items-center justify-center uppercase">

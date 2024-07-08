@@ -30,6 +30,8 @@ const Fitness: React.FC = () => {
     })
     .value();
 
+  console.log("first=====>", groupByData);
+
   const datas = [
     {
       title: "ЦАГЫН ХЯЗГААРТАЙ /07:00-16:00/",
@@ -78,9 +80,9 @@ const Fitness: React.FC = () => {
             <div className="text-[40px] ">{data.title}</div>
             <div className="items-center gap-x-4 grid grid-cols-3 gap-4">
               {data.options.map((option, idx) => (
-                <div
+                <button
                   key={idx}
-                  className="flex flex-col py-1 items-center text-[40px] rounded-[87px] bg-white/30 px-10 "
+                  className=" items-center  w-[300px]  text-[40px] rounded-[87px] bg-white/30 px-10 text-center "
                   onClick={() =>
                     router.push({
                       pathname: "/kiosk/form",
@@ -88,9 +90,11 @@ const Fitness: React.FC = () => {
                     })
                   }
                 >
-                  <span>{option.month}</span>
-                  <span className="mb-[20px]">{option.price}</span>
-                </div>
+                  {option.month} <br />
+                  {option.price}
+                  {/* <span>{option.month}</span>
+                  <span className="mb-[20px]">{option.price}</span> */}
+                </button>
               ))}
             </div>
           </div>
