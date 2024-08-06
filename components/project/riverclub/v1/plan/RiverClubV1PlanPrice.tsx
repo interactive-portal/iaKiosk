@@ -315,7 +315,7 @@ const UpperSection = ({ item, dark, setactiveIndex, selectItem }: any) => {
   return (
     <BlockDiv className="w-full mb-[28px]">
       <Swiper
-        slidesPerView={3}
+        slidesPerView={2}
         spaceBetween={60}
         modules={[Navigation, Pagination]}
       >
@@ -360,7 +360,7 @@ const Card = ({
 
   return (
     <BlockDiv
-      className={`flex flex-col items-start h-[500px] ${
+      className={`flex flex-col  items-start h-[500px] ${
         dark ? "bg-black" : "bg-white"
       }  px-[30px] py-[50px] rounded-[6px]`}
     >
@@ -498,7 +498,7 @@ const BottomSection = ({ item, dark, setactiveIndex, selectItem }: any) => {
   return (
     <BlockDiv className="">
       <Swiper
-        slidesPerView={3}
+        slidesPerView={2}
         spaceBetween={60}
         modules={[Pagination]}
         pagination={true}

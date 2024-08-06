@@ -24,21 +24,8 @@ const UserInfo = () => {
     { label: "ЭХЛЭХ ДУУСАХ ОГНОО", key: "startEndDate" },
   ];
 
-  // const fields2 = [
-  //   { label: "ГЭРЭЭНИЙ ДУГААР", key: "contractNumber" },
-  //   { label: "ОВОГ", key: "lastName" },
-  //   { label: "СЕРИАЛ ДУГААР", key: "serialNumber" },
-  //   { label: "НЭР", key: "firstName" },
-  //   { label: "РЕГИСТЕР", key: "registration" },
-  //   { label: "БАЙГУУЛСАН ОГНОО", key: "contractDate" },
-  //   { label: "ТӨЛӨВ", key: "status" },
-  //   { label: "ҮЙЛЧИЛГЭЭНИЙ НЭР", key: "serviceName" },
-  //   { label: "БАГЦЫН ХУГАЦАА", key: "packageDuration" },
-  //   { label: "ЭХЛЭХ ДУУСАХ ОГНОО", key: "startEndDate" },
-  // ];
-
   const getFieldValue = (key: string) => {
-    return readyData?.result?.[key] || "Null";
+    return readyData?.result?.[key] || "User info";
   };
 
   return (
@@ -61,7 +48,10 @@ const UserInfo = () => {
           </div>
         </div>
         <div className="flex justify-center">
-          <button className="mt-5  flex text-[40px] items-center h-[64px] bg-[#A68B5C] rounded-full w-[349px] text-white justify-center gap-10">
+          <button
+            onClick={() => router.push("userinfo/stretch")}
+            className="mt-5  flex text-[40px] items-center h-[64px] bg-[#A68B5C] rounded-full w-[349px] text-white justify-center gap-10"
+          >
             СУНГАЛТ ХИЙХ
           </button>
         </div>

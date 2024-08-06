@@ -29,7 +29,7 @@ const Stretch: React.FC = () => {
   const { data: readyData } = useSWR<ReadyData>(
     `/api/get-process?command=fit_ContractPackage_DV_004&parameters=${param}`
   );
-
+  console.log("====>"), readyData;
   const userFields: UserField[] = [
     { label: "ОВОГ", key: "lastName" },
     { label: "НЭР", key: "firstName" },
@@ -48,7 +48,7 @@ const Stretch: React.FC = () => {
   ];
 
   const getFieldValue = (data: any, key: string) => {
-    return data?.[key] || "N/A";
+    return data?.[key] || "User info";
   };
 
   const [userData, setUserData] = useState<{ [key: string]: string }>({});

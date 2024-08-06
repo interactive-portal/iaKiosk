@@ -76,7 +76,6 @@ const Form = () => {
     <Layout>
       {isSignedIn ? (
         <div>
-          {/* <RiErrorWarningFill /> */}
           <p className="uppercase text-[64px] text-white mb-20">
             УУЧЛААРАЙ ТАНЫ МЭДЭЭЛЭЛ БҮРТГЭГДСЭН БАЙНА. ТА БҮРТГЭЛТЭЙ ГИШҮҮНЭЭР
             НЭВТЭРНЭ ҮҮ

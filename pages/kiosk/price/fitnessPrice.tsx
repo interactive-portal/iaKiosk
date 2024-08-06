@@ -162,10 +162,11 @@
 
 import React from "react";
 import PriceLayout from "./priceLayout";
+import Layout from "../kioskLayout";
 
 const FitnessPrice = () => {
   return (
-    <PriceLayout>
+    <Layout>
       <div className="mt-[100px]">
         <p className="flex justify-center text-[#A68B5C] text-[64px]">
           ФИТНЕСС
@@ -175,22 +176,22 @@ const FitnessPrice = () => {
         <img
           src="/images/fitnessPrice.png"
           alt="Fitness Price"
-          className="h-[300px]"
+          className="h-[300px]  hover:transform hover:scale-105 transition-transform duration-300 ease-in-out"
         />
         <div className="grid justify-center w-full">
           <img
             src="/images/fitnessSanamj.png"
             alt="Fitness Sanamj"
-            className="h-[316px]"
+            className="h-[316px]  hover:transform hover:scale-105 transition-transform duration-300 ease-in-out"
           />
           <img
             src="/images/fitnessHunglult.png"
             alt="Fitness Hunglult"
-            className="h-[316px] w-full  "
+            className="h-[316px] w-full  hover:transform hover:scale-105 transition-transform duration-300 ease-in-out "
           />
         </div>
       </div>
-    </PriceLayout>
+    </Layout>
   );
 };
 
