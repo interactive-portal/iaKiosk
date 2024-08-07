@@ -362,7 +362,7 @@ const Card = ({
     <BlockDiv
       className={`flex flex-col  items-start h-[500px] ${
         dark ? "bg-black" : "bg-white"
-      }  px-[30px] py-[50px] rounded-[6px]`}
+      }  px-[20px] py-[50px] rounded-[6px]`}
     >
       <RenderAtom
         item={{ value: "ЭРЭЛТТЭЙ" }}
@@ -374,11 +374,11 @@ const Card = ({
       <RenderAtom
         item={{ value: title }}
         renderType="title"
-        className={`font-[700] text-[28px] uppercase ${
+        className={`font-[600] text-[22px] uppercase ${
           dark ? "text-white" : "text-black"
         }`}
       />
-      <BlockDiv className="flex flex-col items-start justify-center mt-[10px] min-h-[120px]">
+      <BlockDiv className="flex flex-col items-start justify-center mt-[20px] min-h-[120px]">
         <CardItem
           readyData={readyData}
           dark={dark}
@@ -498,8 +498,8 @@ const BottomSection = ({ item, dark, setactiveIndex, selectItem }: any) => {
   return (
     <BlockDiv className="">
       <Swiper
-        slidesPerView={2}
-        spaceBetween={60}
+        slidesPerView={3}
+        spaceBetween={30}
         modules={[Pagination]}
         pagination={true}
       >

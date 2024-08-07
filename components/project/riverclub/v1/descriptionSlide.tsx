@@ -1,6 +1,7 @@
 import BlockSlider from "@/components/common/Block/BlockSlider";
 import WidgetWrapperContext from "@/components/common/engineBox/Wrapper/WidgetUniversalWrapper";
 import { useContext } from "react";
+import RiverClubV1PlanPrice from "./plan/RiverClubV1PlanPrice";
 
 const Description = () => {
   const { readyDatasrc, widgetnemgooReady } = useContext(WidgetWrapperContext);
@@ -41,6 +42,8 @@ const Description = () => {
           );
         })}
       </BlockSlider>
+
+      {/* <RiverClubV1PlanPrice /> */}
     </div>
   );
 };
