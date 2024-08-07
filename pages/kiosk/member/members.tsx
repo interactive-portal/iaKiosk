@@ -3,7 +3,7 @@ import _ from "lodash";
 import { useRouter } from "next/router";
 
 import React, { ChangeEvent } from "react";
-import { FaExchangeAlt, FaTrash } from "react-icons/fa";
+// import { FaExchangeAlt, FaTrash } from "react-icons/fa";
 import useSWR from "swr";
 
 interface MembersProps {
@@ -86,10 +86,10 @@ const Members: React.FC<MembersProps> = ({
         </div>
         <div className="flex justify-center gap-8 mt-10">
           <button className="text-[30px] p-2 rounded-full">
-            <FaExchangeAlt />
+            {/* <FaExchangeAlt /> */}
           </button>
           <button className="text-[30px] p-2 rounded-full">
-            <FaTrash />
+            {/* <FaTrash /> */}
           </button>
         </div>
       </div>
