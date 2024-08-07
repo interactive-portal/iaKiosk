@@ -75,7 +75,7 @@ const AboutUs = () => {
                 {obj?.description}
               </p>
             </div>
-            <div>
+            <div className="px-10">
               <Swiper slidesPerView={4.5} spaceBetween={20}>
                 {!_.isEmpty(obj?.fitkiosktrainerdv) &&
                   obj?.fitkiosktrainerdv.map((item: any, index: number) => {
