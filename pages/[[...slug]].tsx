@@ -47,6 +47,8 @@ export async function getServerSideProps(context: any) {
 
   const pageObject: any = await preparePageObject(hostObjectV2);
 
+  // console.log("object :>> ", pageObject);
+
   context.res.setHeader(
     "Cache-Control",
     "public, s-maxage=10, stale-while-revalidate=59"
