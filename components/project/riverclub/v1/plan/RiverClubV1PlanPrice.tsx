@@ -25,7 +25,8 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 
 const RiverClubV1PlanPrice = () => {
-  const { readyDatasrc } = useContext(WidgetWrapperContext);
+  const { readyDatasrc, widgetnemgooReady } = useContext(WidgetWrapperContext);
+  const type = widgetnemgooReady?.type;
 
   // Cookies.set("customer", { customerId: "1522748739210" });
 
@@ -255,13 +256,13 @@ const RiverClubV1PlanPrice = () => {
     <BlockDiv className="mx-[20px] flex flex-col mb-[30px]">
       <UpperSection
         item={upperData}
-        dark={true}
+        dark={type == "dark" ? true : false}
         setactiveIndex={setactiveIndex}
         selectItem={selectItem}
       />
       <BottomSection
         item={bottomData}
-        dark={false}
+        dark={type == "dark" ? true : false}
         setactiveIndex={setactiveIndex}
         selectItem={selectItem}
       />
@@ -378,7 +379,7 @@ const Card = ({
           dark ? "text-white" : "text-black"
         }`}
       />
-      <BlockDiv className="flex flex-col items-start justify-center mt-[20px] min-h-[120px]">
+      <BlockDiv className="flex flex-col items-start justify-center mt-[20px] min-h-[130px]">
         <CardItem
           readyData={readyData}
           dark={dark}
@@ -433,7 +434,7 @@ const Card = ({
           value: "Багц сонгох",
         }}
         renderType="button"
-        className={`font-[400] text-[20px] text-black italic bg-[#BAD405] uppercase mt-[16px] rounded-[8px] w-max`}
+        className={`font-[400] text-[20px] text-black italic bg-[#BAD405] uppercase mt-[16px] px-10 py-1 rounded-[8px] cursor-pointer hover:bg-opacity-20 w-max`}
         onClick={(e: any) => selectItem(e, item)}
       />
     </BlockDiv>
