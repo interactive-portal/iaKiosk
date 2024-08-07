@@ -361,9 +361,9 @@ const Card = ({
 
   return (
     <BlockDiv
-      className={`flex flex-col  items-start h-[500px] ${
-        dark ? "bg-black" : "bg-white"
-      }  px-[20px] py-[50px] rounded-[6px]`}
+      className={`flex flex-col  items-start ${
+        dark ? "h-[500px]" : "h-[350px] "
+      } ${dark ? "bg-black" : "bg-white"}  px-[20px] py-[50px] rounded-[6px]`}
     >
       <RenderAtom
         item={{ value: "ЭРЭЛТТЭЙ" }}
@@ -379,6 +379,7 @@ const Card = ({
           dark ? "text-white" : "text-black"
         }`}
       />
+
       <BlockDiv className="flex flex-col items-start justify-center mt-[20px] min-h-[130px]">
         <CardItem
           readyData={readyData}
@@ -386,52 +387,60 @@ const Card = ({
           setactiveIndex={setactiveIndex}
         />
       </BlockDiv>
-      {/* Includes */}
-      <BlockDiv className="flex flex-col gap-y-[4px] h-[70px] justify-end mt-[30px] align-text-top">
-        {_.map([""], (innerItem: any, index: number) => {
-          return (
-            <BlockDiv className="flex items-center" key={index}>
-              <div className="">
-                <i
-                  className={`fa-solid fa-check w-[18px] fa-xs  h-[18px] mr-[8px] p-[3px] flex items-center justify-center  rounded-full ${
-                    dark ? "text-black bg-[#B3B3B3]" : "bg-[#B3B3B3] text-black"
-                  }`}
-                  style={{
-                    display: "flex !important",
-                  }}
-                />
-              </div>
-              <RenderAtom
-                item={{ value: "ФИТНЕСС" }}
-                renderType="text"
-                className={`font-medium text-[12px] ${
-                  dark ? "text-[#B3B3B3]" : "text-black"
-                }`}
-              />
-            </BlockDiv>
-          );
-        })}
-        <style>
-          {`
+      {dark ? (
+        <>
+          <BlockDiv className="flex flex-col gap-y-[4px] h-[70px] justify-end mt-[30px] align-text-top">
+            {_.map([""], (innerItem: any, index: number) => {
+              return (
+                <BlockDiv className="flex items-center" key={index}>
+                  <div className="">
+                    <i
+                      className={`fa-solid fa-check w-[18px] fa-xs  h-[18px] mr-[8px] p-[3px] flex items-center justify-center  rounded-full ${
+                        dark
+                          ? "text-black bg-[#B3B3B3]"
+                          : "bg-[#B3B3B3] text-black"
+                      }`}
+                      style={{
+                        display: "flex !important",
+                      }}
+                    />
+                  </div>
+                  <RenderAtom
+                    item={{ value: "ФИТНЕСС" }}
+                    renderType="text"
+                    className={`font-medium text-[12px] ${
+                      dark ? "text-[#B3B3B3]" : "text-black"
+                    }`}
+                  />
+                </BlockDiv>
+              );
+            })}
+            <style>
+              {`
             .fa-check{
               display:flex !important
             }
             `}
-        </style>
-      </BlockDiv>
-      {/* includes done here */}
+            </style>
+          </BlockDiv>
+
+          <RenderAtom
+            item={{
+              value: "Цагийн хязгааргүй фитнес болон бассейнээр үйлчлүүлнэ.",
+            }}
+            renderType="text"
+            className={`font-medium text-[12px] mt-[36px] h-[70px] ${
+              dark ? "text-[#B3B3B3]" : "text-black"
+            }`}
+          />
+        </>
+      ) : (
+        ""
+      )}
+
       <RenderAtom
         item={{
-          value: "Цагийн хязгааргүй фитнес болон бассейнээр үйлчлүүлнэ.",
-        }}
-        renderType="text"
-        className={`font-medium text-[12px] mt-[36px] h-[70px] ${
-          dark ? "text-[#B3B3B3]" : "text-black"
-        }`}
-      />
-      <RenderAtom
-        item={{
-          value: "Багц сонгох",
+          value: dark ? "Багц сонгох" : "Cонгох",
         }}
         renderType="button"
         className={`font-[400] text-[20px] text-black italic bg-[#BAD405] uppercase mt-[16px] px-10 py-1 rounded-[8px] cursor-pointer hover:bg-opacity-20 w-max`}
