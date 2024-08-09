@@ -1,5 +1,7 @@
+import { useState, useEffect } from "react";
 import Layout from "../../kioskLayout";
 import { useRouter } from "next/router";
+import useSWR from "swr";
 
 const FIELDS = [
   { label: "ГЭРЭЭНИЙ ДУГААР", key: "contractcode" },
@@ -19,6 +21,7 @@ const UserInfo = () => {
   const { user } = router.query;
   const userString = Array.isArray(user) ? user[0] : user;
   let userData = null;
+
   try {
     userData = userString ? JSON.parse(decodeURIComponent(userString)) : null;
   } catch (error) {
@@ -31,8 +34,62 @@ const UserInfo = () => {
   }
 
   const contractData = userData?.result || [];
+  const [error, setError] = useState<string | null>(null);
 
-  if (!userData) return <div>No user data available</div>;
+  // Fetch all customers associated with the contract ID
+  const criteria = JSON.stringify({
+    filterContractId: [
+      {
+        operator: "=",
+        operand: contractData[0]?.contractid,
+      },
+    ],
+  });
+  const { data: customersData } = useSWR(
+    contractData.length
+      ? `/api/get-data?metaid=1723089346622229&criteria=${criteria}`
+      : null
+  );
+
+  useEffect(() => {
+    if (contractData.length > 0) {
+      console.log("Contract ID:", customersData);
+    }
+  }, [contractData]);
+
+  const handleExtendClick = () => {
+    if (!contractData.length) {
+      setError("No contract data available.");
+      return;
+    }
+
+    if (!customersData) {
+      setError("Customer data is not available.");
+      return;
+    }
+
+    const uniqueCustomerIds = new Set(
+      customersData.map((customer: any) => customer.customerId)
+    );
+
+    if (uniqueCustomerIds.size > 1) {
+      router.push("/member/members");
+    } else if (uniqueCustomerIds.size === 1) {
+      router.push({
+        pathname: "/kiosk/extend/userinfo/stretch",
+        query: {
+          contractid: contractData[0].contractid,
+          itemname: contractData[0].itemname,
+          customername: contractData[0].customername,
+          stateregnumber: contractData[0].stateregnumber,
+          lastname: contractData[0].lastname,
+          serialNumber: contractData[0].serialNumber,
+        },
+      });
+    } else {
+      setError("No unique customer IDs found.");
+    }
+  };
 
   const renderField = (field: any, data: any) => {
     const value = data[field.key] || "No data";
@@ -46,24 +103,15 @@ const UserInfo = () => {
     );
   };
 
-  const handleExtendClick = (contract: any) => {
-    router.push({
-      pathname: "/kiosk/extend/userinfo/stretch",
-      query: {
-        contractid: contract.contractid,
-        itemname: contract.itemname,
-        customername: contract.customername,
-        stateregnumber: contract.stateregnumber,
-        lastname: contract.lastname,
-        serialNumber: contract.serialNumber,
-      },
-    });
-  };
-
   return (
     <Layout>
       <div className="flex flex-col ">
         <div className="text-center text-[#A68B5C] text-[64px]">ИЛЭРЦ</div>
+        {error && (
+          <div className="text-center text-red-500 text-[32px] mt-8">
+            {error}
+          </div>
+        )}
         {contractData.length > 0 ? (
           contractData.map((contract: any, index: number) => (
             <div key={index} className="mb-10 px-[120px] overscroll-contain ">
@@ -77,7 +125,7 @@ const UserInfo = () => {
               </div>
               <div className="flex justify-center">
                 <button
-                  onClick={() => handleExtendClick(contract)} // Pass the contractId here
+                  onClick={handleExtendClick}
                   className="mt-5 flex text-[40px] items-center h-[64px] bg-[#A68B5C] rounded-full w-[349px] text-white justify-center gap-10"
                 >
                   СУНГАЛТ ХИЙХ
