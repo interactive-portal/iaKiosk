@@ -19,7 +19,7 @@ const Home = () => {
   const homeData: HomeData[] = [
     {
       pageName: "БҮРТГЭЛТЭЙ ГИШҮҮН",
-      path: "/kiosk/member/checkUser",
+      path: "/kiosk/extend",
       bgColor: "#D9D9D9",
       textColor: "#525050",
     },
@@ -75,7 +75,7 @@ const Home = () => {
           />
         ))}
       </div>
-      <Modal
+      {/* <Modal
         open={openModal}
         onCancel={() => setOpenModal(false)}
         title={false}
@@ -83,7 +83,7 @@ const Home = () => {
         destroyOnClose
       >
         <CheckUser setOpenModal={setOpenModal} />
-      </Modal>
+      </Modal> */}
     </Layout>
   );
 };

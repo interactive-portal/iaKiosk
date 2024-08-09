@@ -8,15 +8,15 @@ import _ from "lodash";
 const Fitness: React.FC = () => {
   const router = useRouter();
   const criteria = JSON.stringify({
-    classificationname: [
+    filterItemTypeId: [
       {
         operator: "=",
-        operand: router.query.n,
+        operand: 1565658520388,
       },
     ],
   });
   let { data, error, mutate } = useSWR(`
-    /api/get-data?metaid=1701156148201731&criteria=${criteria}
+    /api/get-data?metaid=1722854127801134&criteria=${criteria}
     `);
 
   const readyData = data ? data?.result : [];
@@ -30,7 +30,7 @@ const Fitness: React.FC = () => {
     })
     .value();
 
-  console.log("first=====>", groupByData);
+  console.log("first=====>", data);
 
   const datas = [
     {

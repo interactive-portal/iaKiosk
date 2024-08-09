@@ -2,7 +2,7 @@ import fetchJson from "@/util/helper";
 import { Spin } from "antd";
 import Cookies from "js-cookie";
 import { useRouter } from "next/router";
-import { useState, FC } from "react";
+import { useState, FC, useEffect } from "react";
 import CameraLayout from "../../form/cameraLayout";
 
 type PropsType = {
@@ -13,6 +13,7 @@ const CheckUser: FC<PropsType> = ({ setOpenModal }) => {
   const [contentType, setContentType] = useState("");
   const [loading, setLoading] = useState(false);
   const [customer, setCustomer] = useState<any>({});
+  const [redirect, setRedirect] = useState(false); // State for redirection
   const router = useRouter();
 
   const clickCamera = () => {
@@ -30,7 +31,7 @@ const CheckUser: FC<PropsType> = ({ setOpenModal }) => {
       if (res?.status === "success") {
         setLoading(true);
         setCustomer(res?.result);
-        Cookies.set("customer", res?.result);
+        Cookies.set("customer", { customerId: "1575493964507" });
         setContentType("success");
 
         router.push({
@@ -38,7 +39,7 @@ const CheckUser: FC<PropsType> = ({ setOpenModal }) => {
           query: {
             firstName: res?.result?.firstName,
             lastName: res?.result?.lastName,
-            customerId: res?.result?.customerId,
+            customerId: 1575493964507,
           },
         });
 
@@ -49,11 +50,22 @@ const CheckUser: FC<PropsType> = ({ setOpenModal }) => {
     };
 
     ws.onerror = () => {
-      setOpenModal(false);
+      setContentType("error");
+      setRedirect(true); // Trigger redirection on error
     };
 
-    ws.onclose = () => {};
+    ws.onclose = () => {
+      if (redirect) {
+        router.push("/kiosk/extend"); // Redirect to the extended page if needed
+      }
+    };
   };
+
+  useEffect(() => {
+    if (redirect) {
+      router.push("/kiosk/extend"); // Redirect if redirect state is true
+    }
+  }, [redirect, router]);
 
   const content = () => {
     switch (contentType) {
@@ -99,7 +111,7 @@ const CheckUser: FC<PropsType> = ({ setOpenModal }) => {
                 className="text-[36px] text-[#525050] bg-white rounded-[87px] w-full py-2"
                 onClick={clickCamera}
               >
-                БОЛИХ
+                РЕГИСТР ДУГААРААР ХАЙХ
               </button>
             </div>
           </div>
@@ -124,8 +136,7 @@ const CheckUser: FC<PropsType> = ({ setOpenModal }) => {
                     query: {
                       firstName: customer?.firstName,
                       lastName: customer?.lastName,
-
-                      customerId: customer?.customerId,
+                      customerId: 1575493964507,
                     },
                   })
                 }

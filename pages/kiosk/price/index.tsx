@@ -10,7 +10,7 @@ const Page = () => {
           ҮНИЙН МЭДЭЭЛЭЛ
         </div>
         <div
-          className="bg-white rounded-[76px] text-[#525050] py-[40px]"
+          className="bg-white rounded-[76px] text-[#525050] py-[40px] mt-[150px]"
           onClick={() => router.push("/kiosk/price/poolPrice")}
         >
           БАССЕЙН
@@ -27,7 +27,7 @@ const Page = () => {
         >
           САУН
         </div>
-        <div
+        {/* <div
           className="bg-white rounded-[76px] text-[#525050] py-[40px]"
           onClick={() => router.push("/kiosk/price/squashPrice")}
         >
@@ -38,7 +38,7 @@ const Page = () => {
           onClick={() => router.push("/kiosk/register/combo")}
         >
           ХОСОЛСОН БАГЦ
-        </div>
+        </div> */}
       </div>
     </Layout>
   );

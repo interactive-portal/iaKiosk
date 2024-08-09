@@ -1,49 +1,77 @@
 import React, { useEffect, useState } from "react";
 import Layout from "../kioskLayout";
 import { useRouter } from "next/router";
-import fetchJson from "@/util/helper";
+import { Spin } from "antd"; // Import the Spin component
+import { LoadingOutlined } from "@ant-design/icons";
+
+const FIELDS = [
+  { label: "ОВОГ", key: "lastname" },
+  { label: "НЭР", key: "customername" },
+];
 
 const Page = () => {
   const router = useRouter();
-  const firstName = router.query.firstName as string | undefined;
-  const lastName = router.query.lastName as string | undefined;
-  const customerId = router.query.customerId as string | undefined;
-  const fullName = `${firstName ? firstName : ""} ${lastName ? lastName : ""}`;
+  const [loading, setLoading] = useState(true); // Add loading state
+
+  const { user } = router.query;
+  const userString = Array.isArray(user) ? user[0] : user;
+  let userData = null;
+
+  try {
+    userData = userString ? JSON.parse(decodeURIComponent(userString)) : null;
+  } catch (error) {
+    console.error("Error parsing user data:", error);
+    userData = null;
+  }
+
+  if (Array.isArray(userData)) {
+    userData = userData[0];
+  }
+
+  const contractData = userData?.result?.[0] || {};
+
+  if (!userData) return <div>No user data available</div>;
+
+  const renderField = (field: any) => {
+    const value = contractData[field.key] || "No data";
+
+    return (
+      <div key={field.key} className="flex justify-between flex-col gap-y-2">
+        <span>{field.label}</span>
+        <span className="bg-white px-5 rounded-[20px] text-[#525050]">
+          {value}
+        </span>
+      </div>
+    );
+  };
+
   return (
     <Layout>
-      <p className="text-[64px] font-medium text-[#A68B5C] mb-8">ИЛЭРЦ</p>
-      <div className="flex gap-16 mb-8 px-[80px]">
-        <div>
-          <p className="text-[32px] text-white text-start">ОВОГ, НЭР</p>
-          <input
-            type="text"
-            value={fullName}
-            // onChange={(e) => handleInputChange(e, "lastName")}
-            className="flex text-[30px] justify-end items-center rounded-3xl px-4 h-[43px] w-[349px] bg-white"
-          />
+      <div className="mt-[100px]">
+        <p className="text-[64px] font-medium text-[#A68B5C] mb-8">ИЛЭРЦ</p>
+        <div className="flex gap-16 mb-8 px-[80px]">
+          <div className="text-[32px] text-white text-start grid grid-cols-2 w-full gap-4">
+            {FIELDS.map(renderField)}
+          </div>
         </div>
-        <div>
-          <p className="text-[32px] text-white text-start">РЕГИСТЕР</p>
-          <input
-            type="text"
-            // value={data.registration}
-            // onChange={(e) => handleInputChange(e, "registration")}
-            className="flex text-[30px] justify-end items-center rounded-3xl px-4 h-[43px] w-[349px] bg-white"
-          />
-        </div>
-      </div>
-      <div className="mt-[700px] px-[100px] ">
-        <div
-          className="bg-white rounded-[76px] text-[#525050] text-[64px] h-[152px] w-[836px] flex justify-center items-center "
-          onClick={() => router.push("/kiosk/member/contract")}
-        >
-          <p>БҮРТГЭЛТЭЙ ГЭРЭЭ</p>
-        </div>
-        <div
-          className="bg-white rounded-[76px] text-[#525050] mt-[50px] h-[152px] w-[836px] flex justify-center items-center text-[64px]"
-          onClick={() => router.push("/kiosk/price/")}
-        >
-          ШИНЭ БАГЦ
+        <div className="mt-[700px] px-[100px] ">
+          <div
+            className="bg-white rounded-[76px] text-[#525050] text-[64px] h-[152px] w-[836px] flex justify-center items-center cursor-pointer"
+            onClick={() =>
+              router.push({
+                pathname: "/kiosk/extend/userinfo",
+                query: { user: JSON.stringify(userData) }, // Pass user data as query parameter
+              })
+            }
+          >
+            <p>БҮРТГЭЛТЭЙ ГЭРЭЭ</p>
+          </div>
+          <div
+            className="bg-white rounded-[76px] text-[#525050] mt-[50px] h-[152px] w-[836px] flex justify-center items-center text-[64px] cursor-pointer"
+            onClick={() => router.push("/kiosk/register/")}
+          >
+            ШИНЭ БАГЦ
+          </div>
         </div>
       </div>
     </Layout>

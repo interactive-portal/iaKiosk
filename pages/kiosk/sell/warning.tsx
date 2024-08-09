@@ -5,8 +5,14 @@ import { useRouter } from "next/navigation";
 const Warning = () => {
   const [isChecked, setIsChecked] = useState(false);
   const router = useRouter();
+
   const handleCheckboxChange = () => {
-    setIsChecked(!isChecked);
+    const newCheckedState = !isChecked;
+    setIsChecked(newCheckedState);
+
+    if (newCheckedState) {
+      router.push("/kiosk/sell/ebarimt");
+    }
   };
 
   const handleProceed = () => {
@@ -19,7 +25,7 @@ const Warning = () => {
 
   return (
     <Layout>
-      <p className="text-[#F85348] text-[96px] mt-[200px]">санамж</p>
+      <p className="text-[#F85348] text-[96px] mt-[350px]">санамж</p>
       <p className="text-[64px] px-[30px] text-white">
         ТА НӨАТ-ЫН БАРИМТАА АВСАНААР МӨНГӨН ХЭЛБЭРИЙН БУЦААЛТ БАЙХГҮЙ БОЛОХЫГ
         АНХААРНА УУ!!!
@@ -33,7 +39,7 @@ const Warning = () => {
         />
         <button
           className=" text-white font-bold py-2 px-4 rounded mt-7"
-          onClick={handleProceed}
+          onClick={handleCheckboxChange}
         >
           ЗӨВШӨӨРӨВ
         </button>

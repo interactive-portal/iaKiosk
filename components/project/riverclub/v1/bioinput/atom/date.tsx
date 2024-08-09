@@ -22,7 +22,7 @@ const Date: FC<PropsType> = ({ obj, value }) => {
   const onchange: DatePickerProps["onChange"] = (date, dateString) => {
     setValue(obj?.pathname, dateString);
   };
-  console.log(`Text Component: Received data for pathname '${obj?.pathname}'`);
+  // console.log(`Text Component: Received data for pathname '${obj?.pathname}'`);
 
   useEffect(() => {});
 

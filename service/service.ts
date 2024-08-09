@@ -43,15 +43,15 @@ export const runService = async (
   //   })
   //   .then((res) => res.data)
   //   .catch((err) => console.log(`err: `, err));
-  // console.log("resaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", requestOptions);
+  console.log("resaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", requestOptions);
 
   let res: any = await fetch(pUrl, requestOptions);
 
   const response = await res.json();
-  // console.log(
-  //   "resaaasdddddddyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-  //   response
-  // );
+  console.log(
+    "resaaasdddddddyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    response
+  );
 
   if (!res.ok) {
     const errorCode = res.ok ? false : res.status;

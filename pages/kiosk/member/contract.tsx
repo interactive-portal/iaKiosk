@@ -1,143 +1,86 @@
-import React, { useState, ChangeEvent } from "react";
-import Layout from "../kioskLayout";
+import useSWR from "swr";
+
 import { useRouter } from "next/router";
+import Layout from "../kioskLayout";
 
-interface Field {
-  label: string;
-  value: string;
-}
+// Define constants for the fields
+const FIELDS = [
+  { label: "ГЭРЭЭНИЙ ДУГААР", key: "contractcode" },
+  { label: "СЕРИАЛ ДУГААР", key: "serialNumber" },
 
-interface ContractData {
-  title: string;
-  fields: Field[];
-}
-
-interface Data {
-  lastName: string;
-  registration: string;
-  contracts: ContractData[];
-}
-
-const Contract: React.FC = () => {
+  { label: "ҮЙЛЧИЛГЭЭНИЙ НЭР", key: "itemname" },
+  { label: "БАГЦЫН ХУГАЦАА", key: "durationtype" },
+  { label: "ТӨЛӨВ", key: "wfmstatusname" },
+  { label: "БАЙГУУЛСАН ОГНОО", key: "contractdate" },
+  { label: "ЭХЛЭХ ДУУСАХ ОГНОО", key: "startdate" },
+  // { label: "ДУУСАХ ОГНОО", key: "enddate" },
+];
+const DADA = [{ label: "ОВОГ", key: "lastname" }];
+const DADE = [{ label: "РЕГИСТЕР", key: "stateregnumber" }];
+const Contract = () => {
   const router = useRouter();
+  const registerNumber = router.query?.c || "55";
 
-  const [data, setData] = useState<Data>({
-    lastName: "ЦЭЦЭГ",
-    registration: "НЭ56220345",
-    contracts: [
+  // Define the criteria dynamically based on the register number
+  const criteria = JSON.stringify({
+    filterRegNumber: [
       {
-        title: "ФИТНЕСС",
-        fields: [
-          { label: "ГЭРЭЭНИЙ ДУГААР", value: "2400123" },
-          { label: "БАЙГУУЛСАН ОГНОО", value: "2024.02.27" },
-          { label: "СЕРИАЛ ДУГААР", value: "463135" },
-          { label: "ҮЙЛЧИЛГЭЭНИЙ НЭР", value: "ФИТНЕСС" },
-        ],
-      },
-      {
-        title: "БАССЕЙН БАГЦ",
-        fields: [
-          { label: "ГЭРЭЭНИЙ ДУГААР", value: "2400123" },
-          { label: "БАЙГУУЛСАН ОГНОО", value: "2024.02.27" },
-          { label: "СЕРИАЛ ДУГААР", value: "463135" },
-          { label: "ҮЙЛЧИЛГЭЭНИЙ НЭР", value: "ФИТНЕСС" },
-        ],
+        operator: "=",
+        operand: registerNumber,
       },
     ],
   });
 
-  const handleChange = (
-    contractIndex: number,
-    fieldIndex: number,
-    value: string
-  ) => {
-    const newContracts = [...data.contracts];
-    newContracts[contractIndex].fields[fieldIndex].value = value;
-    setData({ ...data, contracts: newContracts });
-  };
+  // Fetch data based on the dynamic criteria
+  const { data: readyData, error } = useSWR(
+    `/api/get-data?metaid=1722853892303075&criteria=${criteria}`
+  );
 
-  const handleInputChange = (
-    event: ChangeEvent<HTMLInputElement>,
-    key: keyof Data
-  ) => {
-    setData({ ...data, [key]: event.target.value });
+  // Handle loading and error states
+  if (error) return <div>Error loading data...</div>;
+
+  // Debug output
+  console.log("ReadyData:", readyData);
+
+  // Helper function to render a field
+  const renderField = (field: any) => {
+    // Safeguard against undefined or null values
+    const value = readyData?.result?.[0]?.[field.key] || "data";
+    return (
+      <div key={field.key} className="flex justify-between flex-col gap-y-2">
+        <span>{field.label}</span>
+        <span className="bg-white px-5 rounded-[20px] text-[#525050]">
+          {value}
+        </span>
+      </div>
+    );
   };
 
   return (
     <Layout>
-      <p className="text-[64px] font-medium text-[#A68B5C] text-center mb-8">
-        ИЛЭРЦ
-      </p>
-      <div className="flex gap-16 mb-8 px-[80px]">
-        <div>
-          <p className="text-[32px] text-white text-start">ОВОГ</p>
-          <input
-            type="text"
-            value={data.lastName}
-            onChange={(e) => handleInputChange(e, "lastName")}
-            className="flex text-[30px] justify-end items-center rounded-3xl px-4 h-[43px] w-[349px] bg-white "
-          />
+      <div>
+        <div className="text-center text-[#A68B5C] text-[64px]">ИЛЭРЦ</div>
+        <div className="grid grid-cols-2 gap-6 rounded-lg w-full text-[32px] text-start text-white ">
+          <div> {DADA.map(renderField)}</div>
+          <div> {DADE.map(renderField)}</div>
         </div>
-        <div>
-          <p className="text-[32px] text-white text-start">РЕГИСТЕР</p>
-          <input
-            type="text"
-            value={data.registration}
-            onChange={(e) => handleInputChange(e, "registration")}
-            className="flex text-[30px] justify-end items-center rounded-3xl px-4 h-[43px] w-[349px] bg-white"
-          />
+        <div className="flex text-[54px] justify-center rounded-lg w-full  text-start text-white py-[50px]">
+          БАССЕЙН БАГЦ
         </div>
-      </div>
-
-      {data.contracts.map((contract, contractIndex) => (
-        <div
-          key={contractIndex}
-          className="px-[100px] rounded-3xl text-white mt-[px] "
-        >
-          <p className="text-[40px] p-4">{contract.title}</p>
-          <div className="grid grid-cols-2 gap-4">
-            {contract.fields.map((field, fieldIndex) => (
-              <div key={fieldIndex}>
-                <p className="text-[32px] text-start">{field.label}</p>
-                <input
-                  type="text"
-                  value={field.value}
-                  onChange={(e) =>
-                    handleChange(contractIndex, fieldIndex, e.target.value)
-                  }
-                  className="bg-white rounded-3xl  font-normal  text-[30px] px-4 h-[43px] w-full text-black"
-                />
-              </div>
-            ))}
-
-            <div>
-              <p className="text-[32px] text-start">ЭХЛЭХ ОГНОО</p>
-              {/* <div className="bg-white rounded-3xl p-4"> */}
-              <input
-                type="date"
-                className="rounded-full font-normal text-[30px] px-4 h-[43px] w-full text-black"
-              />
-              {/* </div> */}
+        <div className="text-white flex items-center justify-center min-w-[800px]">
+          <div className="grid grid-cols-2 gap-4 rounded-lg w-full text-[32px] text-start justify-center items-end">
+            {FIELDS.map(renderField)}
+            <div className="flex justify-center">
+              <button
+                onClick={() => router.push("/kiosk/extend/userinfo/stretch")}
+                className="mt-5 flex text-[40px] items-end h-[64px] bg-[#A68B5C] rounded-full w-[349px] text-white justify-center gap-10"
+              >
+                СУНГАЛТ ХИЙХ
+              </button>
             </div>
-            <div>
-              <p className="text-[32px] text-start">ДУУСАХ ОГНОО</p>
-              {/* <div className="bg-white rounded-3xl p-4"> */}
-              <input
-                type="date"
-                className="rounded-full font-normal text-[30px] px-4 h-[43px] w-full text-black"
-              />
-              {/* </div> */}
-            </div>
-            <div></div>
-            <button
-              onClick={() => router.push("/kiosk/member/stretch")}
-              className=" h-[64px] text-center bg-[#A68B5C] text-white text-[40px] w-[410px] rounded-3xl mt-[20px]"
-            >
-              <p className=" flex justify-center items-center">СУНГАЛТ ХИЙХ</p>
-            </button>
           </div>
         </div>
-      ))}
+      </div>
     </Layout>
   );
 };

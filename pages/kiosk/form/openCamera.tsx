@@ -29,7 +29,7 @@ const OpenCamera: FC<PropsType> = ({
     };
 
     const res = await axios.post(`/api/post-process`, {
-      processcode: "fitCrmCustomerKiosk_DV_001",
+      processcode: "fitKioskCreateContractUpdate_DV_001",
       parameters: param,
     });
 
