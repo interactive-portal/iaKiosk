@@ -34,7 +34,7 @@ const Form = () => {
   const [productId, setProductId] = useState(router.query.i);
 
   const methods: any = useForm({
-    defaultValues: {
+    defaultValueues: {
       cityId: "11",
     },
   });
@@ -43,7 +43,7 @@ const Form = () => {
     {
       labelname: "он, сар",
       pathname: "contractDate",
-      type: "text",
+      type: "date",
       isRequired: 1,
     },
     {
@@ -68,7 +68,7 @@ const Form = () => {
     {
       labelname: "ТӨРСӨН ОГНОО",
       pathname: "pDateOfBirth",
-      type: "date",
+      type: "dateRegister",
       isRequired: 1,
     },
     {
@@ -119,28 +119,21 @@ const Form = () => {
       labelname: "Хичээлэх спорт",
       pathname: "itemId",
       type: "text",
-      isRequired: 0,
+      // isRequired: 1,
+      defaultValue: "1565659459594",
     },
     {
       labelname: "Карт эхлэх огноо",
       pathname: "startDate",
-      type: "text",
+      type: "date",
       isRequired: 1,
     },
     {
       labelname: "Үйлчилгээ дуусах огноо",
       pathname: "endDate",
-      type: "text",
+      type: "date",
       isRequired: 1,
     },
-
-    {
-      labelname: "Гэрээний төрөл",
-      pathname: "contractTypeId",
-      type: "text",
-      isRequired: 0,
-    },
-
     {
       labelname: "Гэрээний дүн",
       pathname: "price",
@@ -160,32 +153,14 @@ const Form = () => {
       isRequired: 1,
     },
     {
-      labelname: "төлөв",
-      pathname: "wfmStatusId",
-      type: "text",
-      isRequired: 1,
-    },
-    {
       labelname: "Сар",
       pathname: "durationTypeId",
       type: "text",
       isRequired: 1,
     },
     {
-      labelname: "Идэвхтэй эсэх",
-      pathname: "isActive",
-      type: "text",
-      isRequired: 1,
-    },
-    {
       labelname: "Дуусах хугацаа тооцоолох",
       pathname: "month",
-      type: "text",
-      isRequired: 1,
-    },
-    {
-      labelname: "Загвар",
-      pathname: "templateId",
       type: "text",
       isRequired: 1,
     },
@@ -205,7 +180,8 @@ const Form = () => {
       labelname: "Үйлчлүүлэгчийн бүлэг",
       pathname: "cCustomerGroupId",
       type: "text",
-      isRequired: 1,
+      // isRequired: 1,
+      defaultValue: "1592909489389",
     },
     {
       labelname: "Насанд хүрсэн эсэх",
@@ -216,12 +192,6 @@ const Form = () => {
     {
       labelname: "Гадаад иргэн эсэх",
       pathname: "cCitizen",
-      type: "text",
-      isRequired: 1,
-    },
-    {
-      labelname: "Дэлгүүр",
-      pathname: "storeId",
       type: "text",
       isRequired: 1,
     },
@@ -362,6 +332,8 @@ const Form = () => {
                       case "number":
                         return <Number key={index} obj={newObj} />;
                       case "date":
+                        return <Date key={index} obj={newObj} />;
+                      case "dateRegister":
                         if (foreign !== "") {
                           return <Date key={index} obj={newObj} />;
                         } else {
@@ -470,3 +442,5 @@ const Form = () => {
     </Layout>
   );
 };
+
+export default Form;

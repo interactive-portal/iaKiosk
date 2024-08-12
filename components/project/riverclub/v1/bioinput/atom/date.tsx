@@ -21,6 +21,8 @@ const Date: FC<PropsType> = ({ obj, value }) => {
 
   const onchange: DatePickerProps["onChange"] = (date, dateString) => {
     setValue(obj?.pathname, dateString);
+    console.log("obj?.pathname :>> ", obj?.pathname);
+    console.log("dateString :>> ", dateString);
   };
   // console.log(`Text Component: Received data for pathname '${obj?.pathname}'`);
 
@@ -38,7 +40,7 @@ const Date: FC<PropsType> = ({ obj, value }) => {
           <DatePicker
             placeholder={`${obj?.labelname}`}
             onChange={onchange}
-            onSelect={field.value}
+            // onSelect={field.value}
             // defaultValue={value}
             value={value}
             style={{

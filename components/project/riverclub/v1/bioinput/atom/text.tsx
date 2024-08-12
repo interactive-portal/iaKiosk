@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import { useFormContext } from "react-hook-form";
 
 type PropsType = {
@@ -11,17 +11,20 @@ const Text: FC<PropsType> = ({ obj }) => {
     formState: { errors },
   } = useFormContext();
   const errorMessage: any = errors[obj?.pathname]?.message;
+
+  const [values, setValues] = useState(obj?.defaultValue);
   // console.log(
   //   `Text Component: Received data for pathname '${obj?.pathname}''${obj?.labelname}'`
   // );
 
+  console.log("obj :>> ", obj);
   return (
     <div className="flex flex-col ">
       <label className="text-[16px] mt-[8px] font-medium  text-[#2A2A2A]">
         {obj?.labelname} <span className="text-red-500">*</span>
       </label>
       <input
-        disabled={obj?.defaultValue ? true : false}
+        // disabled={obj?.defaultValue ? true : false}
         type="text"
         placeholder={obj?.labelname}
         autoComplete="off"

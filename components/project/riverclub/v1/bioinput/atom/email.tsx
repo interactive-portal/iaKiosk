@@ -15,7 +15,7 @@ const Email: FC<PropsType> = ({ obj }) => {
   //   `Text Component: Received data for pathname '${obj?.pathname}''${obj?.labelname}'`
   // );
 
-  console.log(errorMessage);
+  // console.log(errorMessage);
   return (
     <div className="flex flex-col ">
       <label className="text-[16px] font-medium  text-[#2A2A2A]">
