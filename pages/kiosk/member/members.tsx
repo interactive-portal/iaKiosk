@@ -1,9 +1,8 @@
-import Cookies from "js-cookie";
-import _ from "lodash";
+import React, { ChangeEvent, useState } from "react";
 import { useRouter } from "next/router";
-
-import React, { ChangeEvent } from "react";
-// import { FaExchangeAlt, FaTrash } from "react-icons/fa";
+import { MdEdit } from "react-icons/md";
+import { MdDelete } from "react-icons/md";
+import { Modal, Input } from "antd";
 import useSWR from "swr";
 
 interface MembersProps {
@@ -21,6 +20,11 @@ const Members: React.FC<MembersProps> = ({
   serial,
   handleChange,
 }) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [editedName, setEditedName] = useState(name);
+  const [editedRegistration, setEditedRegistration] = useState(registration);
+  const [editedSerial, setEditedSerial] = useState(serial);
+
   const handleInputChange =
     (field: string) => (e: ChangeEvent<HTMLInputElement>) => {
       handleChange(number - 1, field, e.target.value);
@@ -36,22 +40,74 @@ const Members: React.FC<MembersProps> = ({
     ],
   });
 
-  let { data, error, mutate } = useSWR(`
-    /api/get-data?metaid=17138556014631&criteria=${criteria}
-    `);
+  const fetcher = (url: string) => fetch(url).then((res) => res.json());
+  const { data, error, mutate } = useSWR(
+    criteria
+      ? `/api/get-data?metaid=17138556014631&criteria=${criteria}`
+      : null,
+    fetcher
+  );
 
-  const readyData = data ? data?.result : [];
+  const readyData = data ? data.result : [];
 
-  Cookies.set("customer", { customerId: "1587024272980" });
+  const handleEdit = () => {
+    setIsModalOpen(true);
+  };
 
-  const groupByData = _.chain(readyData)
-    .groupBy("classificationname")
-    .map((value, key, wrapped) => {
-      return { [key]: value };
-    })
-    .value();
+  const handleDelete = () => {
+    const confirmed = window.confirm(
+      "Are you sure you want to delete this member?"
+    );
 
-  console.log("grou[pdata========>", groupByData);
+    if (confirmed) {
+      // Clear the member's data from the parent component
+      handleChange(number - 1, "name", "");
+      handleChange(number - 1, "registration", "");
+      handleChange(number - 1, "serial", "");
+
+      console.log(`Deleted member ${number}`);
+    }
+  };
+
+  const handleModalSave = async () => {
+    try {
+      const response = await fetch(`/api/update-member/${number}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: editedName,
+          registration: editedRegistration,
+          serial: editedSerial,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to update member");
+      }
+
+      // Update parent component's state
+      handleChange(number - 1, "name", editedName);
+      handleChange(number - 1, "registration", editedRegistration);
+      handleChange(number - 1, "serial", editedSerial);
+
+      await mutate(); // Ensure mutate waits for completion
+      console.log(`Updated member ${number}`, {
+        editedName,
+        editedRegistration,
+        editedSerial,
+      });
+
+      setIsModalOpen(false);
+    } catch (error) {
+      console.error("Error updating member:", error);
+    }
+  };
+
+  const handleModalClose = () => {
+    setIsModalOpen(false);
+  };
 
   return (
     <div className="p-4 w-full text-white mb-4">
@@ -85,14 +141,49 @@ const Members: React.FC<MembersProps> = ({
           />
         </div>
         <div className="flex justify-center gap-8 mt-10">
-          <button className="text-[30px] p-2 rounded-full">
-            {/* <FaExchangeAlt /> */}
+          <button className="text-[60px] p-2 rounded-full" onClick={handleEdit}>
+            <MdEdit />
           </button>
-          <button className="text-[30px] p-2 rounded-full">
-            {/* <FaTrash /> */}
+          <button
+            className="text-[60px] p-2 rounded-full"
+            onClick={handleDelete}
+          >
+            <MdDelete />
           </button>
         </div>
       </div>
+
+      {/* Modal */}
+      <Modal
+        title={`Edit Member ${number}`}
+        visible={isModalOpen}
+        onOk={handleModalSave}
+        onCancel={handleModalClose}
+        okText="Save"
+        cancelText="Cancel"
+      >
+        <div className="mb-4">
+          <label className="block mb-2">ОВОГ</label>
+          <Input
+            value={editedName}
+            onChange={(e) => setEditedName(e.target.value)}
+          />
+        </div>
+        <div className="mb-4">
+          <label className="block mb-2">РЕГИСТЕР</label>
+          <Input
+            value={editedRegistration}
+            onChange={(e) => setEditedRegistration(e.target.value)}
+          />
+        </div>
+        <div className="mb-4">
+          <label className="block mb-2">СЕРИАЛ ДУГААР</label>
+          <Input
+            value={editedSerial}
+            onChange={(e) => setEditedSerial(e.target.value)}
+          />
+        </div>
+      </Modal>
     </div>
   );
 };

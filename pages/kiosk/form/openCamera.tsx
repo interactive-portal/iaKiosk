@@ -29,10 +29,13 @@ const OpenCamera: FC<PropsType> = ({
     };
 
     const res = await axios.post(`/api/post-process`, {
-      processcode: "fitKioskCreateContractUpdate_DV_001",
+      // processcode: "fitCrmCustomerKiosk_DV_001",
       parameters: param,
     });
 
+    console.log("res ---->", res);
+    // fitKioskCreateContractUpdate_DV_001;
+    // fitCrmCustomerKiosk_DV_001
     if (res.data?.status == "success") {
       setLoading(false);
       router.push({
@@ -47,6 +50,7 @@ const OpenCamera: FC<PropsType> = ({
         message: "Бүртгэл амжилттай хийгдлээ",
       });
     } else {
+      console.log("Aldaa ------->", res);
       setLoading(false);
       alert(res?.data?.text);
     }
@@ -184,7 +188,10 @@ const OpenCamera: FC<PropsType> = ({
             </span>
             <button
               className="text-[64px] text-[#525050] bg-white rounded-[87px] w-full py-10 mx-10"
-              onClick={() => clickCamera()}
+              onClick={
+                () => clickCamera()
+                // saved(e)
+              }
             >
               ЦАРАЙ ТАНИУЛАХ
             </button>

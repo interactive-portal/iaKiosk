@@ -49,7 +49,7 @@ const BasseinFit: React.FC = () => {
       </div>
       <div className=" text-center text-white mt-[200px] ">
         <h1 className="text-[64px]">САНАМЖ</h1>
-        <p className="text-[40px] ">{warningToCostumer}</p>
+        <p className="text-[40px] ">{warningToCostumer[0]}</p>
       </div>
     </ComboLayout>
   );

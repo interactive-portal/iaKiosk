@@ -6,6 +6,9 @@ import _ from "lodash";
 
 const Register = () => {
   const router = useRouter();
+  const { userdata } = router.query;
+  console.log("aaaaaaa===========>?", userdata);
+
   const criteria = JSON.stringify({
     classificationname: [
       {
@@ -19,7 +22,6 @@ const Register = () => {
   /api/get-data?metaid=1722848580347088&criteria=${criteria}
   `);
 
-  console.log("data", data);
   const readyData = data ? data?.result : [];
 
   Cookies.set("customer", { customerId: "1587024272980" });

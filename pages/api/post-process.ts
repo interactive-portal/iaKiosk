@@ -23,11 +23,11 @@ const postProcess = async (req: any, res: any) => {
   const result = await getProcessData(processcode, parameter);
 
   // console.log("result", result);
-  // if (result.status == "success") {
-  //   res.status(200).json(result);
-  // } else {
-  //   res.status(200).json(result.text);
-  // }
+  if (result.status == "success") {
+    res.status(200).json(result);
+  } else {
+    res.status(200).json(result.text);
+  }
 
   // console.log("result :>> ", result);
 

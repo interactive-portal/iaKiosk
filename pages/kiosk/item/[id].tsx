@@ -7,7 +7,7 @@ import RegisterLayout from "../register/registerLayout";
 const ItemDetails = () => {
   const router = useRouter();
   const { id } = router.query;
-
+  console.log("id-========>?>?????", id);
   const criteria = JSON.stringify({
     filterItemTypeId: [
       {
@@ -17,12 +17,16 @@ const ItemDetails = () => {
     ],
   });
 
-  const { data } = useSWR(
-    `/api/get-data?metaid=1722854127801134&criteria=${encodeURIComponent(
-      criteria
-    )}`
+  const { data, error, isValidating } = useSWR(
+    id
+      ? `/api/get-data?metaid=1722854127801134&criteria=${encodeURIComponent(
+          criteria
+        )}`
+      : null
   );
 
+  // Check if data is being loaded
+  const isLoading = isValidating && !data && !error;
   const readyData = data ? data.result : [];
 
   Cookies.set("customer", JSON.stringify({ customerId: "1587024272980" }));
@@ -37,7 +41,7 @@ const ItemDetails = () => {
       items,
     }))
     .value();
-  console.log("first", groupByData);
+  console.log("first", readyData);
 
   const ddd = process.env.IMAGEROOTURL || "http://172.169.200.57:85/";
   const body = groupByData[0]?.image || "";
@@ -57,6 +61,26 @@ const ItemDetails = () => {
   const getItemWidth = (itemsCount: any) => {
     return itemsCount > 3 ? "w-[400px]" : "w-[290px]";
   };
+
+  if (isLoading) {
+    return (
+      <RegisterLayout coverImagePath="" title="">
+        <div className="flex justify-center items-center min-h-screen">
+          <div className="text-[32px] text-white">Loading...</div>
+        </div>
+      </RegisterLayout>
+    );
+  }
+
+  if (error) {
+    return (
+      <RegisterLayout coverImagePath="" title="">
+        <div className="flex justify-center items-center min-h-screen">
+          <div className="text-[32px] text-red-500">Error loading data.</div>
+        </div>
+      </RegisterLayout>
+    );
+  }
 
   return (
     <RegisterLayout coverImagePath={ddd + body} title={groupByData[0]?.title}>
@@ -80,7 +104,6 @@ const ItemDetails = () => {
                   )}`}
                 >
                   <button
-                    // className="text-[40px] h-[120px] rounded-[87px] bg-white/30 px-14 text-center "
                     className={`flex justify-center text-[40px] uppercase rounded-[87px] bg-white/30 px-14 py-2 text-center ${getItemWidth(
                       group.items.length
                     )}`}

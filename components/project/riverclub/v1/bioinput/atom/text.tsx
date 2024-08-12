@@ -21,6 +21,7 @@ const Text: FC<PropsType> = ({ obj }) => {
         {obj?.labelname} <span className="text-red-500">*</span>
       </label>
       <input
+        disabled={obj?.defaultValue ? true : false}
         type="text"
         placeholder={obj?.labelname}
         autoComplete="off"
@@ -28,6 +29,7 @@ const Text: FC<PropsType> = ({ obj }) => {
           obj?.pathname,
           obj.isRequired === 1 ? { required: "Заавал бөглөх талбар!" } : {}
         )}
+        defaultValue={obj?.defaultValue ? obj.defaultValue : ""}
         className={`mt-[8px] px-[14px] border border-black py-[17px] text-[16px] rounded-lg focus-visible:outline-none ${
           errorMessage ? "ring-1 ring-red-500" : ""
         }`}

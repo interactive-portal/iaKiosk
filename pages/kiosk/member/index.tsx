@@ -68,7 +68,13 @@ const Page = () => {
           </div>
           <div
             className="bg-white rounded-[76px] text-[#525050] mt-[50px] h-[152px] w-[836px] flex justify-center items-center text-[64px] cursor-pointer"
-            onClick={() => router.push("/kiosk/register/")}
+            // onClick={() => router.push("/kiosk/register/")}
+            onClick={() =>
+              router.push({
+                pathname: "/kiosk/register/",
+                query: { user: JSON.stringify(userData) }, // Pass user data as query parameter
+              })
+            }
           >
             ШИНЭ БАГЦ
           </div>

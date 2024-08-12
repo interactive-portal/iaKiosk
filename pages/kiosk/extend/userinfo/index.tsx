@@ -19,6 +19,7 @@ const FIELDS = [
 const UserInfo = () => {
   const router = useRouter();
   const { user } = router.query;
+
   const userString = Array.isArray(user) ? user[0] : user;
   let userData = null;
 
@@ -45,36 +46,46 @@ const UserInfo = () => {
       },
     ],
   });
-  const { data: customersData } = useSWR(
+
+  const { data: customersData, error: fetchError } = useSWR(
     contractData.length
       ? `/api/get-data?metaid=1723089346622229&criteria=${criteria}`
       : null
   );
 
   useEffect(() => {
-    if (contractData.length > 0) {
-      console.log("Contract ID:", customersData);
+    if (fetchError) {
+      // console.error("Error fetching customer data:", fetchError);
+      setError("Failed to fetch customer data.");
     }
-  }, [contractData]);
+
+    if (customersData) {
+      // console.log("Fetched customers data:", customersData);
+      // Ensure customersData is an array
+      if (!Array.isArray(customersData)) {
+        // setError("Fetched data is not in the expected format.");
+      }
+    }
+
+    if (contractData.length > 0) {
+      console.log("Contract ID:", contractData.length);
+    }
+  }, [contractData, customersData, fetchError]);
 
   const handleExtendClick = () => {
-    if (!contractData.length) {
-      setError("No contract data available.");
-      return;
-    }
-
-    if (!customersData) {
-      setError("Customer data is not available.");
-      return;
-    }
-
-    const uniqueCustomerIds = new Set(
-      customersData.map((customer: any) => customer.customerId)
-    );
-
-    if (uniqueCustomerIds.size > 1) {
-      router.push("/member/members");
-    } else if (uniqueCustomerIds.size === 1) {
+    if (contractData.length > 1) {
+      router.push({
+        pathname: "/kiosk/member/stretch",
+        query: {
+          contractid: contractData[0].contractid,
+          itemname: contractData[0].itemname,
+          customername: contractData[0].customername,
+          stateregnumber: contractData[0].stateregnumber,
+          lastname: contractData[0].lastname,
+          serialNumber: contractData[0].serialNumber,
+        },
+      });
+    } else if (contractData.length === 1) {
       router.push({
         pathname: "/kiosk/extend/userinfo/stretch",
         query: {
