@@ -16,6 +16,7 @@ const Page = () => {
   const { user } = router.query;
   const userString = Array.isArray(user) ? user[0] : user;
   let userData = null;
+  console.log("USER======>>> ", userString);
 
   try {
     userData = userString ? JSON.parse(decodeURIComponent(userString)) : null;
@@ -36,9 +37,9 @@ const Page = () => {
     const value = contractData[field.key] || "No data";
 
     return (
-      <div key={field.key} className="flex justify-between flex-col gap-y-2">
+      <div key={field.key} className="flex justify-between flex-col gap-y-2 ">
         <span>{field.label}</span>
-        <span className="bg-white px-5 rounded-[20px] text-[#525050]">
+        <span className="bg-white px-10 py-4 rounded-full text-[#525050] ">
           {value}
         </span>
       </div>
@@ -48,15 +49,15 @@ const Page = () => {
   return (
     <Layout>
       <div className="mt-[100px]">
-        <p className="text-[64px] font-medium text-[#A68B5C] mb-8">ИЛЭРЦ</p>
-        <div className="flex gap-16 mb-8 px-[80px]">
-          <div className="text-[32px] text-white text-start grid grid-cols-2 w-full gap-4">
+        <p className="lg:text-7xl font-bold text-[#A68B5C] mb-8">ИЛЭРЦ</p>
+        <div className="flex">
+          <div className="lg:text-4xl text-white text-start grid grid-cols-2 w-full gap-8  ">
             {FIELDS.map(renderField)}
           </div>
         </div>
-        <div className="mt-[700px] px-[100px] ">
+        <div className="xs:mt-[700px] flex flex-col gap-y-12">
           <div
-            className="bg-white rounded-[76px] text-[#525050] text-[64px] h-[152px] w-[836px] flex justify-center items-center cursor-pointer"
+            className="bg-white rounded-full text-[#525050] lg:text-6xl  cursor-pointer py-12 px-24"
             onClick={() =>
               router.push({
                 pathname: "/kiosk/extend/userinfo",
@@ -67,7 +68,7 @@ const Page = () => {
             <p>БҮРТГЭЛТЭЙ ГЭРЭЭ</p>
           </div>
           <div
-            className="bg-white rounded-[76px] text-[#525050] mt-[50px] h-[152px] w-[836px] flex justify-center items-center text-[64px] cursor-pointer"
+            className="bg-white rounded-full text-[#525050] lg:text-6xl  cursor-pointer py-12"
             // onClick={() => router.push("/kiosk/register/")}
             onClick={() =>
               router.push({

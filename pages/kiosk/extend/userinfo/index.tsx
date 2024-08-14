@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import Layout from "../../kioskLayout";
 import { useRouter } from "next/router";
 import useSWR from "swr";
+import { Spin } from "antd";
+import { LoadingOutlined } from "@ant-design/icons";
 
 const FIELDS = [
   { label: "ГЭРЭЭНИЙ ДУГААР", key: "contractcode" },
@@ -36,6 +38,7 @@ const UserInfo = () => {
 
   const contractData = userData?.result || [];
   const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState<boolean>(false);
 
   // Fetch all customers associated with the contract ID
   const criteria = JSON.stringify({
@@ -50,27 +53,30 @@ const UserInfo = () => {
   const { data: customersData, error: fetchError } = useSWR(
     contractData.length
       ? `/api/get-data?metaid=1723089346622229&criteria=${criteria}`
-      : null
+      : null,
+    {
+      onLoadingSlow: () => setLoading(true),
+      onSuccess: () => setLoading(false),
+      onError: () => setLoading(false),
+    }
   );
 
-  useEffect(() => {
-    if (fetchError) {
-      // console.error("Error fetching customer data:", fetchError);
-      setError("Failed to fetch customer data.");
-    }
+  // useEffect(() => {
+  //   if (fetchError) {
+  //     setError("Failed to fetch customer data.");
+  //   }
 
-    if (customersData) {
-      // console.log("Fetched customers data:", customersData);
-      // Ensure customersData is an array
-      if (!Array.isArray(customersData)) {
-        // setError("Fetched data is not in the expected format.");
-      }
-    }
+  //   if (customersData) {
+  //     // Ensure customersData is an array
+  //     if (!Array.isArray(customersData)) {
+  //       setError("Fetched data is not in the expected format.");
+  //     }
+  //   }
 
-    if (contractData.length > 0) {
-      console.log("Contract ID:", contractData.length);
-    }
-  }, [contractData, customersData, fetchError]);
+  //   if (contractData.length > 0) {
+  //     console.log("Contract ID:", contractData.length);
+  //   }
+  // }, [contractData, customersData, fetchError]);
 
   const handleExtendClick = () => {
     if (contractData.length > 1) {
@@ -116,8 +122,22 @@ const UserInfo = () => {
 
   return (
     <Layout>
-      <div className="flex flex-col ">
-        <div className="text-center text-[#A68B5C] text-[64px]">ИЛЭРЦ</div>
+      <div className="flex flex-col">
+        {loading && (
+          <div className="fixed inset-0 flex items-center justify-center bg-[#000000a0] z-50">
+            <Spin
+              indicator={
+                <LoadingOutlined
+                  style={{ fontSize: 50, color: "white" }}
+                  spin
+                />
+              }
+            />
+          </div>
+        )}
+        <div className="text-center text-[#A68B5C] text-6xl font-bold mb-10">
+          ИЛЭРЦ
+        </div>
         {error && (
           <div className="text-center text-red-500 text-[32px] mt-8">
             {error}
@@ -125,8 +145,8 @@ const UserInfo = () => {
         )}
         {contractData.length > 0 ? (
           contractData.map((contract: any, index: number) => (
-            <div key={index} className="mb-10 px-[120px] overscroll-contain ">
-              <div className="text-center text-[#A68B5C] text-[48px]">
+            <div key={index} className="mb-10 px-[120px] overscroll-contain">
+              <div className="text-center text-[#A68B5C] text-5xl mb-10">
                 {contract.itemname || "No item name available"}
               </div>
               <div className="text-white flex items-center justify-center min-w-[800px]">
@@ -137,7 +157,7 @@ const UserInfo = () => {
               <div className="flex justify-center">
                 <button
                   onClick={handleExtendClick}
-                  className="mt-5 flex text-[40px] items-center h-[64px] bg-[#A68B5C] rounded-full w-[349px] text-white justify-center gap-10"
+                  className="mt-14 flex text-[40px] items-center h-[64px] bg-[#A68B5C] rounded-full w-[349px] text-white justify-center gap-10"
                 >
                   СУНГАЛТ ХИЙХ
                 </button>

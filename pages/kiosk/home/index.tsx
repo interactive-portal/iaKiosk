@@ -50,7 +50,7 @@ const Home = () => {
     textColor,
   }) => (
     <div
-      className="rounded-[76px] py-6 cursor-pointer"
+      className="rounded-full lg:py-14 lg:px-10 xs:px-4 xs:py-6 cursor-pointer "
       style={{ backgroundColor: bgColor, color: textColor }}
       onClick={() => handleNavigation(path)}
     >
@@ -61,10 +61,10 @@ const Home = () => {
   const [openModal, setOpenModal] = useState(false);
   return (
     <Layout>
-      <div className="text-[#A68B5C] text-[48px] md:text-[96px] mt-[100px] md:mt-[250px] text-center ">
+      <div className="text-[#A68B5C] lg:text-8xl xs:text-5xl  text-center lg:mt-[300px] ">
         welcome
       </div>
-      <div className="w-[80%] md:w-[836px] mx-auto flex flex-col gap-y-8 md:gap-y-14 text-[32px] md:text-[64px] mt-[50px] md:mt-[200px] text-center">
+      <div className="w-full flex flex-col lg:gap-y-10  xs:gap-y-5  lg:text-6xl xs:text-3xl text-center lg:mt-[150px] ">
         {homeData.map((item, index) => (
           <Button
             key={index}
@@ -75,6 +75,7 @@ const Home = () => {
           />
         ))}
       </div>
+
       {/* <Modal
         open={openModal}
         onCancel={() => setOpenModal(false)}

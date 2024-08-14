@@ -53,16 +53,16 @@ const Extend = () => {
 
   return (
     <Layout>
-      <div className="uppercase text-[90px] text-[#A68B5C] mb-10 mt-[150px]">
+      <div className="uppercase text-[#A68B5C] mt-[300px] lg:text-8xl xs:text-5xl font-bold">
         СУНГАЛТ
       </div>
-      <div className="relative min-w-[665px] mt-[100px]">
-        <i className="fa-solid fa-magnifying-glass absolute top-1/2 left-6 fa-2xl text-white"></i>
+      <div className="relative mt-[80px]">
+        <i className="fa-solid fa-magnifying-glass absolute top-1/2 left-6 fa-2xl text-[#dcdcdc]"></i>
         <input
           type="text"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          className="min-h-[87px] text-[#525050] text-[36px] min-w-[665px] rounded-[26px] pl-[70px]"
+          className="lg:py-10 text-[#525050] text-[36px] lg:px-[100px] rounded-full pl-[70px]"
           placeholder="ХАЙЛТ"
           onKeyDown={(e) => e.key === "Enter" && handleSearch()}
         />
@@ -82,19 +82,18 @@ const Extend = () => {
             className="max-w-[80px] max-h-[80px]"
           />
         </button>
-        {loading && (
-          <div className="flex justify-center items-center  ">
-            <Spin
-              indicator={
-                <LoadingOutlined
-                  style={{ fontSize: 50, color: "white" }}
-                  spin
-                />
-              }
-            />
-          </div>
-        )}
       </div>
+
+      {/* Full-screen loading spinner */}
+      {loading && (
+        <div className="fixed inset-0 flex items-center justify-center bg-[#000000a0] z-50">
+          <Spin
+            indicator={
+              <LoadingOutlined style={{ fontSize: 50, color: "white" }} spin />
+            }
+          />
+        </div>
+      )}
 
       <Modal
         open={openModal}

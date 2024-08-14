@@ -4,7 +4,7 @@ const RegisterLayout = ({ children, coverImagePath, title }: any) => {
   const router = useRouter();
   return (
     <div
-      className="w-full 2xl:w-[1000px]  2xl:h-[1800px] h-screen flex flex-col relative justify-center items-center overflow-hidden"
+      className="w-full h-screen flex flex-col relative justify-center items-center overflow-hidden"
       style={{
         backgroundImage: `url(/images/home1.png)`,
         backgroundRepeat: "no-repeat",
@@ -23,7 +23,7 @@ const RegisterLayout = ({ children, coverImagePath, title }: any) => {
         {title}
       </div>
 
-      <div className="flex justify-center items-start uppercase h-full text-center px-4 md:px-0">
+      <div className="flex justify-center uppercase h-screen text-center lg:items-start w-full overflow-y-auto">
         {children}
       </div>
       <div>

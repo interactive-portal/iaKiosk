@@ -4,12 +4,11 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   const router = useRouter();
   return (
     <div
-      className="w-full 2xl:w-[1000px]  2xl:h-[1800px] h-screen flex flex-col relative justify-center items-center  "
+      className="w-screen h-screen flex flex-col  justify-center items-center  "
       style={{
         backgroundImage: "url(/images/home1.png)",
-        backgroundRepeat: "no-repeat",
+        backgroundRepeat: "repeat",
         backgroundSize: "cover",
-        // fontFamily: " Baskervville SC",
       }}
     >
       <div className="w-full py-6 md:py-10 flex items-center justify-center uppercase">
@@ -17,9 +16,10 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
           src="/images/logo.png"
           alt="home"
           className="max-w-[100px] md:max-w-[400px]"
+          onClick={() => router.push("/kiosk/home")}
         />
       </div>
-      <div className="flex justify-center items-start uppercase h-[1800px] overscroll-contain text-center ">
+      <div className="flex justify-center uppercase h-screen text-center lg:items-start w-full overflow-y-auto">
         <div>{children}</div>
       </div>
       <div>

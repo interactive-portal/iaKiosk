@@ -16,12 +16,12 @@ import { useRouter } from "next/router";
 import { useTranslation } from "react-i18next";
 import convertDate from "@/components/project/riverclub/v1/bioinput/convertData";
 import Layout from "../kioskLayout";
-import OpenCamera from "./openCamera";
+import OpenCamera from "../form/openCamera";
 import { usePathname } from "next/navigation";
 import { useSearchParam } from "react-use";
 import { notification } from "antd";
 
-const Form = () => {
+const Form2 = () => {
   const router = useRouter();
   const { t } = useTranslation("translate");
   const [processParam, setProcessParam] = useState<any>();
@@ -212,7 +212,7 @@ const Form = () => {
 
     try {
       const res = await axios.post("/api/post-process", {
-        processcode: "fitKioskCreateContractUpdate_DV_001",
+        processcode: "createMainContractItem_DV_001",
         parameters: processParam,
       });
 
@@ -291,7 +291,10 @@ const Form = () => {
         </div>
       ) : (
         <> */}
-      <p className="uppercase text-[64px] text-white mb-20">АНКЕТ</p>
+      <p className="uppercase text-[64px] text-white mb-20">
+        {" "}
+        ГИШҮҮН НЭМЭХ АНКЕТ
+      </p>
       {/* <RenderWidgetProcess
             listConfig={{
               metadataid: "1722918980954453",
@@ -440,4 +443,4 @@ const Form = () => {
   );
 };
 
-export default Form;
+export default Form2;

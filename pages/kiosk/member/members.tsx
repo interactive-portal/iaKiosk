@@ -9,7 +9,7 @@ interface MembersProps {
   number: number;
   name: string;
   registration: string;
-  serial: string;
+  serialnumber: string;
   handleChange: (index: number, field: string, value: string) => void;
 }
 
@@ -17,13 +17,13 @@ const Members: React.FC<MembersProps> = ({
   number,
   name,
   registration,
-  serial,
+  serialnumber,
   handleChange,
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editedName, setEditedName] = useState(name);
   const [editedRegistration, setEditedRegistration] = useState(registration);
-  const [editedSerial, setEditedSerial] = useState(serial);
+  const [editedSerial, setEditedSerial] = useState(serialnumber);
 
   const handleInputChange =
     (field: string) => (e: ChangeEvent<HTMLInputElement>) => {
@@ -79,7 +79,7 @@ const Members: React.FC<MembersProps> = ({
         body: JSON.stringify({
           name: editedName,
           registration: editedRegistration,
-          serial: editedSerial,
+          serialnumber: editedSerial,
         }),
       });
 
@@ -135,8 +135,8 @@ const Members: React.FC<MembersProps> = ({
           <p className="text-[32px] text-white text-start">СЕРИАЛ ДУГААР</p>
           <input
             type="text"
-            value={serial}
-            onChange={handleInputChange("serial")}
+            value={serialnumber}
+            onChange={handleInputChange("serialnumber")}
             className="flex text-[30px] justify-end items-center rounded-3xl px-4 h-[43px] w-[349px] bg-white text-black"
           />
         </div>

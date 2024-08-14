@@ -40,8 +40,8 @@ const Register = () => {
 
   return (
     <Layout>
-      <div className="text-[64px] flex flex-col gap-y-10 mt-[200px]">
-        <div className="uppercase text-[90px] text-[#A68B5C] mb-[100px] w-[844px]">
+      <div className="text-6xl flex flex-col gap-y-10 mt-[300px]">
+        <div className="uppercase text-[90px] text-[#A68B5C] mb-[110px] font-bold ">
           БҮРТГЭЛ
         </div>
         {groupByData.map((group) => (
@@ -49,7 +49,7 @@ const Register = () => {
             {group.items.map((item) => (
               <div
                 key={item.id}
-                className="bg-white rounded-full text-[#525050] py-[40px]"
+                className="bg-[#D9D9D9] rounded-full text-[#525050] py-[60px] px-[220px] "
                 onClick={() => handleItemClick(item.id)}
               >
                 {item.itemtypename}
