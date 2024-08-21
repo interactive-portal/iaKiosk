@@ -15,7 +15,7 @@ const Page = () => {
 
   const { user } = router.query;
   const userString = Array.isArray(user) ? user[0] : user;
-  let userData = null;
+  let userData = {};
   // console.log("USER======>>> ", userString);
 
   // try {
