@@ -1,7 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-/*
+/* 
 @font-face {
   font-family: AG;
   src: url(../public/icon/webfonts/AGBenguiatMon.woff.ttf);
@@ -209,34 +209,4 @@ h6 {
   font-size: 40px;
   color: white;
   right: 20px;
-}
-
-.obtn {
-  background-color: #d9d9d9;
-  color: #525050;
-}
-.pagetitle {
-  color: #a68b5c;
-  font-size: 90px;
-}
-.obtn:hover {
-  background-color: #a68b5c;
-  color: #ffffff;
-}
-
-.kioskcontent::-webkit-scrollbar-track {
-  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-  border-radius: 10px;
-  background-color: #12141e;
-}
-
-.kioskcontent::-webkit-scrollbar {
-  width: 12px;
-  background-color: #12141e;
-}
-
-.kioskcontent::-webkit-scrollbar-thumb {
-  border-radius: 10px;
-  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-  background-color: #a68b5c;
 }

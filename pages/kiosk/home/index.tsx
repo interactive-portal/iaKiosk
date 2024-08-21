@@ -43,15 +43,15 @@ const Home = () => {
     router.push(path);
   };
 
-  const ButtonList: React.FC<HomeData> = ({
+  const Button: React.FC<HomeData> = ({
     pageName,
     path,
     bgColor,
     textColor,
   }) => (
     <div
-      className="rounded-full text-[64px] sm:text-[48px] py-5 cursor-pointer obtn"
-      // style={{ backgroundColor: bgColor, color: textColor }}
+      className="rounded-full lg:py-14 lg:px-10 xs:px-4 xs:py-6 cursor-pointer "
+      style={{ backgroundColor: bgColor, color: textColor }}
       onClick={() => handleNavigation(path)}
     >
       {pageName}
@@ -61,21 +61,19 @@ const Home = () => {
   const [openModal, setOpenModal] = useState(false);
   return (
     <Layout>
-      <div className="mx-auto  flex flex-col gap-10">
-        <div className="text-[#A68B5C] pagetitle  text-center  uppercase  mb-6">
-          welcome
-        </div>
-        <div className="w-3/5 mx-auto flex flex-col gap-6 text-center  px-8">
-          {homeData.map((item, index) => (
-            <ButtonList
-              key={index}
-              pageName={item.pageName}
-              path={item.path}
-              bgColor={item.bgColor}
-              textColor={item.textColor}
-            />
-          ))}
-        </div>
+      <div className="text-[#A68B5C] lg:text-8xl xs:text-5xl  text-center lg:mt-[300px] ">
+        welcome
+      </div>
+      <div className="w-full flex flex-col lg:gap-y-10  xs:gap-y-5  lg:text-6xl xs:text-3xl text-center lg:mt-[150px] ">
+        {homeData.map((item, index) => (
+          <Button
+            key={index}
+            pageName={item.pageName}
+            path={item.path}
+            bgColor={item.bgColor}
+            textColor={item.textColor}
+          />
+        ))}
       </div>
 
       {/* <Modal

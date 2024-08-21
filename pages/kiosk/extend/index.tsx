@@ -14,6 +14,7 @@ const Extend = () => {
 
   // SWR fetcher function for search
   const fetchData = async (query: any) => {
+    console.log("Fetching data with query:", query);
     const response = await fetchJson(
       `/api/get-data?metaid=1722853892303075&criteria=${JSON.stringify({
         filterRegNumber: [
@@ -52,63 +53,57 @@ const Extend = () => {
 
   return (
     <Layout>
-      <div className="mx-auto  flex flex-col gap-10">
-        <div className="text-[#A68B5C] pagetitle text-center  uppercase  mb-6  ">
-          СУНГАЛТ
-        </div>
-        <div className="relative w-2/3 mx-auto ">
-          <i className="fa-solid fa-magnifying-glass absolute left-8 top-[40px] text-[42px] text-[#525050]"></i>
-          <input
-            type="text"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            className="lg:py-10 text-[#525050] text-[36px]  rounded-full w-full pl-20 pr-10"
-            placeholder="ХАЙЛТ"
-            onKeyDown={(e) => e.key === "Enter" && handleSearch()}
+      <div className="uppercase text-[#A68B5C] mt-[300px] lg:text-8xl xs:text-5xl font-bold">
+        СУНГАЛТ
+      </div>
+      <div className="relative mt-[80px]">
+        <i className="fa-solid fa-magnifying-glass absolute top-1/2 left-6 fa-2xl text-[#dcdcdc]"></i>
+        <input
+          type="text"
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          className="lg:py-10 text-[#525050] text-[36px] lg:px-[100px] rounded-full pl-[70px]"
+          placeholder="ХАЙЛТ"
+          onKeyDown={(e) => e.key === "Enter" && handleSearch()}
+        />
+      </div>
+      <div className="text-white text-center text-[24px]">
+        <p>REGISTER OR SERIAL NUMBER</p>
+      </div>
+      <div className="w-full text-center flex justify-center mt-[200px]">
+        <button
+          className="flex items-center bg-[#A68B5C] rounded-[26px] w-[443px] text-white px-10 py-6 justify-center gap-10"
+          onClick={handleSearch}
+          disabled={loading}
+        >
+          <p className="text-[40px]">ХАЙЛТ</p>
+          <img
+            src="/images/Face_id_white.png"
+            className="max-w-[80px] max-h-[80px]"
+          />
+        </button>
+      </div>
+
+      {/* Full-screen loading spinner */}
+      {loading && (
+        <div className="fixed inset-0 flex items-center justify-center bg-[#000000a0] z-50">
+          <Spin
+            indicator={
+              <LoadingOutlined style={{ fontSize: 50, color: "white" }} spin />
+            }
           />
         </div>
+      )}
 
-        <div className="text-white text-center text-[24px]">
-          <p>REGISTER OR SERIAL NUMBER</p>
-        </div>
-        <div className="w-full text-center flex justify-center relative">
-          <button
-            className="flex items-center bg-[#A68B5C] rounded-full w-[443px] text-white px-10 py-6 justify-center gap-10"
-            onClick={handleSearch}
-            disabled={loading}
-          >
-            <p className="text-[40px]">ХАЙЛТ</p>
-            <img
-              src="/images/Face_id_white.png"
-              className="max-w-[80px] max-h-[80px]"
-            />
-          </button>
-        </div>
-
-        {/* Full-screen loading spinner */}
-        {loading && (
-          <div className="fixed inset-0 flex items-center justify-center bg-[#000000a0] z-50">
-            <Spin
-              indicator={
-                <LoadingOutlined
-                  style={{ fontSize: 50, color: "white" }}
-                  spin
-                />
-              }
-            />
-          </div>
-        )}
-
-        <Modal
-          open={openModal}
-          onCancel={() => setOpenModal(false)}
-          title={false}
-          footer={false}
-          destroyOnClose
-        >
-          <CheckUser setOpenModal={setOpenModal} />
-        </Modal>
-      </div>
+      <Modal
+        open={openModal}
+        onCancel={() => setOpenModal(false)}
+        title={false}
+        footer={false}
+        destroyOnClose
+      >
+        <CheckUser setOpenModal={setOpenModal} />
+      </Modal>
     </Layout>
   );
 };

@@ -4,8 +4,7 @@ const Page = () => {
   const router = useRouter();
   return (
     <div
-      // className="max-w-[1080px] h-screen 2xl:w-[1000px]  2xl:h-[1800px] overflow-hidden"
-      className="max-w-[1080px] h-screen 2xl:w-[1000px]   overflow-hidden    "
+      className="max-w-[1080px] h-screen 2xl:w-[1000px]  2xl:h-[1800px] overflow-hidden"
       onClick={() => router.push("/kiosk/home")}
       style={{
         backgroundImage: "url(/images/homeLayout.png)",
@@ -14,15 +13,17 @@ const Page = () => {
         backgroundSize: "cover",
       }}
     >
-      <div className="flex  items-stretch  justify-items-center text-center h-full  w-full">
-        <div className="self-center space-y-24 justify-items-center mx-auto ">
-          <img src="/images/logo.png" alt="" className=" px-16" />
-          <div className="in">
-            <p className="md:text-[60px] xs:text-[30px]  text-white flex justify-center  uppercase items-center font-medium">
-              Get start
-            </p>
-          </div>
-        </div>
+      <div className="flex justify-center md:mt-[700px] xs:mt-[300px]">
+        <img
+          src="/images/logo.png"
+          alt=""
+          className="md:h-[150px] xs:h-[50px] "
+        />
+      </div>
+      <div className="flex justify-center">
+        <p className="md:text-[60px] xs:text-[30px]  text-white flex justify-center md:mt-[650px] xs:mt-[270px] uppercase items-center h-[150px] w-[600px] font-medium">
+          Get start
+        </p>
       </div>
     </div>
   );
