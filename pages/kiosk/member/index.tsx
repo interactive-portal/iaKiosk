@@ -16,25 +16,25 @@ const Page = () => {
   const { user } = router.query;
   const userString = Array.isArray(user) ? user[0] : user;
   let userData = null;
-  console.log("USER======>>> ", userString);
+  // console.log("USER======>>> ", userString);
 
-  try {
-    userData = userString ? JSON.parse(decodeURIComponent(userString)) : null;
-  } catch (error) {
-    console.error("Error parsing user data:", error);
-    userData = null;
-  }
+  // try {
+  //   userData = userString ? JSON.parse(decodeURIComponent(userString)) : null;
+  // } catch (error) {
+  //   console.error("Error parsing user data:", error);
+  //   userData = null;
+  // }
 
-  if (Array.isArray(userData)) {
-    userData = userData[0];
-  }
+  // if (Array.isArray(userData)) {
+  //   userData = userData[0];
+  // }
 
-  const contractData = userData?.result?.[0] || {};
+  // const contractData = userData?.result?.[0] || {};
 
   // if (!userData) return <div>No user data available</div>;
 
   const renderField = (field: any) => {
-    const value = contractData[field.key] || "No data";
+    const value = "No data";
 
     return (
       <div key={field.key} className="flex justify-between flex-col gap-y-2 ">
