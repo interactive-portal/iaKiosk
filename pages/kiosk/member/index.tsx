@@ -31,7 +31,7 @@ const Page = () => {
 
   const contractData = userData?.result?.[0] || {};
 
-  if (!userData) return <div>No user data available</div>;
+  // if (!userData) return <div>No user data available</div>;
 
   const renderField = (field: any) => {
     const value = contractData[field.key] || "No data";
@@ -48,16 +48,16 @@ const Page = () => {
 
   return (
     <Layout>
-      <div className="mt-[100px]">
-        <p className="lg:text-7xl font-bold text-[#A68B5C] mb-8">ИЛЭРЦ</p>
+      <div className="px-16">
+        <p className="pagetitle mb-8">ИЛЭРЦ</p>
         <div className="flex">
           <div className="lg:text-4xl text-white text-start grid grid-cols-2 w-full gap-8  ">
             {FIELDS.map(renderField)}
           </div>
         </div>
-        <div className="xs:mt-[700px] flex flex-col gap-y-12">
+        <div className="mt-[70px] flex flex-col space-y-8">
           <div
-            className="bg-white rounded-full text-[#525050] lg:text-6xl  cursor-pointer py-12 px-24"
+            className="rounded-full text-[64px] sm:text-[48px] py-5 cursor-pointer obtn"
             onClick={() =>
               router.push({
                 pathname: "/kiosk/extend/userinfo",
@@ -68,7 +68,7 @@ const Page = () => {
             <p>БҮРТГЭЛТЭЙ ГЭРЭЭ</p>
           </div>
           <div
-            className="bg-white rounded-full text-[#525050] lg:text-6xl  cursor-pointer py-12"
+            className="rounded-full text-[64px] sm:text-[48px] py-5 cursor-pointer obtn"
             // onClick={() => router.push("/kiosk/register/")}
             onClick={() =>
               router.push({
