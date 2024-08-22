@@ -3,7 +3,7 @@ import Layout from "../kioskLayout";
 const PoolPrice = () => {
   return (
     <Layout>
-      <div className="mt-[100px]">
+      <div className="mt-[30px]">
         <p className="flex justify-center text-[#A68B5C] text-[64px]">
           БАССЕЙН
         </p>

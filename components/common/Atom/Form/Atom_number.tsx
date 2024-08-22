@@ -1,6 +1,6 @@
 import FormMetaContext from "context/Meta/FormMetaContext";
 import { FC, useContext } from "react";
-import NumberFormat from "react-number-format";
+import NumberFormat, { NumericFormat } from "react-number-format";
 import { twMerge } from "tailwind-merge";
 import { fieldDisableEnable, fieldHideShow, getAtomValue } from "@/util/helper";
 import Atom_label from "./Atom_label";
@@ -61,8 +61,7 @@ const Atom_number: FC<PropsType> = ({
       />
 
       <div>
-        <>atom Number</>
-        {/* <NumberFormat
+        <NumericFormat
           thousandsGroupStyle="thousand"
           value={getAtomValue(
             config,
@@ -86,7 +85,7 @@ const Atom_number: FC<PropsType> = ({
           onValueChange={handlerChange}
           fixedDecimalScale={false}
           disabled={fieldDisableEnable(config, processExpression)}
-        /> */}
+        />
         {config.isEmpty && <span>{config.errorText}</span>}
       </div>
     </div>

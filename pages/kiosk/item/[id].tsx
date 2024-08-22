@@ -57,7 +57,7 @@ const ItemDetails = () => {
   };
 
   const getItemWidth = (itemsCount: any) => {
-    return itemsCount > 3 ? "w-[400px]" : "w-[290px]";
+    return itemsCount > 3 ? "w-[400px]" : "w-[350px]";
   };
 
   if (isLoading) {
@@ -90,7 +90,7 @@ const ItemDetails = () => {
             className="flex flex-col gap-y-1 text-white uppercase mt-[80px] text-start"
             key={index}
           >
-            <div className="text-[40px] text-white">{group.name}</div>
+            <div className="text-[40px] mb-6 text-white">{group.name}</div>
             <div
               className={`grid justify-center gap-10 ${getGridClasses(
                 group.items.length
@@ -99,12 +99,12 @@ const ItemDetails = () => {
               {group.items.map((item, itemIndex) => (
                 <div
                   key={itemIndex}
-                  className={`flex justify-center ${getItemWidth(
+                  className={`flex justify-center hover:bg-opacity-70 ${getItemWidth(
                     group.items.length
                   )}`}
                 >
                   <button
-                    className={`flex justify-center text-[40px] uppercase rounded-[87px] bg-white/30 px-14 py-2 text-center ${getItemWidth(
+                    className={`flex justify-center text-[40px] leading-[42px]  uppercase rounded-full bg-white/30 px-10 py-4 text-center ${getItemWidth(
                       group.items.length
                     )}`}
                     onClick={() =>

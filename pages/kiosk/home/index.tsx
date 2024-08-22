@@ -62,10 +62,10 @@ const Home = () => {
   return (
     <Layout>
       <div className="mx-auto  flex flex-col gap-10">
-        <div className="text-[#A68B5C] pagetitle  text-center  uppercase  mb-6">
+        <div className="text-[#A68B5C] pagetitle  text-center  uppercase  mb-20">
           welcome
         </div>
-        <div className="w-3/5 mx-auto flex flex-col gap-6 text-center  px-8">
+        <div className="w-4/5 mx-auto flex flex-col gap-6 text-center  px-4">
           {homeData.map((item, index) => (
             <ButtonList
               key={index}

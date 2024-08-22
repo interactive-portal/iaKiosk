@@ -71,7 +71,7 @@ const Atom_textarea: FC<PropsType> = ({
           )}
           style={{
             ...style,
-            height: 42,
+            height: 50,
             width: parseInt(config.columnwidth, 10),
           }}
           placeholder={config?.placeholdername}

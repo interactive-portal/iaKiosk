@@ -79,7 +79,7 @@ const Atom_string: FC<PropsType> = ({
             id={config.paramname}
             name={config.paramname}
             className={twMerge(
-              ` rounded border-gray-400 text-[14px] focus:ring-0  ${className} ${
+              ` rounded border-gray-400 text-[14px] focus:ring-0  ${className}  ${
                 config.iconname && "pl-10"
               } ( focus:border-black${
                 validData[config.paramname] ? ` border-red-500` : ``
@@ -100,7 +100,6 @@ const Atom_string: FC<PropsType> = ({
             onChange={handlerChange}
             onBlur={(e) => handlerBlur(e)}
           />
-
           {/* <span className="text-red-400 pl-1  absolute -left-4  z-40">
 						{config.isrequired == "1" && "*"}
 					</span> */}

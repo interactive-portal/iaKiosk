@@ -16,7 +16,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
           <img
             src="/images/logo.png"
             alt="home"
-            className="max-w-[300px] pt-6 md:max-w-[400px] mx-auto"
+            className="max-w-[300px] pt-10 md:max-w-[400px] mx-auto"
             onClick={() => router.push("/kiosk/home")}
           />
         </div>

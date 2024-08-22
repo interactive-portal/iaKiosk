@@ -18,9 +18,7 @@ const FormWrapper: FC<PropsType> = ({ children, title, dialog, settings }) => {
 
   return (
     <div
-      className={`processRender ${
-        dialog ? `px-3` : `pt-1 p-4 my-1.5`
-      } bg-[#CACACA] rounded-lg`}
+      className={`processRender  ${dialog ? `px-3` : `pt-1 p-4 my-1.5`}  oform`}
     >
       <form onSubmit={handleSubmitContext}>
         {!dialog && (
@@ -34,9 +32,7 @@ const FormWrapper: FC<PropsType> = ({ children, title, dialog, settings }) => {
             </div>
           </div>
         )}
-        <div
-          className={`mt-4 grid gap-4 overflow-hidden ${customSettings?.layout} `}
-        >
+        <div className={`mt-4 grid gap-4 ${customSettings?.layout} `}>
           {children}
         </div>
         {processConfig?.actiontype !== "view" &&

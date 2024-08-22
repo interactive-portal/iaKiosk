@@ -9,6 +9,7 @@ import parseHtml from "html-react-parser";
 import fetchJson from "lib/fetchJson";
 import _ from "lodash";
 import Router from "next/router";
+import ChangeEventInput from "@/util/ChangeEventInput";
 // import { runExpressionEndAfter } from "@/util/expression";
 
 type PropsContextType = {
@@ -224,13 +225,14 @@ export const FormMetaContextProvider: FC<PropsType> = ({
 };
 
 export default FormMetaContext;
-function ChangeEventInput(
-  name: any,
-  formDataInitDataClone: any,
-  processConfig: any,
-  processExpressionClone: any,
-  setProcessExpression: Dispatch<any>,
-  setFormExternalData: (payload: any) => Promise<void>
-) {
-  throw new Error("Function not implemented.");
-}
+
+// function ChangeEventInput(
+//   name: any,
+//   formDataInitDataClone: any,
+//   processConfig: any,
+//   processExpressionClone: any,
+//   setProcessExpression: Dispatch<any>,
+//   setFormExternalData: (payload: any) => Promise<void>
+// ) {
+//   throw new Error("Function not implemented.");
+// }

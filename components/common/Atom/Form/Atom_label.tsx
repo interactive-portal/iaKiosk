@@ -27,7 +27,7 @@ const Atom_label: FC<PropsType> = ({
       <label
         htmlFor={labelFor}
         className={twMerge(
-          `text-sm text-gray-900 dark:text-gray-100 ${className} ${
+          `olabel text-sm text-gray-900 dark:text-gray-100 ${className} ${
             sectionConfig?.widgetnemgooReady?.labelPosition == "top"
               ? `ml-3 mb-3   ${className} `
               : `text-right self-center`

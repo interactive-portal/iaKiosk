@@ -1,9 +1,9 @@
 import FormMetaContext from "context/Meta/FormMetaContext";
 import { FC, useContext } from "react";
-import NumberFormat from "react-number-format";
 import { twMerge } from "tailwind-merge";
 import { getAtomValue } from "@/util/helper";
 import Atom_label from "./Atom_label";
+import NumberFormat, { NumericFormat } from "react-number-format";
 type PropsType = {
   config: any;
   className: any;
@@ -68,8 +68,7 @@ const Atom_long: FC<PropsType> = ({
               className={`far ${config.iconname} absolute w-6 h-5 text-[14px] text-center top-[7px] pl-3`}
             ></span>
           )}
-          <>number</>
-          {/* <NumberFormat
+          <NumericFormat
             thousandsGroupStyle="thousand"
             value={getAtomValue(
               config,
@@ -97,7 +96,8 @@ const Atom_long: FC<PropsType> = ({
             onValueChange={handlerChange}
             fixedDecimalScale={false}
             // disabled={fieldDisableEnable(config, processExpression)}
-          /> */}
+          />
+
           {config.isEmpty && <span>{config.errorText}</span>}
         </div>
       </div>

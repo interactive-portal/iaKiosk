@@ -86,70 +86,61 @@ const RenderWidgetProcess: FC<PropsType> = ({
     return n.tabname;
   });
   const renderTypeView = () => {
-    if (listConfig.widgetcode) {
-      return (
-        <WidgetCustomRenderProcess
-          listConfig={listConfig}
-          processData={processParams}
-          formDataInit={formDataInitDataState}
-          formConfig={processConfigState}
+    return (
+      <FormWrapper
+        dialog={dialog}
+        title={`${processConfigState?.result?.metadataname || ""}`}
+        settings={listConfig?.otherattr}
+      >
+        <Header
+          header={header}
+          processParams={processParams}
+          listConfigParse={listConfig}
+          processConfig={processConfigState}
         />
-      );
-    } else {
-      return (
-        <FormWrapper
-          dialog={dialog}
-          title={`${processConfigState?.result?.metadataname || ""}`}
-          settings={listConfig?.otherattr}
-        >
-          <Header
-            header={header}
-            processParams={processParams}
-            listConfigParse={listConfig}
-            processConfig={processConfigState}
-          />
+        {header?.map((item: any, index: number) => {
+          if (!item.tabname && item.datatype === "group") {
+            return (
+              <RenderField
+                key={index}
+                field={item}
+                className="col-span-2 kiosk"
+                attr={processParams.details}
+                sectionConfig={listConfigParse}
+                style=""
+                rowIndex=""
+                labelClassName=""
+              />
+            );
+          }
+        })}
+        <div>
           {header?.map((item: any, index: number) => {
-            if (!item.tabname && item.datatype === "group") {
+            // console.log("item", item);
+            if (item.tabname) {
+              let isContent = _.filter(
+                groupByTabname[item.tabname],
+                (item2) => {
+                  return item2.isshow === "1";
+                }
+              );
+              if (isContent.length) console.log("sss :>> ");
               return (
+                // <TabPane tab={item.tabname} key={index}>
                 <RenderField
                   key={index}
                   field={item}
+                  className="kiosk"
                   attr={processParams.details}
                   sectionConfig={listConfigParse}
-                  className="col-span-2"
-                  style=""
-                  rowIndex=""
-                  labelClassName=""
                 />
+                // </TabPane>
               );
             }
           })}
-          <div>
-            {header?.map((item: any, index: number) => {
-              // console.log("item", item);
-              if (item.tabname) {
-                let isContent = _.filter(
-                  groupByTabname[item.tabname],
-                  (item2) => {
-                    return item2.isshow === "1";
-                  }
-                );
-                if (isContent.length)
-                  return (
-                    // <TabPane tab={item.tabname} key={index}>
-                    <RenderField
-                      field={item}
-                      attr={processParams.details}
-                      sectionConfig={listConfigParse}
-                    />
-                    // </TabPane>
-                  );
-              }
-            })}
-          </div>
-        </FormWrapper>
-      );
-    }
+        </div>
+      </FormWrapper>
+    );
   };
 
   return (

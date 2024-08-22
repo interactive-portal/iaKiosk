@@ -40,17 +40,18 @@ const Register = () => {
 
   return (
     <Layout>
-      <div className="text-6xl flex flex-col gap-y-10 mt-[300px]">
-        <div className="uppercase text-[90px] text-[#A68B5C] mb-[110px] font-bold ">
-          БҮРТГЭЛ
-        </div>
+      <div className=" flex flex-col gap-y-10 ">
+        <div className="uppercase  pagetitle">БҮРТГЭЛ</div>
         {groupByData.map((group) => (
-          <div key={group.classificationname} className="flex flex-col gap-10">
+          <div
+            key={group.classificationname}
+            className="w-4/5 mx-auto flex flex-col gap-6 text-center  px-4"
+          >
             {group.items.map((item) => (
               <div
                 key={item.id}
-                className="bg-[#D9D9D9] rounded-full text-[#525050] py-[60px] px-[220px] "
                 onClick={() => handleItemClick(item.id)}
+                className="rounded-full text-[64px] sm:text-[48px] py-5 cursor-pointer obtn"
               >
                 {item.itemtypename}
               </div>

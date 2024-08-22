@@ -20,6 +20,7 @@ import OpenCamera from "./openCamera";
 import { usePathname } from "next/navigation";
 import { useSearchParam } from "react-use";
 import { notification } from "antd";
+import RenderWidgetProcess from "@/middleware/components/WidgetForm/RenderWidgetProcess";
 
 const Form = () => {
   const router = useRouter();
@@ -40,171 +41,6 @@ const Form = () => {
   });
   const i = router.query;
   console.log("iiiiiiiiiii", i);
-  const formInput = [
-    {
-      labelname: "он, сар",
-      pathname: "contractDate",
-      type: "date",
-      isRequired: 1,
-    },
-    {
-      labelname: "ОВОГ",
-      pathname: "pLastName",
-      type: "text",
-      isRequired: 1,
-    },
-    {
-      labelname: "НЭР",
-      pathname: "pCustomerName",
-      type: "text",
-      isRequired: 1,
-    },
-    {
-      labelname: "РЕГИСТР",
-      pathname: "pPositionName",
-      type: "text",
-      isRequired: 1,
-    },
-
-    {
-      labelname: "ТӨРСӨН ОГНОО",
-      pathname: "pDateOfBirth",
-      type: "dateRegister",
-      isRequired: 1,
-    },
-    {
-      labelname: "хүйс",
-      pathname: "pGender",
-      type: "combo",
-      isRequired: 1,
-      lookupId: "1448432578544",
-    },
-    {
-      labelname: "ХОТ",
-      pathname: "pCityId",
-      type: "combo",
-      lookupId: "1448415981113",
-      name: "cityname",
-      isRequired: 0,
-    },
-    {
-      labelname: "ДҮҮРЭГ",
-      pathname: "pDistrictId",
-      type: "combo",
-      lookupId: "144436175673444",
-      criteriaPath: "cityId",
-      name: "name",
-      isRequired: 0,
-    },
-    {
-      labelname: "ХОРОО",
-      pathname: "pStreetId",
-      type: "combo",
-      lookupId: "1448415981268",
-      criteriaPath: "districtId",
-      name: "streetname",
-      isRequired: 0,
-    },
-    {
-      labelname: "УТАС",
-      pathname: "cPhoneNumber",
-      type: "number",
-      isRequired: 0,
-    },
-    {
-      labelname: "email",
-      pathname: "pEmail",
-      type: "email",
-      isRequired: 0,
-    },
-    {
-      labelname: "Хичээлэх спорт",
-      pathname: "itemId",
-      type: "text",
-      // isRequired: 1,
-      defaultValue: "1565659459594",
-    },
-    {
-      labelname: "Карт эхлэх огноо",
-      pathname: "startDate",
-      type: "date",
-      isRequired: 1,
-    },
-    {
-      labelname: "Үйлчилгээ дуусах огноо",
-      pathname: "endDate",
-      type: "date",
-      isRequired: 1,
-    },
-    {
-      labelname: "Төлөх дүн",
-      pathname: "amount",
-      type: "text",
-      isRequired: 1,
-    },
-    {
-      labelname: "Сар",
-      pathname: "durationTypeId",
-      type: "text",
-      isRequired: 1,
-    },
-    {
-      labelname: "Гэрээний дүн",
-      pathname: "price",
-      type: "text",
-      // isRequired: 1,
-      defaultValue: "99000",
-    },
-
-    {
-      labelname: "Төлөх дүн гэрээ",
-      pathname: "contractTotalAmount",
-      type: "text",
-      // isRequired: 1,
-      defaultValue: "99000",
-    },
-
-    {
-      labelname: "Дуусах хугацаа тооцоолох",
-      pathname: "month",
-      type: "text",
-      isRequired: 1,
-      defaultValue: "2024-08-13",
-    },
-    // {
-    //   labelname: "image",
-    //   pathname: "pImage",
-    //   type: "text",
-    //   isRequired: 0,
-    // },
-    // {
-    //   labelname: "bvalue",
-    //   pathname: "bValue",
-    //   type: "text",
-    //   isRequired: 1,
-    // },
-    {
-      labelname: "Үйлчлүүлэгчийн бүлэг",
-      pathname: "cCustomerGroupId",
-      type: "text",
-      // isRequired: 1,
-      defaultValue: "1592909489389",
-    },
-    {
-      labelname: "Насанд хүрсэн эсэх",
-      pathname: "cIsAdult",
-      type: "text",
-      isRequired: 1,
-      defaultValue: "1",
-    },
-    {
-      labelname: "Гадаад иргэн эсэх",
-      pathname: "cCitizen",
-      type: "text",
-      isRequired: 1,
-      defaultValue: "1",
-    },
-  ];
 
   const onSubmit = async (data: any) => {
     setProcessParam(data); // Ensure data is correctly set here
@@ -245,6 +81,16 @@ const Form = () => {
     }
 
     setOpenLogin(true);
+  };
+
+  const settings = {
+    widgetnemgooReady: {
+      labelPosition: "top",
+      submitButtonName: "АНКЕТ НЭМЭХ",
+      submitButtonWrapperClass: "w-full flex ",
+      submitButtonClass: "bg-[#A68B5C] ",
+      formTitleWrapperClass: "hidden ",
+    },
   };
 
   useEffect(() => {
@@ -291,15 +137,20 @@ const Form = () => {
         </div>
       ) : (
         <> */}
-      <p className="uppercase text-[64px] text-white mb-20">АНКЕТ</p>
-      {/* <RenderWidgetProcess
-            listConfig={{
-              metadataid: "1722918980954453",
-              // otherattr: settings,
-            }}
-          /> */}
+
+      <div className="uppercase  pagetitle">АНКЕТ</div>
+
       <BlockDiv className="py-2 text-[32px] text-white">
-        <FormProvider {...methods}>
+        <RenderWidgetProcess
+          dialog={false}
+          listConfig={{
+            metadataid: "1722918980954453",
+            otherattr: settings,
+          }}
+          // 1641266492517411
+        />
+
+        {/* <FormProvider {...methods}>
           <form onSubmit={methods.handleSubmit(onSubmit)}>
             <div className="grid grid-cols-2 gap-10 w-full h-screen  px-[150px] justify-center items-center">
               {formInput?.map((obj: any, index: number) => {
@@ -378,46 +229,7 @@ const Form = () => {
               </div>
             }
           </form>
-        </FormProvider>
-        <style>
-          {`
-    :where(.css-dev-only-do-not-override-3mqfnx).ant-modal .ant-modal-content {
-      padding: 0px;
-      border-radius: 0px;
-    }
-    .ant-modal, .ant-modal-content {
-      height: 100%;
-      width: 1080px;
-      margin: 0;
-      top: 0;
-      bottom: 0;
-      border: none;
-      padding: 0px;
-      background: #00000080 !important;
-    }
-    .ant-modal-body {
-      height: 100%;
-    }
-    label {
-      color: white !important;
-      font-size: 32px !important;
-      text-align: left !important;
-    }
-    input {
-      background: #D9D9D94F;
-      border-radius: 23px !important;
-      color: white !important;
-      font-size: 32px;
-      border-color: transparent !important;
-    }
-    .ant-select-selector {
-      background: #D9D9D94F !important;
-      color: white !important;
-      border-radius: 23px !important;
-      border-color: transparent !important;
-    }
-   `}
-        </style>
+        </FormProvider> */}
       </BlockDiv>
       {/* <Modal
             width={1080}
@@ -441,3 +253,169 @@ const Form = () => {
 };
 
 export default Form;
+
+const formInput = [
+  {
+    labelname: "он, сар",
+    pathname: "contractDate",
+    type: "date",
+    isRequired: 1,
+  },
+  {
+    labelname: "ОВОГ",
+    pathname: "pLastName",
+    type: "text",
+    isRequired: 1,
+  },
+  {
+    labelname: "НЭР",
+    pathname: "pCustomerName",
+    type: "text",
+    isRequired: 1,
+  },
+  {
+    labelname: "РЕГИСТР",
+    pathname: "pPositionName",
+    type: "text",
+    isRequired: 1,
+  },
+
+  {
+    labelname: "ТӨРСӨН ОГНОО",
+    pathname: "pDateOfBirth",
+    type: "dateRegister",
+    isRequired: 1,
+  },
+  {
+    labelname: "хүйс",
+    pathname: "pGender",
+    type: "combo",
+    isRequired: 1,
+    lookupId: "1448432578544",
+  },
+  {
+    labelname: "ХОТ",
+    pathname: "pCityId",
+    type: "combo",
+    lookupId: "1448415981113",
+    name: "cityname",
+    isRequired: 0,
+  },
+  {
+    labelname: "ДҮҮРЭГ",
+    pathname: "pDistrictId",
+    type: "combo",
+    lookupId: "144436175673444",
+    criteriaPath: "cityId",
+    name: "name",
+    isRequired: 0,
+  },
+  {
+    labelname: "ХОРОО",
+    pathname: "pStreetId",
+    type: "combo",
+    lookupId: "1448415981268",
+    criteriaPath: "districtId",
+    name: "streetname",
+    isRequired: 0,
+  },
+  {
+    labelname: "УТАС",
+    pathname: "cPhoneNumber",
+    type: "number",
+    isRequired: 0,
+  },
+  {
+    labelname: "email",
+    pathname: "pEmail",
+    type: "email",
+    isRequired: 0,
+  },
+  {
+    labelname: "Хичээлэх спорт",
+    pathname: "itemId",
+    type: "text",
+    // isRequired: 1,
+    defaultValue: "1565659459594",
+  },
+  {
+    labelname: "Карт эхлэх огноо",
+    pathname: "startDate",
+    type: "date",
+    isRequired: 1,
+  },
+  {
+    labelname: "Үйлчилгээ дуусах огноо",
+    pathname: "endDate",
+    type: "date",
+    isRequired: 1,
+  },
+  {
+    labelname: "Төлөх дүн",
+    pathname: "amount",
+    type: "text",
+    isRequired: 1,
+  },
+  {
+    labelname: "Сар",
+    pathname: "durationTypeId",
+    type: "text",
+    isRequired: 1,
+  },
+  {
+    labelname: "Гэрээний дүн",
+    pathname: "price",
+    type: "text",
+    // isRequired: 1,
+    defaultValue: "99000",
+  },
+
+  {
+    labelname: "Төлөх дүн гэрээ",
+    pathname: "contractTotalAmount",
+    type: "text",
+    // isRequired: 1,
+    defaultValue: "99000",
+  },
+
+  {
+    labelname: "Дуусах хугацаа тооцоолох",
+    pathname: "month",
+    type: "text",
+    isRequired: 1,
+    defaultValue: "2024-08-13",
+  },
+  // {
+  //   labelname: "image",
+  //   pathname: "pImage",
+  //   type: "text",
+  //   isRequired: 0,
+  // },
+  // {
+  //   labelname: "bvalue",
+  //   pathname: "bValue",
+  //   type: "text",
+  //   isRequired: 1,
+  // },
+  {
+    labelname: "Үйлчлүүлэгчийн бүлэг",
+    pathname: "cCustomerGroupId",
+    type: "text",
+    // isRequired: 1,
+    defaultValue: "1592909489389",
+  },
+  {
+    labelname: "Насанд хүрсэн эсэх",
+    pathname: "cIsAdult",
+    type: "text",
+    isRequired: 1,
+    defaultValue: "1",
+  },
+  {
+    labelname: "Гадаад иргэн эсэх",
+    pathname: "cCitizen",
+    type: "text",
+    isRequired: 1,
+    defaultValue: "1",
+  },
+];

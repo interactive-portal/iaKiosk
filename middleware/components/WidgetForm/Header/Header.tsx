@@ -24,7 +24,7 @@ const Header: FC<PropsType> = ({
   // console.log("Dddddddddddddf   processParams", processParams);
 
   return processConfig ? (
-    <div className={`grid gap-4 grid-cols-2 px-2`}>
+    <div className={`grid gap-8 grid-cols-2 px-6`}>
       {header?.map((item: any, index: number) => {
         if (!item.tabname && item.datatype !== "group") {
           // console.log("🚀 ~ {header?.map ~ item", item);
@@ -32,6 +32,7 @@ const Header: FC<PropsType> = ({
             <RenderField
               key={item?.id || index}
               field={item}
+              className="kiosk"
               attr={processParams.details}
               sectionConfig={listConfigParse.otherattr}
             />

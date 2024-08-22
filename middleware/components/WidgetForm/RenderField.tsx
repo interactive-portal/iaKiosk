@@ -217,7 +217,7 @@ const RenderField: FC<PropsType> = ({
           labelClassName={labelClassName}
         />
       );
-    case field["datatype"] == "integer":
+    case field["datatype"] == "integer" || field["datatype"] == "number":
       return (
         <Atom_integer
           config={field}
