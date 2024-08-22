@@ -73,8 +73,6 @@ const RenderWidgetProcess: FC<PropsType> = ({
       processParamsvar,
       formDataInitDatavar
     );
-    console.log("data", data);
-
     setProcessParams(processParamsvar);
     setFormDataInitDataState(expResult.data);
     setProcessExpression(expResult?.expression);

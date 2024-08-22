@@ -1,19 +1,19 @@
 import FormMetaContext from "context/Meta/FormMetaContext";
 import fetchJson from "lib/fetchJson";
-import _ from "lodash";
+import _, { isEmpty } from "lodash";
 import { FC, useContext, useEffect, useState } from "react";
 import Select from "react-select";
 import { twMerge } from "tailwind-merge";
-import { fieldDisableEnable, fieldHideShow, getAtomValue } from "@/util/helper";
+import { fieldDisableEnable, fieldHideShow, getAtomValue } from "util/helper";
 import Atom_label from "./Atom_label";
 
 type PropsType = {
   config: any;
   rowIndex?: any;
-  className: any;
+  className?: any;
   labelClassName: any;
-  style: any;
-  sectionConfig: any;
+  style?: any;
+  sectionConfig?: any;
 };
 
 const Atom_combo: FC<PropsType> = ({
@@ -25,7 +25,7 @@ const Atom_combo: FC<PropsType> = ({
   sectionConfig,
 }) => {
   const [laoding, setLoading] = useState(false);
-  const [options, setOptions] = useState([]);
+  const [options, setOptions] = useState<any>();
   const {
     processExpression,
     processConfig,
@@ -33,51 +33,69 @@ const Atom_combo: FC<PropsType> = ({
     handleChangeContext,
     lookUpData,
     handleLookUpData,
+    validData,
   } = useContext(FormMetaContext);
 
-  const getLookUpData = async () => {
-    if (getAtomValue(config, formDataInitData, processConfig, rowIndex)) {
-      let criteria = {
-        [config.valuefield]: [
-          {
-            operator: "=",
-            operand: getAtomValue(
-              config,
-              formDataInitData,
-              processConfig,
-              rowIndex
-            ),
-          },
-        ],
-      };
-      let data = await fetchJson(
-        `/api/get-data?metaid=${
-          config.lookupmetadataid
-        }&pagingwithoutaggregate=1&criteria=${JSON.stringify(criteria)}`
-      );
-      delete data.aggregatecolumns;
-      delete data.paging;
-      data = _.values(data);
-      setOptions(comboDataTransform(data));
-
-      return data;
+  const getLookUpData = async (i: any, item: any) => {
+    // console.log("groupconfigparampath :>> ", config);
+    let params = {};
+    if (config?.groupconfigparampath) {
+      params = config?.groupconfigparampath
+        .toLowerCase()
+        .split("|")
+        .reduce(function (obj: any, str: any, index: any) {
+          let strParts = str.split(":");
+          let params = str.split(".");
+          let param = params[0] || "";
+          if (params.length >= 2) {
+            param = params[1];
+          }
+          let field: any = "";
+          if (params.length <= 1) {
+            field = item[params[0]];
+          } else {
+            const dtlList = _.values(formDataInitData[params[0]]) || "";
+            field = dtlList[i]?.[param];
+          }
+          obj[param] = field;
+          return obj;
+        }, {});
     }
+
+    const criteria = {
+      ...params,
+    };
+
+    let paging = {
+      offset: 1,
+      pageSize: 100,
+    };
+
+    let data = await fetchJson(
+      `/api/get-data?metaid=${
+        config.lookupmetadataid
+      }&pagingwithoutaggregate=1&criteria=${JSON.stringify(
+        criteria
+      )}&paging=${JSON.stringify(paging)}`
+    );
+    delete data.aggregatecolumns;
+    delete data.paging;
+
+    data = _.values(data.result);
+
+    setOptions(comboDataTransform(data));
+
+    return data;
   };
 
   useEffect(() => {
-    getLookUpData();
-  }, []);
+    if (options != undefined) return;
+    getLookUpData(0, formDataInitData);
+  }, [options]);
 
-  const handlerFocus = async (e: any) => {
-    if (
-      lookUpData[config.paramrealpath] &&
-      !processConfig["__lookupParamConfig"][config.paramrealpath]
-    ) {
-      setOptions(comboDataTransform(lookUpData[config.paramrealpath]));
-      return;
-    }
+  const handlerFocus = async (e: any, index: any) => {
     setLoading(true);
-    const res = await handleLookUpData(config);
+    const res = await getLookUpData(index, formDataInitData);
     setOptions(comboDataTransform(res));
     setLoading(false);
   };
@@ -86,7 +104,7 @@ const Atom_combo: FC<PropsType> = ({
     return data.map((item: any, key: any) => {
       let displayfield = item[config.displayfield.toLowerCase()];
       let valuefield = item[config.valuefield.toLowerCase()];
-      return { label: displayfield, value: valuefield, icon: "home" };
+      return { label: displayfield, value: valuefield };
     });
   };
 
@@ -96,45 +114,28 @@ const Atom_combo: FC<PropsType> = ({
       value: e.value,
       rowIndex,
     });
-
-    if (processConfig["__lookupParamConfig"][config.paramrealpath]) {
-      const lookupPath =
-        processConfig["__lookupParamConfig"][config.paramrealpath][0][
-          "fieldpath"
-        ];
-      const lookupAddKey = {
-        ...processConfig["__lookupParamConfig"][config.paramrealpath][0],
-        paramrealpath: lookupPath,
-        criteria: {
-          [config.paramrealpath]: [
-            {
-              operator: "=",
-              operand: e.value,
-            },
-          ],
-        },
-      };
-      handleLookUpData(lookupAddKey);
-    }
   };
 
-  const style2 = {
-    menuPortal: (base: any) => ({ ...base, zIndex: 9999 }),
-    control: (base: any) => ({
+  const style1 = {
+    control: (base: any, state: any) => ({
       ...base,
-      ...style,
-      // borderColor: "rgba(156, 163, 175, 1)",
+      borderColor: "rgba(156, 163, 175, 1)",
+      boxShadow: "0 !important",
+      cursort: "pointer",
+      // border: validData[config?.paramname] ? `solid 1px red` : ``,
       border: "none",
       backgroundColor: "transparent",
       padding: 0,
-      // width: parseInt(config.columnwidth || 350, 10),
-      // minWidth: 160,
+
+      "&:hover": {
+        // border: "0 !important",
+      },
     }),
   };
 
   return (
     <div
-      className={`${
+      className={`selectBox  ${
         sectionConfig?.widgetnemgooReady?.labelPosition == "top"
           ? `flex flex-col`
           : `grid grid-cols-2 gap-4`
@@ -152,12 +153,12 @@ const Atom_combo: FC<PropsType> = ({
         sectionConfig={sectionConfig}
       />
 
-      <div className="selectBox self-center w-full relative">
+      <div className={`self-center w-full  `}>
         {processConfig.actiontype === "view" ? (
           <>
             {
-              options.filter(
-                (option) =>
+              options?.filter(
+                (option: any) =>
                   option["value"] ===
                   getAtomValue(
                     config,
@@ -169,41 +170,44 @@ const Atom_combo: FC<PropsType> = ({
             }
           </>
         ) : (
-          <>
-            {config.iconname && (
-              <span
-                className={`far ${config.iconname} absolute z-50 w-6 h-5 text-[14px] text-center top-[7px] pl-3`}
-              ></span>
+          <Select
+            options={options}
+            onChange={handlerChange}
+            onFocus={(e) => handlerFocus(e, rowIndex)}
+            isLoading={laoding}
+            className={twMerge(
+              `${className} ${
+                validData[config?.paramname] ? ` border-red-500` : ``
+              }`
             )}
-            <Select
-              options={options}
-              onChange={handlerChange}
-              onFocus={handlerFocus}
-              isLoading={laoding}
-              className={twMerge(
-                `${className} before:only  ${config.iconname && "pl-10"}`
-              )}
-              name={config.paramrealpath}
-              // placeholder=" - Сонгох - "
-              placeholder={config?.placeholdername || " Сонгох"}
-              styles={style2}
-              value={options.filter(
-                (option) =>
-                  option["value"] ===
-                  getAtomValue(
-                    config,
-                    formDataInitData,
-                    processConfig,
-                    rowIndex
-                  )
-              )}
-              menuPortalTarget={document.body}
-              isDisabled={fieldDisableEnable(config, processExpression)}
-            />
-          </>
+            name={config.paramrealpath}
+            data-attr={config.paramrealpath}
+            styles={style1}
+            value={options?.filter(
+              (option: any) =>
+                option["value"] ==
+                getAtomValue(config, formDataInitData, processConfig, rowIndex)
+            )}
+            menuPortalTarget={document.body}
+          />
         )}
       </div>
     </div>
   );
 };
 export default Atom_combo;
+
+export const encodeCriteria = (criteria: any) => {
+  if (isEmpty(criteria)) return [{}];
+
+  let myCriteria: any = [];
+  Object.entries(criteria).map(([key, value]) => {
+    myCriteria.push({
+      filterfield: key,
+      operator: "=",
+      value: value,
+    });
+  });
+
+  return myCriteria;
+};
