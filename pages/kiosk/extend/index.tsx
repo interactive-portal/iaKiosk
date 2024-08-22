@@ -5,6 +5,7 @@ import CheckUser from "./checkUser";
 import { useRouter } from "next/router";
 import fetchJson from "@/util/helper";
 import { LoadingOutlined } from "@ant-design/icons";
+import Title from "@/components/common/Title";
 
 const Extend = () => {
   const [openModal, setOpenModal] = useState(false);
@@ -53,9 +54,7 @@ const Extend = () => {
   return (
     <Layout>
       <div className="mx-auto  flex flex-col gap-10">
-        <div className="text-[#A68B5C] pagetitle text-center  uppercase  mb-6  ">
-          СУНГАЛТ
-        </div>
+        <Title title="Сунгалт"></Title>
         <div className="relative w-2/3 mx-auto ">
           <i className="fa-solid fa-magnifying-glass absolute left-8 top-[40px] text-[42px] text-[#525050]"></i>
           <input

@@ -21,6 +21,7 @@ import { usePathname } from "next/navigation";
 import { useSearchParam } from "react-use";
 import { notification } from "antd";
 import RenderWidgetProcess from "@/middleware/components/WidgetForm/RenderWidgetProcess";
+import Title from "@/components/common/Title";
 
 const Form = () => {
   const router = useRouter();
@@ -138,7 +139,7 @@ const Form = () => {
       ) : (
         <> */}
 
-      <div className="uppercase  pagetitle">АНКЕТ</div>
+      <Title title="АНКЕТ"></Title>
 
       <BlockDiv className="py-2 text-[32px] text-white">
         <RenderWidgetProcess

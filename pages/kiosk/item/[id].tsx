@@ -2,9 +2,11 @@ import { useRouter } from "next/router";
 import useSWR from "swr";
 import Cookies from "js-cookie";
 import _ from "lodash";
-import RegisterLayout from "../register/registerLayout";
+
 import { Spin } from "antd";
 import { LoadingOutlined } from "@ant-design/icons";
+import RegisterLayout from "../register/registerLayout";
+import KioskLayout from "../kioskLayout";
 
 const ItemDetails = () => {
   const router = useRouter();
@@ -74,7 +76,7 @@ const ItemDetails = () => {
 
   if (error) {
     return (
-      <RegisterLayout coverImagePath="" title="">
+      <RegisterLayout>
         <div className="flex justify-center items-center min-h-screen">
           <div className="text-[32px] text-red-500">Error loading data.</div>
         </div>

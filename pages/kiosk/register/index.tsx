@@ -3,11 +3,11 @@ import Layout from "../kioskLayout";
 import useSWR from "swr";
 import Cookies from "js-cookie";
 import _ from "lodash";
+import Title from "@/components/common/Title";
 
 const Register = () => {
   const router = useRouter();
   const { userdata } = router.query;
-  console.log("aaaaaaa===========>?", userdata);
 
   const criteria = JSON.stringify({
     classificationname: [
@@ -41,7 +41,7 @@ const Register = () => {
   return (
     <Layout>
       <div className=" flex flex-col gap-y-10 ">
-        <div className="uppercase  pagetitle">БҮРТГЭЛ</div>
+        <Title title="БҮРТГЭЛ"></Title>
         {groupByData.map((group) => (
           <div
             key={group.classificationname}
