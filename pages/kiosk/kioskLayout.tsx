@@ -21,7 +21,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
           />
         </div>
 
-        <div className="self-center justify-items-center mx-auto h-[78%] mt-10 overflow-hidden w-full ">
+        <div className="self-center justify-items-center mx-auto h-[78%]  overflow-hidden w-full ">
           <div className="h-full items-center flex ">
             <div className="mx-auto flex-none min-w-full px-4  overflow-hidden lg:overflow-auto scrollbar:!w-1.5 scrollbar:!h-1.5 scrollbar:bg-transparent scrollbar-track:!bg-slate-100 scrollbar-thumb:!rounded scrollbar-thumb:!bg-slate-300 scrollbar-track:!rounded dark:scrollbar-track:!bg-slate-500/[0.16] dark:scrollbar-thumb:!bg-slate-500/50 max-h-[98%] lg:supports-scrollbars:pr-2  kioskcontent">
               {children}

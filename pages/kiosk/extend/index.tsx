@@ -37,7 +37,7 @@ const Extend = () => {
         if (data) {
           router.push({
             pathname: "/kiosk/member",
-            query: { user: JSON.stringify(data) },
+            query: { u: JSON.stringify(data) },
           });
         } else {
           alert("No user found for the given register number.");

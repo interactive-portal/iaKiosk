@@ -43,6 +43,7 @@ const RenderField: FC<PropsType> = ({
   sectionConfig,
 }) => {
   if (isEmpty(field)) return null;
+  console.log("field :>> ", field);
 
   if (field["isshow"] === "0") {
     return (
@@ -92,7 +93,6 @@ const RenderField: FC<PropsType> = ({
       );
     case field["lookuptype"] === "range_slider" &&
       field["lookupmetadataid"] === "":
-      // return <>dfsdf</>;
       return (
         <Atom_range_slider_maxmin
           config={field}
@@ -201,13 +201,6 @@ const RenderField: FC<PropsType> = ({
       );
     case field["datatype"] == "password":
       return (
-        // <Atom_password
-        // 	config={field}
-        // 	rowIndex={rowIndex}
-        // 	style={style}
-        // 	className={className}
-        // 	labelClassName={labelClassName}
-        // />
         <Atom_password
           config={field}
           className={className}
@@ -283,7 +276,7 @@ const RenderField: FC<PropsType> = ({
         );
       }
     case field["datatype"] == "group" && field["paramrealpath"].includes("."):
-      return <></>;
+      return <>row render</>;
 
     default:
       return (
