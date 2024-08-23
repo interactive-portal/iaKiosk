@@ -51,7 +51,7 @@ const Register = () => {
               <div
                 key={item.id}
                 onClick={() => handleItemClick(item.id)}
-                className="rounded-full text-[64px] sm:text-[48px] py-5 cursor-pointer obtn"
+                className="rounded-full text-[64px] xs:text-[30px] py-5 xs:px-6 cursor-pointer obtn"
               >
                 {item.itemtypename}
               </div>

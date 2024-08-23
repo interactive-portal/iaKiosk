@@ -22,7 +22,8 @@ const ButtonList: React.FC<ButtonListProps> = ({
 
   return (
     <div
-      className="rounded-full text-[64px] sm:text-[48px] py-5 cursor-pointer obtn"
+      className="rounded-full md:text-[64px] xs:text-[30px] md:py-5 xs:py-4 xs:px-6 cursor-pointer obtn xs:w-full"
+      style={{ backgroundColor: bgColor, color: textColor }}
       onClick={() => handleNavigation(path)}
     >
       {pageName}
