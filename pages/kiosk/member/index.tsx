@@ -3,6 +3,8 @@ import Layout from "../kioskLayout";
 import { useRouter } from "next/router";
 import { Spin } from "antd"; // Import the Spin component
 import { LoadingOutlined } from "@ant-design/icons";
+import Title from "@/components/common/Title";
+import ButtonList from "@/components/common/ButtonList";
 
 const FIELDS = [
   { label: "ОВОГ", key: "lastname" },
@@ -49,15 +51,15 @@ const Page = () => {
   return (
     <Layout>
       <div className="px-16">
-        <p className="pagetitle mb-8">ИЛЭРЦ</p>
+        <Title title="ИЛЭРЦ"></Title>
         <div className="flex">
-          <div className="lg:text-4xl text-white text-start grid grid-cols-2 w-full gap-8  ">
+          <div className="lg:text-4xl text-white text-start grid md:grid-cols-2 xs:grid-cols-1 w-full  gap-8  ">
             {FIELDS.map(renderField)}
           </div>
         </div>
         <div className="mt-[70px] flex flex-col space-y-8">
           <div
-            className="rounded-full text-[64px] sm:text-[48px] py-5 cursor-pointer obtn"
+            className="rounded-full md:text-[64px] xs:text-[28px] xs:px-6 py-5 cursor-pointer obtn"
             onClick={() =>
               router.push({
                 pathname: "/kiosk/extend/userinfo",
@@ -68,7 +70,7 @@ const Page = () => {
             <p>БҮРТГЭЛТЭЙ ГЭРЭЭ</p>
           </div>
           <div
-            className="rounded-full text-[64px] sm:text-[48px] py-5 cursor-pointer obtn"
+            className="rounded-full md:text-[64px] xs:text-[28px] py-5 cursor-pointer obtn"
             // onClick={() => router.push("/kiosk/register/")}
             onClick={() =>
               router.push({

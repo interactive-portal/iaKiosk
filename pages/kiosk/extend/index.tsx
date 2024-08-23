@@ -56,30 +56,30 @@ const Extend = () => {
       <div className="mx-auto  flex flex-col gap-10">
         <Title title="Сунгалт"></Title>
         <div className="relative w-2/3 mx-auto ">
-          <i className="fa-solid fa-magnifying-glass absolute left-8 top-[40px] text-[42px] text-[#525050]"></i>
+          <i className="fa-solid fa-magnifying-glass absolute md:left-4 md:top-[35px] md:text-[42px] text-[#525050] xs:left-4 xs:top-1"></i>
           <input
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="lg:py-10 text-[#525050] text-[36px]  rounded-full w-full pl-20 pr-10"
+            className="lg:py-10 text-[#525050] md:text-[36px] xs:text-[20px] rounded-full w-full pl-20 pr-10"
             placeholder="ХАЙЛТ"
             onKeyDown={(e) => e.key === "Enter" && handleSearch()}
           />
         </div>
 
-        <div className="text-white text-center text-[24px]">
+        <div className="text-white text-center md:text-[24px]">
           <p>REGISTER OR SERIAL NUMBER</p>
         </div>
         <div className="w-full text-center flex justify-center relative">
           <button
-            className="flex items-center bg-[#A68B5C] rounded-full w-[443px] text-white px-10 py-6 justify-center gap-10"
+            className="flex items-center bg-[#A68B5C] rounded-full md:w-[443px] text-white md:px-10 md:py-6 xs:px-10 xs:py-2 justify-center gap-10"
             onClick={handleSearch}
             disabled={loading}
           >
-            <p className="text-[40px]">ХАЙЛТ</p>
+            <p className="md:text-[40px] xs:text-[20px]">ХАЙЛТ</p>
             <img
               src="/images/Face_id_white.png"
-              className="max-w-[80px] max-h-[80px]"
+              className="md:max-w-[80px] md:max-h-[80px] xs:max-w-[40px]"
             />
           </button>
         </div>

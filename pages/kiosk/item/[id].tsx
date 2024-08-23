@@ -59,7 +59,7 @@ const ItemDetails = () => {
   };
 
   const getItemWidth = (itemsCount: any) => {
-    return itemsCount > 3 ? "w-[400px]" : "w-[350px]";
+    return itemsCount > 3 ? "md:w-[400px]" : "md:w-[350px]";
   };
 
   if (isLoading) {
@@ -86,13 +86,15 @@ const ItemDetails = () => {
 
   return (
     <RegisterLayout coverImagePath={ddd + body} title={groupByData[0]?.title}>
-      <div className="mt-[20px] px-[100px]">
+      <div className="md:mt-[20px] px-[100px]">
         {groupByData.map((group, index) => (
           <div
-            className="flex flex-col gap-y-1 text-white uppercase mt-[80px] text-start"
+            className="flex flex-col gap-y-1 text-white uppercase md:mt-[80px] xs:mt-[30px] text-start"
             key={index}
           >
-            <div className="text-[40px] mb-6 text-white">{group.name}</div>
+            <div className="md:text-[40px] xs:[30px] mb-6 text-white">
+              {group.name}
+            </div>
             <div
               className={`grid justify-center gap-10 ${getGridClasses(
                 group.items.length

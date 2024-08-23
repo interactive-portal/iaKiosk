@@ -13,7 +13,7 @@ const RegisterLayout = ({ children, coverImagePath, title }: any) => {
     >
       <div className="flex items-stretch justify-items-center text-center h-full  w-full flex-col">
         <div
-          className="w-full h-[450px] relative text-center uppercase  flex items-center justify-center text-[130px] text-white "
+          className="w-full md:h-[450px] xs:h-[200px] relative text-center uppercase  flex items-center justify-center md:text-[130px] xs:text-[60px] text-white "
           style={{
             backgroundImage: `url(${coverImagePath})`,
             backgroundRepeat: "no-repeat",

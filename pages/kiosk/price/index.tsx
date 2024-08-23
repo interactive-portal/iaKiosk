@@ -28,7 +28,7 @@ const Page = () => {
 
   return (
     <Layout>
-      <div className="text-[64px] flex flex-col gap-y-10  px-10">
+      <div className="text-[64px] flex flex-col gap-y-10  ">
         <Title title="ҮНИЙН МЭДЭЭЛЭЛ"></Title>
         <div className="flex flex-col  w-4/5 mx-auto  space-y-4 ">
           {homeData.map((item, index) => (
