@@ -219,6 +219,13 @@ h6 {
   color: #a68b5c;
   font-size: 90px;
 }
+
+@media screen and (max-width: 450px) {
+  .pagetitle {
+    font-size: 40px;
+  }
+}
+
 .obtn:hover {
   background-color: #a68b5c;
   color: #ffffff;

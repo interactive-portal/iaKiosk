@@ -43,7 +43,6 @@ const RenderField: FC<PropsType> = ({
   sectionConfig,
 }) => {
   if (isEmpty(field)) return null;
-  console.log("field :>> ", field);
 
   if (field["isshow"] === "0") {
     return (
@@ -195,6 +194,7 @@ const RenderField: FC<PropsType> = ({
           config={field}
           rowIndex={rowIndex}
           style={style}
+          sectionConfig={sectionConfig}
           className={className}
           labelClassName={labelClassName}
         />

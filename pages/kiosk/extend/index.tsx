@@ -73,7 +73,8 @@ const Extend = () => {
         <div className="w-full text-center flex justify-center relative">
           <button
             className="flex items-center bg-[#A68B5C] rounded-full md:w-[443px] text-white md:px-10 md:py-6 xs:px-10 xs:py-2 justify-center gap-10"
-            onClick={handleSearch}
+            // onClick={handleSearch}
+            onClick={() => setOpenModal(true)}
             disabled={loading}
           >
             <p className="md:text-[40px] xs:text-[20px]">ХАЙЛТ</p>

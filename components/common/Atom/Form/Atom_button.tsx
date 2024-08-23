@@ -28,7 +28,58 @@ const Atom_button: FC<PropsType> = ({
     validData,
   } = useContext(FormMetaContext);
 
-  const handlerChange = (e: any) => {};
+  const clickCamera = () => {
+    // setOpenModal(true);
+
+    var ws = new WebSocket(`${process.env.NEXT_PUBLIC_FACECAMERA_URL}`);
+    // console.log('w :>> ', w);
+
+    ws.onopen = function () {
+      ws.send('{"action":"GetImage"}');
+    };
+
+    ws.onmessage = function (event) {
+      var res = JSON.parse(event.data);
+      console.log("resresssssss", res);
+
+      if (res?.status == "success") {
+        handleChangeContext({
+          name: config.paramrealpath,
+          value: res?.result?.value,
+        });
+
+        // setLoading(true);
+        // setCustomer(res?.result);
+        // Cookies.set("customer", res?.result);
+        // setContentType("success");
+        // // setImageToken(res?.result.image);
+        // // setValue(res?.result?.value);
+        // router.push({
+        //   pathname: "/kiosk/extend/userinfo",
+        //   query: {
+        //     c: res?.result?.customerId,
+        //   },
+        // });
+        ws.send('{"action":"Close"}');
+      } else {
+        // setContentType("error");
+        console.log("erss :>> ");
+      }
+    };
+
+    ws.onerror = function (event) {
+      setOpenModal(false);
+      // alert(event.data);
+      // setContentType("error");
+    };
+
+    ws.onclose = function () {
+      // setOpenModal(false);
+      // setContentType("error");
+      // console.log("Connection is closed");
+      // }
+    };
+  };
 
   const handlerClick = (e: any) => {
     handleClickContext({
@@ -40,6 +91,9 @@ const Atom_button: FC<PropsType> = ({
   if (config?.columnwidth)
     style = { ...style, width: parseInt(config?.columnwidth, 10) };
 
+  // console.log("config :>> ", config);
+
+  // if(config.paramrealpath)
   return (
     <>
       <div
@@ -64,20 +118,25 @@ const Atom_button: FC<PropsType> = ({
           styles=""
           sectionConfig={sectionConfig}
         />
-        sss
+
         <button
           type="button"
           name={config.paramrealpath}
           style={{ ...style }}
           className={twMerge(
-            "bg-indigo-700 transition duration-150 ease-in-out hover:bg-indigo-600 rounded text-white px-6 py-2.5 text-sm",
+            "transition duration-150 ease-in-out hover:bg-gray-600 rounded text-white px-6 py-4 text-sm mx-auto",
             className
           )}
-          onClick={handlerClick}
+          onClick={() => clickCamera()}
+          // onClick={handlerClick}
         >
-          {config.labelname}
+          <img
+            src="/images/Face_id_white.png"
+            className="md:max-w-[82px] md:max-h-[82px] xs:max-w-[40px] mx-auto"
+          />
+          {/* {config.labelname} */}
         </button>
-        {config.isEmpty && <span>{config.errorText}</span>}
+        {/* {config.isEmpty && <span>{config.errorText}</span>} */}
       </div>
     </>
   );
