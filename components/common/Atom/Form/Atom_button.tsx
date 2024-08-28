@@ -40,7 +40,7 @@ const Atom_button: FC<PropsType> = ({
 
     ws.onmessage = function (event) {
       var res = JSON.parse(event.data);
-      console.log("resresssssss", res);
+      // console.log("resresssssss", res);
 
       if (res?.status == "success") {
         handleChangeContext({
@@ -60,7 +60,7 @@ const Atom_button: FC<PropsType> = ({
         //     c: res?.result?.customerId,
         //   },
         // });
-        ws.send('{"action":"Close"}');
+        ws.send('{"action":"close"}');
       } else {
         // setContentType("error");
         console.log("erss :>> ");
@@ -68,7 +68,7 @@ const Atom_button: FC<PropsType> = ({
     };
 
     ws.onerror = function (event) {
-      setOpenModal(false);
+      // setOpenModal(false);
       // alert(event.data);
       // setContentType("error");
     };
@@ -119,9 +119,9 @@ const Atom_button: FC<PropsType> = ({
           sectionConfig={sectionConfig}
         />
 
-        <button
-          type="button"
-          name={config.paramrealpath}
+        <span
+          // type="button"
+          // name={config.paramrealpath}
           style={{ ...style }}
           className={twMerge(
             "transition duration-150 ease-in-out hover:bg-gray-600 rounded text-white px-6 py-4 text-sm mx-auto",
@@ -135,7 +135,7 @@ const Atom_button: FC<PropsType> = ({
             className="md:max-w-[82px] md:max-h-[82px] xs:max-w-[40px] mx-auto"
           />
           {/* {config.labelname} */}
-        </button>
+        </span>
         {/* {config.isEmpty && <span>{config.errorText}</span>} */}
       </div>
     </>
