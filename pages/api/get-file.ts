@@ -14,7 +14,8 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
   };
 
   const drestApiAddress =
-    "http://dev.veritech.mn:8080/erp-services/RestWS/runGetFile?pJsonString=" +
+    process.env.NEXT_PUBLIC_BACK_URL +
+    "erp-services/RestWS/runGetFile?pJsonString=" +
     JSON.stringify(pJsonString);
 
   let { data } = await axios.get<Readable>(drestApiAddress, {

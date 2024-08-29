@@ -49,7 +49,7 @@ const Events = () => {
           }
           return (
             <div
-              className={` bg-[${colors[index]}] flex ${
+              className={` bg-[${colors[index]}] flex rounded-xl ${
                 left && "flex-row-reverse"
               } gap-x-5 `}
               style={{
