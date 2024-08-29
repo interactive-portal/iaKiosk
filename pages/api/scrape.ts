@@ -1,10 +1,6 @@
-import axios from "axios";
-import * as cheerio from "cheerio";
 import puppeteer from "puppeteer";
 
 const getProcess = async (req: any, res: any) => {
-  const metaName: string = req?.query?.metaName || "metaProd";
-
   try {
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
