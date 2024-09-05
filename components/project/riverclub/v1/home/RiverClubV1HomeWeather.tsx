@@ -17,21 +17,21 @@ const RiverClubV1HomeWeather = () => {
 
   const [dataWeater, setDataWeater] = useState([]);
 
-  useEffect(() => {
-    setLanguage(currentLanguage);
+  // useEffect(() => {
+  //   setLanguage(currentLanguage);
 
-    const fetchData = async () => {
-      const response = await fetch("/api/scrape");
-      const result = await response.json();
-      setDataWeater(result.data);
-    };
+  //   const fetchData = async () => {
+  //     const response = await fetch("/api/scrape");
+  //     const result = await response.json();
+  //     setDataWeater(result.data);
+  //   };
 
-    // setInterval(() => {
-    //   fetchData();
-    // }, 10000);
+  //   // setInterval(() => {
+  //   //   fetchData();
+  //   // }, 10000);
 
-    if (dataWeater.length <= 0) fetchData();
-  }, [dataWeater]);
+  //   if (dataWeater.length <= 0) fetchData();
+  // }, [dataWeater]);
 
   // console.log("dataWeater :>> ", dataWeater);
 

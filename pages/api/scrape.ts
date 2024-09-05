@@ -1,6 +1,6 @@
 import puppeteer from "puppeteer";
 
-const getProcess = async (req: any, res: any) => {
+const getWeather = async (req: any, res: any) => {
   try {
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
@@ -25,4 +25,4 @@ const getProcess = async (req: any, res: any) => {
   }
 };
 
-export default getProcess;
+export default getWeather;
